@@ -98,7 +98,7 @@ const Footer: React.FC = () => {
         </FooterSection>
       </FooterContent>
       <Copyright>
-        <p>&copy;版权所有 <strong><span style={{ color: 'white' }}>上海神经体素软件有限公司</span></strong> 2023-2025 沪ICP备***********  沪公网安备 ****************号. </p>
+        <p>&copy;版权所有 <strong><span style={{ color: 'white' }}>上海神经体素软件有限公司</span></strong> 2019-2025 沪ICP备***********  沪公网安备 ****************号. </p>
       </Copyright>
     </FooterContainer>
   );
