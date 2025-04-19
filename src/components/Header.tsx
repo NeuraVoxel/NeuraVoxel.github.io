@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const HeaderContainer = styled.header`
@@ -73,6 +73,9 @@ const Nav = styled.nav`
 `;
 
 const Header: React.FC = () => {
+  const location = useLocation();
+  const { pathname } = location;
+
   return (
     <HeaderContainer>
       <HeaderInner>
@@ -83,11 +86,11 @@ const Header: React.FC = () => {
         </Logo>
         <Nav>
           <ul>
-            <li><Link to="/" className="active">Home</Link></li>
-            <li><Link to="/examples">Examples</Link></li>
-            <li><Link to="/three-column">Blog</Link></li>
-            <li><Link to="/two-column-2">Docs</Link></li>
-            <li><Link to="/no-sidebar">About US</Link></li>
+            <li><Link to="/" className={pathname === '/' ? 'active' : ''}>Home</Link></li>
+            <li><Link to="/examples" className={pathname === '/examples' ? 'active' : ''}>Examples</Link></li>
+            <li><Link to="/three-column" className={pathname === '/three-column' ? 'active' : ''}>Blog</Link></li>
+            <li><Link to="/two-column-2" className={pathname === '/two-column-2' ? 'active' : ''}>Docs</Link></li>
+            <li><Link to="/no-sidebar" className={pathname === '/no-sidebar' ? 'active' : ''}>About US</Link></li>
           </ul>
         </Nav>
       </HeaderInner>
