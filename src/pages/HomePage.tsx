@@ -192,7 +192,7 @@ const HomePage: React.FC = () => {
                 </p>
                 <div style={{ boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)', borderRadius: '8px', overflow: 'hidden', maxWidth: '900px', margin: '0 auto' }}>
                   <img
-                    src="/images/architecture.png"
+                    src="/images/architecture2.png"
                     alt="NeuraVoxel 技术架构图"
                     style={{ width: '100%', height: 'auto', display: 'block' }}
                   />

@@ -53,7 +53,7 @@ const ExampleCard = styled.div`
 `;
 
 const ExampleImage = styled.div`
-  height: 200px;
+  height: 100px;
   background-size: cover;
   background-position: center;
 `;
@@ -63,7 +63,7 @@ const ExampleContent = styled.div`
 `;
 
 const ExampleTitle = styled.h3`
-  font-size: 1.5rem;
+  font-size: 1.0rem;
   margin-bottom: 0.5rem;
   color: #ffffff;
 `;
@@ -96,42 +96,42 @@ const examples = [
     id: 1,
     title: "响应式布局",
     description: "展示完全响应式的网页设计，适应各种屏幕尺寸和设备。",
-    image: "/images/examples/responsive.jpg",
+    image: "/images/examples/pic04.jpg",
     link: "/examples/responsive"
   },
   {
     id: 2,
     title: "交互式组件",
     description: "各种交互式UI组件的展示，包括轮播图、模态框和下拉菜单等。",
-    image: "/images/examples/interactive.jpg",
+    image: "/images/examples/pic04.jpg",
     link: "/examples/interactive"
   },
   {
     id: 3,
     title: "动画效果",
     description: "使用CSS和JavaScript实现的各种平滑动画和过渡效果。",
-    image: "/images/examples/animations.jpg",
+    image: "/images/examples/pic04.jpg",
     link: "/examples/animations"
   },
   {
     id: 4,
     title: "表单设计",
     description: "美观且功能齐全的表单设计，包括验证和用户反馈。",
-    image: "/images/examples/forms.jpg",
+    image: "/images/examples/pic04.jpg",
     link: "/examples/forms"
   },
   {
     id: 5,
     title: "图片画廊",
     description: "展示各种图片布局和画廊效果，支持灯箱查看。",
-    image: "/images/examples/gallery.jpg",
+    image: "/images/examples/pic04.jpg",
     link: "/examples/gallery"
   },
   {
     id: 6,
     title: "排版样式",
     description: "展示各种文本排版样式和效果，包括标题、段落和列表等。",
-    image: "/images/examples/typography.jpg",
+    image: "/images/examples/pic04.jpg",
     link: "/examples/typography"
   }
 ];
@@ -139,12 +139,31 @@ const examples = [
 const ExamplesPage: React.FC = () => {
   return (
     <ExamplesContainer>
-      <PageTitle>示例展示</PageTitle>
-      <PageDescription>
+      <PageTitle>2025</PageTitle>
+      {/* <PageDescription>
         探索我们精心设计的各种网页组件和布局示例。这些示例展示了现代网页设计的最佳实践和创新技术，
         帮助您了解如何创建美观、响应式且用户友好的网站。
-      </PageDescription>
-      
+      </PageDescription> */}
+
+      <ExamplesGrid>
+        {examples.map(example => (
+          <ExampleCard key={example.id}>
+            <ExampleImage style={{ backgroundImage: `url(${example.image})` }} />
+            <ExampleContent>
+              <ExampleTitle>{example.title}</ExampleTitle>
+              <ExampleDescription>{example.description}</ExampleDescription>
+              <ExampleButton to={example.link}>查看详情</ExampleButton>
+            </ExampleContent>
+          </ExampleCard>
+        ))}
+      </ExamplesGrid>
+
+      <PageTitle>2024</PageTitle>
+      {/* <PageDescription>
+        探索我们精心设计的各种网页组件和布局示例。这些示例展示了现代网页设计的最佳实践和创新技术，
+        帮助您了解如何创建美观、响应式且用户友好的网站。
+      </PageDescription> */}
+
       <ExamplesGrid>
         {examples.map(example => (
           <ExampleCard key={example.id}>
