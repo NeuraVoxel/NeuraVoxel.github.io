@@ -126,10 +126,10 @@ const HomePage: React.FC = () => {
       <Banner 
         title="Welcome to the world of NeuraVoxel" 
         subtitle="Combines AI and computer graphics rendering to turn complex AI data into vivid visuals, helping researchers understand and explore better." 
-        buttonText="Try browser demo" 
-        buttonLink="https://rerun.io/viewer" 
-        buttonText2="Explore examples" 
-        buttonLink2="https://rerun.io/examples" 
+        buttonText="Explore examples" 
+        buttonLink="https://rerun.io/examples" 
+        // buttonText2="Explore examples" 
+        // buttonLink2="https://rerun.io/examples" 
       />
       
       <FeaturesSection>
