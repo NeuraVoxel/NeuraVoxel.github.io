@@ -116,7 +116,7 @@ const HomePage: React.FC = () => {
     {
       id: 3,
       title: 'Digital Twining',
-      description: `Building a digital twin world to change the world aims to enhance the design and operational efficiency of enterprise customers and is committed to achieving cross-industry digital and intelligent transformation.`,
+      description: `Aims to enhance the design and operational efficiency of enterprise customers and is committed to achieving cross-industry digital and intelligent transformation.`,
       imageUrl: '/images/twin.png',
     },
   ];

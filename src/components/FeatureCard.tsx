@@ -32,6 +32,9 @@ const CardImage = styled.div`
 
 const CardContent = styled.div`
   padding: 1.5rem;
+  // display: flex;
+  // flex-direction: column;
+  // height: 300px; /* 设置固定高度 */
   
   h3 {
     margin-bottom: 0.5rem;
@@ -40,6 +43,9 @@ const CardContent = styled.div`
   p {
     color: var(--text-color);
     margin-bottom: 1rem;
+    flex-grow: 1; /* 让描述文本占据剩余空间 */
+    overflow: auto; /* 如果内容过多，允许滚动 */
+    min-height: 130px; /* 允许内容高度为 0 */
   }
 `;
 
