@@ -132,6 +132,23 @@ const HomePage: React.FC = () => {
         // buttonLink2="https://rerun.io/examples" 
       />
       
+      {/* 技术架构图部分 */}
+      <section style={{ padding: '3rem 0', backgroundColor: 'var(--light-gray)', textAlign: 'center' }}>
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
+          {/* <h2 style={{ marginBottom: '1.5rem', color: 'var(--secondary-color)' }}>技术架构</h2> */}
+          <p style={{ marginBottom: '2rem', maxWidth: '800px', margin: '0 auto 2rem' }}>
+            NeuraVoxel 采用先进的技术架构，将人工智能与计算机图形学完美结合，为您提供强大的数据可视化解决方案。
+          </p>
+          <div style={{ boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)', borderRadius: '8px', overflow: 'hidden', maxWidth: '900px', margin: '0 auto' }}>
+            <img 
+              src="/images/architecture.png" 
+              alt="NeuraVoxel 技术架构图" 
+              style={{ width: '100%', height: 'auto', display: 'block' }}
+            />
+          </div>
+        </div>
+      </section>
+      
       <FeaturesSection>
         <FeaturesGrid>
           {features.map(feature => (
