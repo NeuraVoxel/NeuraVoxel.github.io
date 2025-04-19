@@ -123,36 +123,20 @@ const HomePage: React.FC = () => {
 
   return (
     <HomeContainer>
-      <Banner 
-        title="Welcome to the world of NeuraVoxel" 
-        subtitle="Combines AI and computer graphics rendering to turn complex AI data into vivid visuals, helping researchers understand and explore better." 
-        buttonText="Explore examples" 
-        buttonLink="https://rerun.io/examples" 
-        // buttonText2="Explore examples" 
-        // buttonLink2="https://rerun.io/examples" 
+
+      <Banner
+        title="Welcome to the world of NeuraVoxel"
+        subtitle="Combines AI and computer graphics rendering to turn complex AI data into vivid visuals, helping researchers understand and explore better."
+        buttonText="Explore examples"
+        buttonLink="https://rerun.io/examples"
+      // buttonText2="Explore examples" 
+      // buttonLink2="https://rerun.io/examples" 
       />
-      
-      {/* 技术架构图部分 */}
-      <section style={{ padding: '3rem 0', backgroundColor: 'var(--light-gray)', textAlign: 'center' }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
-          {/* <h2 style={{ marginBottom: '1.5rem', color: 'var(--secondary-color)' }}>技术架构</h2> */}
-          <p style={{ marginBottom: '2rem', maxWidth: '800px', margin: '0 auto 2rem' }}>
-            NeuraVoxel 采用先进的技术架构，将人工智能与计算机图形学完美结合，为您提供强大的数据可视化解决方案。
-          </p>
-          <div style={{ boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)', borderRadius: '8px', overflow: 'hidden', maxWidth: '900px', margin: '0 auto' }}>
-            <img 
-              src="/images/architecture.png" 
-              alt="NeuraVoxel 技术架构图" 
-              style={{ width: '100%', height: 'auto', display: 'block' }}
-            />
-          </div>
-        </div>
-      </section>
-      
+
       <FeaturesSection>
         <FeaturesGrid>
           {features.map(feature => (
-            <FeatureCard 
+            <FeatureCard
               key={feature.id}
               title={feature.title}
               description={feature.description}
@@ -161,12 +145,12 @@ const HomePage: React.FC = () => {
           ))}
         </FeaturesGrid>
       </FeaturesSection>
-      
+
       <ContentSection>
         <ContentGrid>
           <MainContent>
-            <h2>Welcome to NeuraVoxel!</h2>
-            <p>
+            <h2>NeuraVoxel Workflow</h2>
+            {/* <p>
               This is <strong>NeuraVoxel</strong>, a fully responsive HTML5 site template designed by <a href="http://twitter.com/ajlkn">AJ</a> and released for free by <a href="http://html5up.net">HTML5 UP</a>. It features a simple, lightweight design, solid HTML5 and CSS3 code, and full responsive support for desktop, tablet, and mobile displays.
             </p>
             <p>
@@ -174,9 +158,26 @@ const HomePage: React.FC = () => {
             </p>
             <p>
               Sed porttitor cras in erat nec felis varius pellentesque. Nullam scelerisque blandit leo. Donec imperdiet, tellus sit amet congue volutpat, diam urna accumsan elit, eu hendrerit magna ligula ac lorem. Vivamus posuere laoreet dolor ut viverra. Etiam vestibulum elementum euismod. Cras ornare feugiat erat a sollicitudin. Quisque ac orci vitae lectus tincidunt lobortis.
-            </p>
+            </p> */}
+
+            {/* 技术架构图部分 */}
+            <section style={{ padding: '0rem 0', backgroundColor: 'var(--light-white)', textAlign: 'left' }}>
+              <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1rem' }}>
+                {/* <h2 style={{ marginBottom: '1.5rem', color: 'var(--secondary-color)' }}>技术架构</h2> */}
+                <p style={{ marginBottom: '2rem', maxWidth: '800px', margin: '0 auto 2rem' }}>
+                  NeuraVoxel adopts an advanced technical architecture, perfectly integrating artificial intelligence with computer graphics to provide you with a powerful data visualization solution.
+                </p>
+                <div style={{ boxShadow: '0 4px 10px rgba(0, 0, 0, 0.1)', borderRadius: '8px', overflow: 'hidden', maxWidth: '900px', margin: '0 auto' }}>
+                  <img
+                    src="/images/architecture.png"
+                    alt="NeuraVoxel 技术架构图"
+                    style={{ width: '100%', height: 'auto', display: 'block' }}
+                  />
+                </div>
+              </div>
+            </section>
           </MainContent>
-          
+
           <Sidebar>
             <SidebarBox>
               <h3>Interesting Stuff</h3>
@@ -188,7 +189,7 @@ const HomePage: React.FC = () => {
                 <li><a href="#">Etiam feugiat condimentum</a></li>
               </ul>
             </SidebarBox>
-            
+
             <SidebarBox>
               <h3>Something Else</h3>
               <ul>

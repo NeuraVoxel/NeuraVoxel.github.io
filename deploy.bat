@@ -1,4 +1,6 @@
 @echo off
+:: 设置代码页为 65001 (UTF-8)
+chcp 65001 >nul
 setlocal
 
 :: 构建网站
