@@ -103,21 +103,21 @@ const HomePage: React.FC = () => {
   const features = [
     {
       id: 1,
-      title: 'Put Something Here',
-      description: 'Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.',
-      imageUrl: '/images/pic01.jpg',
+      title: 'Autonomous driving',
+      description: 'Build a closed loop of autonomous driving data, such as data collection, data conversion, data visualization, and data simulation, and generate data through world models.',
+      imageUrl: '/images/ad.png',
     },
     {
       id: 2,
-      title: 'An Interesting Title',
-      description: 'Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.',
-      imageUrl: '/images/pic02.jpg',
+      title: 'Robotics',
+      description: 'Visualize all your robotic data in one integrated platform.',
+      imageUrl: '/images/robotic.png',
     },
     {
       id: 3,
-      title: 'Oh, and Finally This',
-      description: 'Duis neque nisi, dapibus sed mattis et quis, nibh. Sed et dapibus nisl amet mattis, sed a rutrum accumsan sed. Suspendisse eu.',
-      imageUrl: '/images/pic03.jpg',
+      title: 'Digital Twining',
+      description: `Building a digital twin world to change the world aims to enhance the design and operational efficiency of enterprise customers and is committed to achieving cross-industry digital and intelligent transformation.`,
+      imageUrl: '/images/twin.png',
     },
   ];
 
