@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import blogPostsData from '../blogs';
 
 const BlogContainer = styled.div`
   max-width: 1200px;
@@ -102,14 +103,14 @@ const BlogContent = styled.div`
 
 // 模拟博客数据
 const blogPosts = [
-  {
-    id: 1,
-    title: '使用 NeuraVoxel 可视化自动驾驶数据',
-    date: '2023-05-15',
-    excerpt: 'NeuraVoxel 提供了强大的工具来可视化和分析自动驾驶数据，帮助研究人员更好地理解复杂的场景和行为模式。本文将介绍如何使用 NeuraVoxel 进行自动驾驶数据的可视化和分析。',
-    imageUrl: '/images/blog/ad.png',
-    slug: 'visualizing-autonomous-driving-data'
-  },
+  // {
+  //   id: 1,
+  //   title: '使用 NeuraVoxel 可视化自动驾驶数据',
+  //   date: '2023-05-15',
+  //   excerpt: 'NeuraVoxel 提供了强大的工具来可视化和分析自动驾驶数据，帮助研究人员更好地理解复杂的场景和行为模式。本文将介绍如何使用 NeuraVoxel 进行自动驾驶数据的可视化和分析。',
+  //   imageUrl: '/images/blog/ad.png',
+  //   slug: 'visualizing-autonomous-driving-data'
+  // },
 //   {
 //     id: 2,
 //     title: '机器人数据可视化的最佳实践',
@@ -161,16 +162,16 @@ const BlogPage: React.FC = () => {
       </BlogHeader>
       
       <BlogGrid>
-        {blogPosts.map(post => (
-          <BlogCard key={post.id}>
+        {Object.entries(blogPostsData).map(([slug, post]) => (
+          <BlogCard key={slug}>
             <BlogImage>
               <img src={post.imageUrl} alt={post.title} />
             </BlogImage>
             <BlogContent>
               <h3>{post.title}</h3>
               <span className="date">{post.date}</span>
-              <p>{post.excerpt}</p>
-              <Link to={`/blog/${post.slug}`} className="read-more">
+              <p>{post.excerpt || '点击阅读更多了解详情...'}</p>
+              <Link to={`/blog/${slug}`} className="read-more">
                 阅读更多 →
               </Link>
             </BlogContent>
