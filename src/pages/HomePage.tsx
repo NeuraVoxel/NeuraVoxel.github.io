@@ -147,6 +147,12 @@ const HomePage: React.FC = () => {
       description: `Data conversion is an important step in data processing.`,
       imageUrl: '/images/data-conversion.png',
     },
+    {
+      id: 8,
+      title: 'Data Closed Loop',
+      description: `Data-driven end-to-end data closed loop accelerates industrial implementation.`,
+      imageUrl: '/images/data_closed_loop.png',
+    },
   ];
 
   return (
