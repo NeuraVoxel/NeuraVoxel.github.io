@@ -11,7 +11,7 @@ const FooterContent = styled.div`
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   padding: 0 1rem;
   
@@ -67,33 +67,43 @@ const Footer: React.FC = () => {
     <FooterContainer>
       <FooterContent>
         <FooterSection>
-          <h3>Random Stuff</h3>
+          <h3>Research</h3>
           <ul>
-            <li><a href="#">Etiam feugiat condimentum</a></li>
-            <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-            <li><a href="#">Sed porttitor cras in erat nec</a></li>
-            <li><a href="#">Felis varius pellentesque potenti</a></li>
-            <li><a href="#">Nullam scelerisque blandit leo</a></li>
+            <li><a target="_blank" href="#">Etiam feugiat condimentum</a></li>
+            <li><a target="_blank" href="#">Aliquam imperdiet suscipit odio</a></li>
+            <li><a target="_blank" href="#">Sed porttitor cras in erat nec</a></li>
+            <li><a target="_blank" href="#">Felis varius pellentesque potenti</a></li>
+            <li><a target="_blank" href="#">Nullam scelerisque blandit leo</a></li>
           </ul>
         </FooterSection>
         <FooterSection>
-          <h3>Random Stuff</h3>
+          <h3>Product</h3>
           <ul>
-            <li><a href="#">Etiam feugiat condimentum</a></li>
-            <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-            <li><a href="#">Sed porttitor cras in erat nec</a></li>
-            <li><a href="#">Felis varius pellentesque potenti</a></li>
-            <li><a href="#">Nullam scelerisque blandit leo</a></li>
+            <li><a target="_blank" href="#">Etiam feugiat condimentum</a></li>
+            <li><a target="_blank" href="#">Aliquam imperdiet suscipit odio</a></li>
+            <li><a target="_blank" href="#">Sed porttitor cras in erat nec</a></li>
+            <li><a target="_blank" href="#">Felis varius pellentesque potenti</a></li>
+            <li><a target="_blank" href="#">Nullam scelerisque blandit leo</a></li>
           </ul>
         </FooterSection>
         <FooterSection>
-          <h3>Random Stuff</h3>
+          <h3>Legal & Safety</h3>
           <ul>
-            <li><a href="#">Etiam feugiat condimentum</a></li>
-            <li><a href="#">Aliquam imperdiet suscipit odio</a></li>
-            <li><a href="#">Sed porttitor cras in erat nec</a></li>
-            <li><a href="#">Felis varius pellentesque potenti</a></li>
-            <li><a href="#">Nullam scelerisque blandit leo</a></li>
+            <li><a target="_blank" href="#">Etiam feugiat condimentum</a></li>
+            <li><a target="_blank" href="#">Aliquam imperdiet suscipit odio</a></li>
+            <li><a target="_blank" href="#">Sed porttitor cras in erat nec</a></li>
+            <li><a target="_blank" href="#">Felis varius pellentesque potenti</a></li>
+            <li><a target="_blank" href="#">Nullam scelerisque blandit leo</a></li>
+          </ul>
+        </FooterSection>
+        <FooterSection>
+          <h3>Links</h3>
+          <ul>
+            {/* <li><a target="_blank" href="http://bimant.com/">BimAnt</a></li> */}
+            <li><a target="_blank" href="#">Aliquam </a></li>
+            <li><a target="_blank" href="#">Sed </a></li>
+            <li><a target="_blank" href="#">Felis </a></li>
+            <li><a target="_blank" href="#">Nullam </a></li>
           </ul>
         </FooterSection>
       </FooterContent>
