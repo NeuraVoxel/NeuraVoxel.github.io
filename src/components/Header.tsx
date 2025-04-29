@@ -22,6 +22,12 @@ const Logo = styled.div`
   display: flex;
   align-items: center;
   
+  a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
   img {
     height: 2.5rem;
     margin-right: 0.5rem;
@@ -31,11 +37,10 @@ const Logo = styled.div`
   h1 {
     font-size: 2.5rem;
     margin: 0;
-    color: #ffffff; /* 橘色主标题 */
+    color: #ffffff;
     
     span {
-      // color: #ff9e45; /* 橘色次标题 */
-      color: #B5ABB2; /* 橘色次标题 */
+      color: #B5ABB2;
     }
   }
   
@@ -80,9 +85,10 @@ const Header: React.FC = () => {
     <HeaderContainer>
       <HeaderInner>
         <Logo>
-          <img src="/logo-n.png" alt="NeuraVoxel Logo" />
-          <h1>Neura<span>Voxel</span></h1>
-          {/* <p>A responsive HTML5 site template designed by HTML5 UP</p> */}
+          <Link to="/">
+            <img src="/logo-n.png" alt="NeuraVoxel Logo" />
+            <h1>Neura<span>Voxel</span></h1>
+          </Link>
         </Logo>
         <Nav>
           <ul>
