@@ -8,6 +8,7 @@ import ThreeColumnPage from './pages/ThreeColumnPage';
 import ExamplesPage from './pages/ExamplesPage';
 import BlogPage from './pages/BlogPage';
 import BlogPostPage from './pages/BlogPostPage';
+import ToolChainPage from './pages/ToolChainPage';
 
 const App: React.FC = () => {
   return (
@@ -20,6 +21,7 @@ const App: React.FC = () => {
           <Route path="/examples" element={<ExamplesPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogPostPage />} />
+          <Route path="/toolchain" element={<ToolChainPage />} />
           <Route path="/two-column-1" element={<ThreeColumnPage />} />
           <Route path="/two-column-2" element={<ThreeColumnPage />} />
           <Route path="/no-sidebar" element={<ThreeColumnPage />} />
