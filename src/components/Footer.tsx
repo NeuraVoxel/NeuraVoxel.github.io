@@ -98,9 +98,12 @@ const Footer: React.FC = () => {
         </FooterSection>
         <FooterSection>
           <h3>Resources</h3>
+          {/* <li><Link to="/resource" className={pathname.startsWith('/resource') ? 'active' : ''}>Resource</Link></li> */}
+            {/* <li><Link to="/two-column-2" className={pathname === '/two-column-2' ? 'active' : ''}>Docs</Link></li> */}
           <ul>
             {/* <li><a target="_blank" href="http://bimant.com/">BimAnt</a></li> */}
-            <li><a target="_blank" href="#">Aliquam </a></li>
+            <li><a target="_blank" href="/resource">Resource Center</a></li>
+            <li><a target="_blank" href="/two-column-2">Learning Resource </a></li>
             <li><a target="_blank" href="#">Sed </a></li>
             <li><a target="_blank" href="#">Felis </a></li>
             <li><a target="_blank" href="#">Nullam </a></li>
