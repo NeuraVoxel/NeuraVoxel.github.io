@@ -97,7 +97,7 @@ const Footer: React.FC = () => {
           </ul>
         </FooterSection>
         <FooterSection>
-          <h3>Links</h3>
+          <h3>Resources</h3>
           <ul>
             {/* <li><a target="_blank" href="http://bimant.com/">BimAnt</a></li> */}
             <li><a target="_blank" href="#">Aliquam </a></li>
