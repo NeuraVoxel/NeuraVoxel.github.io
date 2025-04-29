@@ -103,7 +103,7 @@ const HomePage: React.FC = () => {
   const features = [
     {
       id: 1,
-      title: 'Autonomous driving',
+      title: 'Autonomous Driving',
       description: 'Build a closed loop of autonomous driving data, such as data collection, data conversion, data visualization, and data simulation, and generate data through world models.',
       imageUrl: '/images/ad.png',
       buttonLink: '#'
@@ -117,29 +117,35 @@ const HomePage: React.FC = () => {
     },
     {
       id: 3,
+      title: 'Simulation',
+      description: `Simulate before you build.`,  
+      imageUrl: '/images/simulcation.png',
+    },
+    {
+      id: 4,
+      title: 'HMI',
+      description: `The entrance for communication between vehicles and people.`,  
+      imageUrl: '/images/hmi.png',
+    },
+    {
+      id: 5,
       title: 'Digital Twining',
       description: `Aims to enhance the design and operational efficiency of enterprise customers and is committed to achieving cross-industry digital and intelligent transformation.`,
       imageUrl: '/images/twin.png',
       buttonLink: '#'
     },
     {
-      id: 4,
+      id: 6,
       title: 'CAD & BIM',
       description: `Precision drawings and modern manufacturing.`,
       imageUrl: '/images/cad.png',
       buttonLink: 'https://pattern-x.github.io/gemini-viewer-examples/'
     },
     {
-      id: 5,
-      title: 'License Info',
-      description: `Halcyonic is licensed under the CCA license, so use it for personal/commercial use as much as you like (just keep our credits intact).`,
-      imageUrl: '/images/pic01.jpg',
-    },
-    {
-      id: 6,
-      title: 'Responsive You Say?',
-      description: `Yes! Halcyonic is built to be fully responsive so it looks great at every screen size, from desktops to tablets to mobile phones.`,
-      imageUrl: '/images/pic02.jpg',
+      id: 7,
+      title: 'Data Conversion',
+      description: `Data conversion is an important step in data processing.`,
+      imageUrl: '/images/data-conversion.png',
     },
   ];
 
