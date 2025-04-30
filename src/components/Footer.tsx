@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 
 const FooterContainer = styled.footer`
@@ -63,6 +64,8 @@ const Copyright = styled.div`
 `;
 
 const Footer: React.FC = () => {
+  const location = useLocation();
+  const { pathname } = location;
   return (
     <FooterContainer>
       <FooterContent>
@@ -102,8 +105,10 @@ const Footer: React.FC = () => {
             {/* <li><Link to="/two-column-2" className={pathname === '/two-column-2' ? 'active' : ''}>Docs</Link></li> */}
           <ul>
             {/* <li><a target="_blank" href="http://bimant.com/">BimAnt</a></li> */}
-            <li><a target="_blank" href="/resource">Resource Center</a></li>
-            <li><a target="_blank" href="/two-column-2">Learning Resource </a></li>
+            {/* <li><a target="_blank" href="/resource">Resource Center</a></li> */}
+            {/* <li><a target="_blank" href="/two-column-2">Learning Resource </a></li> */}
+             <li><Link target="_blank" to="/resource" >Resource</Link></li>
+            <li><Link target="_blank" to="/two-column-2" >Learning</Link></li>
             <li><a target="_blank" href="#">Sed </a></li>
             <li><a target="_blank" href="#">Felis </a></li>
             <li><a target="_blank" href="#">Nullam </a></li>

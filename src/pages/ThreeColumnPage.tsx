@@ -43,115 +43,54 @@ const ThreeColumnPage: React.FC = () => {
   return (
     <PageContainer>
       <Banner
-        title="Three Column"
-        subtitle="A generic three column layout"
+        title="关于我们"
+        subtitle="NeuraVoxel - 用AI和计算机图形技术重新定义数据可视化"
       />
 
       <ContentSection>
         <ContentGrid>
           <Column>
-            <h2>Computer Graphic</h2>
-            <ul>
-              <li><a target="_blank" href="https://www.realtimerendering.com/index.html">realtimerendering</a></li>
-            </ul>
-          </Column>
-
-          {/* <Column>
-            <h2>Column Two</h2>
+            <h2>公司简介</h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac quam risus, at tempus justo. Sed dictum rutrum massa eu volutpat. Quisque vitae hendrerit sem. Pellentesque lorem felis, ultricies a bibendum id, bibendum sit amet nisl.
+              NeuraVoxel是一家专注于AI数据可视化的创新科技公司。我们致力于将复杂的AI数据转化为直观、易懂的可视化表现形式，帮助研究人员和企业更好地理解和分析数据。
             </p>
             <p>
-              Mauris et lorem quam. Maecenas rutrum imperdiet vulputate. Nulla quis nibh ipsum, sed egestas justo. Morbi ut ante mattis orci convallis tempor. Etiam a lacus a lacus pharetra porttitor quis accumsan odio.
-            </p>
-            <p>
-              Sed porttitor cras in erat nec felis varius pellentesque. Nullam scelerisque blandit leo. Donec imperdiet, tellus sit amet congue volutpat, diam urna accumsan elit, eu hendrerit magna ligula ac lorem.
+              我们的团队由来自计算机图形学、人工智能和数据科学领域的专家组成，拥有丰富的行业经验和技术积累。通过持续创新和技术突破，我们为客户提供最先进的数据可视化解决方案。
             </p>
           </Column>
-          
-          <Column>
-            <h2>Column Three</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac quam risus, at tempus justo. Sed dictum rutrum massa eu volutpat. Quisque vitae hendrerit sem. Pellentesque lorem felis, ultricies a bibendum id, bibendum sit amet nisl.
-            </p>
-            <p>
-              Mauris et lorem quam. Maecenas rutrum imperdiet vulputate. Nulla quis nibh ipsum, sed egestas justo. Morbi ut ante mattis orci convallis tempor. Etiam a lacus a lacus pharetra porttitor quis accumsan odio.
-            </p>
-            <p>
-              Sed porttitor cras in erat nec felis varius pellentesque. Nullam scelerisque blandit leo. Donec imperdiet, tellus sit amet congue volutpat, diam urna accumsan elit, eu hendrerit magna ligula ac lorem.
-            </p>
-          </Column> */}
         </ContentGrid>
       </ContentSection>
 
       <ContentSection>
         <ContentGrid>
           <Column>
-            <h2>Robotic</h2>
+            <h2>我们的使命</h2>
+            <p>
+              我们的使命是通过创新的技术手段，让数据可视化变得简单、直观和有效。我们相信，好的可视化不仅能够展示数据，更能够讲述数据背后的故事，帮助用户做出更明智的决策。
+            </p>
             <ul>
-              <li><a target="_blank" href=" https://fishros.com/d2lros2/">2lros2</a></li>
+              <li>为AI研究提供强大的可视化工具</li>
+              <li>推动数据可视化技术的创新和发展</li>
+              <li>帮助企业更好地理解和利用数据</li>
+              <li>促进人工智能技术的普及和应用</li>
             </ul>
           </Column>
-
-          {/* <Column>
-            <h2>Column Two</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac quam risus, at tempus justo. Sed dictum rutrum massa eu volutpat. Quisque vitae hendrerit sem. Pellentesque lorem felis, ultricies a bibendum id, bibendum sit amet nisl.
-            </p>
-            <p>
-              Mauris et lorem quam. Maecenas rutrum imperdiet vulputate. Nulla quis nibh ipsum, sed egestas justo. Morbi ut ante mattis orci convallis tempor. Etiam a lacus a lacus pharetra porttitor quis accumsan odio.
-            </p>
-            <p>
-              Sed porttitor cras in erat nec felis varius pellentesque. Nullam scelerisque blandit leo. Donec imperdiet, tellus sit amet congue volutpat, diam urna accumsan elit, eu hendrerit magna ligula ac lorem.
-            </p>
-          </Column>
-          
-          <Column>
-            <h2>Column Three</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac quam risus, at tempus justo. Sed dictum rutrum massa eu volutpat. Quisque vitae hendrerit sem. Pellentesque lorem felis, ultricies a bibendum id, bibendum sit amet nisl.
-            </p>
-            <p>
-              Mauris et lorem quam. Maecenas rutrum imperdiet vulputate. Nulla quis nibh ipsum, sed egestas justo. Morbi ut ante mattis orci convallis tempor. Etiam a lacus a lacus pharetra porttitor quis accumsan odio.
-            </p>
-            <p>
-              Sed porttitor cras in erat nec felis varius pellentesque. Nullam scelerisque blandit leo. Donec imperdiet, tellus sit amet congue volutpat, diam urna accumsan elit, eu hendrerit magna ligula ac lorem.
-            </p>
-          </Column> */}
         </ContentGrid>
       </ContentSection>
 
       <ContentSection>
         <ContentGrid>
           <Column>
-            <h2>Artificial intelligence</h2>
+            <h2>联系我们</h2>
+            <p>
+              如果您对我们的产品和服务感兴趣，或者想要了解更多信息，欢迎通过以下方式联系我们：
+            </p>
+            <ul>
+              <li>邮箱：contact@neuravoxel.com</li>
+              <li>地址：上海市浦东新区张江高科技园区</li>
+              <li>电话：+86 21 XXXX XXXX</li>
+            </ul>
           </Column>
-
-          {/* <Column>
-            <h2>Column Two</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac quam risus, at tempus justo. Sed dictum rutrum massa eu volutpat. Quisque vitae hendrerit sem. Pellentesque lorem felis, ultricies a bibendum id, bibendum sit amet nisl.
-            </p>
-            <p>
-              Mauris et lorem quam. Maecenas rutrum imperdiet vulputate. Nulla quis nibh ipsum, sed egestas justo. Morbi ut ante mattis orci convallis tempor. Etiam a lacus a lacus pharetra porttitor quis accumsan odio.
-            </p>
-            <p>
-              Sed porttitor cras in erat nec felis varius pellentesque. Nullam scelerisque blandit leo. Donec imperdiet, tellus sit amet congue volutpat, diam urna accumsan elit, eu hendrerit magna ligula ac lorem.
-            </p>
-          </Column>
-          
-          <Column>
-            <h2>Column Three</h2>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas ac quam risus, at tempus justo. Sed dictum rutrum massa eu volutpat. Quisque vitae hendrerit sem. Pellentesque lorem felis, ultricies a bibendum id, bibendum sit amet nisl.
-            </p>
-            <p>
-              Mauris et lorem quam. Maecenas rutrum imperdiet vulputate. Nulla quis nibh ipsum, sed egestas justo. Morbi ut ante mattis orci convallis tempor. Etiam a lacus a lacus pharetra porttitor quis accumsan odio.
-            </p>
-            <p>
-              Sed porttitor cras in erat nec felis varius pellentesque. Nullam scelerisque blandit leo. Donec imperdiet, tellus sit amet congue volutpat, diam urna accumsan elit, eu hendrerit magna ligula ac lorem.
-            </p>
-          </Column> */}
         </ContentGrid>
       </ContentSection>
     </PageContainer>
