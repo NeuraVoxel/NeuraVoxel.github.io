@@ -1,10 +1,10 @@
 export default {
     id: 3,
     excerpt: '随着移动设备性能的快速提升，SLAM（即时定位与地图构建）技术在机器人、AR/VR等领域的应用逐渐向移动端延伸。本文以安卓平台为切入点，探讨SLAM点云数据的实时可视化技术方案，并结合实际开发场景提出性能优化策略。',
-    slug: 'best-practices-for-robotics-data-visualization',
+    slug: 'Real-Time Mapping with SLAM on Your Mobile',
     title: 'Real-Time Mapping with SLAM on Your Mobile',
-    date: '2025-05-09',
-    category: 'gazebo',
+    date: '2025-05-13',
+    category: 'slam',
     imageUrl: '/images/blog/visilization-slam-android.png',
     content: `
     <h2>SLAM点云数据在安卓端可视化：跨平台技术实现与优化策略</h2>
