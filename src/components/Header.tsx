@@ -93,9 +93,9 @@ const Header: React.FC = () => {
         <Nav>
           <ul>
             <li><Link to="/" className={pathname === '/' ? 'active' : ''}>Home</Link></li>
-            <li><Link to="/examples" className={pathname === '/examples' ? 'active' : ''}>Examples</Link></li>
-            <li><Link to="/toolchain" className={pathname.startsWith('/toolchain') ? 'active' : ''}>Tools</Link></li>
+            {/* <li><Link to="/examples" className={pathname === '/examples' ? 'active' : ''}>Examples</Link></li> */}
             <li><Link to="/blog" className={pathname.startsWith('/blog') ? 'active' : ''}>Blog</Link></li>
+            <li><Link to="/toolchain" className={pathname.startsWith('/toolchain') ? 'active' : ''}>Tools</Link></li>
             {/* <li><Link to="/resource" className={pathname.startsWith('/resource') ? 'active' : ''}>Resource</Link></li> */}
             {/* <li><Link to="/two-column-2" className={pathname === '/two-column-2' ? 'active' : ''}>Docs</Link></li> */}
             <li><Link to="/no-sidebar" className={pathname === '/no-sidebar' ? 'active' : ''}>About US</Link></li>
