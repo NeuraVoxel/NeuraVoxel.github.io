@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Prose from "../components/Prose.astro";
+import { useTranslations } from "../lib/i18n";
+
+const locale = "zh";
+const t = useTranslations(locale);
+---
+
+<BaseLayout locale={locale} currentPath="/about" title={t("about.title")}>
+  <div class="page-head">
+    <h1>{t("about.title")}</h1>
+  </div>
+  <Prose class="about-body">
+    <p>{t("about.body")}</p>
+    <p>
+      联系：<a href="mailto:contact@neuravoxel.cn">contact@neuravoxel.cn</a>
+    </p>
+  </Prose>
+</BaseLayout>
+
+<style>
+  .about-body {
+    max-width: calc(var(--nv-measure-wide) + 2 * var(--nv-page-x));
+    margin-inline: auto;
+    padding: 0 var(--nv-page-x) var(--nv-space-8);
+  }
+</style>

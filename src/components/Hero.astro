@@ -1,0 +1,41 @@
+---
+import type { Locale } from "../lib/locale";
+import { href } from "../lib/locale";
+import { useTranslations } from "../lib/i18n";
+import LoopDiagram from "./LoopDiagram.astro";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<section class="hero" id="top" aria-labelledby="hero-brand">
+  <div class="hero__atmosphere" aria-hidden="true">
+    <div class="hero__voxel-field"></div>
+    <div class="hero__glow"></div>
+    <div class="hero__scan"></div>
+  </div>
+  <div class="hero__stage">
+    <div class="hero__rail">
+      <p class="nv-label hero__eyebrow">{t("hero.eyebrow")}</p>
+      <span class="hero__rail-line" aria-hidden="true"></span>
+      <span class="hero__rail-meta" aria-hidden="true">{t("hero.railMeta")}</span>
+    </div>
+    <div class="hero__layout">
+      <LoopDiagram locale={locale} />
+      <div class="hero__copy">
+        <h1 id="hero-brand" class="hero__brand">NeuraVoxel</h1>
+        <p class="hero__claim">{t("hero.claim")}</p>
+        <p class="hero__support">{t("hero.support")}</p>
+        <div class="hero__cta">
+          <a class="nv-btn nv-btn--primary" href="#loop">{t("hero.learnLoop")}</a>
+          <a class="nv-btn nv-btn--ghost" href={href(locale, "/modules")}>{t("hero.viewModules")}</a>
+          <a class="nv-btn nv-btn--text" href={href(locale, "/docs")}>{t("hero.readDocs")}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

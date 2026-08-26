@@ -1,0 +1,20 @@
+{
+  "scenes": [
+    {
+      "id": "autonomous-driving",
+      "title": "自动驾驶",
+      "pain": "多源采集难对齐，标注—训练—仿真之间版本漂移。",
+      "narrative": "原始行程与传感器包进入 DMP 版本化；标注桥与训练桥按清单消费；仿真结果与难例回流，形成可追溯闭环。",
+      "moduleSlugs": ["dmp", "annotation-bridge", "training-bridge", "simulation-bridge"],
+      "docPath": "concepts/data-loop"
+    },
+    {
+      "id": "embodied-ai",
+      "title": "具身智能",
+      "pain": "机器人演示数据碎片化，仿真与真机分布不一致。",
+      "narrative": "演示轨迹与感知帧经 DMP 组织；训练与仿真桥共享同一数据契约；真机反馈经 DDS / API 写回，缩短迭代周期。",
+      "moduleSlugs": ["dmp", "training-bridge", "simulation-bridge"],
+      "docPath": "dmp/interactions"
+    }
+  ]
+}

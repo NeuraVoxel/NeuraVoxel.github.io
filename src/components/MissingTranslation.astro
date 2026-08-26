@@ -1,0 +1,27 @@
+---
+import type { Locale } from "../lib/locale";
+import { useTranslations } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+  chinesePath: string;
+}
+
+const { locale, chinesePath } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<section class="nv-section missing-translation">
+  <h1>{t("errors.missingTranslationTitle")}</h1>
+  <p>{t("errors.missingTranslationMessage")}</p>
+  <p>
+    <a class="nv-btn nv-btn--primary" href={chinesePath}>{t("errors.viewChinese")}</a>
+  </p>
+</section>
+
+<style>
+  .missing-translation {
+    max-width: var(--nv-measure);
+    padding-block: var(--nv-space-9);
+  }
+</style>

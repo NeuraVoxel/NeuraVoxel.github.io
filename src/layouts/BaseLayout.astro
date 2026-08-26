@@ -1,0 +1,44 @@
+---
+import type { Locale } from "../lib/locale";
+import { htmlLang } from "../lib/locale";
+import { useTranslations } from "../lib/i18n";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import "../styles/global.css";
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+  title?: string;
+  description?: string;
+}
+
+const { locale, currentPath, title, description } = Astro.props;
+const t = useTranslations(locale);
+const pageTitle = title ? `${title} · NeuraVoxel` : t("meta.siteTitle");
+const pageDescription = description ?? t("meta.siteDescription");
+---
+
+<!doctype html>
+<html lang={htmlLang(locale)}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Source+Sans+3:wght@400;600;700&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">{t("nav.skipToContent")}</a>
+    <SiteHeader locale={locale} currentPath={currentPath} />
+    <main id="main">
+      <slot />
+    </main>
+    <SiteFooter locale={locale} currentPath={currentPath} />
+  </body>
+</html>

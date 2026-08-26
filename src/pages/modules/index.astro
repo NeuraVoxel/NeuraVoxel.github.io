@@ -1,0 +1,30 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ModuleCard from "../../components/ModuleCard.astro";
+import { getModulesForLocale } from "../../lib/content";
+import { useTranslations } from "../../lib/i18n";
+
+const locale = "zh";
+const currentPath = "/modules";
+const modules = await getModulesForLocale(locale);
+const t = useTranslations(locale);
+---
+
+<BaseLayout
+  locale={locale}
+  currentPath={currentPath}
+  title={t("modules.pageTitle")}
+  description={t("modules.pageDescription")}
+>
+  <div class="page-head">
+    <h1>{t("modules.pageTitle")}</h1>
+    <p>{t("modules.pageDescription")}</p>
+  </div>
+  <div class="module-list module-list-page">
+    {modules.map((mod) => <ModuleCard locale={locale} module={mod} />)}
+  </div>
+</BaseLayout>
+
+<style>
+  @import "../../styles/pages/modules.css";
+</style>

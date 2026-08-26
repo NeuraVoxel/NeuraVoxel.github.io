@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import DocSidebar from "../../components/DocSidebar.astro";
+import { getDocTree } from "../../lib/content";
+import { useTranslations } from "../../lib/i18n";
+import { href, localePrefix } from "../../lib/locale";
+
+const locale = "zh";
+const currentPath = "/docs";
+const prefix = localePrefix(locale);
+const tree = await getDocTree(locale, prefix);
+const t = useTranslations(locale);
+---
+
+<BaseLayout
+  locale={locale}
+  currentPath={currentPath}
+  title={t("docs.pageTitle")}
+  description={t("docs.pageDescription")}
+>
+  <div class="page-head">
+    <h1>{t("docs.pageTitle")}</h1>
+    <p>{t("docs.pageDescription")}</p>
+  </div>
+  <div class="doc-layout">
+    <DocSidebar locale={locale} tree={tree} />
+    <div class="prose">
+      <p>{locale === "zh" ? "从左侧目录选择文档，或从" : "Pick a page from the sidebar, or start at"} <a href={href(locale, "/docs/getting-started/overview")}>{locale === "zh" ? "快速了解" : "Getting started"}</a>.</p>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  @import "../../styles/prose.css";
+</style>

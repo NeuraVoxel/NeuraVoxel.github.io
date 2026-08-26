@@ -1,0 +1,28 @@
+---
+import { getCollection } from "astro:content";
+import DocLayout from "../../layouts/DocLayout.astro";
+import { getDocBySlug, getDocTree, stripLocale } from "../../lib/content";
+import { localePrefix } from "../../lib/locale";
+
+export async function getStaticPaths() {
+  const entries = await getCollection(
+    "docs",
+    ({ id, data }) => id.startsWith("zh/") && !data.draft,
+  );
+  return entries.map((entry) => ({
+    params: { slug: stripLocale(entry.id, "zh") },
+  }));
+}
+
+const locale = "zh";
+const slug = Astro.params.slug!;
+const doc = await getDocBySlug(locale, slug);
+const prefix = localePrefix(locale);
+const tree = await getDocTree(locale, prefix);
+
+if (!doc) {
+  return Astro.redirect("/404");
+}
+---
+
+<DocLayout locale={locale} currentPath={`/docs/${slug}`} doc={doc} tree={tree} />

@@ -1,0 +1,19 @@
+---
+import type { Locale } from "../lib/locale";
+import { alternateLocalePath } from "../lib/locale";
+import { useTranslations } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+}
+
+const { locale, currentPath } = Astro.props;
+const t = useTranslations(locale);
+const target = alternateLocalePath(currentPath, locale);
+const langAttr = locale === "zh" ? "en" : "zh-CN";
+---
+
+<a class="site-nav__lang" href={target} lang={langAttr}>
+  {t("nav.langSwitch")}
+</a>

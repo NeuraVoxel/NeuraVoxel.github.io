@@ -1,0 +1,60 @@
+---
+import type { Locale } from "../lib/locale";
+import { useTranslations } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+const steps = [
+  { key: "annotation", i: 0 },
+  { key: "training", i: 1 },
+  { key: "simulation", i: 2 },
+  { key: "return", i: 3 },
+] as const;
+---
+
+<section class="nv-section loop" id="loop" aria-labelledby="loop-title">
+  <div class="nv-section__head">
+    <span class="nv-label">{t("loop.label")}</span>
+    <h2 id="loop-title">{t("loop.title")}</h2>
+    <p>{t("loop.description")}</p>
+  </div>
+  <div class="loop__schematic" role="img" aria-label={t("loop.title")}>
+    <div class="loop__core">
+      <span class="nv-badge nv-badge--core">{t("status.core")}</span>
+      <h3>DMP</h3>
+      <p>{locale === "zh" ? "数据集组织 · 版本 · 权限 · 分发 · 回流" : "Organization · versioning · ACL · distribution · return"}</p>
+    </div>
+    <ol class="loop__ring">
+      {
+        steps.map(({ key, i }) => (
+          <li class="loop__step" style={`--i: ${i}`}>
+            <span class="loop__step-index">{String(i + 1).padStart(2, "0")}</span>
+            <strong>{t(`loop.steps.${key}.title`)}</strong>
+            <span>{t(`loop.steps.${key}.desc`)}</span>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+  <div class="loop__channels">
+    <p class="nv-label">{t("loop.channelsLabel")}</p>
+    <ul>
+      <li>
+        <span class="channel-key">{locale === "zh" ? "下载" : "Download"}</span>
+        <span>{t("loop.download")}</span>
+      </li>
+      <li>
+        <span class="channel-key">API</span>
+        <span>{t("loop.api")}</span>
+      </li>
+      <li>
+        <span class="channel-key">DDS</span>
+        <span>{t("loop.dds")}</span>
+      </li>
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero from "../components/Hero.astro";
+import LoopSection from "../components/LoopSection.astro";
+import SceneGrid from "../components/SceneGrid.astro";
+import EntryCards from "../components/EntryCards.astro";
+import ModuleStrip from "../components/ModuleStrip.astro";
+import scenesData from "../data/scenes.zh.json";
+import { getModulesForLocale } from "../lib/content";
+
+const locale = "zh";
+const currentPath = "/";
+const modules = await getModulesForLocale(locale);
+---
+
+<BaseLayout locale={locale} currentPath={currentPath}>
+  <Hero locale={locale} />
+  <LoopSection locale={locale} />
+  <hr class="nv-rule nv-rule--page" />
+  <SceneGrid locale={locale} scenes={scenesData.scenes} />
+  <hr class="nv-rule nv-rule--page" />
+  <EntryCards locale={locale}>
+    <ModuleStrip locale={locale} modules={modules} link={true} />
+  </EntryCards>
+</BaseLayout>
+
+<style is:global>
+  @import "../styles/pages/home.css";
+</style>

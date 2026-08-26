@@ -1,0 +1,147 @@
+---
+import type { Locale } from "../lib/locale";
+import { href } from "../lib/locale";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const modules = href(locale, "/modules");
+const docsLoop = href(locale, "/docs/concepts/data-loop");
+---
+
+<figure
+  class="hero__diagram"
+  aria-label="Loop diagram: DMP hub distributes via channel bus to ring modules; metadata returns to DMP"
+>
+  <svg
+    class="loop-diagram"
+    viewBox="0 0 960 460"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    role="img"
+  >
+    <defs>
+      <marker id="arrow-signal" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M0 0 L10 5 L0 10 Z" fill="#4EC4D4"></path>
+      </marker>
+      <marker id="arrow-mist" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+        <path d="M0 1.5 L8 5 L0 8.5 Z" fill="#8B9AAB"></path>
+      </marker>
+      <filter id="core-glow" x="-40%" y="-40%" width="180%" height="180%">
+        <feGaussianBlur stdDeviation="2.5" result="b"></feGaussianBlur>
+        <feMerge>
+          <feMergeNode in="b"></feMergeNode>
+          <feMergeNode in="SourceGraphic"></feMergeNode>
+        </feMerge>
+      </filter>
+      <linearGradient id="hub-fill" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#1a3844"></stop>
+        <stop offset="100%" stop-color="#0e141c"></stop>
+      </linearGradient>
+    </defs>
+    <g class="ld-content" transform="translate(320, 0)">
+      <rect class="ld-field" x="-20" y="0" width="680" height="460"></rect>
+      <text class="ld-col-head ld-col-head--r" x="118" y="48">{locale === "zh" ? "数据中枢" : "Data hub"}</text>
+      <text class="ld-col-head ld-col-head--c" x="320" y="48">{locale === "zh" ? "交互通道" : "Channels"}</text>
+      <text class="ld-col-head" x="522" y="48">{locale === "zh" ? "环上能力" : "Ring"}</text>
+      <a href={`${modules}/dmp`}>
+        <g class="ld-core" filter="url(#core-glow)" transform="translate(118 214)">
+          <polygon class="ld-core__hex" points="0,-64 56,-32 56,32 0,64 -56,32 -56,-32" fill="url(#hub-fill)"></polygon>
+          <polygon class="ld-core__hex-inner" points="0,-42 36,-21 36,21 0,42 -36,21 -36,-21"></polygon>
+          <text class="ld-core__badge" text-anchor="middle" y="-18">CORE</text>
+          <text class="ld-core__title" text-anchor="middle" y="6">DMP</text>
+          <text class="ld-core__sub" text-anchor="middle" y="24">{locale === "zh" ? "数据中枢" : "Hub"}</text>
+        </g>
+      </a>
+      <g class="ld-caps" transform="translate(118 300)">
+        <text text-anchor="middle" y="0">{locale === "zh" ? "组织 · 版本 · 权限" : "Org · Version · ACL"}</text>
+        <text text-anchor="middle" y="16">{locale === "zh" ? "分发 · 回流登记" : "Distribute · Return"}</text>
+      </g>
+      <rect class="ld-bus" x="248" y="96" width="144" height="248" rx="2"></rect>
+      <text class="ld-bus__title" x="320" y="118" text-anchor="middle">CHANNEL BUS</text>
+      <g class="ld-channel" transform="translate(320 158)">
+        <rect x="-52" y="-16" width="104" height="32" rx="1"></rect>
+        <text text-anchor="middle" y="1">{locale === "zh" ? "下载" : "DL"}</text>
+        <text class="ld-channel__en" text-anchor="middle" y="12">DATASET</text>
+      </g>
+      <g class="ld-channel" transform="translate(320 214)">
+        <rect x="-52" y="-16" width="104" height="32" rx="1"></rect>
+        <text text-anchor="middle" y="1">API</text>
+        <text class="ld-channel__en" text-anchor="middle" y="12">SERVICE</text>
+      </g>
+      <g class="ld-channel" transform="translate(320 270)">
+        <rect x="-52" y="-16" width="104" height="32" rx="1"></rect>
+        <text text-anchor="middle" y="1">DDS</text>
+        <text class="ld-channel__en" text-anchor="middle" y="12">STREAM</text>
+      </g>
+      <text class="ld-bus__note" x="320" y="322" text-anchor="middle">
+        {locale === "zh" ? "拉数 · 回写 · 近实时" : "Pull · Write-back · Stream"}
+      </text>
+      <line class="ld-spine" x1="522" y1="88" x2="522" y2="360"></line>
+      <a href={`${modules}/annotation-bridge`}>
+        <g class="ld-sat" transform="translate(522 118)">
+          <rect class="ld-sat__box" x="-78" y="-34" width="156" height="68" rx="2"></rect>
+          <text class="ld-sat__idx" x="-64" y="-12">01</text>
+          <text class="ld-sat__title" x="-64" y="8">{locale === "zh" ? "标注对接" : "Annotation"}</text>
+          <text class="ld-sat__sub" x="-64" y="24">Annotation Bridge</text>
+          <circle class="ld-port" cx="-78" cy="0" r="3.5"></circle>
+        </g>
+      </a>
+      <a href={`${modules}/training-bridge`}>
+        <g class="ld-sat" transform="translate(522 210)">
+          <rect class="ld-sat__box" x="-78" y="-34" width="156" height="68" rx="2"></rect>
+          <text class="ld-sat__idx" x="-64" y="-12">02</text>
+          <text class="ld-sat__title" x="-64" y="8">{locale === "zh" ? "训练 / 微调" : "Training"}</text>
+          <text class="ld-sat__sub" x="-64" y="24">Training Bridge</text>
+          <circle class="ld-port" cx="-78" cy="0" r="3.5"></circle>
+        </g>
+      </a>
+      <a href={`${modules}/simulation-bridge`}>
+        <g class="ld-sat" transform="translate(522 302)">
+          <rect class="ld-sat__box" x="-78" y="-34" width="156" height="68" rx="2"></rect>
+          <text class="ld-sat__idx" x="-64" y="-12">03</text>
+          <text class="ld-sat__title" x="-64" y="8">{locale === "zh" ? "仿真验证" : "Simulation"}</text>
+          <text class="ld-sat__sub" x="-64" y="24">Simulation Bridge</text>
+          <circle class="ld-port" cx="-78" cy="0" r="3.5"></circle>
+        </g>
+      </a>
+      <path class="ld-rail" d="M174 158 H248" marker-end="url(#arrow-signal)"></path>
+      <path class="ld-rail" d="M174 214 H248" marker-end="url(#arrow-signal)"></path>
+      <path class="ld-rail" d="M174 270 H248" marker-end="url(#arrow-signal)"></path>
+      <path class="ld-rail-flow" d="M174 158 H248 M174 214 H248 M174 270 H248"></path>
+      <path class="ld-rail" d="M392 118 H444" marker-end="url(#arrow-signal)"></path>
+      <path class="ld-rail" d="M392 210 H444" marker-end="url(#arrow-signal)"></path>
+      <path class="ld-rail" d="M392 302 H444" marker-end="url(#arrow-signal)"></path>
+      <path class="ld-rail-flow ld-rail-flow--late" d="M392 118 H444 M392 210 H444 M392 302 H444"></path>
+      <path class="ld-merge" d="M174 214 H196"></path>
+      <path class="ld-merge" d="M196 214 C218 214 218 158 196 158"></path>
+      <path class="ld-merge" d="M196 214 C218 214 218 270 196 270"></path>
+      <path class="ld-return-path" d="M522 336 V378 H118 V278" marker-end="url(#arrow-mist)"></path>
+      <path class="ld-return-flow" d="M522 336 V378 H118 V278"></path>
+      <g class="ld-return-chip" transform="translate(330 378)">
+        <rect x="-58" y="-14" width="116" height="28" rx="1"></rect>
+        <text text-anchor="middle" y="1">{locale === "zh" ? "数据回流" : "Return"}</text>
+        <text class="ld-return-chip__en" text-anchor="middle" y="11">META → DMP</text>
+      </g>
+      <g class="ld-legend" transform="translate(26 422)">
+        <rect width="10" height="10" class="ld-legend__swatch ld-legend__swatch--out"></rect>
+        <text x="16" y="9">{locale === "zh" ? "分发 DMP → 环上" : "DMP → ring"}</text>
+        <rect x="118" width="10" height="10" class="ld-legend__swatch ld-legend__swatch--in"></rect>
+        <text x="134" y="9">{locale === "zh" ? "回流" : "Return"}</text>
+        <a href={docsLoop}>
+          <text class="ld-legend__note" x="180" y="9">
+            {locale === "zh" ? "DMP 经 Channel Bus 分发至环上模块，元数据写回形成闭环" : "DMP distributes via Channel Bus; metadata closes the loop"}
+          </text>
+        </a>
+      </g>
+    </g>
+  </svg>
+</figure>
+
+<style>
+  .hero__diagram a {
+    text-decoration: none;
+  }
+</style>

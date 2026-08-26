@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import ModuleLayout from "../../../layouts/ModuleLayout.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import MissingTranslation from "../../../components/MissingTranslation.astro";
+import { getModuleBySlug, stripLocale } from "../../../lib/content";
+
+export async function getStaticPaths() {
+  const zhEntries = await getCollection("modules", ({ id }) => id.startsWith("zh/"));
+  return zhEntries.map((entry) => ({
+    params: { slug: stripLocale(entry.id, "zh") },
+  }));
+}
+
+const locale = "en";
+const { slug } = Astro.params;
+const mod = await getModuleBySlug(locale, slug!);
+const chinesePath = `/modules/${slug}`;
+---
+
+{
+  mod ? (
+    <ModuleLayout locale={locale} currentPath={`/en/modules/${slug}`} module={mod} />
+  ) : (
+    <BaseLayout locale={locale} currentPath={`/en/modules/${slug}`}>
+      <MissingTranslation locale={locale} chinesePath={chinesePath} />
+    </BaseLayout>
+  )
+}

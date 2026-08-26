@@ -1,0 +1,24 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { useTranslations } from "../../lib/i18n";
+import { href } from "../../lib/locale";
+
+const locale = "en";
+const t = useTranslations(locale);
+---
+
+<BaseLayout locale={locale} currentPath="/en/404" title={t("errors.notFoundTitle")}>
+  <section class="error-page">
+    <h1>{t("errors.notFoundTitle")}</h1>
+    <p>{t("errors.notFoundMessage")}</p>
+    <div class="error-page__links">
+      <a href={href(locale, "/")}>{t("errors.backHome")}</a>
+      <a href={href(locale, "/modules")}>{t("errors.backModules")}</a>
+      <a href={href(locale, "/docs")}>{t("errors.backDocs")}</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  @import "../../styles/prose.css";
+</style>

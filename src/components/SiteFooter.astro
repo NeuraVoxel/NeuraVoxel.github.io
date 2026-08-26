@@ -1,0 +1,32 @@
+---
+import type { Locale } from "../lib/locale";
+import { href, alternateLocalePath } from "../lib/locale";
+import { useTranslations } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+}
+
+const { locale, currentPath } = Astro.props;
+const t = useTranslations(locale);
+const langLink = alternateLocalePath(currentPath, locale);
+const langAttr = locale === "zh" ? "en" : "zh-CN";
+---
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div>
+      <span class="site-logo__word site-logo__word--sm">NeuraVoxel</span>
+      <p>{t("footer.tagline")}</p>
+    </div>
+    <div class="site-footer__links">
+      <a href={href(locale, "/about")}>{t("footer.about")}</a>
+      <a href="mailto:contact@neuravoxel.cn">{t("footer.contact")}</a>
+      <a href={langLink} lang={langAttr}>
+        {locale === "zh" ? "English" : "中文"}
+      </a>
+    </div>
+    <p class="site-footer__copy">{t("footer.copyright")}</p>
+  </div>
+</footer>

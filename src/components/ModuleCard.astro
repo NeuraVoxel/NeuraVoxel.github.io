@@ -1,0 +1,63 @@
+---
+import type { ModuleEntry } from "../lib/content";
+import { moduleSlug } from "../lib/content";
+import type { Locale } from "../lib/locale";
+import { href } from "../lib/locale";
+import { useTranslations } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+  module: ModuleEntry;
+}
+
+const { locale, module: mod } = Astro.props;
+const t = useTranslations(locale);
+const slug = moduleSlug(mod, locale);
+
+function statusClass(status: string) {
+  if (status === "available") return "nv-badge--available";
+  if (status === "preview") return "nv-badge--preview";
+  return "nv-badge--planned";
+}
+---
+
+<article class="module-card">
+  <div class="module-card__badges">
+    {mod.data.role === "core" && <span class="nv-badge nv-badge--core">{t("status.core")}</span>}
+    <span class={`nv-badge ${statusClass(mod.data.status)}`}>{t(`status.${mod.data.status}`)}</span>
+  </div>
+  <h2>
+    <a href={href(locale, `/modules/${slug}`)}>{mod.data.title}</a>
+  </h2>
+  <p>{mod.data.summary}</p>
+</article>
+
+<style>
+  .module-card {
+    padding: var(--nv-space-5);
+    background: var(--nv-panel);
+    border: 1px solid var(--nv-gridline);
+    border-radius: var(--nv-radius);
+  }
+
+  .module-card__badges {
+    margin-bottom: var(--nv-space-3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--nv-space-2);
+  }
+
+  .module-card h2 {
+    font-size: var(--nv-text-md);
+    margin-bottom: var(--nv-space-2);
+  }
+
+  .module-card h2 a {
+    text-decoration: none;
+    color: var(--nv-paper);
+  }
+
+  .module-card h2 a:hover {
+    color: var(--nv-signal);
+  }
+</style>

@@ -1,0 +1,22 @@
+---
+import { getCollection } from "astro:content";
+import ModuleLayout from "../../layouts/ModuleLayout.astro";
+import { getModuleBySlug, stripLocale } from "../../lib/content";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("modules", ({ id }) => id.startsWith("zh/"));
+  return entries.map((entry) => ({
+    params: { slug: stripLocale(entry.id, "zh") },
+  }));
+}
+
+const locale = "zh";
+const { slug } = Astro.params;
+const mod = await getModuleBySlug(locale, slug!);
+
+if (!mod) {
+  return Astro.redirect("/404");
+}
+---
+
+<ModuleLayout locale={locale} currentPath={`/modules/${slug}`} module={mod} />

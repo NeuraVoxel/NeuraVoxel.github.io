@@ -1,0 +1,35 @@
+---
+import { getCollection } from "astro:content";
+import DocLayout from "../../../layouts/DocLayout.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import MissingTranslation from "../../../components/MissingTranslation.astro";
+import { getDocBySlug, getDocTree, stripLocale } from "../../../lib/content";
+import { localePrefix } from "../../../lib/locale";
+
+export async function getStaticPaths() {
+  const zhEntries = await getCollection(
+    "docs",
+    ({ id, data }) => id.startsWith("zh/") && !data.draft,
+  );
+  return zhEntries.map((entry) => ({
+    params: { slug: stripLocale(entry.id, "zh") },
+  }));
+}
+
+const locale = "en";
+const slug = Astro.params.slug!;
+const doc = await getDocBySlug(locale, slug);
+const prefix = localePrefix(locale);
+const tree = await getDocTree(locale, prefix);
+const chinesePath = `/docs/${slug}`;
+---
+
+{
+  doc ? (
+    <DocLayout locale={locale} currentPath={`/en/docs/${slug}`} doc={doc} tree={tree} />
+  ) : (
+    <BaseLayout locale={locale} currentPath={`/en/docs/${slug}`}>
+      <MissingTranslation locale={locale} chinesePath={chinesePath} />
+    </BaseLayout>
+  )
+}

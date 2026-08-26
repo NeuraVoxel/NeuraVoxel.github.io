@@ -1,0 +1,38 @@
+---
+import type { DocTreeSection } from "../lib/content";
+import type { Locale } from "../lib/locale";
+import { useTranslations } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+  tree: DocTreeSection[];
+  currentSlug?: string;
+}
+
+const { locale, tree, currentSlug } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<nav class="doc-sidebar" aria-label={t("docs.pageTitle")}>
+  {
+    tree.map((section) => (
+      <div class="doc-sidebar__section">
+        <div class="doc-sidebar__title">
+          {t(`docs.sections.${section.section}`)}
+        </div>
+        <ul>
+          {section.items.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={currentSlug === item.slug ? "page" : undefined}
+              >
+                {item.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))
+  }
+</nav>

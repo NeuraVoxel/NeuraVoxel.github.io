@@ -1,0 +1,33 @@
+---
+import type { Locale } from "../lib/locale";
+import { href } from "../lib/locale";
+import { useTranslations } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+<section class="nv-section entries" id="entries" aria-labelledby="entries-title">
+  <div class="nv-section__head">
+    <span class="nv-label">{t("entries.label")}</span>
+    <h2 id="entries-title">{t("entries.title")}</h2>
+    <p>{t("entries.description")}</p>
+  </div>
+  <div class="entries__row">
+    <a class="entry" href={href(locale, "/modules")}>
+      <span class="nv-label">Channel A</span>
+      <strong>{t("entries.modulesTitle")}</strong>
+      <span>{t("entries.modulesDesc")}</span>
+    </a>
+    <a class="entry" href={href(locale, "/docs")}>
+      <span class="nv-label">Channel B</span>
+      <strong>{t("entries.docsTitle")}</strong>
+      <span>{t("entries.docsDesc")}</span>
+    </a>
+  </div>
+  <slot />
+</section>

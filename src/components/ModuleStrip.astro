@@ -1,0 +1,53 @@
+---
+import type { ModuleEntry } from "../lib/content";
+import { moduleSlug } from "../lib/content";
+import type { Locale } from "../lib/locale";
+import { href } from "../lib/locale";
+import { useTranslations } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+  modules: ModuleEntry[];
+  link?: boolean;
+}
+
+const { locale, modules, link = false } = Astro.props;
+const t = useTranslations(locale);
+
+function statusClass(status: string) {
+  if (status === "available") return "nv-badge--available";
+  if (status === "preview") return "nv-badge--preview";
+  return "nv-badge--planned";
+}
+---
+
+<div class="module-strip" aria-label={t("entries.modulesTitle")}>
+  {
+    modules.map((mod) => {
+      const slug = moduleSlug(mod, locale);
+      const inner = (
+        <>
+          {mod.data.role === "core" && <span class="nv-badge nv-badge--core">{t("status.core")}</span>}
+          <span class={`nv-badge ${statusClass(mod.data.status)}`}>{t(`status.${mod.data.status}`)}</span>
+          <h3>{mod.data.title}</h3>
+          <p>{mod.data.summary}</p>
+        </>
+      );
+      return link ? (
+        <a class={`module-chip ${mod.data.role === "core" ? "module-chip--core" : ""}`} href={href(locale, `/modules/${slug}`)}>
+          {inner}
+        </a>
+      ) : (
+        <article class={`module-chip ${mod.data.role === "core" ? "module-chip--core" : ""}`}>{inner}</article>
+      );
+    })
+  }
+</div>
+
+<style>
+  a.module-chip {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+</style>

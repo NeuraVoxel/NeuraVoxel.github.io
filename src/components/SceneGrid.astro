@@ -1,0 +1,45 @@
+---
+import type { Locale } from "../lib/locale";
+import { href } from "../lib/locale";
+import { useTranslations } from "../lib/i18n";
+import type { SceneData } from "../data/scenes.types";
+
+interface Props {
+  locale: Locale;
+  scenes: SceneData[];
+}
+
+const { locale, scenes } = Astro.props;
+const t = useTranslations(locale);
+
+function visualClass(id: string) {
+  return id === "embodied-ai" ? "scene__visual--embodied" : "scene__visual--ad";
+}
+---
+
+<section class="nv-section scenes" id="scenes" aria-labelledby="scenes-title">
+  <div class="nv-section__head">
+    <span class="nv-label">{t("scenes.label")}</span>
+    <h2 id="scenes-title">{t("scenes.title")}</h2>
+    <p>{t("scenes.description")}</p>
+  </div>
+  <div class="scenes__grid">
+    {
+      scenes.map((scene) => (
+        <article class="scene">
+          <div class={`scene__visual ${visualClass(scene.id)}`} aria-hidden="true">
+            <span class="scene__gridlines" />
+          </div>
+          <div class="scene__body">
+            <h3>{scene.title}</h3>
+            <p class="scene__pain">{scene.pain}</p>
+            <p>{scene.narrative}</p>
+            <a class="scene__link" href={href(locale, scene.docPath ? `/docs/${scene.docPath}` : "/modules")}>
+              {t("scenes.relatedModules")}
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>

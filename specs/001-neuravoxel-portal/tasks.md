@@ -22,12 +22,12 @@ Single Astro project at repository root: `src/`, `public/`, `.github/workflows/`
 
 **Purpose**: Initialize Astro static site and CI pipeline
 
-- [ ] T001 Create `package.json` with scripts (`dev`, `build`, `preview`, `check`) and Astro 5 dependencies in repository root
-- [ ] T002 Create `astro.config.mjs` with `output: 'static'`, `site: 'https://neuravoxel.cn'`, and Shiki syntax highlighting in repository root
-- [ ] T003 Create `tsconfig.json` extending Astro strict defaults in repository root
-- [ ] T004 [P] Copy domain config to `public/CNAME` with content `neuravoxel.cn`
-- [ ] T005 [P] Create `.github/workflows/deploy.yml` for GitHub Pages build and deploy from `dist/`
-- [ ] T006 Remove obsolete placeholder `index.html` at repository root (superseded by Astro `src/pages/`)
+- [x] T001 Create `package.json` with scripts (`dev`, `build`, `preview`, `check`) and Astro 5 dependencies in repository root
+- [x] T002 Create `astro.config.mjs` with `output: 'static'`, `site: 'https://neuravoxel.cn'`, and Shiki syntax highlighting in repository root
+- [x] T003 Create `tsconfig.json` extending Astro strict defaults in repository root
+- [x] T004 [P] Copy domain config to `public/CNAME` with content `neuravoxel.cn`
+- [x] T005 [P] Create `.github/workflows/deploy.yml` for GitHub Pages build and deploy from `dist/`
+- [x] T006 Remove obsolete placeholder `index.html` at repository root (superseded by Astro `src/pages/`)
 
 ---
 
@@ -37,17 +37,17 @@ Single Astro project at repository root: `src/`, `public/`, `.github/workflows/`
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T007 Create `src/content.config.ts` with Zod schemas for `modules` and `docs` collections per `specs/001-neuravoxel-portal/contracts/module-frontmatter.schema.json` and `doc-frontmatter.schema.json`
-- [ ] T008 [P] Implement `src/lib/i18n.ts` with dot-path `t(key)` lookup for `zh` and `en`
-- [ ] T009 [P] Implement `src/lib/locale.ts` with `prefix`, `localizePath()`, and `alternateLocalePath()` helpers
-- [ ] T010 [P] Implement `src/lib/content.ts` with `getSortedModules(locale)` and `getDocTree(locale)` helpers
-- [ ] T011 [P] Create `src/i18n/zh.json` with all keys from `specs/001-neuravoxel-portal/contracts/i18n-keys.md`
-- [ ] T012 [P] Create `src/i18n/en.json` with identical key structure to `src/i18n/zh.json`
-- [ ] T013 Create `src/layouts/BaseLayout.astro` importing `src/styles/tokens.css` and `src/styles/global.css` with `<slot />` for page content
-- [ ] T014 [P] Create `src/components/SiteHeader.astro` with nav links and skip-link anchor per `design/preview.html`
-- [ ] T015 [P] Create `src/components/SiteFooter.astro` with about/contact/copyright placeholders per spec FR-006
-- [ ] T016 [P] Create `src/styles/prose.css` for Markdown typography (headings, code, tables)
-- [ ] T017 Wire `SiteHeader` and `SiteFooter` into `src/layouts/BaseLayout.astro`
+- [x] T007 Create `src/content.config.ts` with Zod schemas for `modules` and `docs` collections per `specs/001-neuravoxel-portal/contracts/module-frontmatter.schema.json` and `doc-frontmatter.schema.json`
+- [x] T008 [P] Implement `src/lib/i18n.ts` with dot-path `t(key)` lookup for `zh` and `en`
+- [x] T009 [P] Implement `src/lib/locale.ts` with `prefix`, `localizePath()`, and `alternateLocalePath()` helpers
+- [x] T010 [P] Implement `src/lib/content.ts` with `getSortedModules(locale)` and `getDocTree(locale)` helpers
+- [x] T011 [P] Create `src/i18n/zh.json` with all keys from `specs/001-neuravoxel-portal/contracts/i18n-keys.md`
+- [x] T012 [P] Create `src/i18n/en.json` with identical key structure to `src/i18n/zh.json`
+- [x] T013 Create `src/layouts/BaseLayout.astro` importing `src/styles/tokens.css` and `src/styles/global.css` with `<slot />` for page content
+- [x] T014 [P] Create `src/components/SiteHeader.astro` with nav links and skip-link anchor per `design/preview.html`
+- [x] T015 [P] Create `src/components/SiteFooter.astro` with about/contact/copyright placeholders per spec FR-006
+- [x] T016 [P] Create `src/styles/prose.css` for Markdown typography (headings, code, tables)
+- [x] T017 Wire `SiteHeader` and `SiteFooter` into `src/layouts/BaseLayout.astro`
 
 **Checkpoint**: Foundation ready — user story implementation can begin
 
@@ -61,16 +61,16 @@ Single Astro project at repository root: `src/`, `public/`, `.github/workflows/`
 
 ### Implementation for User Story 1
 
-- [ ] T018 [P] [US1] Create `src/data/scenes.zh.json` with `autonomous-driving` and `embodied-ai` entries per `specs/001-neuravoxel-portal/data-model.md`
-- [ ] T019 [P] [US1] Migrate home page styles from `design/preview.css` to `src/styles/pages/home.css`
-- [ ] T020 [P] [US1] Extract SVG loop diagram into `src/components/LoopDiagram.astro` from `design/preview.html` with linkable module/doc nodes
-- [ ] T021 [P] [US1] Create `src/components/Hero.astro` with brand, claim, CTAs, and `LoopDiagram` per preview §1
-- [ ] T022 [P] [US1] Create `src/components/LoopSection.astro` with DMP hub, ring steps, and download/API/DDS channel summary
-- [ ] T023 [P] [US1] Create `src/components/SceneGrid.astro` reading from `src/data/scenes.zh.json`
-- [ ] T024 [P] [US1] Create `src/components/EntryCards.astro` linking to `/modules` and `/docs`
-- [ ] T025 [P] [US1] Create `src/components/ModuleStrip.astro` showing DMP + three bridge chips with status badges
-- [ ] T026 [US1] Compose `src/pages/index.astro` using `BaseLayout` and all home components (Hero, LoopSection, SceneGrid, EntryCards, ModuleStrip)
-- [ ] T027 [US1] Import `src/styles/pages/home.css` in `src/pages/index.astro`
+- [x] T018 [P] [US1] Create `src/data/scenes.zh.json` with `autonomous-driving` and `embodied-ai` entries per `specs/001-neuravoxel-portal/data-model.md`
+- [x] T019 [P] [US1] Migrate home page styles from `design/preview.css` to `src/styles/pages/home.css`
+- [x] T020 [P] [US1] Extract SVG loop diagram into `src/components/LoopDiagram.astro` from `design/preview.html` with linkable module/doc nodes
+- [x] T021 [P] [US1] Create `src/components/Hero.astro` with brand, claim, CTAs, and `LoopDiagram` per preview §1
+- [x] T022 [P] [US1] Create `src/components/LoopSection.astro` with DMP hub, ring steps, and download/API/DDS channel summary
+- [x] T023 [P] [US1] Create `src/components/SceneGrid.astro` reading from `src/data/scenes.zh.json`
+- [x] T024 [P] [US1] Create `src/components/EntryCards.astro` linking to `/modules` and `/docs`
+- [x] T025 [P] [US1] Create `src/components/ModuleStrip.astro` showing DMP + three bridge chips with status badges
+- [x] T026 [US1] Compose `src/pages/index.astro` using `BaseLayout` and all home components (Hero, LoopSection, SceneGrid, EntryCards, ModuleStrip)
+- [x] T027 [US1] Import `src/styles/pages/home.css` in `src/pages/index.astro`
 
 **Checkpoint**: Homepage fully narrates DMP loop — MVP deployable
 
@@ -84,15 +84,15 @@ Single Astro project at repository root: `src/`, `public/`, `.github/workflows/`
 
 ### Implementation for User Story 2
 
-- [ ] T028 [P] [US2] Create `src/content/modules/zh/dmp.md` with full frontmatter (`role: core`, integrations, downloads, links) per data-model inventory
-- [ ] T029 [P] [US2] Create `src/content/modules/zh/annotation-bridge.md` with `role: ring`, `status: preview`
-- [ ] T030 [P] [US2] Create `src/content/modules/zh/training-bridge.md` with `role: ring`, `status: preview`
-- [ ] T031 [P] [US2] Create `src/content/modules/zh/simulation-bridge.md` with `role: ring`, `status: planned`
-- [ ] T032 [P] [US2] Create `src/components/ModuleCard.astro` displaying title, summary, role, status badges
-- [ ] T033 [US2] Create `src/layouts/ModuleLayout.astro` rendering downloads, links, integrations, and Markdown body
-- [ ] T034 [US2] Create `src/pages/modules/index.astro` listing modules via `getSortedModules('zh')` with DMP first
-- [ ] T035 [US2] Create `src/pages/modules/[slug].astro` with static paths for 4 module slugs and 404 for unknown slugs
-- [ ] T036 [US2] Add doc cross-links from module pages using `docAnchor` frontmatter field in `src/layouts/ModuleLayout.astro`
+- [x] T028 [P] [US2] Create `src/content/modules/zh/dmp.md` with full frontmatter (`role: core`, integrations, downloads, links) per data-model inventory
+- [x] T029 [P] [US2] Create `src/content/modules/zh/annotation-bridge.md` with `role: ring`, `status: preview`
+- [x] T030 [P] [US2] Create `src/content/modules/zh/training-bridge.md` with `role: ring`, `status: preview`
+- [x] T031 [P] [US2] Create `src/content/modules/zh/simulation-bridge.md` with `role: ring`, `status: planned`
+- [x] T032 [P] [US2] Create `src/components/ModuleCard.astro` displaying title, summary, role, status badges
+- [x] T033 [US2] Create `src/layouts/ModuleLayout.astro` rendering downloads, links, integrations, and Markdown body
+- [x] T034 [US2] Create `src/pages/modules/index.astro` listing modules via `getSortedModules('zh')` with DMP first
+- [x] T035 [US2] Create `src/pages/modules/[slug].astro` with static paths for 4 module slugs and 404 for unknown slugs
+- [x] T036 [US2] Add doc cross-links from module pages using `docAnchor` frontmatter field in `src/layouts/ModuleLayout.astro`
 
 **Checkpoint**: All 4 zh modules browsable; DMP detail complete
 
@@ -106,16 +106,16 @@ Single Astro project at repository root: `src/`, `public/`, `.github/workflows/`
 
 ### Implementation for User Story 3
 
-- [ ] T037 [P] [US3] Create `src/content/docs/zh/getting-started/overview.md`
-- [ ] T038 [P] [US3] Create `src/content/docs/zh/concepts/data-loop.md` with module cross-link to DMP
-- [ ] T039 [P] [US3] Create `src/content/docs/zh/concepts/dmp-hub.md`
-- [ ] T040 [P] [US3] Create `src/content/docs/zh/dmp/interactions.md` covering download, API, DDS
-- [ ] T041 [P] [US3] Create `src/content/docs/zh/releases/changelog.md` with initial v1 release notes
-- [ ] T042 [P] [US3] Create `src/components/DocSidebar.astro` grouped by section (getting-started, concepts, dmp, integrations, releases)
-- [ ] T043 [P] [US3] Create `src/components/Prose.astro` wrapping rendered Markdown with `src/styles/prose.css`
-- [ ] T044 [US3] Create `src/layouts/DocLayout.astro` with sidebar and Prose content area
-- [ ] T045 [US3] Create `src/pages/docs/index.astro` showing doc tree from `getDocTree('zh')`
-- [ ] T046 [US3] Create `src/pages/docs/[...slug].astro` with static path generation and Shiki-highlighted code blocks
+- [x] T037 [P] [US3] Create `src/content/docs/zh/getting-started/overview.md`
+- [x] T038 [P] [US3] Create `src/content/docs/zh/concepts/data-loop.md` with module cross-link to DMP
+- [x] T039 [P] [US3] Create `src/content/docs/zh/concepts/dmp-hub.md`
+- [x] T040 [P] [US3] Create `src/content/docs/zh/dmp/interactions.md` covering download, API, DDS
+- [x] T041 [P] [US3] Create `src/content/docs/zh/releases/changelog.md` with initial v1 release notes
+- [x] T042 [P] [US3] Create `src/components/DocSidebar.astro` grouped by section (getting-started, concepts, dmp, integrations, releases)
+- [x] T043 [P] [US3] Create `src/components/Prose.astro` wrapping rendered Markdown with `src/styles/prose.css`
+- [x] T044 [US3] Create `src/layouts/DocLayout.astro` with sidebar and Prose content area
+- [x] T045 [US3] Create `src/pages/docs/index.astro` showing doc tree from `getDocTree('zh')`
+- [x] T046 [US3] Create `src/pages/docs/[...slug].astro` with static path generation and Shiki-highlighted code blocks
 
 **Checkpoint**: ≥5 zh docs render; releases/changelog accessible
 
@@ -129,15 +129,15 @@ Single Astro project at repository root: `src/`, `public/`, `.github/workflows/`
 
 ### Implementation for User Story 4
 
-- [ ] T047 [P] [US4] Create `src/data/scenes.en.json` mirroring structure of `src/data/scenes.zh.json`
-- [ ] T048 [P] [US4] Create `src/content/modules/en/dmp.md` (English module content)
-- [ ] T049 [P] [US4] Create partial English docs in `src/content/docs/en/getting-started/overview.md` (at least one; leave others for fallback test)
-- [ ] T050 [US4] Create `src/components/LanguageSwitch.astro` using `src/lib/locale.ts` path mapping
-- [ ] T051 [US4] Create `src/components/MissingTranslation.astro` with i18n copy and link to Chinese equivalent
-- [ ] T052 [US4] Integrate `LanguageSwitch` into `src/components/SiteHeader.astro`
-- [ ] T053 [US4] Create `src/pages/en/index.astro` mirroring `src/pages/index.astro` with `locale='en'` and English data
-- [ ] T054 [US4] Create `src/pages/en/modules/index.astro` and `src/pages/en/modules/[slug].astro` with EN fallback via `MissingTranslation.astro`
-- [ ] T055 [US4] Create `src/pages/en/docs/index.astro` and `src/pages/en/docs/[...slug].astro` with missing-doc fallback
+- [x] T047 [P] [US4] Create `src/data/scenes.en.json` mirroring structure of `src/data/scenes.zh.json`
+- [x] T048 [P] [US4] Create `src/content/modules/en/dmp.md` (English module content)
+- [x] T049 [P] [US4] Create partial English docs in `src/content/docs/en/getting-started/overview.md` (at least one; leave others for fallback test)
+- [x] T050 [US4] Create `src/components/LanguageSwitch.astro` using `src/lib/locale.ts` path mapping
+- [x] T051 [US4] Create `src/components/MissingTranslation.astro` with i18n copy and link to Chinese equivalent
+- [x] T052 [US4] Integrate `LanguageSwitch` into `src/components/SiteHeader.astro`
+- [x] T053 [US4] Create `src/pages/en/index.astro` mirroring `src/pages/index.astro` with `locale='en'` and English data
+- [x] T054 [US4] Create `src/pages/en/modules/index.astro` and `src/pages/en/modules/[slug].astro` with EN fallback via `MissingTranslation.astro`
+- [x] T055 [US4] Create `src/pages/en/docs/index.astro` and `src/pages/en/docs/[...slug].astro` with missing-doc fallback
 
 **Checkpoint**: Language toggle works on home, modules, docs; fallback tested
 
@@ -151,10 +151,10 @@ Single Astro project at repository root: `src/`, `public/`, `.github/workflows/`
 
 ### Implementation for User Story 5
 
-- [ ] T056 [P] [US5] Add mobile breakpoints and stacked hero layout in `src/styles/pages/home.css`
-- [ ] T057 [P] [US5] Add responsive module grid styles in `src/styles/pages/modules.css` (create file)
-- [ ] T058 [P] [US5] Add collapsible or stacked sidebar styles for docs in `src/styles/prose.css`
-- [ ] T059 [US5] Add mobile nav pattern (hamburger or condensed nav) in `src/components/SiteHeader.astro` and `src/styles/global.css`
+- [x] T056 [P] [US5] Add mobile breakpoints and stacked hero layout in `src/styles/pages/home.css`
+- [x] T057 [P] [US5] Add responsive module grid styles in `src/styles/pages/modules.css` (create file)
+- [x] T058 [P] [US5] Add collapsible or stacked sidebar styles for docs in `src/styles/prose.css`
+- [x] T059 [US5] Add mobile nav pattern (hamburger or condensed nav) in `src/components/SiteHeader.astro` and `src/styles/global.css`
 
 **Checkpoint**: All primary pages pass mobile independent test
 
@@ -164,14 +164,14 @@ Single Astro project at repository root: `src/`, `public/`, `.github/workflows/`
 
 **Purpose**: Error pages, a11y, build verification, documentation
 
-- [ ] T060 Create `src/pages/404.astro` with localized nav links to `/`, `/modules`, `/docs` per `specs/001-neuravoxel-portal/contracts/routes.md`
-- [ ] T061 [P] Create `src/pages/en/404.astro` mirroring Chinese 404 with English i18n strings
-- [ ] T062 [P] Create `src/pages/about.astro` and `src/pages/en/about.astro` with brief about/contact content
-- [ ] T063 Ensure skip-link, focus styles, and `prefers-reduced-motion` support in `src/layouts/BaseLayout.astro` and `src/styles/global.css`
-- [ ] T064 Ensure external links use `rel="noopener noreferrer"` in `src/layouts/ModuleLayout.astro` and shared link component if any
-- [ ] T065 Update `README.md` with dev/build/deploy instructions from `specs/001-neuravoxel-portal/quickstart.md`
-- [ ] T066 Run `npm run check && npm run build` and fix all schema/route errors until clean build
-- [ ] T067 Validate all quickstart scenarios V1–V7 in `specs/001-neuravoxel-portal/quickstart.md`
+- [x] T060 Create `src/pages/404.astro` with localized nav links to `/`, `/modules`, `/docs` per `specs/001-neuravoxel-portal/contracts/routes.md`
+- [x] T061 [P] Create `src/pages/en/404.astro` mirroring Chinese 404 with English i18n strings
+- [x] T062 [P] Create `src/pages/about.astro` and `src/pages/en/about.astro` with brief about/contact content
+- [x] T063 Ensure skip-link, focus styles, and `prefers-reduced-motion` support in `src/layouts/BaseLayout.astro` and `src/styles/global.css`
+- [x] T064 Ensure external links use `rel="noopener noreferrer"` in `src/layouts/ModuleLayout.astro` and shared link component if any
+- [x] T065 Update `README.md` with dev/build/deploy instructions from `specs/001-neuravoxel-portal/quickstart.md`
+- [x] T066 Run `npm run check && npm run build` and fix all schema/route errors until clean build
+- [x] T067 Validate all quickstart scenarios V1–V7 in `specs/001-neuravoxel-portal/quickstart.md`
 
 ---
 

@@ -1,0 +1,30 @@
+---
+import type { Locale } from "../lib/locale";
+import { href } from "../lib/locale";
+import { useTranslations } from "../lib/i18n";
+import LanguageSwitch from "./LanguageSwitch.astro";
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+}
+
+const { locale, currentPath } = Astro.props;
+const t = useTranslations(locale);
+const base = href(locale, "");
+const home = base === "" ? "/" : base;
+---
+
+<header class="site-header">
+  <a class="site-logo" href={home} aria-label="NeuraVoxel">
+    <span class="site-logo__mark" aria-hidden="true"></span>
+    <span class="site-logo__word">NeuraVoxel</span>
+  </a>
+  <nav class="site-nav" aria-label="Main">
+    <a href={`${home}#loop`}>{t("nav.loop")}</a>
+    <a href={`${home}#scenes`}>{t("nav.scenes")}</a>
+    <a href={href(locale, "/modules")}>{t("nav.modules")}</a>
+    <a href={href(locale, "/docs")}>{t("nav.docs")}</a>
+    <LanguageSwitch locale={locale} currentPath={currentPath} />
+  </nav>
+</header>

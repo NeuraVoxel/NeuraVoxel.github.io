@@ -1,0 +1,20 @@
+{
+  "scenes": [
+    {
+      "id": "autonomous-driving",
+      "title": "Autonomous driving",
+      "pain": "Multi-source capture is hard to align; versions drift across annotation, training, and simulation.",
+      "narrative": "Trips and sensor packs are versioned in DMP; annotation and training bridges consume manifests; simulation results and hard cases return for traceability.",
+      "moduleSlugs": ["dmp", "annotation-bridge", "training-bridge", "simulation-bridge"],
+      "docPath": "concepts/data-loop"
+    },
+    {
+      "id": "embodied-ai",
+      "title": "Embodied AI",
+      "pain": "Robot demo data is fragmented; simulation and real-world distributions diverge.",
+      "narrative": "Demo trajectories and perception frames are organized in DMP; training and simulation bridges share one data contract; real-device feedback returns via DDS / API.",
+      "moduleSlugs": ["dmp", "training-bridge", "simulation-bridge"],
+      "docPath": "dmp/interactions"
+    }
+  ]
+}

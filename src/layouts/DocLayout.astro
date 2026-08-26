@@ -1,0 +1,38 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import DocSidebar from "../components/DocSidebar.astro";
+import Prose from "../components/Prose.astro";
+import type { Locale } from "../lib/locale";
+import type { DocEntry, DocTreeSection } from "../lib/content";
+import { docSlug } from "../lib/content";
+
+interface Props {
+  locale: Locale;
+  currentPath: string;
+  doc: DocEntry;
+  tree: DocTreeSection[];
+}
+
+const { locale, currentPath, doc, tree } = Astro.props;
+const { Content } = await doc.render();
+const slug = docSlug(doc, locale);
+---
+
+<BaseLayout
+  locale={locale}
+  currentPath={currentPath}
+  title={doc.data.title}
+  description={doc.data.description}
+>
+  <div class="doc-layout">
+    <DocSidebar locale={locale} tree={tree} currentSlug={slug} />
+    <Prose>
+      <h1>{doc.data.title}</h1>
+      <Content />
+    </Prose>
+  </div>
+</BaseLayout>
+
+<style>
+  @import "../styles/prose.css";
+</style>

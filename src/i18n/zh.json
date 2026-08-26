@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "siteTitle": "NeuraVoxel — 自动化数据引擎",
+    "siteDescription": "以自动化数据引擎驱动产业数据闭环。DMP 数据中枢连接标注、训练/微调与仿真对接。"
+  },
+  "nav": {
+    "loop": "闭环",
+    "scenes": "场景",
+    "modules": "模块",
+    "docs": "文档",
+    "langSwitch": "EN",
+    "skipToContent": "跳到正文"
+  },
+  "hero": {
+    "eyebrow": "Industrial Data Loop",
+    "claim": "以自动化数据引擎驱动产业数据闭环",
+    "support": "训练 / 微调 / 仿真对接 / 标注对接 — 数据经 DMP 组织、分发与回流",
+    "learnLoop": "了解闭环",
+    "viewModules": "查看模块",
+    "readDocs": "阅读文档",
+    "railMeta": "DMP · Bridge · Return"
+  },
+  "loop": {
+    "label": "Data Management Platform",
+    "title": "闭环以 DMP 为核",
+    "description": "DMP 是驱动标注、训练/微调、仿真等模块的数据中枢——不是环上并列的一步，而是组织、版本、权限、分发与回流的中心。",
+    "channelsLabel": "DMP 与其他平台的交互",
+    "download": "版本化数据集、清单校验、批量下载",
+    "api": "HTTP 服务化接口：拉数与回写元数据",
+    "dds": "实时 / 近实时流式通道（车端 · 机器人 · 仿真）",
+    "steps": {
+      "annotation": { "title": "标注对接", "desc": "任务下发与标注结果回流" },
+      "training": { "title": "训练 / 微调", "desc": "版本化数据集拉取与产物登记" },
+      "simulation": { "title": "仿真验证", "desc": "场景包分发与评估回流" },
+      "return": { "title": "数据回流", "desc": "元数据写回，闭环再次启动" }
+    }
+  },
+  "scenes": {
+    "label": "Industries",
+    "title": "产业场景",
+    "description": "先落地自动驾驶与具身智能：痛点进 DMP，能力出环上模块，结果回流。",
+    "relatedModules": "相关模块 →"
+  },
+  "entries": {
+    "label": "Start here",
+    "title": "从能力入口继续",
+    "description": "门户讲清闭环；模块提供下载与外链；文档承载概念、接口与版本说明。",
+    "modulesTitle": "模块与工具",
+    "modulesDesc": "DMP 置顶，环上能力按核心 → 环序排列",
+    "docsTitle": "文档与版本",
+    "docsDesc": "概念、DMP 交互、对接说明与 Changelog"
+  },
+  "modules": {
+    "pageTitle": "模块与工具",
+    "pageDescription": "NeuraVoxel 产品模块：DMP 数据中枢与环上对接能力。",
+    "downloads": "下载",
+    "links": "外链",
+    "integrations": "交互能力",
+    "viewDocs": "阅读文档 →",
+    "integrationLabels": {
+      "dataset_download": "数据集下载",
+      "service_api": "服务化接口",
+      "dds": "DDS 通信"
+    }
+  },
+  "docs": {
+    "pageTitle": "文档",
+    "pageDescription": "概念说明、DMP 交互方式、对接步骤与版本发布。",
+    "onThisPage": "本页目录",
+    "sections": {
+      "getting-started": "快速开始",
+      "concepts": "概念",
+      "dmp": "DMP",
+      "integrations": "对接",
+      "releases": "版本发布"
+    }
+  },
+  "status": {
+    "core": "Core",
+    "available": "Available",
+    "preview": "Preview",
+    "planned": "Planned"
+  },
+  "footer": {
+    "tagline": "自动化数据引擎 · 产业数据闭环",
+    "about": "关于",
+    "contact": "联系",
+    "copyright": "© 2026 NeuraVoxel · neuravoxel.cn"
+  },
+  "about": {
+    "title": "关于 NeuraVoxel",
+    "body": "NeuraVoxel 以自动化数据引擎为核心，帮助产业客户构建可追溯的数据闭环。本站点为产品门户与文档入口；真实控制台与任务操作请通过各模块外链访问。"
+  },
+  "errors": {
+    "notFoundTitle": "页面未找到",
+    "notFoundMessage": "您访问的路径不存在或已移动。",
+    "backHome": "回首页",
+    "backModules": "模块列表",
+    "backDocs": "文档首页",
+    "missingTranslationTitle": "暂无英文",
+    "missingTranslationMessage": "该页面尚未提供英文版本。",
+    "viewChinese": "查看中文版"
+  }
+}

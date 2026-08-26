@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "siteTitle": "NeuraVoxel — Automated Data Engine",
+    "siteDescription": "Industrial data loop powered by an automated data engine. DMP hub connects annotation, training, and simulation bridges."
+  },
+  "nav": {
+    "loop": "Loop",
+    "scenes": "Scenes",
+    "modules": "Modules",
+    "docs": "Docs",
+    "langSwitch": "中文",
+    "skipToContent": "Skip to content"
+  },
+  "hero": {
+    "eyebrow": "Industrial Data Loop",
+    "claim": "Power the industrial data loop with an automated data engine",
+    "support": "Training / fine-tuning / simulation / annotation — organized, distributed, and returned through DMP",
+    "learnLoop": "Explore the loop",
+    "viewModules": "View modules",
+    "readDocs": "Read docs",
+    "railMeta": "DMP · Bridge · Return"
+  },
+  "loop": {
+    "label": "Data Management Platform",
+    "title": "The loop is centered on DMP",
+    "description": "DMP drives annotation, training, fine-tuning, and simulation—it is the hub for organization, versioning, permissions, distribution, and return.",
+    "channelsLabel": "How DMP connects to other platforms",
+    "download": "Versioned datasets, manifest validation, bulk download",
+    "api": "HTTP service APIs for pull and metadata write-back",
+    "dds": "Real-time / near-real-time streaming (vehicle, robot, simulation)",
+    "steps": {
+      "annotation": { "title": "Annotation bridge", "desc": "Task dispatch and labeled result return" },
+      "training": { "title": "Training / fine-tuning", "desc": "Versioned dataset pull and artifact registration" },
+      "simulation": { "title": "Simulation validation", "desc": "Scenario package distribution and evaluation return" },
+      "return": { "title": "Data return", "desc": "Metadata write-back restarts the loop" }
+    }
+  },
+  "scenes": {
+    "label": "Industries",
+    "title": "Industry scenarios",
+    "description": "Starting with autonomous driving and embodied AI: pain points enter DMP, ring modules consume, results return.",
+    "relatedModules": "Related modules →"
+  },
+  "entries": {
+    "label": "Start here",
+    "title": "Continue from capability entries",
+    "description": "The portal explains the loop; modules provide downloads and links; docs hold concepts, interfaces, and releases.",
+    "modulesTitle": "Modules & tools",
+    "modulesDesc": "DMP first, ring capabilities ordered core → ring",
+    "docsTitle": "Docs & releases",
+    "docsDesc": "Concepts, DMP interactions, integration guides, and changelog"
+  },
+  "modules": {
+    "pageTitle": "Modules & tools",
+    "pageDescription": "NeuraVoxel modules: DMP data hub and ring integration bridges.",
+    "downloads": "Downloads",
+    "links": "Links",
+    "integrations": "Integrations",
+    "viewDocs": "Read docs →",
+    "integrationLabels": {
+      "dataset_download": "Dataset download",
+      "service_api": "Service API",
+      "dds": "DDS streaming"
+    }
+  },
+  "docs": {
+    "pageTitle": "Documentation",
+    "pageDescription": "Concepts, DMP interaction patterns, integration steps, and release notes.",
+    "onThisPage": "On this page",
+    "sections": {
+      "getting-started": "Getting started",
+      "concepts": "Concepts",
+      "dmp": "DMP",
+      "integrations": "Integrations",
+      "releases": "Releases"
+    }
+  },
+  "status": {
+    "core": "Core",
+    "available": "Available",
+    "preview": "Preview",
+    "planned": "Planned"
+  },
+  "footer": {
+    "tagline": "Automated data engine · industrial data loop",
+    "about": "About",
+    "contact": "Contact",
+    "copyright": "© 2026 NeuraVoxel · neuravoxel.cn"
+  },
+  "about": {
+    "title": "About NeuraVoxel",
+    "body": "NeuraVoxel builds traceable industrial data loops around an automated data engine. This site is the product portal and documentation entry; use module links for live consoles and operations."
+  },
+  "errors": {
+    "notFoundTitle": "Page not found",
+    "notFoundMessage": "The path you requested does not exist or has moved.",
+    "backHome": "Home",
+    "backModules": "Modules",
+    "backDocs": "Docs home",
+    "missingTranslationTitle": "Not available in English",
+    "missingTranslationMessage": "This page has not been translated yet.",
+    "viewChinese": "View Chinese version"
+  }
+}
