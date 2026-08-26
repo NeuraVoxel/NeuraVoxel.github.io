@@ -1,0 +1,80 @@
+/**
+ * NeuraVoxel design tokens
+ * Direction: industrial instrumentation / CAD schematic in deep graphite
+ * Accent: ice cyan (冷青) — not acid green, not purple
+ */
+
+:root {
+  /* —— Color —— */
+  --nv-void: #070b10;
+  --nv-panel: #0e141c;
+  --nv-elevated: #151d28;
+  --nv-gridline: #1e2a38;
+  --nv-edge: #2a3a4c;
+
+  --nv-paper: #e4ecf3;
+  --nv-mist: #8b9aab;
+  --nv-mute: #5c6b7c;
+
+  --nv-signal: #4ec4d4;
+  --nv-signal-dim: #2a7a88;
+  --nv-signal-glow: rgba(78, 196, 212, 0.18);
+  --nv-core: #3aa8b8;
+
+  --nv-ok: #6a9e7a;
+  --nv-warn: #c4a15a;
+  --nv-planned: #6b7a8a;
+
+  --nv-focus: #7ad4e0;
+
+  /* —— Typography —— */
+  --nv-font-display: "Syne", "Noto Sans SC", "PingFang SC", "Microsoft YaHei",
+    sans-serif;
+  --nv-font-body: "Source Sans 3", "Noto Sans SC", "PingFang SC",
+    "Microsoft YaHei", sans-serif;
+  --nv-font-mono: "IBM Plex Mono", "SFMono-Regular", "Consolas", monospace;
+
+  --nv-text-xs: 0.75rem;
+  --nv-text-sm: 0.875rem;
+  --nv-text-base: 1.0625rem;
+  --nv-text-md: 1.25rem;
+  --nv-text-lg: 1.625rem;
+  --nv-text-xl: clamp(2rem, 4.5vw, 3.25rem);
+  --nv-text-brand: clamp(2.75rem, 8vw, 5.5rem);
+
+  --nv-leading-tight: 1.15;
+  --nv-leading-snug: 1.35;
+  --nv-leading-body: 1.65;
+
+  --nv-tracking-brand: 0.04em;
+  --nv-tracking-label: 0.14em;
+
+  /* —— Space —— */
+  --nv-space-1: 0.25rem;
+  --nv-space-2: 0.5rem;
+  --nv-space-3: 0.75rem;
+  --nv-space-4: 1rem;
+  --nv-space-5: 1.5rem;
+  --nv-space-6: 2rem;
+  --nv-space-7: 3rem;
+  --nv-space-8: 4.5rem;
+  --nv-space-9: 7rem;
+
+  --nv-page-x: clamp(1.25rem, 4vw, 3.5rem);
+  --nv-measure: 38rem;
+  --nv-measure-wide: 68rem;
+
+  /* —— Shape —— */
+  --nv-radius: 2px;
+  --nv-radius-sm: 1px;
+
+  /* —— Motion —— */
+  --nv-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --nv-dur-fast: 180ms;
+  --nv-dur: 420ms;
+  --nv-dur-slow: 900ms;
+
+  /* —— Layout —— */
+  --nv-nav-h: 3.75rem;
+  --nv-header-border: 1px solid var(--nv-gridline);
+}

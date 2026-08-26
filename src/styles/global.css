@@ -1,0 +1,217 @@
+@import "./tokens.css";
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--nv-font-body);
+  font-size: var(--nv-text-base);
+  line-height: var(--nv-leading-body);
+  color: var(--nv-paper);
+  background: var(--nv-void);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--nv-signal);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color var(--nv-dur-fast) var(--nv-ease);
+}
+
+a:hover {
+  color: var(--nv-paper);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--nv-focus);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--nv-font-display);
+  font-weight: 700;
+  line-height: var(--nv-leading-tight);
+  letter-spacing: -0.02em;
+  color: var(--nv-paper);
+  margin: 0 0 var(--nv-space-4);
+}
+
+p {
+  margin: 0 0 var(--nv-space-4);
+  color: var(--nv-mist);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* —— Primitives —— */
+
+.nv-label {
+  font-family: var(--nv-font-mono);
+  font-size: var(--nv-text-xs);
+  font-weight: 500;
+  letter-spacing: var(--nv-tracking-label);
+  text-transform: uppercase;
+  color: var(--nv-mute);
+}
+
+.nv-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--nv-space-2);
+  min-height: 2.75rem;
+  padding: 0.65rem 1.25rem;
+  font-family: var(--nv-font-body);
+  font-size: var(--nv-text-sm);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  border: 1px solid transparent;
+  border-radius: var(--nv-radius);
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background var(--nv-dur-fast) var(--nv-ease),
+    border-color var(--nv-dur-fast) var(--nv-ease),
+    color var(--nv-dur-fast) var(--nv-ease),
+    box-shadow var(--nv-dur-fast) var(--nv-ease);
+}
+
+.nv-btn--primary {
+  background: var(--nv-signal);
+  color: var(--nv-void);
+}
+
+.nv-btn--primary:hover {
+  background: var(--nv-paper);
+  color: var(--nv-void);
+  box-shadow: 0 0 0 1px var(--nv-signal-glow);
+}
+
+.nv-btn--ghost {
+  background: transparent;
+  border-color: var(--nv-edge);
+  color: var(--nv-paper);
+}
+
+.nv-btn--ghost:hover {
+  border-color: var(--nv-signal);
+  color: var(--nv-signal);
+}
+
+.nv-btn--text {
+  background: transparent;
+  color: var(--nv-mist);
+  min-height: auto;
+  padding: 0.35rem 0.5rem;
+}
+
+.nv-btn--text:hover {
+  color: var(--nv-signal);
+}
+
+.nv-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.2rem 0.45rem;
+  font-family: var(--nv-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border: 1px solid var(--nv-edge);
+  border-radius: var(--nv-radius-sm);
+  color: var(--nv-mist);
+  background: var(--nv-panel);
+}
+
+.nv-badge--core {
+  border-color: var(--nv-signal-dim);
+  color: var(--nv-signal);
+  background: var(--nv-signal-glow);
+}
+
+.nv-badge--available {
+  color: var(--nv-ok);
+  border-color: color-mix(in srgb, var(--nv-ok) 40%, var(--nv-edge));
+}
+
+.nv-badge--preview {
+  color: var(--nv-warn);
+  border-color: color-mix(in srgb, var(--nv-warn) 40%, var(--nv-edge));
+}
+
+.nv-badge--planned {
+  color: var(--nv-planned);
+}
+
+.nv-rule {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: var(--nv-gridline);
+}
+
+.nv-section {
+  padding: var(--nv-space-8) var(--nv-page-x);
+  max-width: calc(var(--nv-measure-wide) + 2 * var(--nv-page-x));
+  margin-inline: auto;
+}
+
+.nv-section__head {
+  max-width: var(--nv-measure);
+  margin-bottom: var(--nv-space-7);
+}
+
+.nv-section__head .nv-label {
+  display: block;
+  margin-bottom: var(--nv-space-3);
+}
+
+.nv-section__head h2 {
+  font-size: var(--nv-text-xl);
+  margin-bottom: var(--nv-space-3);
+}
+
+.nv-section__head p {
+  font-size: var(--nv-text-md);
+  max-width: 34rem;
+}
