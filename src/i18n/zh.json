@@ -29,9 +29,9 @@
     "api": "HTTP 服务化接口：拉数与回写元数据",
     "dds": "实时 / 近实时流式通道（车端 · 机器人 · 仿真）",
     "steps": {
-      "annotation": { "title": "标注对接", "desc": "任务下发与标注结果回流" },
-      "training": { "title": "训练 / 微调", "desc": "版本化数据集拉取与产物登记" },
-      "simulation": { "title": "仿真验证", "desc": "场景包分发与评估回流" },
+      "annotation": { "title": "标注平台", "desc": "任务下发与标注结果回流" },
+      "training": { "title": "算法平台", "desc": "版本化数据集拉取与产物登记" },
+      "simulation": { "title": "仿真平台", "desc": "场景包分发与评估回流" },
       "return": { "title": "数据回流", "desc": "元数据写回，闭环再次启动" }
     }
   },

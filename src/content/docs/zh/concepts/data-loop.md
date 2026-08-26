@@ -11,9 +11,9 @@ order: 1
 
 | 步骤 | 模块 | 说明 |
 |------|------|------|
-| 1 | [标注对接](/modules/annotation-bridge) | 任务下发与结果回流 |
-| 2 | [训练/微调](/modules/training-bridge) | 版本化数据集消费 |
-| 3 | [仿真验证](/modules/simulation-bridge) | 场景评估与难例回流 |
+| 1 | [标注平台](/modules/annotation-bridge) | 任务下发与结果回流 |
+| 2 | [算法平台](/modules/training-bridge) | 版本化数据集消费 |
+| 3 | [仿真平台](/modules/simulation-bridge) | 场景评估与难例回流 |
 | 4 | DMP | 元数据登记，启动下一轮 |
 
 ## DMP 的角色

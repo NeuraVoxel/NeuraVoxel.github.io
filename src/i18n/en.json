@@ -29,9 +29,9 @@
     "api": "HTTP service APIs for pull and metadata write-back",
     "dds": "Real-time / near-real-time streaming (vehicle, robot, simulation)",
     "steps": {
-      "annotation": { "title": "Annotation bridge", "desc": "Task dispatch and labeled result return" },
-      "training": { "title": "Training / fine-tuning", "desc": "Versioned dataset pull and artifact registration" },
-      "simulation": { "title": "Simulation validation", "desc": "Scenario package distribution and evaluation return" },
+      "annotation": { "title": "Annotation platform", "desc": "Task dispatch and labeled result return" },
+      "training": { "title": "Algorithm platform", "desc": "Versioned dataset pull and artifact registration" },
+      "simulation": { "title": "Simulation platform", "desc": "Scenario package distribution and evaluation return" },
       "return": { "title": "Data return", "desc": "Metadata write-back restarts the loop" }
     }
   },
