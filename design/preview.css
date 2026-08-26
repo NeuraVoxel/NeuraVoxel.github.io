@@ -90,18 +90,19 @@
 .hero {
   position: relative;
   min-height: calc(100vh - var(--nv-nav-h));
-  display: grid;
-  align-items: end;
-  padding: var(--nv-space-7) var(--nv-page-x) var(--nv-space-8);
-  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: var(--nv-space-7) var(--nv-page-x);
+  overflow-x: clip;
+  overflow-y: visible;
   isolation: isolate;
   background:
     radial-gradient(
-      120% 80% at 70% 20%,
-      color-mix(in srgb, var(--nv-signal) 8%, transparent),
-      transparent 55%
+      90% 70% at 78% 42%,
+      color-mix(in srgb, var(--nv-signal) 9%, transparent),
+      transparent 58%
     ),
-    linear-gradient(180deg, var(--nv-panel) 0%, var(--nv-void) 72%);
+    linear-gradient(180deg, var(--nv-panel) 0%, var(--nv-void) 78%);
 }
 
 .hero__atmosphere {
@@ -114,14 +115,14 @@
 .hero__voxel-field {
   position: absolute;
   inset: 0;
-  opacity: 0.35;
+  opacity: 0.28;
   background-image:
     linear-gradient(var(--nv-gridline) 1px, transparent 1px),
     linear-gradient(90deg, var(--nv-gridline) 1px, transparent 1px);
   background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse 70% 60% at 65% 40%, #000 20%, transparent 75%);
-  transform: perspective(600px) rotateX(58deg) scale(1.35);
-  transform-origin: 60% 10%;
+  mask-image: radial-gradient(ellipse 55% 55% at 78% 48%, #000 15%, transparent 72%);
+  transform: perspective(600px) rotateX(58deg) scale(1.25);
+  transform-origin: 78% 20%;
   animation: field-drift 28s linear infinite;
 }
 
@@ -130,64 +131,23 @@
   inset: 0;
   background: linear-gradient(
     105deg,
-    transparent 40%,
-    var(--nv-signal-glow) 50%,
-    transparent 60%
+    transparent 48%,
+    var(--nv-signal-glow) 58%,
+    transparent 68%
   );
   mix-blend-mode: screen;
-  opacity: 0.35;
+  opacity: 0.28;
   animation: scan-sweep 7s var(--nv-ease) infinite;
 }
 
-.hero__orbit {
-  position: absolute;
-  right: max(-4%, calc(50% - 28rem));
-  top: 8%;
-  width: min(720px, 92vw);
-  height: auto;
-  opacity: 0.9;
-}
-
-.orbit-ring {
-  stroke: var(--nv-edge);
-  stroke-width: 1;
-}
-
-.orbit-ring--b {
-  stroke-dasharray: 4 6;
-  opacity: 0.7;
-}
-
-.orbit-dash {
-  stroke: var(--nv-signal-dim);
-  stroke-width: 1.25;
-  stroke-dasharray: 6 8;
-  animation: dash-travel 12s linear infinite;
-}
-
-.orbit-node--core polygon {
-  fill: color-mix(in srgb, var(--nv-signal) 16%, var(--nv-panel));
-  stroke: var(--nv-signal);
-  stroke-width: 1.5;
-}
-
-.orbit-node--core text,
-.orbit-node--sat text {
-  fill: var(--nv-paper);
-  font-family: var(--nv-font-mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-}
-
-.orbit-node--sat rect {
-  fill: var(--nv-elevated);
-  stroke: var(--nv-edge);
-  stroke-width: 1;
-}
-
-.orbit-node--sat text {
-  fill: var(--nv-mist);
-  font-size: 10px;
+.hero__layout {
+  width: 100%;
+  max-width: var(--nv-measure-wide);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr);
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: center;
 }
 
 .hero__copy {
@@ -233,6 +193,269 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--nv-space-3);
+}
+
+.hero__diagram {
+  margin: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+.loop-diagram {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 640 / 460;
+  display: block;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .hero__diagram {
+    animation: rise-in var(--nv-dur-slow) var(--nv-ease) both;
+    animation-delay: 0.1s;
+  }
+}
+
+/* —— Loop diagram SVG (L→R architecture) —— */
+
+.ld-frame {
+  stroke: var(--nv-gridline);
+  stroke-width: 1;
+  fill: color-mix(in srgb, var(--nv-panel) 78%, transparent);
+}
+
+.ld-frame-label {
+  fill: var(--nv-mute);
+  font-family: var(--nv-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+}
+
+.ld-frame-label--r {
+  text-anchor: end;
+}
+
+.ld-col-head {
+  fill: var(--nv-signal-dim);
+  font-family: var(--nv-font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-anchor: middle;
+}
+
+.ld-col-head--c {
+  fill: var(--nv-mute);
+}
+
+.ld-col-head--r {
+  fill: var(--nv-signal);
+}
+
+.ld-spine {
+  stroke: var(--nv-gridline);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+
+.ld-sat__box {
+  fill: var(--nv-elevated);
+  stroke: var(--nv-edge);
+  stroke-width: 1;
+}
+
+.ld-sat__idx {
+  fill: var(--nv-signal);
+  font-family: var(--nv-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+}
+
+.ld-sat__title {
+  fill: var(--nv-paper);
+  font-family: var(--nv-font-display);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ld-sat__sub {
+  fill: var(--nv-mute);
+  font-family: var(--nv-font-mono);
+  font-size: 8px;
+  letter-spacing: 0.06em;
+}
+
+.ld-port {
+  fill: var(--nv-signal);
+  stroke: var(--nv-void);
+  stroke-width: 1;
+}
+
+.ld-bus {
+  fill: color-mix(in srgb, var(--nv-void) 55%, var(--nv-elevated));
+  stroke: var(--nv-signal-dim);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+}
+
+.ld-bus__title {
+  fill: var(--nv-mute);
+  font-family: var(--nv-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.16em;
+}
+
+.ld-bus__note {
+  fill: var(--nv-mist);
+  font-family: var(--nv-font-mono);
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+
+.ld-channel rect {
+  fill: color-mix(in srgb, var(--nv-signal) 10%, var(--nv-elevated));
+  stroke: var(--nv-signal);
+  stroke-width: 1;
+}
+
+.ld-channel text {
+  fill: var(--nv-paper);
+  font-family: var(--nv-font-display);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.ld-channel__en {
+  fill: var(--nv-signal) !important;
+  font-family: var(--nv-font-mono) !important;
+  font-size: 7px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em;
+}
+
+.ld-rail {
+  stroke: var(--nv-signal);
+  stroke-width: 1.4;
+  fill: none;
+}
+
+.ld-rail-flow {
+  stroke: var(--nv-paper);
+  stroke-width: 2;
+  stroke-dasharray: 8 48;
+  stroke-linecap: round;
+  fill: none;
+  opacity: 0.7;
+  animation: dash-travel 2.8s linear infinite;
+}
+
+.ld-rail-flow--late {
+  animation-delay: 0.9s;
+  opacity: 0.55;
+}
+
+.ld-merge {
+  stroke: var(--nv-signal-dim);
+  stroke-width: 1.1;
+  fill: none;
+}
+
+.ld-core__hex {
+  stroke: var(--nv-signal);
+  stroke-width: 1.85;
+}
+
+.ld-core__hex-inner {
+  fill: none;
+  stroke: color-mix(in srgb, var(--nv-signal) 42%, transparent);
+  stroke-width: 1;
+}
+
+.ld-core__badge {
+  fill: var(--nv-signal);
+  font-family: var(--nv-font-mono);
+  font-size: 8px;
+  letter-spacing: 0.18em;
+}
+
+.ld-core__title {
+  fill: var(--nv-paper);
+  font-family: var(--nv-font-display);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.ld-core__sub {
+  fill: var(--nv-signal);
+  font-family: var(--nv-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+}
+
+.ld-caps text {
+  fill: var(--nv-mist);
+  font-family: var(--nv-font-mono);
+  font-size: 8px;
+  letter-spacing: 0.06em;
+}
+
+.ld-return-path {
+  fill: none;
+  stroke: var(--nv-mist);
+  stroke-width: 1.25;
+  stroke-dasharray: 4 5;
+}
+
+.ld-return-flow {
+  fill: none;
+  stroke: var(--nv-paper);
+  stroke-width: 1.75;
+  stroke-dasharray: 6 64;
+  stroke-linecap: round;
+  opacity: 0.55;
+  animation: dash-travel 4.2s linear infinite;
+}
+
+.ld-return-chip rect {
+  fill: var(--nv-panel);
+  stroke: var(--nv-edge);
+  stroke-width: 1;
+}
+
+.ld-return-chip text {
+  fill: var(--nv-paper);
+  font-family: var(--nv-font-display);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ld-return-chip__en {
+  fill: var(--nv-mute) !important;
+  font-family: var(--nv-font-mono) !important;
+  font-size: 7px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.1em;
+}
+
+.ld-legend text {
+  fill: var(--nv-mute);
+  font-family: var(--nv-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+}
+
+.ld-legend__swatch--out {
+  fill: var(--nv-signal);
+}
+
+.ld-legend__swatch--in {
+  fill: none;
+  stroke: var(--nv-mist);
+  stroke-width: 1.5;
+  stroke-dasharray: 2 2;
+}
+
+.ld-legend__note {
+  fill: var(--nv-mute) !important;
 }
 
 /* —— Loop —— */
@@ -673,11 +896,27 @@
 
 @keyframes dash-travel {
   to {
-    stroke-dashoffset: -140;
+    stroke-dashoffset: -220;
   }
 }
 
 /* —— Responsive —— */
+
+@media (max-width: 1100px) {
+  .hero__layout {
+    grid-template-columns: 1fr;
+    gap: var(--nv-space-6);
+  }
+
+  .hero__copy {
+    max-width: 36rem;
+  }
+
+  .hero__diagram {
+    max-width: 34rem;
+    margin-inline: auto;
+  }
+}
 
 @media (max-width: 960px) {
   .loop__ring,
@@ -685,12 +924,6 @@
   .scenes__grid,
   .entries__row {
     grid-template-columns: 1fr 1fr;
-  }
-
-  .hero__orbit {
-    opacity: 0.45;
-    right: -10%;
-    top: 0;
   }
 
   .style-rail {
@@ -704,17 +937,13 @@
   }
 
   .hero {
-    align-items: center;
-    padding-top: var(--nv-space-8);
+    align-items: flex-start;
+    padding-block: var(--nv-space-6);
+    min-height: auto;
   }
 
-  .hero__orbit {
-    opacity: 0.28;
-    top: auto;
-    bottom: 5%;
-    right: 50%;
-    transform: translateX(50%);
-    width: 120%;
+  .hero__brand {
+    font-size: clamp(2.25rem, 12vw, 3rem);
   }
 
   .loop__ring,
@@ -740,11 +969,13 @@
 @media (prefers-reduced-motion: reduce) {
   .hero__voxel-field,
   .hero__scan,
-  .orbit-dash {
+  .ld-rail-flow,
+  .ld-return-flow {
     animation: none;
   }
 
   .hero__copy,
+  .hero__diagram,
   .loop__step,
   .scene {
     animation: none;
