@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neuravoxel.cn/schemas/doc-frontmatter.json",
+  "title": "DocFrontmatter",
+  "description": "Frontmatter contract for src/content/docs/{locale}/**/*.md",
+  "type": "object",
+  "required": ["title", "section"],
+  "additionalProperties": false,
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "description": {
+      "type": "string"
+    },
+    "section": {
+      "type": "string",
+      "enum": [
+        "getting-started",
+        "concepts",
+        "dmp",
+        "integrations",
+        "releases"
+      ]
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "draft": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

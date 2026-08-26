@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://neuravoxel.cn/schemas/module-frontmatter.json",
+  "title": "ModuleFrontmatter",
+  "description": "Frontmatter contract for src/content/modules/{locale}/*.md",
+  "type": "object",
+  "required": ["title", "summary", "role", "status"],
+  "additionalProperties": false,
+  "properties": {
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "role": {
+      "type": "string",
+      "enum": ["core", "ring"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["available", "preview", "planned"]
+    },
+    "order": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "downloads": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/downloadItem"
+      }
+    },
+    "links": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/externalLink"
+      }
+    },
+    "integrations": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["dataset_download", "service_api", "dds"]
+      },
+      "uniqueItems": true
+    },
+    "industries": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["autonomous-driving", "embodied-ai"]
+      }
+    },
+    "docAnchor": {
+      "type": "string",
+      "pattern": "^[a-z0-9/-]+$"
+    }
+  },
+  "$defs": {
+    "downloadItem": {
+      "type": "object",
+      "required": ["label", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string" },
+        "url": { "type": "string", "format": "uri" },
+        "type": { "type": "string" }
+      }
+    },
+    "externalLink": {
+      "type": "object",
+      "required": ["label", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "label": { "type": "string" },
+        "url": { "type": "string" },
+        "external": { "type": "boolean", "default": true }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "role": { "const": "core" } }
+      },
+      "then": {
+        "required": ["integrations"],
+        "properties": {
+          "integrations": {
+            "contains": { "enum": ["dataset_download"] },
+            "minItems": 3
+          }
+        }
+      }
+    }
+  ]
+}
