@@ -36,35 +36,29 @@
     </header>
 
     <main id="main">
-      <!-- §1 Hero: left copy · right loop diagram -->
+      <!-- §1 Hero: one stage — copy + loop as one composition -->
       <section class="hero" id="top" aria-labelledby="hero-brand">
         <div class="hero__atmosphere" aria-hidden="true">
           <div class="hero__voxel-field"></div>
+          <div class="hero__glow"></div>
           <div class="hero__scan"></div>
         </div>
 
-        <div class="hero__layout">
-          <div class="hero__copy">
+        <div class="hero__stage">
+          <div class="hero__rail">
             <p class="nv-label hero__eyebrow">Industrial Data Loop</p>
-            <h1 id="hero-brand" class="hero__brand">NeuraVoxel</h1>
-            <p class="hero__claim">以自动化数据引擎驱动产业数据闭环</p>
-            <p class="hero__support">
-              训练 / 微调 / 仿真对接 / 标注对接 — 数据经 DMP 组织、分发与回流
-            </p>
-            <div class="hero__cta">
-              <a class="nv-btn nv-btn--primary" href="#loop">了解闭环</a>
-              <a class="nv-btn nv-btn--ghost" href="#entries">查看模块</a>
-              <a class="nv-btn nv-btn--text" href="#entries">阅读文档</a>
-            </div>
+            <span class="hero__rail-line" aria-hidden="true"></span>
+            <span class="hero__rail-meta" aria-hidden="true">DMP · Bridge · Return</span>
           </div>
 
-          <figure
-            class="hero__diagram"
-            aria-label="左右布局闭环：左侧标注、训练、仿真经下载、API、DDS 接入右侧 DMP 数据中枢并回流"
-          >
+          <div class="hero__layout">
+            <figure
+              class="hero__diagram"
+              aria-label="左右布局闭环：左侧标注、训练、仿真经下载、API、DDS 接入右侧 DMP 数据中枢并回流"
+            >
             <svg
               class="loop-diagram"
-              viewBox="0 0 640 460"
+              viewBox="0 0 960 460"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               role="img"
@@ -92,8 +86,8 @@
                 >
                   <path d="M0 1.5 L8 5 L0 8.5 Z" fill="#8B9AAB" />
                 </marker>
-                <filter id="core-glow" x="-50%" y="-50%" width="200%" height="200%">
-                  <feGaussianBlur stdDeviation="5" result="b" />
+                <filter id="core-glow" x="-40%" y="-40%" width="180%" height="180%">
+                  <feGaussianBlur stdDeviation="2.5" result="b" />
                   <feMerge>
                     <feMergeNode in="b" />
                     <feMergeNode in="SourceGraphic" />
@@ -103,22 +97,17 @@
                   <stop offset="0%" stop-color="#1a3844" />
                   <stop offset="100%" stop-color="#0e141c" />
                 </linearGradient>
-                <linearGradient id="rail-grad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#2a7a88" stop-opacity="0.2" />
-                  <stop offset="50%" stop-color="#4EC4D4" stop-opacity="0.55" />
-                  <stop offset="100%" stop-color="#2a7a88" stop-opacity="0.2" />
-                </linearGradient>
               </defs>
 
-              <!-- frame -->
-              <rect class="ld-frame" x="10" y="10" width="620" height="440" rx="2" />
-              <text class="ld-frame-label" x="26" y="34">INDUSTRIAL DATA LOOP</text>
-              <text class="ld-frame-label ld-frame-label--r" x="614" y="34">SCHEMATIC · L→R</text>
+              <!-- left reserve for copy overlay; schematic sits on the right -->
+              <g class="ld-content" transform="translate(320, 0)">
+              <!-- soft field — no hard panel frame -->
+              <rect class="ld-field" x="-20" y="0" width="680" height="460" />
 
               <!-- column headers -->
-              <text class="ld-col-head" x="118" y="62">环上能力</text>
-              <text class="ld-col-head ld-col-head--c" x="320" y="62">交互通道</text>
-              <text class="ld-col-head ld-col-head--r" x="522" y="62">数据中枢</text>
+              <text class="ld-col-head" x="118" y="48">环上能力</text>
+              <text class="ld-col-head ld-col-head--c" x="320" y="48">交互通道</text>
+              <text class="ld-col-head ld-col-head--r" x="522" y="48">数据中枢</text>
 
               <!-- left spine -->
               <line class="ld-spine" x1="118" y1="88" x2="118" y2="360" />
@@ -282,8 +271,23 @@
                   环上模块经 Channel Bus 接入 DMP，结果写回形成闭环
                 </text>
               </g>
+              </g>
             </svg>
           </figure>
+
+            <div class="hero__copy">
+              <h1 id="hero-brand" class="hero__brand">NeuraVoxel</h1>
+              <p class="hero__claim">以自动化数据引擎驱动产业数据闭环</p>
+              <p class="hero__support">
+                训练 / 微调 / 仿真对接 / 标注对接 — 数据经 DMP 组织、分发与回流
+              </p>
+              <div class="hero__cta">
+                <a class="nv-btn nv-btn--primary" href="#loop">了解闭环</a>
+                <a class="nv-btn nv-btn--ghost" href="#entries">查看模块</a>
+                <a class="nv-btn nv-btn--text" href="#entries">阅读文档</a>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
