@@ -4,6 +4,7 @@ import DocSidebar from "../../../components/DocSidebar.astro";
 import { getDocTree } from "../../../lib/content";
 import { useTranslations } from "../../../lib/i18n";
 import { href, localePrefix } from "../../../lib/locale";
+import "../../../styles/docs.css";
 
 const locale = "en";
 const currentPath = "/en/docs";
@@ -17,19 +18,20 @@ const t = useTranslations(locale);
   currentPath={currentPath}
   title={t("docs.pageTitle")}
   description={t("docs.pageDescription")}
+  variant="docs"
 >
-  <div class="page-head">
-    <h1>{t("docs.pageTitle")}</h1>
-    <p>{t("docs.pageDescription")}</p>
-  </div>
-  <div class="doc-layout">
-    <DocSidebar locale={locale} tree={tree} />
-    <div class="prose">
-      <p>Start at <a href={href(locale, "/docs/getting-started/overview")}>Getting started</a>.</p>
+  <div class="doc-shell">
+    <div class="doc-layout">
+      <DocSidebar locale={locale} tree={tree} />
+      <div class="doc-layout__main">
+        <h1>{t("docs.pageTitle")}</h1>
+        <p class="doc-index-lead">
+          {t("docs.pageDescription")}
+          {" "}
+          <a href={href(locale, "/docs/getting-started/overview")}>Start with Getting started →</a>
+        </p>
+      </div>
+      <aside class="doc-toc doc-toc--empty" aria-hidden="true"></aside>
     </div>
   </div>
 </BaseLayout>
-
-<style>
-  @import "../../../styles/prose.css";
-</style>

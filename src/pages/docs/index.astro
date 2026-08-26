@@ -4,6 +4,7 @@ import DocSidebar from "../../components/DocSidebar.astro";
 import { getDocTree } from "../../lib/content";
 import { useTranslations } from "../../lib/i18n";
 import { href, localePrefix } from "../../lib/locale";
+import "../../styles/docs.css";
 
 const locale = "zh";
 const currentPath = "/docs";
@@ -17,19 +18,20 @@ const t = useTranslations(locale);
   currentPath={currentPath}
   title={t("docs.pageTitle")}
   description={t("docs.pageDescription")}
+  variant="docs"
 >
-  <div class="page-head">
-    <h1>{t("docs.pageTitle")}</h1>
-    <p>{t("docs.pageDescription")}</p>
-  </div>
-  <div class="doc-layout">
-    <DocSidebar locale={locale} tree={tree} />
-    <div class="prose">
-      <p>{locale === "zh" ? "从左侧目录选择文档，或从" : "Pick a page from the sidebar, or start at"} <a href={href(locale, "/docs/getting-started/overview")}>{locale === "zh" ? "快速了解" : "Getting started"}</a>.</p>
+  <div class="doc-shell">
+    <div class="doc-layout">
+      <DocSidebar locale={locale} tree={tree} />
+      <div class="doc-layout__main">
+        <h1>{t("docs.pageTitle")}</h1>
+        <p class="doc-index-lead">
+          {t("docs.pageDescription")}
+          {" "}
+          <a href={href(locale, "/docs/getting-started/overview")}>从「快速了解」开始 →</a>
+        </p>
+      </div>
+      <aside class="doc-toc doc-toc--empty" aria-hidden="true"></aside>
     </div>
   </div>
 </BaseLayout>
-
-<style>
-  @import "../../styles/prose.css";
-</style>

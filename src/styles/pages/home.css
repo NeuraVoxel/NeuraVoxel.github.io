@@ -1,90 +1,5 @@
 /* NeuraVoxel homepage style preview — page-specific composition */
 
-.skip-link {
-  position: absolute;
-  left: var(--nv-page-x);
-  top: -3rem;
-  z-index: 100;
-  padding: 0.5rem 0.75rem;
-  background: var(--nv-signal);
-  color: var(--nv-void);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-.skip-link:focus {
-  top: 0.75rem;
-}
-
-/* —— Header —— */
-
-.site-header {
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: var(--nv-nav-h);
-  padding: 0 var(--nv-page-x);
-  background: color-mix(in srgb, var(--nv-void) 88%, transparent);
-  border-bottom: var(--nv-header-border);
-  backdrop-filter: blur(10px);
-}
-
-.site-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.65rem;
-  text-decoration: none;
-  color: var(--nv-paper);
-}
-
-.site-logo__mark {
-  width: 0.85rem;
-  height: 0.85rem;
-  background: var(--nv-signal);
-  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-  box-shadow: 0 0 16px var(--nv-signal-glow);
-}
-
-.site-logo__word {
-  font-family: var(--nv-font-display);
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: var(--nv-tracking-brand);
-}
-
-.site-logo__word--sm {
-  font-size: 0.95rem;
-}
-
-.site-nav {
-  display: flex;
-  align-items: center;
-  gap: clamp(0.75rem, 2vw, 1.75rem);
-}
-
-.site-nav a {
-  font-size: var(--nv-text-sm);
-  color: var(--nv-mist);
-  text-decoration: none;
-}
-
-.site-nav a:hover {
-  color: var(--nv-paper);
-}
-
-.site-nav__lang {
-  font-family: var(--nv-font-mono);
-  font-size: var(--nv-text-xs);
-  letter-spacing: var(--nv-tracking-label);
-  padding: 0.3rem 0.5rem;
-  border: 1px solid var(--nv-edge);
-  border-radius: var(--nv-radius);
-  color: var(--nv-signal) !important;
-}
-
 /* —— Hero —— */
 
 .hero {
@@ -804,50 +719,6 @@
   font-size: var(--nv-text-sm);
 }
 
-/* —— Footer —— */
-
-.site-footer {
-  margin-top: var(--nv-space-6);
-  border-top: 1px solid var(--nv-gridline);
-  padding: var(--nv-space-7) var(--nv-page-x);
-  background: var(--nv-panel);
-}
-
-.site-footer__inner {
-  max-width: var(--nv-measure-wide);
-  margin-inline: auto;
-  display: grid;
-  gap: var(--nv-space-5);
-}
-
-.site-footer p {
-  margin: var(--nv-space-2) 0 0;
-  font-size: var(--nv-text-sm);
-}
-
-.site-footer__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--nv-space-4);
-}
-
-.site-footer__links a {
-  color: var(--nv-mist);
-  text-decoration: none;
-  font-size: var(--nv-text-sm);
-}
-
-.site-footer__links a:hover {
-  color: var(--nv-signal);
-}
-
-.site-footer__copy {
-  font-family: var(--nv-font-mono);
-  font-size: var(--nv-text-xs);
-  letter-spacing: 0.06em;
-  color: var(--nv-mute) !important;
-}
-
 .nv-rule--page {
   max-width: calc(var(--nv-measure-wide) + 2 * var(--nv-page-x));
   margin-inline: auto;
@@ -1028,10 +899,6 @@
 }
 
 @media (max-width: 640px) {
-  .site-nav a:not(.site-nav__lang) {
-    display: none;
-  }
-
   .hero {
     align-items: flex-start;
     padding-block: var(--nv-space-6);

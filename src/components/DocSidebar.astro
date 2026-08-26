@@ -11,28 +11,65 @@ interface Props {
 
 const { locale, tree, currentSlug } = Astro.props;
 const t = useTranslations(locale);
+
+function sectionOpen(section: DocTreeSection): boolean {
+  if (!currentSlug) return true;
+  return section.items.some(
+    (item) =>
+      item.slug === currentSlug || currentSlug.startsWith(`${item.slug}/`),
+  );
+}
 ---
 
 <nav class="doc-sidebar" aria-label={t("docs.pageTitle")}>
   {
-    tree.map((section) => (
-      <div class="doc-sidebar__section">
-        <div class="doc-sidebar__title">
-          {t(`docs.sections.${section.section}`)}
+    tree.map((section) => {
+      const open = sectionOpen(section);
+      return (
+        <div
+          class:list={["doc-sidebar__section", { "is-open": open }]}
+          data-doc-section
+        >
+          <button
+            type="button"
+            class="doc-sidebar__parent"
+            aria-expanded={open}
+            data-doc-toggle
+          >
+            <span class="doc-sidebar__chevron" aria-hidden="true">▸</span>
+            <span>{t(`docs.sections.${section.section}`)}</span>
+          </button>
+          <ul class="doc-sidebar__children">
+            {section.items.map((item) => (
+              <li>
+                <a
+                  href={item.href}
+                  aria-current={currentSlug === item.slug ? "page" : undefined}
+                >
+                  {item.title}
+                </a>
+              </li>
+            ))}
+          </ul>
         </div>
-        <ul>
-          {section.items.map((item) => (
-            <li>
-              <a
-                href={item.href}
-                aria-current={currentSlug === item.slug ? "page" : undefined}
-              >
-                {item.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-    ))
+      );
+    })
   }
 </nav>
+
+<script>
+  function initDocSidebar() {
+    document.querySelectorAll("[data-doc-toggle]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const section = btn.closest("[data-doc-section]");
+        if (!section) return;
+        const next = !section.classList.contains("is-open");
+        section.classList.toggle("is-open", next);
+        btn.setAttribute("aria-expanded", String(next));
+      });
+    });
+  }
+
+  initDocSidebar();
+  document.addEventListener("astro:page-load", initDocSidebar);
+</script>

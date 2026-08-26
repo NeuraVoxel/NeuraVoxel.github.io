@@ -11,16 +11,19 @@ interface Props {
   currentPath: string;
   title?: string;
   description?: string;
+  variant?: "default" | "docs";
 }
 
-const { locale, currentPath, title, description } = Astro.props;
+const { locale, currentPath, title, description, variant = "default" } =
+  Astro.props;
 const t = useTranslations(locale);
 const pageTitle = title ? `${title} · NeuraVoxel` : t("meta.siteTitle");
 const pageDescription = description ?? t("meta.siteDescription");
+const bodyClass = variant === "docs" ? "theme-docs" : undefined;
 ---
 
 <!doctype html>
-<html lang={htmlLang(locale)}>
+<html lang={htmlLang(locale)} class={bodyClass}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -33,7 +36,7 @@ const pageDescription = description ?? t("meta.siteDescription");
       rel="stylesheet"
     />
   </head>
-  <body>
+  <body class={bodyClass}>
     <a class="skip-link" href="#main">{t("nav.skipToContent")}</a>
     <SiteHeader locale={locale} currentPath={currentPath} />
     <main id="main">
