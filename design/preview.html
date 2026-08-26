@@ -54,7 +54,7 @@
           <div class="hero__layout">
             <figure
               class="hero__diagram"
-              aria-label="左右布局闭环：左侧标注、训练、仿真经下载、API、DDS 接入右侧 DMP 数据中枢并回流"
+              aria-label="闭环示意：左侧 DMP 数据中枢，经 Channel Bus 分发至右侧环上模块，元数据回流 DMP"
             >
             <svg
               class="loop-diagram"
@@ -105,36 +105,29 @@
               <rect class="ld-field" x="-20" y="0" width="680" height="460" />
 
               <!-- column headers -->
-              <text class="ld-col-head" x="118" y="48">环上能力</text>
+              <text class="ld-col-head ld-col-head--r" x="118" y="48">数据中枢</text>
               <text class="ld-col-head ld-col-head--c" x="320" y="48">交互通道</text>
-              <text class="ld-col-head ld-col-head--r" x="522" y="48">数据中枢</text>
+              <text class="ld-col-head" x="522" y="48">环上能力</text>
 
-              <!-- left spine -->
-              <line class="ld-spine" x1="118" y1="88" x2="118" y2="360" />
-
-              <!-- left modules -->
-              <g class="ld-sat" transform="translate(118 118)">
-                <rect class="ld-sat__box" x="-78" y="-34" width="156" height="68" rx="2" />
-                <text class="ld-sat__idx" x="-64" y="-12">01</text>
-                <text class="ld-sat__title" x="-64" y="8">标注对接</text>
-                <text class="ld-sat__sub" x="-64" y="24">Annotation Bridge</text>
-                <circle class="ld-port" cx="78" cy="0" r="3.5" />
+              <!-- left: DMP hub -->
+              <g class="ld-core" filter="url(#core-glow)" transform="translate(118 214)">
+                <polygon
+                  class="ld-core__hex"
+                  points="0,-64 56,-32 56,32 0,64 -56,32 -56,-32"
+                  fill="url(#hub-fill)"
+                />
+                <polygon
+                  class="ld-core__hex-inner"
+                  points="0,-42 36,-21 36,21 0,42 -36,21 -36,-21"
+                />
+                <text class="ld-core__badge" text-anchor="middle" y="-18">CORE</text>
+                <text class="ld-core__title" text-anchor="middle" y="6">DMP</text>
+                <text class="ld-core__sub" text-anchor="middle" y="24">数据中枢</text>
               </g>
 
-              <g class="ld-sat" transform="translate(118 210)">
-                <rect class="ld-sat__box" x="-78" y="-34" width="156" height="68" rx="2" />
-                <text class="ld-sat__idx" x="-64" y="-12">02</text>
-                <text class="ld-sat__title" x="-64" y="8">训练 / 微调</text>
-                <text class="ld-sat__sub" x="-64" y="24">Training Bridge</text>
-                <circle class="ld-port" cx="78" cy="0" r="3.5" />
-              </g>
-
-              <g class="ld-sat" transform="translate(118 302)">
-                <rect class="ld-sat__box" x="-78" y="-34" width="156" height="68" rx="2" />
-                <text class="ld-sat__idx" x="-64" y="-12">03</text>
-                <text class="ld-sat__title" x="-64" y="8">仿真验证</text>
-                <text class="ld-sat__sub" x="-64" y="24">Simulation Bridge</text>
-                <circle class="ld-port" cx="78" cy="0" r="3.5" />
+              <g class="ld-caps" transform="translate(118 300)">
+                <text text-anchor="middle" y="0">组织 · 版本 · 权限</text>
+                <text text-anchor="middle" y="16">分发 · 回流登记</text>
               </g>
 
               <!-- center bus / channels -->
@@ -161,114 +154,110 @@
                 拉数 · 回写 · 近实时
               </text>
 
-              <!-- flow rails: left → bus → DMP -->
+              <!-- right spine -->
+              <line class="ld-spine" x1="522" y1="88" x2="522" y2="360" />
+
+              <!-- right: ring modules -->
+              <g class="ld-sat" transform="translate(522 118)">
+                <rect class="ld-sat__box" x="-78" y="-34" width="156" height="68" rx="2" />
+                <text class="ld-sat__idx" x="-64" y="-12">01</text>
+                <text class="ld-sat__title" x="-64" y="8">标注对接</text>
+                <text class="ld-sat__sub" x="-64" y="24">Annotation Bridge</text>
+                <circle class="ld-port" cx="-78" cy="0" r="3.5" />
+              </g>
+
+              <g class="ld-sat" transform="translate(522 210)">
+                <rect class="ld-sat__box" x="-78" y="-34" width="156" height="68" rx="2" />
+                <text class="ld-sat__idx" x="-64" y="-12">02</text>
+                <text class="ld-sat__title" x="-64" y="8">训练 / 微调</text>
+                <text class="ld-sat__sub" x="-64" y="24">Training Bridge</text>
+                <circle class="ld-port" cx="-78" cy="0" r="3.5" />
+              </g>
+
+              <g class="ld-sat" transform="translate(522 302)">
+                <rect class="ld-sat__box" x="-78" y="-34" width="156" height="68" rx="2" />
+                <text class="ld-sat__idx" x="-64" y="-12">03</text>
+                <text class="ld-sat__title" x="-64" y="8">仿真验证</text>
+                <text class="ld-sat__sub" x="-64" y="24">Simulation Bridge</text>
+                <circle class="ld-port" cx="-78" cy="0" r="3.5" />
+              </g>
+
+              <!-- flow rails: DMP → bus → ring (distribution, L→R) -->
               <path
                 class="ld-rail"
-                d="M196 118 H248"
+                d="M174 158 H248"
                 marker-end="url(#arrow-signal)"
               />
               <path
                 class="ld-rail"
-                d="M196 210 H248"
+                d="M174 214 H248"
                 marker-end="url(#arrow-signal)"
               />
               <path
                 class="ld-rail"
-                d="M196 302 H248"
+                d="M174 270 H248"
                 marker-end="url(#arrow-signal)"
               />
 
               <path
                 class="ld-rail-flow"
-                d="M196 118 H248 M196 210 H248 M196 302 H248"
+                d="M174 158 H248 M174 214 H248 M174 270 H248"
               />
 
               <path
                 class="ld-rail"
-                d="M392 158 H448"
+                d="M392 118 H444"
                 marker-end="url(#arrow-signal)"
               />
               <path
                 class="ld-rail"
-                d="M392 214 H448"
+                d="M392 210 H444"
                 marker-end="url(#arrow-signal)"
               />
               <path
                 class="ld-rail"
-                d="M392 270 H448"
+                d="M392 302 H444"
                 marker-end="url(#arrow-signal)"
               />
 
               <path
                 class="ld-rail-flow ld-rail-flow--late"
-                d="M392 158 H448 M392 214 H448 M392 270 H448"
+                d="M392 118 H444 M392 210 H444 M392 302 H444"
               />
 
-              <!-- merge into DMP -->
-              <path
-                class="ld-merge"
-                d="M448 158 C470 158 470 214 448 214"
-              />
-              <path
-                class="ld-merge"
-                d="M448 214 C470 214 470 270 448 270"
-              />
-              <path
-                class="ld-rail"
-                d="M470 214 H500"
-                marker-end="url(#arrow-signal)"
-              />
+              <!-- trunk: DMP → channel bus -->
+              <path class="ld-merge" d="M174 214 H196" />
+              <path class="ld-merge" d="M196 214 C218 214 218 158 196 158" />
+              <path class="ld-merge" d="M196 214 C218 214 218 270 196 270" />
 
-              <!-- right: DMP hub -->
-              <g class="ld-core" filter="url(#core-glow)" transform="translate(545 214)">
-                <polygon
-                  class="ld-core__hex"
-                  points="0,-64 56,-32 56,32 0,64 -56,32 -56,-32"
-                  fill="url(#hub-fill)"
-                />
-                <polygon
-                  class="ld-core__hex-inner"
-                  points="0,-42 36,-21 36,21 0,42 -36,21 -36,-21"
-                />
-                <text class="ld-core__badge" text-anchor="middle" y="-18">CORE</text>
-                <text class="ld-core__title" text-anchor="middle" y="6">DMP</text>
-                <text class="ld-core__sub" text-anchor="middle" y="24">数据中枢</text>
-              </g>
-
-              <!-- DMP capability ticks -->
-              <g class="ld-caps" transform="translate(545 300)">
-                <text text-anchor="middle" y="0">组织 · 版本 · 权限</text>
-                <text text-anchor="middle" y="16">分发 · 回流登记</text>
-              </g>
-
-              <!-- return path: DMP → bottom → left modules -->
+              <!-- return path: ring → bottom → DMP -->
               <path
                 class="ld-return-path"
-                d="M545 278
+                d="M522 336
                    V378
                    H118
-                   V336"
+                   V278"
                 marker-end="url(#arrow-mist)"
               />
               <path
                 class="ld-return-flow"
-                d="M545 278 V378 H118 V336"
+                d="M522 336 V378 H118 V278"
               />
 
               <g class="ld-return-chip" transform="translate(330 378)">
                 <rect x="-58" y="-14" width="116" height="28" rx="1" />
                 <text text-anchor="middle" y="1">数据回流</text>
-                <text class="ld-return-chip__en" text-anchor="middle" y="11">META → RING</text>
+                <text class="ld-return-chip__en" text-anchor="middle" y="11">META → DMP</text>
               </g>
 
               <!-- legend -->
               <g class="ld-legend" transform="translate(26 422)">
                 <rect width="10" height="10" class="ld-legend__swatch ld-legend__swatch--out" />
-                <text x="16" y="9">分发 L→R</text>
-                <rect x="88" width="10" height="10" class="ld-legend__swatch ld-legend__swatch--in" />
-                <text x="104" y="9">回流</text>
-                <text class="ld-legend__note" x="160" y="9">
-                  环上模块经 Channel Bus 接入 DMP，结果写回形成闭环
+                <text x="16" y="9">分发 DMP → 环上</text>
+                <rect x="118" width="10" height="10" class="ld-legend__swatch ld-legend__swatch--in" />
+                <text x="134" y="9">回流</text>
+                <text class="ld-legend__note" x="180" y="9">
+                  DMP 经 Channel Bus 分发至环上模块，元数据写回形成闭环
                 </text>
               </g>
               </g>
@@ -276,7 +265,7 @@
           </figure>
 
             <div class="hero__copy">
-              <h1 id="hero-brand" class="hero__brand">NeuraVoxel</h1>
+              <h1 id="hero-brand" class="hero__brand">DMP</h1>
               <p class="hero__claim">以自动化数据引擎驱动产业数据闭环</p>
               <p class="hero__support">
                 训练 / 微调 / 仿真对接 / 标注对接 — 数据经 DMP 组织、分发与回流
