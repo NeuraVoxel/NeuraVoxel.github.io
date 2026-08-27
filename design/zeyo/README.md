@@ -27,7 +27,7 @@ python3 -m http.server 8766
 
 ## 样式
 
-- `shared.css` — tokens、导航、页脚、按钮、飞飞助手
+- `shared.css` — tokens、导航、多栏页脚、按钮、飞飞助手
 - `feifei-bird.svg` — 飞飞卡通小鸟形象
 - `assistant.js` — 飞飞助手交互
 - `home.css` / `workshop.css` / `articles.css` — 各页专属样式
