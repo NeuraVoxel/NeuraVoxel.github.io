@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>工具 — NeuraVoxel</title>
+    <meta
+      name="description"
+      content="NeuraVoxel 工具集：闭环中的每个环节，一个工具攻克一个断点"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./shared.css" />
+    <link rel="stylesheet" href="./tools.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+
+    <header class="site-header">
+      <a class="site-logo" href="./home.html" aria-label="NeuraVoxel 首页">
+        <span class="site-logo__mark" aria-hidden="true"></span>
+        <span class="site-logo__word">NeuraVoxel</span>
+        <span class="site-logo__tag">万物闭环</span>
+      </a>
+      <nav class="site-nav" aria-label="主导航">
+        <a href="./home.html">首页</a>
+        <a href="./tools.html" aria-current="page">工具</a>
+        <a href="./articles.html">文章</a>
+        <a href="./home.html#about">关于</a>
+      </nav>
+    </header>
+
+    <main id="main" class="tools-page">
+      <header class="page-head">
+        <p class="ww-label">Tool Catalog</p>
+        <h1 class="page-head__title">NeuraVoxel 工具集</h1>
+        <p class="page-head__desc">
+          闭环中的每个环节，一个工具攻克一个断点。按场景浏览，卡片标注环上位置。
+        </p>
+      </header>
+
+      <div class="ww-section__inner" style="padding-inline: var(--ww-page-x); padding-bottom: 3rem;">
+        <div class="filter-tabs" role="tablist" aria-label="场景筛选">
+          <button class="filter-tab" role="tab" aria-selected="true" data-filter="all">全部</button>
+          <button class="filter-tab" role="tab" aria-selected="false" data-filter="driving">自动驾驶</button>
+          <button class="filter-tab" role="tab" aria-selected="false" data-filter="learning">英语学习</button>
+          <button class="filter-tab" role="tab" aria-selected="false" data-filter="tasks">任务管理</button>
+        </div>
+
+        <!-- 自动驾驶 -->
+        <section class="tools-scene" id="driving" data-scene="driving">
+          <header class="tools-scene__head">
+            <h2 class="tools-scene__title">自动驾驶</h2>
+            <span class="tools-scene__count">4 个工具</span>
+            <div class="tools-scene__loop" aria-hidden="true">
+              <span>采集</span><span class="arrow">→</span>
+              <span>标注</span><span class="arrow">→</span>
+              <span>训练</span><span class="arrow">→</span>
+              <span>仿真</span><span class="arrow">→</span>
+              <span>回流</span>
+            </div>
+          </header>
+          <div class="tool-grid">
+            <article class="tool-card">
+              <div class="tool-card__top">
+                <h3 class="tool-card__name">DMP 数据中枢</h3>
+                <span class="status-badge status-badge--available">已上线</span>
+              </div>
+              <p class="tool-card__summary">
+                数据集组织、版本管理、权限与分发中枢。驱动标注、训练、仿真等模块的数据回流。
+              </p>
+              <div class="tool-card__tags stage-tags">
+                <span class="stage-tag stage-tag--return">组织</span>
+                <span class="stage-tag stage-tag--return">分发</span>
+                <span class="stage-tag stage-tag--return">回流</span>
+              </div>
+              <div class="tool-card__actions">
+                <a class="btn btn--primary btn--sm" href="#">打开工具</a>
+                <a class="btn btn--ghost btn--sm" href="#">查看文档</a>
+              </div>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-card__top">
+                <h3 class="tool-card__name">标注桥</h3>
+                <span class="status-badge status-badge--available">已上线</span>
+              </div>
+              <p class="tool-card__summary">
+                标注任务下发与结果回流。与 DMP 按清单对齐，保证版本一致。
+              </p>
+              <div class="tool-card__tags stage-tags">
+                <span class="stage-tag stage-tag--process">标注</span>
+              </div>
+              <div class="tool-card__actions">
+                <a class="btn btn--primary btn--sm" href="#">打开工具</a>
+                <a class="btn btn--ghost btn--sm" href="#">查看文档</a>
+              </div>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-card__top">
+                <h3 class="tool-card__name">训练桥</h3>
+                <span class="status-badge status-badge--available">已上线</span>
+              </div>
+              <p class="tool-card__summary">
+                版本化数据集拉取与训练产物登记。算法平台与 DMP 之间的数据契约。
+              </p>
+              <div class="tool-card__tags stage-tags">
+                <span class="stage-tag stage-tag--train">训练</span>
+              </div>
+              <div class="tool-card__actions">
+                <a class="btn btn--primary btn--sm" href="#">打开工具</a>
+                <a class="btn btn--ghost btn--sm" href="#">查看文档</a>
+              </div>
+            </article>
+
+            <article class="tool-card">
+              <div class="tool-card__top">
+                <h3 class="tool-card__name">仿真桥</h3>
+                <span class="status-badge status-badge--preview">内测</span>
+              </div>
+              <p class="tool-card__summary">
+                场景包分发与仿真评估回流。难例数据写回 DMP，启动下一轮迭代。
+              </p>
+              <div class="tool-card__tags stage-tags">
+                <span class="stage-tag stage-tag--simulate">仿真</span>
+                <span class="stage-tag stage-tag--simulate">验证</span>
+              </div>
+              <div class="tool-card__actions">
+                <a class="btn btn--primary btn--sm" href="#">打开工具</a>
+                <a class="btn btn--ghost btn--sm" href="#">查看文档</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- 英语学习 -->
+        <section class="tools-scene" id="learning" data-scene="learning">
+          <header class="tools-scene__head">
+            <h2 class="tools-scene__title">英语学习</h2>
+            <span class="tools-scene__count">1 个工具</span>
+            <div class="tools-scene__loop" aria-hidden="true">
+              <span>输入</span><span class="arrow">→</span>
+              <span>练习</span><span class="arrow">→</span>
+              <span>反馈</span><span class="arrow">→</span>
+              <span>迭代</span>
+            </div>
+          </header>
+          <div class="tool-grid">
+            <article class="tool-card">
+              <div class="tool-card__top">
+                <h3 class="tool-card__name">English-Agent</h3>
+                <span class="status-badge status-badge--available">已上线</span>
+              </div>
+              <p class="tool-card__summary">
+                AI 英语对话与练习助手。每次对话都是学习闭环的一环——输入、练习、反馈、再输入。
+              </p>
+              <div class="tool-card__tags stage-tags">
+                <span class="stage-tag stage-tag--input">输入</span>
+                <span class="stage-tag stage-tag--practice">练习</span>
+                <span class="stage-tag stage-tag--feedback">反馈</span>
+                <span class="stage-tag stage-tag--iterate">迭代</span>
+              </div>
+              <div class="tool-card__actions">
+                <a class="btn btn--primary btn--sm" href="http://106.14.175.17:3000/" target="_blank" rel="noopener">打开工具</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- 任务管理 -->
+        <section class="tools-scene" id="tasks" data-scene="tasks">
+          <header class="tools-scene__head">
+            <h2 class="tools-scene__title">任务管理</h2>
+            <span class="tools-scene__count">1 个工具</span>
+            <div class="tools-scene__loop" aria-hidden="true">
+              <span>规划</span><span class="arrow">→</span>
+              <span>执行</span><span class="arrow">→</span>
+              <span>复盘</span><span class="arrow">→</span>
+              <span>优化</span>
+            </div>
+          </header>
+          <div class="tool-grid">
+            <article class="tool-card">
+              <div class="tool-card__top">
+                <h3 class="tool-card__name">Task-Agent</h3>
+                <span class="status-badge status-badge--available">已上线</span>
+              </div>
+              <p class="tool-card__summary">
+                智能任务规划与执行助手。拆解、跟踪、推进工作项，每次复盘都让下一轮规划更精准。
+              </p>
+              <div class="tool-card__tags stage-tags">
+                <span class="stage-tag stage-tag--plan">规划</span>
+                <span class="stage-tag stage-tag--execute">执行</span>
+                <span class="stage-tag stage-tag--review">复盘</span>
+                <span class="stage-tag stage-tag--optimize">优化</span>
+              </div>
+              <div class="tool-card__actions">
+                <a class="btn btn--primary btn--sm" href="http://106.14.175.17:3100/" target="_blank" rel="noopener">打开工具</a>
+              </div>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <span>© 2026 NeuraVoxel</span>
+      <span class="site-footer__philosophy">万物闭环 · 从小做起</span>
+      <a href="mailto:contact@neuravoxel.cn">contact@neuravoxel.cn</a>
+    </footer>
+
+    <script>
+      (function () {
+        const tabs = document.querySelectorAll(".filter-tab");
+        const scenes = document.querySelectorAll(".tools-scene");
+
+        tabs.forEach((tab) => {
+          tab.addEventListener("click", () => {
+            const filter = tab.dataset.filter;
+            tabs.forEach((t) => t.setAttribute("aria-selected", t === tab ? "true" : "false"));
+            scenes.forEach((scene) => {
+              const show = filter === "all" || scene.dataset.scene === filter;
+              scene.hidden = !show;
+            });
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
