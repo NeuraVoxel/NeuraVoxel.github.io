@@ -1,9 +1,9 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
-import ModuleCard from "../../../components/ModuleCard.astro";
-import ProductMatrix from "../../../components/ProductMatrix.astro";
-import ToolCard from "../../../components/ToolCard.astro";
-import { getModulesForLocale } from "../../../lib/content";
+import CatalogEntry from "../../../components/modules/CatalogEntry.astro";
+import CatalogSection from "../../../components/modules/CatalogSection.astro";
+import { getModulesForLocale, moduleSlug } from "../../../lib/content";
+import { href } from "../../../lib/locale";
 import { useTranslations } from "../../../lib/i18n";
 import { getToolsForLocale } from "../../../lib/tools";
 
@@ -11,9 +11,15 @@ const locale = "en";
 const currentPath = "/en/modules";
 const modules = await getModulesForLocale(locale);
 const tools = getToolsForLocale(locale);
-const coreModules = modules.filter((mod) => mod.data.role === "core");
-const ringModules = modules.filter((mod) => mod.data.role !== "core");
 const t = useTranslations(locale);
+
+function displayHost(url: string): string {
+  try {
+    return new URL(url).host;
+  } catch {
+    return url;
+  }
+}
 ---
 
 <BaseLayout
@@ -21,49 +27,86 @@ const t = useTranslations(locale);
   currentPath={currentPath}
   title={t("modules.pageTitle")}
   description={t("modules.pageDescription")}
+  variant="modules"
 >
-  <div class="modules-page">
-    <header class="page-head modules-page__head">
-      <h1>{t("modules.pageTitle")}</h1>
-      <p>{t("modules.pageDescription")}</p>
-      <nav class="modules-page__jump" aria-label={t("modules.jumpLabel")}>
-        <a href="#tools">{t("modules.jumpTools")}</a>
-        <a href="#modules">{t("modules.jumpModules")}</a>
-      </nav>
-    </header>
+  <div class="mod-page">
+    <div class="mod-page__atmosphere" aria-hidden="true"></div>
+    <div class="mod-page__shell">
+      <header class="mod-page__hero">
+        <div class="mod-page__rail">
+          <span class="nv-label">{t("modules.catalogEyebrow")}</span>
+          <span class="mod-page__rail-line" aria-hidden="true"></span>
+          <span class="mod-page__rail-meta">
+            {tools.length} {t("modules.toolsLabel")} · {modules.length} {t("modules.modulesLabel")}
+          </span>
+        </div>
+        <h1>{t("modules.pageTitle")}</h1>
+        <p class="mod-page__lead">{t("modules.heroLead")}</p>
+        <nav class="mod-page__nav" aria-label={t("modules.jumpLabel")}>
+          <a href="#tools">{t("modules.jumpTools")}</a>
+          <a href="#modules">{t("modules.jumpModules")}</a>
+        </nav>
+      </header>
 
-    <ProductMatrix
-      id="tools"
-      variant="tools"
-      label={t("modules.toolsLabel")}
-      title={t("modules.toolsTitle")}
-      description={t("modules.toolsDesc")}
-      count={tools.length}
-    >
-      {tools.map((tool) => <ToolCard locale={locale} tool={tool} />)}
-    </ProductMatrix>
+      <CatalogSection
+        id="tools"
+        label={t("modules.toolsLabel")}
+        title={t("modules.toolsTitle")}
+        description={t("modules.toolsDesc")}
+        count={tools.length}
+      >
+        {
+          tools.map((tool) => (
+            <CatalogEntry
+              locale={locale}
+              kind="tool"
+              title={tool.title}
+              summary={tool.summary}
+              href={tool.url}
+              external={true}
+              status={tool.status}
+              meta={displayHost(tool.url)}
+              actionLabel={t("modules.openTool")}
+            />
+          ))
+        }
+      </CatalogSection>
 
-    <hr class="nv-rule modules-page__rule" />
-
-    <ProductMatrix
-      id="modules"
-      variant="modules"
-      label={t("modules.modulesLabel")}
-      title={t("modules.modulesTitle")}
-      description={t("modules.modulesDesc")}
-      count={modules.length}
-    >
-      {
-        modules.length > 0 ? (
-          <>
-            {coreModules.map((mod) => <ModuleCard locale={locale} module={mod} featured />)}
-            {ringModules.map((mod) => <ModuleCard locale={locale} module={mod} />)}
-          </>
-        ) : (
-          <p>{t("errors.missingTranslationMessage")}</p>
-        )
-      }
-    </ProductMatrix>
+      <CatalogSection
+        id="modules"
+        label={t("modules.modulesLabel")}
+        title={t("modules.modulesTitle")}
+        description={t("modules.modulesDesc")}
+        count={modules.length}
+      >
+        {
+          modules.length > 0 ? (
+            modules.map((mod) => (
+              <CatalogEntry
+                locale={locale}
+                kind="module"
+                role={mod.data.role}
+                featured={mod.data.role === "core"}
+                title={mod.data.title}
+                summary={mod.data.summary}
+                href={href(locale, `/modules/${moduleSlug(mod, locale)}`)}
+                status={mod.data.status}
+                actionLabel={t("modules.viewModule")}
+              />
+            ))
+          ) : (
+            <li class="mod-entry">
+              <span class="mod-entry__link" style="cursor: default;">
+                <span class="mod-entry__main">
+                  <span class="mod-entry__title">{t("errors.missingTranslationTitle")}</span>
+                  <span class="mod-entry__summary">{t("errors.missingTranslationMessage")}</span>
+                </span>
+              </span>
+            </li>
+          )
+        }
+      </CatalogSection>
+    </div>
   </div>
 </BaseLayout>
 

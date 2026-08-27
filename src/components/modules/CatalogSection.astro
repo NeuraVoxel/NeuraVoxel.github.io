@@ -1,0 +1,28 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  title: string;
+  description: string;
+  count: number;
+}
+
+const { id, label, title, description, count } = Astro.props;
+---
+
+<section class="mod-catalog" id={id} aria-labelledby={`${id}-title`}>
+  <header class="mod-catalog__head">
+    <div class="mod-catalog__rail">
+      <span class="nv-label">{label}</span>
+      <span class="mod-catalog__rail-line" aria-hidden="true"></span>
+      <span class="mod-catalog__count">{count}</span>
+    </div>
+    <div class="mod-catalog__intro">
+      <h2 id={`${id}-title`}>{title}</h2>
+      <p>{description}</p>
+    </div>
+  </header>
+  <ul class="mod-catalog__list" role="list">
+    <slot />
+  </ul>
+</section>

@@ -1,0 +1,69 @@
+---
+import type { Locale } from "../../lib/locale";
+import { useTranslations } from "../../lib/i18n";
+
+interface Props {
+  locale: Locale;
+  title: string;
+  summary: string;
+  href: string;
+  external?: boolean;
+  status: "available" | "preview" | "planned";
+  kind: "tool" | "module";
+  role?: "core" | "ring";
+  meta?: string;
+  featured?: boolean;
+  actionLabel: string;
+}
+
+const {
+  locale,
+  title,
+  summary,
+  href,
+  external = false,
+  status,
+  kind,
+  role,
+  meta,
+  featured = false,
+  actionLabel,
+} = Astro.props;
+const t = useTranslations(locale);
+
+const linkAttrs = external
+  ? { target: "_blank", rel: "noopener noreferrer" }
+  : {};
+
+function indicatorClass() {
+  if (role === "core") return "mod-entry__signal--core";
+  if (kind === "tool") return "mod-entry__signal--tool";
+  return "mod-entry__signal--ring";
+}
+
+function statusClass() {
+  if (status === "available") return "mod-entry__status--available";
+  if (status === "preview") return "mod-entry__status--preview";
+  return "mod-entry__status--planned";
+}
+---
+
+<li
+  class:list={[
+    "mod-entry",
+    featured && "mod-entry--featured",
+    role === "core" && "mod-entry--core",
+    kind === "tool" && "mod-entry--tool",
+  ]}
+>
+  <a class="mod-entry__link" href={href} {...linkAttrs} aria-label={`${title} — ${actionLabel}`}>
+    <span class={`mod-entry__signal ${indicatorClass()}`} aria-hidden="true"></span>
+    <span class="mod-entry__main">
+      <span class="mod-entry__title">{title}</span>
+      <span class="mod-entry__summary">{summary}</span>
+    </span>
+    {meta && <span class="mod-entry__meta">{meta}</span>}
+    <span class={`mod-entry__status ${statusClass()}`}>{t(`status.${status}`)}</span>
+    <span class="mod-entry__action">{actionLabel}</span>
+  </a>
+</li>
