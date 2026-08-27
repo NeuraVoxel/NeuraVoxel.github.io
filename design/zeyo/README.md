@@ -24,10 +24,11 @@ python3 -m http.server 8766
 | 首页 | `home.html` |
 | 乐乐工坊 | `workshop.html` |
 | 文章页 | `articles.html` |
+| 合作咨询 | `contact.html` |
 
 ## 样式
 
 - `shared.css` — tokens、导航、多栏页脚、按钮、飞飞助手
 - `feifei-bird.svg` — 飞飞卡通小鸟形象
 - `assistant.js` — 飞飞助手交互
-- `home.css` / `workshop.css` / `articles.css` — 各页专属样式
+- `home.css` / `workshop.css` / `articles.css` / `contact.css` — 各页专属样式

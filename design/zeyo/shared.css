@@ -492,13 +492,13 @@ button:focus-visible {
 }
 
 .subscribe-strip__inner {
-  max-width: var(--ww-wide);
+  max-width: var(--ww-measure);
   margin-inline: auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
+  text-align: center;
+  gap: 1.25rem;
 }
 
 .subscribe-strip__title {
