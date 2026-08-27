@@ -571,11 +571,13 @@ button:focus-visible {
   width: min(22rem, calc(100vw - 2rem));
   background: var(--ww-surface);
   border: 1px solid var(--ww-rule);
+  border-radius: 16px;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
   display: flex;
   flex-direction: column;
   max-height: min(28rem, calc(100vh - 6rem));
   transform-origin: bottom right;
+  overflow: hidden;
   transition:
     opacity var(--ww-dur) var(--ww-ease),
     transform var(--ww-dur) var(--ww-ease);
@@ -616,18 +618,41 @@ button:focus-visible {
   gap: 0.625rem;
 }
 
+.assistant__avatar,
+.assistant__bird-wrap {
+  background-color: #0c1820;
+  background-image: url("./feifei-bird.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 92% 92%;
+}
+
+.assistant__avatar:has(.assistant__bird),
+.assistant__bird-wrap:has(.assistant__bird) {
+  background-image: none;
+}
+
 .assistant__avatar {
-  width: 2rem;
-  height: 2rem;
+  width: 2.75rem;
+  height: 2.75rem;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
   border-radius: 50%;
-  border: 1.5px solid var(--ww-signal);
-  display: flex;
+  border: none;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--ww-font-display);
-  font-size: 0.75rem;
-  color: var(--ww-signal);
-  background: rgba(64, 184, 176, 0.08);
+  overflow: visible;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(64, 184, 176, 0.45);
+  padding: 0.15rem;
+}
+
+.assistant__bird {
+  width: 100%;
+  height: 100%;
+  display: block;
+  flex-shrink: 0;
 }
 
 .assistant__name {
@@ -690,6 +715,7 @@ button:focus-visible {
   background: var(--ww-elevated);
   border: 1px solid var(--ww-rule);
   color: var(--ww-mist);
+  border-radius: 2px 12px 12px 12px;
 }
 
 .assistant__msg--user {
@@ -697,6 +723,7 @@ button:focus-visible {
   background: rgba(64, 184, 176, 0.12);
   border: 1px solid rgba(64, 184, 176, 0.3);
   color: var(--ww-paper);
+  border-radius: 12px 2px 12px 12px;
 }
 
 .assistant__form {
@@ -714,7 +741,7 @@ button:focus-visible {
   color: var(--ww-paper);
   background: var(--ww-void);
   border: 1px solid var(--ww-rule);
-  border-radius: 2px;
+  border-radius: 999px;
 }
 
 .assistant__input::placeholder {
@@ -734,7 +761,7 @@ button:focus-visible {
   color: var(--ww-void);
   background: var(--ww-signal);
   border: none;
-  border-radius: 2px;
+  border-radius: 999px;
   cursor: pointer;
   white-space: nowrap;
 }
@@ -747,42 +774,76 @@ button:focus-visible {
   display: flex;
   align-items: center;
   gap: 0.625rem;
-  padding: 0.75rem 1rem 0.75rem 0.875rem;
+  padding: 0.5rem 1rem 0.5rem 0.5rem;
   background: var(--ww-surface);
   border: 1px solid var(--ww-rule);
-  border-radius: 2px;
+  border-radius: 999px;
   color: var(--ww-paper);
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
   transition:
     border-color var(--ww-dur) var(--ww-ease),
-    transform var(--ww-dur) var(--ww-ease);
+    transform var(--ww-dur) var(--ww-ease),
+    box-shadow var(--ww-dur) var(--ww-ease);
 }
 
 .assistant__launcher:hover {
-  border-color: var(--ww-signal-dim);
-  transform: translateY(-1px);
+  border-color: var(--ww-signal);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(64, 184, 176, 0.2);
 }
 
-.assistant__launcher-icon {
-  width: 2rem;
-  height: 2rem;
+.assistant__launcher:hover .assistant__bird-wrap {
+  animation: feifei-bob 0.9s var(--ww-ease) infinite;
+}
+
+.assistant__launcher-icon,
+.assistant__bird-wrap {
+  width: 3.25rem;
+  height: 3.25rem;
+  min-width: 3.25rem;
+  min-height: 3.25rem;
   border-radius: 50%;
-  border: 1.5px solid var(--ww-signal);
-  display: flex;
+  border: none;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: var(--ww-font-display);
-  font-size: 0.75rem;
-  color: var(--ww-signal);
-  background: rgba(64, 184, 176, 0.08);
+  background-color: #0c1820;
+  background-image: url("./feifei-bird.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 92% 92%;
+  overflow: visible;
   flex-shrink: 0;
+  box-shadow: 0 0 0 2px rgba(64, 184, 176, 0.5);
+  padding: 0.2rem;
+}
+
+.assistant__bird-wrap:has(.assistant__bird) {
+  background-image: none;
+}
+
+@keyframes feifei-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .assistant__launcher:hover .assistant__bird-wrap {
+    animation: none;
+  }
 }
 
 .assistant__launcher-label {
   font-family: var(--ww-font-body);
   font-size: 0.875rem;
   font-weight: 600;
+  padding-right: 0.25rem;
 }
 
 .assistant[data-open="true"] .assistant__launcher {
@@ -795,11 +856,17 @@ button:focus-visible {
   }
 
   .assistant__launcher {
-    padding: 0.75rem;
+    padding: 0.35rem;
     border-radius: 50%;
-    width: 3.25rem;
-    height: 3.25rem;
+    width: 3.75rem;
+    height: 3.75rem;
     justify-content: center;
+  }
+
+  .assistant__launcher-icon,
+  .assistant__bird-wrap {
+    width: 3rem;
+    height: 3rem;
   }
 }
 

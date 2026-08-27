@@ -40,7 +40,7 @@
     const botMsg = document.createElement("div");
     botMsg.className = "assistant__msg assistant__msg--bot";
     botMsg.textContent =
-      "我是飞飞助手，可以帮你了解万物闭环、乐乐工坊与各场景作品。正式版将接入 Agent 能力，敬请期待。";
+      "啾～我是飞飞，可以帮你了解万物闭环、乐乐工坊与各场景作品。正式版将接入 Agent 能力，敬请期待。";
     messages.appendChild(botMsg);
 
     input.value = "";
