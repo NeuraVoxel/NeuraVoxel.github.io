@@ -31,7 +31,7 @@
       </a>
       <nav class="site-nav" aria-label="主导航">
         <a href="./home.html" aria-current="page">首页</a>
-        <a href="./tools.html">工具</a>
+        <a href="./workshop.html">工坊</a>
         <a href="./articles.html">文章</a>
         <a href="./home.html#about">关于</a>
       </nav>
@@ -56,7 +56,7 @@
             </p>
             <div class="hero__actions">
               <a class="btn btn--primary" href="#subscribe">订阅更新</a>
-              <a class="btn btn--ghost" href="./tools.html">探索工具 →</a>
+              <a class="btn btn--ghost" href="./workshop.html">探索工坊 →</a>
             </div>
           </div>
 
@@ -148,7 +148,7 @@
             </p>
           </header>
           <div class="scene-grid">
-            <a class="scene-card" href="./tools.html#driving">
+            <a class="scene-card" href="./workshop.html#driving">
               <div class="scene-card__loop" aria-hidden="true">
                 <span>采集</span><span class="arrow">→</span>
                 <span>标注</span><span class="arrow">→</span>
@@ -160,10 +160,10 @@
               <p class="scene-card__desc">
                 NeuraVoxel 系列：数据从采集到训练到仿真到回流，全链路闭环。多源对齐，版本可追溯。
               </p>
-              <span class="scene-card__meta">4 个工具 →</span>
+              <span class="scene-card__meta">4 项作品 →</span>
             </a>
 
-            <a class="scene-card" href="./tools.html#learning">
+            <a class="scene-card" href="./workshop.html#learning">
               <div class="scene-card__loop" aria-hidden="true">
                 <span>输入</span><span class="arrow">→</span>
                 <span>练习</span><span class="arrow">→</span>
@@ -174,10 +174,10 @@
               <p class="scene-card__desc">
                 输入→练习→反馈→再输入的学习闭环。English-Agent 让每次对话都成为环上的一环。
               </p>
-              <span class="scene-card__meta">1 个工具 →</span>
+              <span class="scene-card__meta">1 项作品 →</span>
             </a>
 
-            <a class="scene-card" href="./tools.html#office">
+            <a class="scene-card" href="./workshop.html#office">
               <div class="scene-card__loop" aria-hidden="true">
                 <span>规划</span><span class="arrow">→</span>
                 <span>执行</span><span class="arrow">→</span>
@@ -188,10 +188,10 @@
               <p class="scene-card__desc">
                 规划→执行→复盘→优化的办公闭环。Task-Agent 帮你拆解、跟踪、推进每一项工作。
               </p>
-              <span class="scene-card__meta">1 个工具 →</span>
+              <span class="scene-card__meta">1 项作品 →</span>
             </a>
 
-            <a class="scene-card scene-card--muted" href="./tools.html#more">
+            <a class="scene-card scene-card--muted" href="./workshop.html#more">
               <div class="scene-card__loop" aria-hidden="true">
                 <span>制造</span><span class="arrow">→</span>
                 <span>医疗</span><span class="arrow">→</span>
@@ -222,7 +222,7 @@
             <div>
               <h2 class="subscribe__title" id="subscribe-title">关注智樾云飞的闭环实践</h2>
               <p class="subscribe__desc">
-                每周更新：闭环思维 · 场景复盘 · 新工具发布
+                每周更新：闭环思维 · 场景复盘 · 工坊新作
               </p>
             </div>
             <div class="subscribe__actions">
@@ -252,6 +252,47 @@
       </span>
     </footer>
 
+    <div class="assistant" data-open="false">
+      <div class="assistant__panel" role="dialog" aria-label="飞飞助手对话" aria-modal="true">
+        <header class="assistant__head">
+          <div class="assistant__identity">
+            <span class="assistant__avatar" aria-hidden="true">飞</span>
+            <div>
+              <p class="assistant__name">飞飞助手</p>
+              <p class="assistant__role">智能体 · 智樾云飞</p>
+            </div>
+          </div>
+          <button class="assistant__close" type="button" aria-label="关闭对话">×</button>
+        </header>
+        <div class="assistant__messages" aria-live="polite">
+          <div class="assistant__msg assistant__msg--bot">
+            你好，我是飞飞助手。可以问我关于万物闭环、乐乐工坊或各场景工具的问题。
+          </div>
+        </div>
+        <form class="assistant__form">
+          <input
+            class="assistant__input"
+            type="text"
+            name="message"
+            placeholder="输入你的问题…"
+            autocomplete="off"
+            aria-label="消息输入"
+          />
+          <button class="assistant__send" type="submit">发送</button>
+        </form>
+      </div>
+      <button
+        class="assistant__launcher"
+        type="button"
+        aria-expanded="false"
+        aria-label="打开飞飞助手"
+      >
+        <span class="assistant__launcher-icon" aria-hidden="true">飞</span>
+        <span class="assistant__launcher-label">飞飞助手</span>
+      </button>
+    </div>
+
+    <script src="./assistant.js"></script>
     <script>
       (function () {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
