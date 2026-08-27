@@ -1,5 +1,6 @@
 ---
 import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
+import WechatQr from "../../components/zeyo/WechatQr.astro";
 import "../../styles/zeyo/contact.css";
 ---
 
@@ -102,7 +103,7 @@ import "../../styles/zeyo/contact.css";
       <div class="contact-card">
         <h3 class="contact-card__title">微信公众号</h3>
         <div class="contact-wechat">
-          <div class="contact-wechat__qr" aria-hidden="true"></div>
+          <WechatQr class="contact-wechat__qr" />
           <p class="contact-wechat__text">
             <strong>扫码关注公众号</strong>
             了解闭环实践与工坊动态，也可留言初步沟通
