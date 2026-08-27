@@ -47,4 +47,16 @@ const docs = defineCollection({
   }),
 });
 
-export const collections = { modules, docs };
+const articles = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    category: z.enum(["thinking", "practice", "agent"]),
+    date: z.coerce.date(),
+    featured: z.boolean().optional().default(false),
+    draft: z.boolean().optional().default(false),
+  }),
+});
+
+export const collections = { modules, docs, articles };

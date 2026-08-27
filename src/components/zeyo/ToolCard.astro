@@ -1,0 +1,57 @@
+---
+import type { WorkshopProduct } from "../../data/workshop.types";
+
+interface Props {
+  product: WorkshopProduct;
+}
+
+const { product } = Astro.props;
+
+const statusLabels = {
+  available: "已上线",
+  preview: "内测",
+  planned: "规划中",
+} as const;
+
+function isExternal(url: string): boolean {
+  return url.startsWith("http://") || url.startsWith("https://");
+}
+---
+
+<article class="tool-card">
+  <div class="tool-card__top">
+    <h3 class="tool-card__name">{product.name}</h3>
+    <span class={`status-badge status-badge--${product.status}`}>
+      {statusLabels[product.status]}
+    </span>
+  </div>
+  <p class="tool-card__summary">{product.summary}</p>
+  <div class="tool-card__tags stage-tags">
+    {
+      product.tags.map((tag) => (
+        <span class={`stage-tag stage-tag--${tag.stage}`}>{tag.label}</span>
+      ))
+    }
+  </div>
+  <div class="tool-card__actions">
+    {
+      product.openUrl && (
+        <a
+          class="btn btn--primary btn--sm"
+          href={product.openUrl}
+          target={isExternal(product.openUrl) ? "_blank" : undefined}
+          rel={isExternal(product.openUrl) ? "noopener" : undefined}
+        >
+          打开
+        </a>
+      )
+    }
+    {
+      product.docUrl && (
+        <a class="btn btn--ghost btn--sm" href={product.docUrl}>
+          查看文档
+        </a>
+      )
+    }
+  </div>
+</article>

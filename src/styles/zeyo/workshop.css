@@ -1,0 +1,257 @@
+/* —— Workshop page —— */
+
+.tools-page {
+  padding-bottom: 0;
+}
+
+/* —— 乐乐工坊介绍 —— */
+
+.workshop-intro {
+  padding: 0 var(--ww-page-x) clamp(2.5rem, 6vw, 4rem);
+  border-bottom: 1px solid var(--ww-rule);
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+}
+
+.workshop-intro__inner {
+  max-width: var(--ww-wide);
+  margin-inline: auto;
+}
+
+.workshop-intro__lead {
+  max-width: var(--ww-measure);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+.workshop-intro__title {
+  font-family: var(--ww-font-display);
+  font-size: clamp(1.375rem, 2.5vw, 1.75rem);
+  font-weight: 600;
+  margin: 0 0 1rem;
+  letter-spacing: 0.02em;
+}
+
+.workshop-intro__text {
+  margin: 0 0 1rem;
+  color: var(--ww-mist);
+  font-size: 0.9375rem;
+  line-height: 1.75;
+}
+
+.workshop-intro__text strong {
+  color: var(--ww-paper);
+  font-weight: 600;
+}
+
+.workshop-intro__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--ww-rule);
+  border: 1px solid var(--ww-rule);
+  margin-bottom: clamp(2rem, 4vw, 2.5rem);
+}
+
+.workshop-intro__card {
+  background: var(--ww-surface);
+  padding: clamp(1.25rem, 3vw, 1.75rem);
+}
+
+.workshop-intro__card-label {
+  font-family: var(--ww-font-mono);
+  font-size: 0.6875rem;
+  color: var(--ww-signal-dim);
+  letter-spacing: 0.1em;
+  margin: 0 0 0.75rem;
+}
+
+.workshop-intro__card-title {
+  font-family: var(--ww-font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.workshop-intro__card-body {
+  margin: 0;
+  color: var(--ww-mist);
+  font-size: 0.875rem;
+  line-height: 1.65;
+}
+
+.workshop-intro__quote {
+  font-family: var(--ww-font-display);
+  font-size: clamp(1rem, 2vw, 1.125rem);
+  line-height: 1.7;
+  color: var(--ww-paper);
+  margin: 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--ww-signal-dim);
+  max-width: 36rem;
+}
+
+.workshop-catalog__head {
+  margin-bottom: 1.5rem;
+}
+
+.workshop-catalog__title {
+  font-family: var(--ww-font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.375rem;
+}
+
+.workshop-catalog__desc {
+  margin: 0;
+  color: var(--ww-dim);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 800px) {
+  .workshop-intro__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.tools-scene {
+  margin-bottom: 3rem;
+}
+
+.tools-scene:last-child {
+  margin-bottom: 0;
+}
+
+.tools-empty {
+  padding: 2.5rem;
+  text-align: center;
+  background: var(--ww-surface);
+  border: 1px dashed var(--ww-rule);
+}
+
+.tools-empty__title {
+  font-family: var(--ww-font-display);
+  font-size: 1.125rem;
+  margin: 0 0 0.5rem;
+  color: var(--ww-mist);
+}
+
+.tools-empty__desc {
+  margin: 0;
+  color: var(--ww-dim);
+  font-size: 0.875rem;
+}
+
+.tools-scene__head {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--ww-rule);
+}
+
+.tools-scene__title {
+  font-family: var(--ww-font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.tools-scene__count {
+  font-family: var(--ww-font-mono);
+  font-size: 0.75rem;
+  color: var(--ww-dim);
+}
+
+.tools-scene__loop {
+  margin-left: auto;
+  font-family: var(--ww-font-mono);
+  font-size: 0.625rem;
+  color: var(--ww-dim);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.tools-scene__loop span:not(.arrow) {
+  padding: 0.15rem 0.35rem;
+  border: 1px solid var(--ww-rule);
+  border-radius: 2px;
+}
+
+.tools-scene__loop .arrow {
+  color: var(--ww-signal-dim);
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+}
+
+.tool-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--ww-surface);
+  border: 1px solid var(--ww-rule);
+  padding: 1.5rem;
+  transition: border-color var(--ww-dur) var(--ww-ease);
+}
+
+.tool-card:hover {
+  border-color: var(--ww-signal-dim);
+}
+
+.tool-card__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.tool-card__name {
+  font-family: var(--ww-font-body);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--ww-paper);
+}
+
+.tool-card__summary {
+  margin: 0 0 1rem;
+  color: var(--ww-mist);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.tool-card__tags {
+  margin-bottom: 1.25rem;
+}
+
+.tool-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: auto;
+}
+
+.tool-card__actions .btn--ghost {
+  color: var(--ww-mist);
+}
+
+@media (max-width: 700px) {
+  .tools-scene__head {
+    flex-wrap: wrap;
+  }
+
+  .tools-scene__loop {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .tool-grid {
+    grid-template-columns: 1fr;
+  }
+}

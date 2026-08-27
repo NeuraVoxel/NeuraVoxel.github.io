@@ -1,0 +1,21 @@
+---
+interface Props {
+  id?: string;
+  desc?: string;
+}
+
+const {
+  id = "cooperation",
+  desc = "产品共建 · 场景对接 · 技术合作 — 从一个小环节开始，一起把环做完整",
+} = Astro.props;
+---
+
+<aside class="subscribe-strip" id={id} aria-labelledby={`${id}-title`}>
+  <div class="subscribe-strip__inner">
+    <div>
+      <h2 class="subscribe-strip__title" id={`${id}-title`}>与智樾云飞合作</h2>
+      <p class="subscribe-strip__desc">{desc}</p>
+    </div>
+    <a class="btn btn--primary" href="/contact/">合作咨询</a>
+  </div>
+</aside>

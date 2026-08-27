@@ -1,0 +1,113 @@
+---
+import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
+import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
+import { getArticlesForLocale, articleSlug } from "../../lib/content";
+import { categoryLabels, formatArticleDate } from "../../lib/articles";
+import "../../styles/zeyo/articles.css";
+
+const locale = "zh";
+const articles = await getArticlesForLocale(locale);
+const featured = articles.find((a) => a.data.featured) ?? articles[0];
+const listArticles = articles.filter((a) => a !== featured);
+---
+
+<ZeyoLayout
+  currentPath="/articles/"
+  title="文章 — 智樾云飞 ZeyoFly"
+  description="智樾云飞 · 闭环思维 — 从闭环视角看世界。方法论、场景实践、Agent × 闭环"
+>
+  <header class="page-head">
+    <p class="ww-label">Closed-Loop Thinking</p>
+    <h1 class="page-head__title">闭环思维</h1>
+    <p class="page-head__desc">
+      智樾云飞思想阵地 — 从闭环视角看世界：方法论、场景实践、Agent 与闭环。
+    </p>
+  </header>
+
+  <div class="articles-layout">
+    <div class="filter-tabs" role="tablist" aria-label="文章分类">
+      <button class="filter-tab" role="tab" aria-selected="true" data-filter="all">全部</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="thinking">闭环思维</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="practice">场景实践</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="agent">Agent × 闭环</button>
+    </div>
+
+    {
+      featured && (
+        <a
+          class="article-featured"
+          href={`/articles/${articleSlug(featured, locale)}/`}
+          data-category={featured.data.category}
+        >
+          <div class="article-featured__visual" aria-hidden="true">
+            <div class="article-featured__ring"></div>
+          </div>
+          <div class="article-featured__content">
+            <div class="article-featured__meta">
+              <span class="cat-badge">{categoryLabels[featured.data.category]}</span>
+            </div>
+            <h2 class="article-featured__title">{featured.data.title}</h2>
+            <p class="article-featured__excerpt">{featured.data.description}</p>
+            <time class="article-featured__date" datetime={formatArticleDate(featured.data.date)}>
+              {formatArticleDate(featured.data.date)}
+            </time>
+            <p class="article-featured__cta">阅读全文 →</p>
+          </div>
+        </a>
+      )
+    }
+
+    <div class="article-list">
+      {
+        listArticles.map((article) => (
+          <a
+            class="article-row"
+            href={`/articles/${articleSlug(article, locale)}/`}
+            data-category={article.data.category}
+          >
+            <time class="article-row__date" datetime={formatArticleDate(article.data.date)}>
+              {formatArticleDate(article.data.date)}
+            </time>
+            <div class="article-row__body">
+              <div class="article-row__cat">
+                <span class="cat-badge">{categoryLabels[article.data.category]}</span>
+              </div>
+              <h3 class="article-row__title">{article.data.title}</h3>
+              <p class="article-row__excerpt">{article.data.description}</p>
+            </div>
+            <span class="article-row__arrow" aria-hidden="true">→</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+
+  <CooperationStrip
+    id="articles-cooperation"
+    desc="产品共建、场景对接、技术合作 — 欢迎探讨闭环共建"
+  />
+</ZeyoLayout>
+
+<script is:inline>
+  (function () {
+    const tabs = document.querySelectorAll(".filter-tab");
+    const featured = document.querySelector(".article-featured");
+    const rows = document.querySelectorAll(".article-row");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const filter = tab.dataset.filter;
+        tabs.forEach((t) =>
+          t.setAttribute("aria-selected", t === tab ? "true" : "false"),
+        );
+
+        const match = (el) => filter === "all" || el.dataset.category === filter;
+
+        if (featured) featured.hidden = !match(featured);
+        rows.forEach((row) => {
+          row.hidden = !match(row);
+        });
+      });
+    });
+  })();
+</script>

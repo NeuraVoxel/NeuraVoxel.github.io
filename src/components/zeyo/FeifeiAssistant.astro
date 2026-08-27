@@ -1,0 +1,42 @@
+<div class="assistant" data-open="false">
+  <div class="assistant__panel" role="dialog" aria-label="飞飞助手对话" aria-modal="true">
+    <header class="assistant__head">
+      <div class="assistant__identity">
+        <span class="assistant__avatar js-feifei" aria-hidden="true"></span>
+        <div>
+          <p class="assistant__name">飞飞助手</p>
+          <p class="assistant__role">智能体 · 智樾云飞</p>
+        </div>
+      </div>
+      <button class="assistant__close" type="button" aria-label="关闭对话">×</button>
+    </header>
+    <div class="assistant__messages" aria-live="polite">
+      <div class="assistant__msg assistant__msg--bot">
+        你好，我是飞飞～一只帮你认路的小鸟。可以问我关于万物闭环、乐乐工坊或各场景作品的问题。
+      </div>
+    </div>
+    <form class="assistant__form">
+      <input
+        class="assistant__input"
+        type="text"
+        name="message"
+        placeholder="输入你的问题…"
+        autocomplete="off"
+        aria-label="消息输入"
+      />
+      <button class="assistant__send" type="submit">发送</button>
+    </form>
+  </div>
+  <button
+    class="assistant__launcher"
+    type="button"
+    aria-expanded="false"
+    aria-label="打开飞飞助手"
+  >
+    <span class="assistant__launcher-icon assistant__bird-wrap js-feifei" aria-hidden="true"></span>
+    <span class="assistant__launcher-label">飞飞助手</span>
+  </button>
+</div>
+
+<script src="/feifei-bird.js" is:inline></script>
+<script src="/assistant.js" is:inline></script>

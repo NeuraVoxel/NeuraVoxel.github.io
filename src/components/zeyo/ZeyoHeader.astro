@@ -1,0 +1,39 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const navItems = [
+  { href: "/", label: "首页" },
+  { href: "/workshop/", label: "工坊" },
+  { href: "/articles/", label: "文章" },
+  { href: "/contact/", label: "合作咨询" },
+];
+
+function isActive(href: string): boolean {
+  if (href === "/") return currentPath === "/" || currentPath === "";
+  return currentPath.startsWith(href.replace(/\/$/, ""));
+}
+---
+
+<header class="site-header">
+  <a class="site-logo" href="/" aria-label="智樾云飞首页">
+    <span class="site-logo__mark" aria-hidden="true"></span>
+    <span class="site-logo__stack">
+      <span class="site-logo__word">智樾云飞</span>
+      <span class="site-logo__en">ZeyoFly</span>
+    </span>
+    <span class="site-logo__tag">万物闭环</span>
+  </a>
+  <nav class="site-nav" aria-label="主导航">
+    {
+      navItems.map(({ href, label }) => (
+        <a href={href} aria-current={isActive(href) ? "page" : undefined}>
+          {label}
+        </a>
+      ))
+    }
+  </nav>
+</header>

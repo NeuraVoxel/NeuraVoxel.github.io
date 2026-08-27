@@ -1,0 +1,47 @@
+---
+import ZeyoHeader from "../components/zeyo/ZeyoHeader.astro";
+import ZeyoFooter from "../components/zeyo/ZeyoFooter.astro";
+import FeifeiAssistant from "../components/zeyo/FeifeiAssistant.astro";
+import "../styles/zeyo/shared.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  currentPath: string;
+  pageClass?: string;
+}
+
+const {
+  title = "ZeyoFly | 智樾云飞—万物闭环",
+  description = "智樾云飞：以万物闭环思维，用 Agent 一点点攻克每个环节。zeyofly.com",
+  currentPath,
+  pageClass,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <slot name="head" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到正文</a>
+    <ZeyoHeader currentPath={currentPath} />
+    <main id="main" class={pageClass}>
+      <slot />
+    </main>
+    <ZeyoFooter />
+    <FeifeiAssistant />
+    <slot name="scripts" />
+  </body>
+</html>

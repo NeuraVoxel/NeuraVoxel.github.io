@@ -1,0 +1,148 @@
+---
+import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
+import ToolCard from "../../components/zeyo/ToolCard.astro";
+import workshopData from "../../data/workshop.zh.json";
+import type { WorkshopScene } from "../../data/workshop.types";
+import "../../styles/zeyo/workshop.css";
+
+const scenes = workshopData.scenes as WorkshopScene[];
+---
+
+<ZeyoLayout
+  currentPath="/workshop/"
+  title="乐乐工坊 — 智樾云飞 ZeyoFly"
+  description="乐乐工坊：快快乐乐生产制造，匠心打磨每一件作品"
+  pageClass="tools-page"
+>
+  <header class="page-head">
+    <p class="ww-label">Lele Workshop</p>
+    <h1 class="page-head__title">乐乐工坊</h1>
+    <p class="page-head__desc">
+      快快乐乐生产制造，匠心打磨每一件作品——在万物闭环里，既享受创造的乐，也守住制造的精。
+    </p>
+  </header>
+
+  <section class="workshop-intro" aria-labelledby="workshop-intro-title">
+    <div class="workshop-intro__inner">
+      <div class="workshop-intro__lead">
+        <p class="ww-label">Joy &amp; Craft</p>
+        <h2 class="workshop-intro__title" id="workshop-intro-title">
+          乐乐工坊的两条线
+        </h2>
+        <p class="workshop-intro__text">
+          <strong>「乐」</strong>是态度：制造不必沉重，攻克闭环也不必苦熬。快快乐乐地把东西做出来，每完成一个小工具、每接通环上的一个断点，都值得乐一下——创造本该是让人持续投入的事。
+        </p>
+        <p class="workshop-intro__text">
+          <strong>「匠」</strong>是底线：乐不等于草率。乐乐工坊信奉<strong>工匠精神</strong>——反复打磨、精益求精、对细节较真。一件作品不上线则已，上线就要经得起环上的流转与用户的检验。
+        </p>
+        <p class="workshop-intro__text">
+          <strong>「坊」</strong>是方法：不是流水线大工厂，而是一间一间小作坊。按场景分坊，按环节造物；NeuraVoxel、English-Agent、Task-Agent……都是工匠们在乐乐工坊里亲手打磨的作品。
+        </p>
+      </div>
+
+      <div class="workshop-intro__grid">
+        <article class="workshop-intro__card">
+          <p class="workshop-intro__card-label">乐 · 态度</p>
+          <h3 class="workshop-intro__card-title">快快乐乐造</h3>
+          <p class="workshop-intro__card-body">
+            制造是创造，不是负担。用 Agent 减轻重复劳动，让人把时间花在真正有趣的设计与迭代上，保持乐而不倦。
+          </p>
+        </article>
+        <article class="workshop-intro__card">
+          <p class="workshop-intro__card-label">匠 · 精神</p>
+          <h3 class="workshop-intro__card-title">匠心打磨</h3>
+          <p class="workshop-intro__card-body">
+            慢一点，细一点，再好一点。接口要稳、体验要顺、文档要清——每一件作品都经得起反复推敲，这是工坊的尊严。
+          </p>
+        </article>
+        <article class="workshop-intro__card">
+          <p class="workshop-intro__card-label">乐 · 节奏</p>
+          <h3 class="workshop-intro__card-title">一点一点造</h3>
+          <p class="workshop-intro__card-body">
+            不做大而全的平台。每个场景从一个作品起步，做好、上线、收集反馈，再乐滋滋地造下一个——快迭代，但不糙。
+          </p>
+        </article>
+        <article class="workshop-intro__card">
+          <p class="workshop-intro__card-label">坊 · 方法</p>
+          <h3 class="workshop-intro__card-title">一环一作品</h3>
+          <p class="workshop-intro__card-body">
+            闭环上的每个断点，对应工坊里的一件作品。标注、训练、学习、办公——各自成坊，各自成环，各自做到极致。
+          </p>
+        </article>
+      </div>
+
+      <blockquote class="workshop-intro__quote">
+        快快乐乐，是工坊的温度；工匠精神，是工坊的脊梁。每造好一件作品，环就更完整一分——既值得乐，也值得敬。
+      </blockquote>
+    </div>
+  </section>
+
+  <div
+    class="ww-section__inner workshop-catalog"
+    style="padding-inline: var(--ww-page-x); padding-bottom: 3rem;"
+  >
+    <header class="workshop-catalog__head">
+      <h2 class="workshop-catalog__title">工坊作品目录</h2>
+      <p class="workshop-catalog__desc">按场景浏览，每件作品标注它在闭环上的位置。</p>
+    </header>
+    <div class="filter-tabs" role="tablist" aria-label="场景筛选">
+      <button class="filter-tab" role="tab" aria-selected="true" data-filter="all">全部</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="driving">自动驾驶</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="learning">教育学习</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="office">日常办公</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="more">更多场景</button>
+    </div>
+
+    {
+      scenes.map((scene) => (
+        <section class="tools-scene" id={scene.id} data-scene={scene.id}>
+          <header class="tools-scene__head">
+            <h2 class="tools-scene__title">{scene.title}</h2>
+            <span class="tools-scene__count">{scene.countLabel}</span>
+            {scene.loopSteps.length > 0 && (
+              <div class="tools-scene__loop" aria-hidden="true">
+                {scene.loopSteps.map((step, i) => (
+                  <>
+                    {i > 0 && <span class="arrow">→</span>}
+                    <span>{step}</span>
+                  </>
+                ))}
+              </div>
+            )}
+          </header>
+          {scene.empty ? (
+            <div class="tools-empty">
+              <p class="tools-empty__title">{scene.emptyTitle}</p>
+              <p class="tools-empty__desc">{scene.emptyDesc}</p>
+            </div>
+          ) : (
+            <div class="tool-grid">
+              {scene.products.map((product) => (
+                <ToolCard product={product} />
+              ))}
+            </div>
+          )}
+        </section>
+      ))
+    }
+  </div>
+</ZeyoLayout>
+
+<script is:inline>
+  (function () {
+    const tabs = document.querySelectorAll(".filter-tab");
+    const scenes = document.querySelectorAll(".tools-scene[data-scene]");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const filter = tab.dataset.filter;
+        tabs.forEach((t) =>
+          t.setAttribute("aria-selected", t === tab ? "true" : "false"),
+        );
+        scenes.forEach((scene) => {
+          scene.hidden = filter !== "all" && scene.dataset.scene !== filter;
+        });
+      });
+    });
+  })();
+</script>

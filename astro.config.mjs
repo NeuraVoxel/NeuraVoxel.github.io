@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://neuravoxel.cn",
+  site: "https://zeyofly.com",
   output: "static",
   markdown: {
     shikiConfig: {

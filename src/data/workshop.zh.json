@@ -1,0 +1,107 @@
+{
+  "scenes": [
+    {
+      "id": "driving",
+      "title": "自动驾驶",
+      "countLabel": "NeuraVoxel · 4 项作品",
+      "loopSteps": ["采集", "标注", "训练", "仿真", "回流"],
+      "products": [
+        {
+          "id": "dmp",
+          "name": "DMP 数据中枢",
+          "summary": "数据集组织、版本管理、权限与分发中枢。驱动标注、训练、仿真等模块的数据回流。",
+          "status": "available",
+          "tags": [
+            { "label": "组织", "stage": "return" },
+            { "label": "分发", "stage": "return" },
+            { "label": "回流", "stage": "return" }
+          ],
+          "openUrl": "/modules/dmp/",
+          "docUrl": "/docs/concepts/dmp-hub/"
+        },
+        {
+          "id": "annotation-bridge",
+          "name": "标注桥",
+          "summary": "标注任务下发与结果回流。与 DMP 按清单对齐，保证版本一致。",
+          "status": "available",
+          "tags": [{ "label": "标注", "stage": "process" }],
+          "openUrl": "/modules/annotation-bridge/",
+          "docUrl": "/docs/integrations/annotation/"
+        },
+        {
+          "id": "training-bridge",
+          "name": "训练桥",
+          "summary": "版本化数据集拉取与训练产物登记。算法平台与 DMP 之间的数据契约。",
+          "status": "available",
+          "tags": [{ "label": "训练", "stage": "train" }],
+          "openUrl": "/modules/training-bridge/",
+          "docUrl": "/docs/integrations/training/"
+        },
+        {
+          "id": "simulation-bridge",
+          "name": "仿真桥",
+          "summary": "场景包分发与仿真评估回流。难例数据写回 DMP，启动下一轮迭代。",
+          "status": "preview",
+          "tags": [
+            { "label": "仿真", "stage": "simulate" },
+            { "label": "验证", "stage": "simulate" }
+          ],
+          "openUrl": "/modules/simulation-bridge/",
+          "docUrl": "/docs/integrations/simulation/"
+        }
+      ]
+    },
+    {
+      "id": "learning",
+      "title": "教育学习",
+      "countLabel": "1 项作品",
+      "loopSteps": ["输入", "练习", "反馈", "迭代"],
+      "products": [
+        {
+          "id": "english-agent",
+          "name": "English-Agent",
+          "summary": "AI 英语对话与练习助手。每次对话都是学习闭环的一环——输入、练习、反馈、再输入。",
+          "status": "available",
+          "tags": [
+            { "label": "输入", "stage": "input" },
+            { "label": "练习", "stage": "practice" },
+            { "label": "反馈", "stage": "feedback" },
+            { "label": "迭代", "stage": "iterate" }
+          ],
+          "openUrl": "http://106.14.175.17:3000/"
+        }
+      ]
+    },
+    {
+      "id": "office",
+      "title": "日常办公",
+      "countLabel": "1 项作品",
+      "loopSteps": ["规划", "执行", "复盘", "优化"],
+      "products": [
+        {
+          "id": "task-agent",
+          "name": "Task-Agent",
+          "summary": "智能任务规划与执行助手。拆解、跟踪、推进工作项，每次复盘都让下一轮规划更精准。",
+          "status": "available",
+          "tags": [
+            { "label": "规划", "stage": "plan" },
+            { "label": "执行", "stage": "execute" },
+            { "label": "复盘", "stage": "review" },
+            { "label": "优化", "stage": "optimize" }
+          ],
+          "openUrl": "http://106.14.175.17:3100/"
+        }
+      ]
+    },
+    {
+      "id": "more",
+      "title": "更多场景",
+      "countLabel": "规划中",
+      "loopSteps": [],
+      "products": [],
+      "empty": true,
+      "emptyTitle": "更多场景即将开放",
+      "emptyDesc": "制造、医疗……每个新场景都是一个新的环。智樾云飞正在逐个识别断点、逐个攻克。"
+    }
+  ]
+}

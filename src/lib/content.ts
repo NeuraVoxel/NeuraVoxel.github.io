@@ -3,6 +3,7 @@ import type { Locale } from "./locale";
 
 export type ModuleEntry = CollectionEntry<"modules">;
 export type DocEntry = CollectionEntry<"docs">;
+export type ArticleEntry = CollectionEntry<"articles">;
 
 const SECTION_ORDER = [
   "getting-started",
@@ -111,6 +112,30 @@ export function moduleSlug(entry: ModuleEntry, locale: Locale): string {
 }
 
 export function docSlug(entry: DocEntry, locale: Locale): string {
+  return stripLocale(entry.id, locale);
+}
+
+export async function getArticlesForLocale(
+  locale: Locale,
+): Promise<ArticleEntry[]> {
+  const all = await getCollection("articles", ({ id, data }) => {
+    return id.startsWith(`${locale}/`) && !data.draft;
+  });
+
+  return all.sort(
+    (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+  );
+}
+
+export async function getArticleBySlug(
+  locale: Locale,
+  slug: string,
+): Promise<ArticleEntry | undefined> {
+  const articles = await getArticlesForLocale(locale);
+  return articles.find((entry) => stripLocale(entry.id, locale) === slug);
+}
+
+export function articleSlug(entry: ArticleEntry, locale: Locale): string {
   return stripLocale(entry.id, locale);
 }
 

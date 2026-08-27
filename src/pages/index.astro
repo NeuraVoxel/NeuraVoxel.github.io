@@ -1,29 +1,209 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Hero from "../components/Hero.astro";
-import LoopSection from "../components/LoopSection.astro";
-import SceneGrid from "../components/SceneGrid.astro";
-import EntryCards from "../components/EntryCards.astro";
-import ModuleStrip from "../components/ModuleStrip.astro";
-import scenesData from "../data/scenes.zh.json";
-import { getModulesForLocale } from "../lib/content";
-
-const locale = "zh";
-const currentPath = "/";
-const modules = await getModulesForLocale(locale);
+import ZeyoLayout from "../layouts/ZeyoLayout.astro";
+import CooperationStrip from "../components/zeyo/CooperationStrip.astro";
+import "../styles/zeyo/home.css";
 ---
 
-<BaseLayout locale={locale} currentPath={currentPath}>
-  <Hero locale={locale} />
-  <LoopSection locale={locale} />
-  <hr class="nv-rule nv-rule--page" />
-  <SceneGrid locale={locale} scenes={scenesData.scenes} />
-  <hr class="nv-rule nv-rule--page" />
-  <EntryCards locale={locale}>
-    <ModuleStrip locale={locale} modules={modules} link={true} />
-  </EntryCards>
-</BaseLayout>
+<ZeyoLayout currentPath="/">
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero__bg" aria-hidden="true">
+      <div class="hero__grid"></div>
+      <div class="hero__glow"></div>
+    </div>
 
-<style is:global>
-  @import "../styles/pages/home.css";
-</style>
+    <div class="hero__layout">
+      <div class="hero__copy">
+        <p class="ww-label">ZeyoFly · Closed-Loop Thinking</p>
+        <h1 class="hero__title" id="hero-title">万物闭环</h1>
+        <p class="hero__subtitle">
+          从闭环视角，分析问题、设计产品、驱动迭代
+        </p>
+        <p class="hero__support">
+          智樾云飞以 Agent 智能体一点点攻克闭环中的每个环节——从小工具做起，连接每一个断点。
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="/contact/">合作咨询</a>
+          <a class="btn btn--ghost" href="/workshop/">探索工坊 →</a>
+        </div>
+      </div>
+
+      <figure
+        class="living-loop"
+        aria-label="闭环示意图：感知、处理、训练、验证、回流五个环节构成闭环"
+      >
+        <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle class="loop-ring" cx="200" cy="200" r="150"></circle>
+          <circle class="loop-ring loop-ring--active" cx="200" cy="200" r="150"></circle>
+          <text class="loop-center__text" x="200" y="196">闭环</text>
+          <text class="loop-center__text" x="200" y="214" style="font-size: 11px; fill: #5a6a7a">
+            Agent 攻克中
+          </text>
+          <g class="loop-node" data-stage="perceive" data-index="0" transform="translate(200, 50)">
+            <circle class="loop-node__dot" r="8"></circle>
+            <text class="loop-node__label" y="24">感知</text>
+          </g>
+          <g class="loop-node" data-stage="process" data-index="1" transform="translate(342, 146)">
+            <circle class="loop-node__dot" r="8"></circle>
+            <text class="loop-node__label" y="24">处理</text>
+          </g>
+          <g class="loop-node" data-stage="train" data-index="2" transform="translate(295, 310)">
+            <circle class="loop-node__dot" r="8"></circle>
+            <text class="loop-node__label" y="24">训练</text>
+          </g>
+          <g class="loop-node" data-stage="simulate" data-index="3" transform="translate(105, 310)">
+            <circle class="loop-node__dot" r="8"></circle>
+            <text class="loop-node__label" y="24">验证</text>
+          </g>
+          <g class="loop-node" data-stage="return" data-index="4" transform="translate(58, 146)">
+            <circle class="loop-node__dot" r="8"></circle>
+            <text class="loop-node__label" y="24">回流</text>
+          </g>
+          <circle
+            class="loop-pulse"
+            r="5"
+            style="offset-path: path('M 200 50 A 150 150 0 1 1 199.9 50')"
+          ></circle>
+        </svg>
+      </figure>
+    </div>
+  </section>
+
+  <hr class="ww-rule" />
+
+  <section class="ww-section" id="thinking" aria-labelledby="thinking-title">
+    <div class="ww-section__inner">
+      <header class="ww-section__head">
+        <p class="ww-label">How We Think</p>
+        <h2 class="ww-section__title" id="thinking-title">闭环思维是什么</h2>
+        <p class="ww-section__desc">
+          不是做单点工具，而是识别环上的断点，逐个连接、逐个闭环。
+        </p>
+      </header>
+      <div class="thinking-grid">
+        <article class="thinking-card">
+          <p class="thinking-card__arc">输入 → 反馈</p>
+          <h3 class="thinking-card__title">看问题</h3>
+          <p class="thinking-card__body">
+            任何事物都是一个环：输入 → 处理 → 输出 → 反馈 →
+            再输入。找到断点，比造更大的环更重要。
+          </p>
+        </article>
+        <article class="thinking-card">
+          <p class="thinking-card__arc">断点 → 连接</p>
+          <h3 class="thinking-card__title">做产品</h3>
+          <p class="thinking-card__body">
+            不是做单点工具，而是识别环上断点，逐个连接、逐个闭环。每一个小工具，攻克环上的一个环节。
+          </p>
+        </article>
+        <article class="thinking-card">
+          <p class="thinking-card__arc">Agent → 环节</p>
+          <h3 class="thinking-card__title">AI 时代</h3>
+          <p class="thinking-card__body">
+            Agent 让环上每个环节都可以智能化——采集 Agent、标注
+            Agent、复盘 Agent……智能体一点点填满环上的空白。
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <hr class="ww-rule" />
+
+  <section class="ww-section" aria-labelledby="scenes-title">
+    <div class="ww-section__inner">
+      <header class="ww-section__head">
+        <p class="ww-label">What We Build</p>
+        <h2 class="ww-section__title" id="scenes-title">我们在攻克的场景</h2>
+        <p class="ww-section__desc">
+          每个场景都是一个独立的环。从小做起，做好每一个小工具。
+        </p>
+      </header>
+      <div class="scene-grid">
+        <a class="scene-card" href="/workshop/#driving">
+          <div class="scene-card__loop" aria-hidden="true">
+            <span>采集</span><span class="arrow">→</span>
+            <span>标注</span><span class="arrow">→</span>
+            <span>训练</span><span class="arrow">→</span>
+            <span>仿真</span><span class="arrow">→</span>
+            <span>回流</span>
+          </div>
+          <h3 class="scene-card__title">自动驾驶</h3>
+          <p class="scene-card__desc">
+            NeuraVoxel 系列：数据从采集到训练到仿真到回流，全链路闭环。多源对齐，版本可追溯。
+          </p>
+          <span class="scene-card__meta">4 项作品 →</span>
+        </a>
+
+        <a class="scene-card" href="/workshop/#learning">
+          <div class="scene-card__loop" aria-hidden="true">
+            <span>输入</span><span class="arrow">→</span>
+            <span>练习</span><span class="arrow">→</span>
+            <span>反馈</span><span class="arrow">→</span>
+            <span>迭代</span>
+          </div>
+          <h3 class="scene-card__title">教育学习</h3>
+          <p class="scene-card__desc">
+            输入→练习→反馈→再输入的学习闭环。English-Agent 让每次对话都成为环上的一环。
+          </p>
+          <span class="scene-card__meta">1 项作品 →</span>
+        </a>
+
+        <a class="scene-card" href="/workshop/#office">
+          <div class="scene-card__loop" aria-hidden="true">
+            <span>规划</span><span class="arrow">→</span>
+            <span>执行</span><span class="arrow">→</span>
+            <span>复盘</span><span class="arrow">→</span>
+            <span>优化</span>
+          </div>
+          <h3 class="scene-card__title">日常办公</h3>
+          <p class="scene-card__desc">
+            规划→执行→复盘→优化的办公闭环。Task-Agent 帮你拆解、跟踪、推进每一项工作。
+          </p>
+          <span class="scene-card__meta">1 项作品 →</span>
+        </a>
+
+        <a class="scene-card scene-card--muted" href="/workshop/#more">
+          <div class="scene-card__loop" aria-hidden="true">
+            <span>制造</span><span class="arrow">→</span>
+            <span>医疗</span><span class="arrow">→</span>
+            <span>……</span>
+          </div>
+          <h3 class="scene-card__title">更多场景</h3>
+          <p class="scene-card__desc">
+            每个新场景都是一个新的环。制造、医疗等领域正在规划中，敬请期待。
+          </p>
+          <span class="scene-card__meta">即将开放 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifesto" aria-labelledby="manifesto-quote">
+    <div class="manifesto__inner">
+      <p class="ww-label">Our Stance</p>
+      <blockquote class="manifesto__quote" id="manifesto-quote">
+        每个场景、每个应用，都需要从小做起。我们不做大而全的平台，而是做好每一个小工具，连接环上的每一个断点。终极闭环很远，但每攻克一个环节，环就更完整一分。
+      </blockquote>
+    </div>
+  </section>
+
+  <CooperationStrip id="cooperation" />
+</ZeyoLayout>
+
+<script is:inline>
+  (function () {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const nodes = document.querySelectorAll(".loop-node");
+    const total = nodes.length;
+    const stepMs = 12000 / total;
+    function lightNode(index) {
+      nodes.forEach((n, i) => n.classList.toggle("loop-node--lit", i === index));
+    }
+    let current = 0;
+    lightNode(0);
+    setInterval(() => {
+      current = (current + 1) % total;
+      lightNode(current);
+    }, stepMs);
+  })();
+</script>

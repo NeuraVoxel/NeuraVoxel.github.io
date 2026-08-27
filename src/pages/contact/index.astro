@@ -1,0 +1,114 @@
+---
+import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
+import "../../styles/zeyo/contact.css";
+---
+
+<ZeyoLayout
+  currentPath="/contact/"
+  title="合作咨询 — 智樾云飞 ZeyoFly"
+  description="与智樾云飞合作：产品共建、场景对接、技术合作。万物闭环，从小做起。"
+  pageClass="contact-page"
+>
+  <header class="page-head">
+    <p class="ww-label">Partnership</p>
+    <h1 class="page-head__title">合作咨询</h1>
+    <p class="page-head__desc">
+      智樾云飞以万物闭环思维，在自动驾驶、教育学习、日常办公等场景持续打磨产品。欢迎探讨共建、对接与合作。
+    </p>
+  </header>
+
+  <div class="contact-intro">
+    <p class="contact-intro__text">
+      无论您是寻找场景解决方案、希望接入乐乐工坊产品，还是探讨 Agent 与闭环技术合作，我们都愿意从一个小环节开始，一起把环做完整。
+    </p>
+  </div>
+
+  <div class="contact-layout">
+    <div class="contact-form-wrap">
+      <h2 class="contact-form__title">填写合作意向</h2>
+      <form
+        class="contact-form"
+        action="mailto:contact@zeyofly.com"
+        method="post"
+        enctype="text/plain"
+      >
+        <div class="contact-field">
+          <label for="contact-name">姓名 / 称呼</label>
+          <input id="contact-name" name="name" type="text" required autocomplete="name" />
+        </div>
+        <div class="contact-field">
+          <label for="contact-org">公司 / 机构</label>
+          <input id="contact-org" name="organization" type="text" autocomplete="organization" />
+        </div>
+        <div class="contact-field">
+          <label for="contact-email">邮箱</label>
+          <input id="contact-email" name="email" type="email" required autocomplete="email" />
+        </div>
+        <div class="contact-field">
+          <label for="contact-type">合作类型</label>
+          <select id="contact-type" name="type">
+            <option value="product">产品共建</option>
+            <option value="scene">场景对接</option>
+            <option value="tech">技术合作</option>
+            <option value="channel">渠道 / 生态</option>
+            <option value="other">其他</option>
+          </select>
+        </div>
+        <div class="contact-field">
+          <label for="contact-message">合作简述</label>
+          <textarea
+            id="contact-message"
+            name="message"
+            placeholder="请简要说明您的场景、需求或合作设想…"
+            required
+          ></textarea>
+        </div>
+        <button class="btn btn--primary" type="submit">提交合作意向</button>
+        <p class="contact-form__note">
+          设计稿预览：提交将打开邮件客户端；正式站点将接入表单服务。
+        </p>
+      </form>
+    </div>
+
+    <aside class="contact-aside">
+      <div class="contact-card">
+        <h3 class="contact-card__title">合作方向</h3>
+        <ul class="contact-card__list">
+          <li>自动驾驶数据闭环 · NeuraVoxel 场景共建</li>
+          <li>教育学习 · English-Agent 定制与接入</li>
+          <li>日常办公 · Task-Agent 工作流协作</li>
+          <li>Agent 智能体 · 闭环环节技术对接</li>
+        </ul>
+      </div>
+
+      <div class="contact-card">
+        <h3 class="contact-card__title">直接联系</h3>
+        <ul class="contact-card__list">
+          <li>
+            邮箱：
+            <a href="mailto:contact@zeyofly.com">contact@zeyofly.com</a>
+          </li>
+          <li>
+            主站：
+            <a href="https://zeyofly.com" target="_blank" rel="noopener">zeyofly.com</a>
+          </li>
+          <li>
+            短链：
+            <a href="https://zeyo.info" target="_blank" rel="noopener">zeyo.info</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="contact-card">
+        <h3 class="contact-card__title">微信公众号</h3>
+        <div class="contact-wechat">
+          <div class="contact-wechat__qr" aria-hidden="true"></div>
+          <p class="contact-wechat__text">
+            <strong>扫码关注公众号</strong>
+            了解闭环实践与工坊动态，也可留言初步沟通
+          </p>
+        </div>
+      </div>
+    </aside>
+  </div>
+</ZeyoLayout>
