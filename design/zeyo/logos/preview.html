@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ZeyoFly Logo 方案预览</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Figtree:wght@500;600&family=IBM+Plex+Mono:wght@400;500&family=Noto+Serif+SC:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --void: #080c12;
+        --surface: #101820;
+        --rule: #243040;
+        --paper: #dce4ec;
+        --mist: #8898a8;
+        --signal: #40b8b0;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: Figtree, "Noto Sans SC", sans-serif;
+        background: var(--void);
+        color: var(--paper);
+        line-height: 1.5;
+      }
+
+      .wrap {
+        max-width: 72rem;
+        margin: 0 auto;
+        padding: 2.5rem clamp(1.25rem, 4vw, 3rem) 4rem;
+      }
+
+      h1 {
+        font-family: "Noto Serif SC", serif;
+        font-weight: 600;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+        margin: 0 0 0.5rem;
+      }
+
+      .lead {
+        color: var(--mist);
+        max-width: 40rem;
+        margin: 0 0 2.5rem;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+        gap: 1.25rem;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--rule);
+        border-radius: 4px;
+        overflow: hidden;
+      }
+
+      .card__preview {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 12rem;
+        background: var(--void);
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .card__preview--light {
+        background: #eef2f6;
+      }
+
+      .card__preview img,
+      .card__preview svg {
+        width: 5.5rem;
+        height: 5.5rem;
+      }
+
+      .card__lockup {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 1.25rem;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .card__lockup img,
+      .card__lockup svg {
+        width: 2rem;
+        height: 2rem;
+        flex-shrink: 0;
+      }
+
+      .card__lockup-text {
+        display: flex;
+        flex-direction: column;
+        gap: 0.1rem;
+      }
+
+      .card__word {
+        font-family: "Noto Serif SC", serif;
+        font-weight: 600;
+        font-size: 1rem;
+        letter-spacing: 0.08em;
+      }
+
+      .card__en {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.625rem;
+        letter-spacing: 0.1em;
+        color: var(--mist);
+        text-transform: uppercase;
+      }
+
+      .card__body {
+        padding: 1rem 1.25rem 1.25rem;
+      }
+
+      .card__label {
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.6875rem;
+        letter-spacing: 0.12em;
+        color: var(--signal);
+        text-transform: uppercase;
+        margin: 0 0 0.35rem;
+      }
+
+      .card__title {
+        font-family: "Noto Serif SC", serif;
+        font-size: 1.0625rem;
+        margin: 0 0 0.5rem;
+      }
+
+      .card__desc {
+        margin: 0;
+        font-size: 0.875rem;
+        color: var(--mist);
+      }
+
+      .sizes {
+        display: flex;
+        align-items: flex-end;
+        gap: 1rem;
+        padding: 1rem 1.25rem;
+        border-top: 1px solid var(--rule);
+      }
+
+      .size-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.35rem;
+        font-family: "IBM Plex Mono", monospace;
+        font-size: 0.625rem;
+        color: var(--mist);
+      }
+
+      .size-item img,
+      .size-item svg {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>智樾云飞 Logo 方案</h1>
+      <p class="lead">
+        三个 SVG 概念稿，基于「万物闭环」世界观。深色底为主预览，每卡含浅色底与小尺寸测试。
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card__preview">
+            <img src="./logo-a-gap-loop.svg" alt="方案 A" width="88" height="88" />
+          </div>
+          <div class="card__lockup">
+            <img src="./logo-a-gap-loop.svg" alt="" width="32" height="32" />
+            <div class="card__lockup-text">
+              <span class="card__word">智樾云飞</span>
+              <span class="card__en">ZeyoFly</span>
+            </div>
+          </div>
+          <div class="card__body">
+            <p class="card__label">Concept A</p>
+            <h2 class="card__title">断环闭合</h2>
+            <p class="card__desc">
+              环顶留缺口，高亮节点 + 向上细线。强调「攻克断点、环更完整一分」，与首页 Hero 动效同构。
+            </p>
+          </div>
+          <div class="card__preview card__preview--light">
+            <img src="./logo-a-gap-loop.svg" alt="" width="88" height="88" />
+          </div>
+          <div class="sizes">
+            <div class="size-item">
+              <img src="./logo-a-gap-loop.svg" alt="" width="32" height="32" />
+              32px
+            </div>
+            <div class="size-item">
+              <img src="./logo-a-gap-loop.svg" alt="" width="24" height="24" />
+              24px
+            </div>
+            <div class="size-item">
+              <img src="./logo-a-gap-loop.svg" alt="" width="16" height="16" />
+              16px
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__preview">
+            <img src="./logo-b-ring-wing.svg" alt="方案 B" width="88" height="88" />
+          </div>
+          <div class="card__lockup">
+            <img src="./logo-b-ring-wing.svg" alt="" width="32" height="32" />
+            <div class="card__lockup-text">
+              <span class="card__word">智樾云飞</span>
+              <span class="card__en">ZeyoFly</span>
+            </div>
+          </div>
+          <div class="card__body">
+            <p class="card__label">Concept B</p>
+            <h2 class="card__title">环 + 翼</h2>
+            <p class="card__desc">
+              下半环 + 抽象双翼。Fly 含义更直观，翼形几何化，与飞飞助手 IP 区分（非卡通鸟）。
+            </p>
+          </div>
+          <div class="card__preview card__preview--light">
+            <img src="./logo-b-ring-wing.svg" alt="" width="88" height="88" />
+          </div>
+          <div class="sizes">
+            <div class="size-item">
+              <img src="./logo-b-ring-wing.svg" alt="" width="32" height="32" />
+              32px
+            </div>
+            <div class="size-item">
+              <img src="./logo-b-ring-wing.svg" alt="" width="24" height="24" />
+              24px
+            </div>
+            <div class="size-item">
+              <img src="./logo-b-ring-wing.svg" alt="" width="16" height="16" />
+              16px
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card__preview">
+            <img src="./logo-c-z-ring.svg" alt="方案 C" width="88" height="88" />
+          </div>
+          <div class="card__lockup">
+            <img src="./logo-c-z-ring.svg" alt="" width="32" height="32" />
+            <div class="card__lockup-text">
+              <span class="card__word">智樾云飞</span>
+              <span class="card__en">ZeyoFly</span>
+            </div>
+          </div>
+          <div class="card__body">
+            <p class="card__label">Concept C</p>
+            <h2 class="card__title">Z 嵌入环</h2>
+            <p class="card__desc">
+              Z 三笔 + 淡外环。英文 ZeyoFly 识别强，适合 favicon 与国际场景；中文主站需与字标搭配使用。
+            </p>
+          </div>
+          <div class="card__preview card__preview--light">
+            <img src="./logo-c-z-ring.svg" alt="" width="88" height="88" />
+          </div>
+          <div class="sizes">
+            <div class="size-item">
+              <img src="./logo-c-z-ring.svg" alt="" width="32" height="32" />
+              32px
+            </div>
+            <div class="size-item">
+              <img src="./logo-c-z-ring.svg" alt="" width="24" height="24" />
+              24px
+            </div>
+            <div class="size-item">
+              <img src="./logo-c-z-ring.svg" alt="" width="16" height="16" />
+              16px
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </body>
+</html>

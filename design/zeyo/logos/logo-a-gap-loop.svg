@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="ZeyoFly logo A: gap loop">
+  <defs>
+    <linearGradient id="a-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#5ED4CC"/>
+      <stop offset="100%" stop-color="#40B8B0"/>
+    </linearGradient>
+  </defs>
+  <circle cx="48" cy="48" r="32" fill="none" stroke="url(#a-glow)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="172 28" stroke-dashoffset="14" transform="rotate(-100 48 48)"/>
+  <circle cx="48" cy="14" r="5.5" fill="#40B8B0"/>
+  <circle cx="48" cy="14" r="9" fill="#40B8B0" opacity="0.18"/>
+  <path d="M48 8.5V4" stroke="#40B8B0" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+  <circle cx="76" cy="48" r="4" fill="#2A7870" opacity="0.5"/>
+  <circle cx="76" cy="48" r="2.2" fill="#40B8B0"/>
+</svg>

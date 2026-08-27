@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="ZeyoFly logo C: Z in ring">
+  <defs>
+    <linearGradient id="c-stroke" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#40B8B0"/>
+      <stop offset="100%" stop-color="#2A7870"/>
+    </linearGradient>
+  </defs>
+  <circle cx="48" cy="48" r="34" fill="none" stroke="url(#c-stroke)" stroke-width="3" stroke-linecap="round" stroke-dasharray="198 16" stroke-dashoffset="-8" transform="rotate(55 48 48)" opacity="0.55"/>
+  <path d="M 28 30 H 68 M 68 30 L 28 66 M 28 66 H 68" fill="none" stroke="#40B8B0" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="62" cy="42" r="4" fill="#5ED4CC"/>
+  <circle cx="62" cy="42" r="7" fill="#40B8B0" opacity="0.2"/>
+</svg>
