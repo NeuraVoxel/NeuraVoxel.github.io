@@ -1,12 +1,18 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ModuleCard from "../../components/ModuleCard.astro";
+import ProductMatrix from "../../components/ProductMatrix.astro";
+import ToolCard from "../../components/ToolCard.astro";
 import { getModulesForLocale } from "../../lib/content";
 import { useTranslations } from "../../lib/i18n";
+import { getToolsForLocale } from "../../lib/tools";
 
 const locale = "zh";
 const currentPath = "/modules";
 const modules = await getModulesForLocale(locale);
+const tools = getToolsForLocale(locale);
+const coreModules = modules.filter((mod) => mod.data.role === "core");
+const ringModules = modules.filter((mod) => mod.data.role !== "core");
 const t = useTranslations(locale);
 ---
 
@@ -16,12 +22,40 @@ const t = useTranslations(locale);
   title={t("modules.pageTitle")}
   description={t("modules.pageDescription")}
 >
-  <div class="page-head">
-    <h1>{t("modules.pageTitle")}</h1>
-    <p>{t("modules.pageDescription")}</p>
-  </div>
-  <div class="module-list module-list-page">
-    {modules.map((mod) => <ModuleCard locale={locale} module={mod} />)}
+  <div class="modules-page">
+    <header class="page-head modules-page__head">
+      <h1>{t("modules.pageTitle")}</h1>
+      <p>{t("modules.pageDescription")}</p>
+      <nav class="modules-page__jump" aria-label={t("modules.jumpLabel")}>
+        <a href="#tools">{t("modules.jumpTools")}</a>
+        <a href="#modules">{t("modules.jumpModules")}</a>
+      </nav>
+    </header>
+
+    <ProductMatrix
+      id="tools"
+      variant="tools"
+      label={t("modules.toolsLabel")}
+      title={t("modules.toolsTitle")}
+      description={t("modules.toolsDesc")}
+      count={tools.length}
+    >
+      {tools.map((tool) => <ToolCard locale={locale} tool={tool} />)}
+    </ProductMatrix>
+
+    <hr class="nv-rule modules-page__rule" />
+
+    <ProductMatrix
+      id="modules"
+      variant="modules"
+      label={t("modules.modulesLabel")}
+      title={t("modules.modulesTitle")}
+      description={t("modules.modulesDesc")}
+      count={modules.length}
+    >
+      {coreModules.map((mod) => <ModuleCard locale={locale} module={mod} featured />)}
+      {ringModules.map((mod) => <ModuleCard locale={locale} module={mod} />)}
+    </ProductMatrix>
   </div>
 </BaseLayout>
 

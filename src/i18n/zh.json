@@ -52,7 +52,18 @@
   },
   "modules": {
     "pageTitle": "模块与工具",
-    "pageDescription": "NeuraVoxel 产品模块：DMP 数据中枢与环上对接能力。",
+    "pageDescription": "NeuraVoxel 工具与产品模块：在线 AI 工具、DMP 数据中枢与环上对接能力。",
+    "toolsLabel": "Tools",
+    "toolsTitle": "在线工具",
+    "toolsDesc": "可直接访问的 AI 工具与服务，优先体验与日常使用。",
+    "modulesLabel": "Modules",
+    "modulesTitle": "产品模块",
+    "modulesDesc": "DMP 数据中枢置顶，环上对接能力按核心 → 环序排列。",
+    "openTool": "打开工具 →",
+    "viewModule": "查看详情 →",
+    "jumpLabel": "页面分区",
+    "jumpTools": "在线工具",
+    "jumpModules": "产品模块",
     "downloads": "下载",
     "links": "外链",
     "integrations": "交互能力",
@@ -77,6 +88,8 @@
   },
   "status": {
     "core": "Core",
+    "tool": "Tool",
+    "module": "Module",
     "available": "Available",
     "preview": "Preview",
     "planned": "Planned"

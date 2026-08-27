@@ -8,11 +8,13 @@ import { useTranslations } from "../lib/i18n";
 interface Props {
   locale: Locale;
   module: ModuleEntry;
+  featured?: boolean;
 }
 
-const { locale, module: mod } = Astro.props;
+const { locale, module: mod, featured = false } = Astro.props;
 const t = useTranslations(locale);
 const slug = moduleSlug(mod, locale);
+const detailHref = href(locale, `/modules/${slug}`);
 
 function statusClass(status: string) {
   if (status === "available") return "nv-badge--available";
@@ -21,43 +23,25 @@ function statusClass(status: string) {
 }
 ---
 
-<article class="module-card">
-  <div class="module-card__badges">
-    {mod.data.role === "core" && <span class="nv-badge nv-badge--core">{t("status.core")}</span>}
-    <span class={`nv-badge ${statusClass(mod.data.status)}`}>{t(`status.${mod.data.status}`)}</span>
+<article
+  class:list={[
+    "product-card",
+    "product-card--module",
+    mod.data.role === "core" && "product-card--core",
+    featured && "product-card--featured",
+  ]}
+>
+  <a class="product-card__link" href={detailHref} aria-label={`${mod.data.title} — ${t("modules.viewModule")}`}></a>
+  <div class="product-card__inner">
+    <div class="product-card__body">
+      <div class="product-card__badges">
+        {mod.data.role === "core" && <span class="nv-badge nv-badge--core">{t("status.core")}</span>}
+        <span class="nv-badge nv-badge--module">{t("status.module")}</span>
+        <span class={`nv-badge ${statusClass(mod.data.status)}`}>{t(`status.${mod.data.status}`)}</span>
+      </div>
+      <h3>{mod.data.title}</h3>
+      <p>{mod.data.summary}</p>
+    </div>
+    <span class="product-card__action">{t("modules.viewModule")}</span>
   </div>
-  <h2>
-    <a href={href(locale, `/modules/${slug}`)}>{mod.data.title}</a>
-  </h2>
-  <p>{mod.data.summary}</p>
 </article>
-
-<style>
-  .module-card {
-    padding: var(--nv-space-5);
-    background: var(--nv-panel);
-    border: 1px solid var(--nv-gridline);
-    border-radius: var(--nv-radius);
-  }
-
-  .module-card__badges {
-    margin-bottom: var(--nv-space-3);
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--nv-space-2);
-  }
-
-  .module-card h2 {
-    font-size: var(--nv-text-md);
-    margin-bottom: var(--nv-space-2);
-  }
-
-  .module-card h2 a {
-    text-decoration: none;
-    color: var(--nv-paper);
-  }
-
-  .module-card h2 a:hover {
-    color: var(--nv-signal);
-  }
-</style>

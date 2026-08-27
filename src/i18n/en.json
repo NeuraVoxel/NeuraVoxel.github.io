@@ -52,7 +52,18 @@
   },
   "modules": {
     "pageTitle": "Modules & tools",
-    "pageDescription": "NeuraVoxel modules: DMP data hub and ring integration bridges.",
+    "pageDescription": "NeuraVoxel tools and modules: live AI tools, DMP data hub, and ring integration bridges.",
+    "toolsLabel": "Tools",
+    "toolsTitle": "Live tools",
+    "toolsDesc": "Online AI tools and services ready to use.",
+    "modulesLabel": "Modules",
+    "modulesTitle": "Product modules",
+    "modulesDesc": "DMP hub first, ring bridges ordered core → ring.",
+    "openTool": "Open tool →",
+    "viewModule": "View details →",
+    "jumpLabel": "Page sections",
+    "jumpTools": "Live tools",
+    "jumpModules": "Product modules",
     "downloads": "Downloads",
     "links": "Links",
     "integrations": "Integrations",
@@ -77,6 +88,8 @@
   },
   "status": {
     "core": "Core",
+    "tool": "Tool",
+    "module": "Module",
     "available": "Available",
     "preview": "Preview",
     "planned": "Planned"

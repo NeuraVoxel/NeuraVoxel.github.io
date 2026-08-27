@@ -1,0 +1,30 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  title: string;
+  description: string;
+  variant?: "tools" | "modules";
+  count?: number;
+}
+
+const { id, label, title, description, variant = "modules", count } = Astro.props;
+---
+
+<section
+  class={`nv-section product-matrix product-matrix--${variant}`}
+  id={id}
+  aria-labelledby={`${id}-title`}
+>
+  <header class="nv-section__head product-matrix__head">
+    <div class="product-matrix__head-row">
+      <span class="nv-label">{label}</span>
+      {count !== undefined && <span class="product-matrix__count">{count}</span>}
+    </div>
+    <h2 id={`${id}-title`}>{title}</h2>
+    <p>{description}</p>
+  </header>
+  <div class="product-matrix__grid">
+    <slot />
+  </div>
+</section>

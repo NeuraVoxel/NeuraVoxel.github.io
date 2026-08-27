@@ -1,0 +1,49 @@
+---
+import type { ToolData } from "../data/tools.types";
+import type { Locale } from "../lib/locale";
+import { useTranslations } from "../lib/i18n";
+
+interface Props {
+  locale: Locale;
+  tool: ToolData;
+}
+
+const { locale, tool } = Astro.props;
+const t = useTranslations(locale);
+
+function statusClass(status: string) {
+  if (status === "available") return "nv-badge--available";
+  if (status === "preview") return "nv-badge--preview";
+  return "nv-badge--planned";
+}
+
+function displayHost(url: string): string {
+  try {
+    return new URL(url).host;
+  } catch {
+    return url;
+  }
+}
+---
+
+<article class="product-card product-card--tool">
+  <a
+    class="product-card__link"
+    href={tool.url}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={`${tool.title} — ${t("modules.openTool")}`}
+  ></a>
+  <div class="product-card__inner">
+    <div class="product-card__body">
+      <div class="product-card__badges">
+        <span class="nv-badge nv-badge--tool">{t("status.tool")}</span>
+        <span class={`nv-badge ${statusClass(tool.status)}`}>{t(`status.${tool.status}`)}</span>
+      </div>
+      <h3>{tool.title}</h3>
+      <p>{tool.summary}</p>
+      <p class="product-card__host">{displayHost(tool.url)}</p>
+    </div>
+    <span class="product-card__action">{t("modules.openTool")}</span>
+  </div>
+</article>

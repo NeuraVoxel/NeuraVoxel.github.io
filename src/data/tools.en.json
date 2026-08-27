@@ -1,0 +1,20 @@
+{
+  "tools": [
+    {
+      "id": "english-agent",
+      "title": "English Agent",
+      "summary": "AI English conversation and practice assistant with real-time interaction.",
+      "url": "http://106.14.175.17:3000/",
+      "status": "available",
+      "order": 0
+    },
+    {
+      "id": "task-agent",
+      "title": "Task Agent",
+      "summary": "Intelligent task planning and execution assistant for breaking down and tracking work.",
+      "url": "http://106.14.175.17:3100/",
+      "status": "available",
+      "order": 1
+    }
+  ]
+}
