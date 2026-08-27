@@ -130,21 +130,10 @@ button:focus-visible {
 }
 
 .site-logo__mark {
-  width: 1.5rem;
-  height: 1.5rem;
-  border: 1.5px solid var(--ww-signal);
-  border-radius: 50%;
-  position: relative;
-}
-
-.site-logo__mark::after {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  border: 1px solid var(--ww-signal-dim);
-  border-radius: 50%;
-  border-top-color: transparent;
-  transform: rotate(-45deg);
+  width: 2rem;
+  height: 2rem;
+  flex-shrink: 0;
+  display: block;
 }
 
 .site-logo__word {
@@ -546,22 +535,10 @@ button:focus-visible {
 }
 
 .site-footer__logo-mark {
-  width: 1.5rem;
-  height: 1.5rem;
-  border: 1.5px solid var(--ww-signal);
-  border-radius: 50%;
-  position: relative;
+  width: 2rem;
+  height: 2rem;
   flex-shrink: 0;
-}
-
-.site-footer__logo-mark::after {
-  content: "";
-  position: absolute;
-  inset: 3px;
-  border: 1px solid var(--ww-signal-dim);
-  border-radius: 50%;
-  border-top-color: transparent;
-  transform: rotate(-45deg);
+  display: block;
 }
 
 .site-footer__logo-word {
