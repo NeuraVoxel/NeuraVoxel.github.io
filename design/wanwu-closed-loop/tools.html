@@ -47,8 +47,9 @@
         <div class="filter-tabs" role="tablist" aria-label="场景筛选">
           <button class="filter-tab" role="tab" aria-selected="true" data-filter="all">全部</button>
           <button class="filter-tab" role="tab" aria-selected="false" data-filter="driving">自动驾驶</button>
-          <button class="filter-tab" role="tab" aria-selected="false" data-filter="learning">英语学习</button>
-          <button class="filter-tab" role="tab" aria-selected="false" data-filter="tasks">任务管理</button>
+          <button class="filter-tab" role="tab" aria-selected="false" data-filter="learning">教育学习</button>
+          <button class="filter-tab" role="tab" aria-selected="false" data-filter="office">日常办公</button>
+          <button class="filter-tab" role="tab" aria-selected="false" data-filter="more">更多场景</button>
         </div>
 
         <!-- 自动驾驶 -->
@@ -138,10 +139,10 @@
           </div>
         </section>
 
-        <!-- 英语学习 -->
+        <!-- 教育学习 -->
         <section class="tools-scene" id="learning" data-scene="learning">
           <header class="tools-scene__head">
-            <h2 class="tools-scene__title">英语学习</h2>
+            <h2 class="tools-scene__title">教育学习</h2>
             <span class="tools-scene__count">1 个工具</span>
             <div class="tools-scene__loop" aria-hidden="true">
               <span>输入</span><span class="arrow">→</span>
@@ -172,10 +173,10 @@
           </div>
         </section>
 
-        <!-- 任务管理 -->
-        <section class="tools-scene" id="tasks" data-scene="tasks">
+        <!-- 日常办公 -->
+        <section class="tools-scene" id="office" data-scene="office">
           <header class="tools-scene__head">
-            <h2 class="tools-scene__title">任务管理</h2>
+            <h2 class="tools-scene__title">日常办公</h2>
             <span class="tools-scene__count">1 个工具</span>
             <div class="tools-scene__loop" aria-hidden="true">
               <span>规划</span><span class="arrow">→</span>
@@ -205,6 +206,20 @@
             </article>
           </div>
         </section>
+
+        <!-- 更多场景 -->
+        <section class="tools-scene" id="more" data-scene="more">
+          <header class="tools-scene__head">
+            <h2 class="tools-scene__title">更多场景</h2>
+            <span class="tools-scene__count">规划中</span>
+          </header>
+          <div class="tools-empty">
+            <p class="tools-empty__title">更多场景即将开放</p>
+            <p class="tools-empty__desc">
+              制造、医疗……每个新场景都是一个新的环。我们正在逐个识别断点、逐个攻克。
+            </p>
+          </div>
+        </section>
       </div>
     </main>
 
@@ -217,15 +232,14 @@
     <script>
       (function () {
         const tabs = document.querySelectorAll(".filter-tab");
-        const scenes = document.querySelectorAll(".tools-scene");
+        const scenes = document.querySelectorAll(".tools-scene[data-scene]");
 
         tabs.forEach((tab) => {
           tab.addEventListener("click", () => {
             const filter = tab.dataset.filter;
             tabs.forEach((t) => t.setAttribute("aria-selected", t === tab ? "true" : "false"));
             scenes.forEach((scene) => {
-              const show = filter === "all" || scene.dataset.scene === filter;
-              scene.hidden = !show;
+              scene.hidden = filter !== "all" && scene.dataset.scene !== filter;
             });
           });
         });

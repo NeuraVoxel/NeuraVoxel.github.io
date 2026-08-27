@@ -12,6 +12,26 @@
   margin-bottom: 0;
 }
 
+.tools-empty {
+  padding: 2.5rem;
+  text-align: center;
+  background: var(--ww-surface);
+  border: 1px dashed var(--ww-rule);
+}
+
+.tools-empty__title {
+  font-family: var(--ww-font-display);
+  font-size: 1.125rem;
+  margin: 0 0 0.5rem;
+  color: var(--ww-mist);
+}
+
+.tools-empty__desc {
+  margin: 0;
+  color: var(--ww-dim);
+  font-size: 0.875rem;
+}
+
 .tools-scene__head {
   display: flex;
   align-items: baseline;

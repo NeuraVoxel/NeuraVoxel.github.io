@@ -227,8 +227,22 @@
 
 .scene-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.25rem;
+}
+
+.scene-card--muted {
+  border-style: dashed;
+  opacity: 0.85;
+}
+
+.scene-card--muted:hover {
+  transform: none;
+  border-color: var(--ww-rule);
+}
+
+.scene-card--muted .scene-card__meta {
+  color: var(--ww-dim);
 }
 
 .scene-card {
