@@ -66,8 +66,8 @@ const scenes = workshopData.scenes as WorkshopScene[];
       <p class="workshop-catalog__desc">按场景浏览百工之作，每件作品标注它在闭环上的位置。</p>
     </header>
     <div class="filter-tabs" role="tablist" aria-label="场景筛选">
-      <button class="filter-tab" role="tab" aria-selected="true" data-filter="all">全部</button>
-      <button class="filter-tab" role="tab" aria-selected="false" data-filter="driving">自动驾驶</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="all">全部</button>
+      <button class="filter-tab" role="tab" aria-selected="true" data-filter="driving">自动驾驶</button>
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="learning">教育学习</button>
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="office">日常办公</button>
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="career">职场求职</button>
@@ -77,7 +77,12 @@ const scenes = workshopData.scenes as WorkshopScene[];
 
     {
       scenes.map((scene) => (
-        <section class="tools-scene" id={scene.id} data-scene={scene.id}>
+        <section
+          class="tools-scene"
+          id={scene.id}
+          data-scene={scene.id}
+          hidden={scene.id !== "driving"}
+        >
           <header class="tools-scene__head">
             <h2 class="tools-scene__title">{scene.title}</h2>
             <span class="tools-scene__count">{scene.countLabel}</span>
