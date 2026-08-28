@@ -115,6 +115,27 @@
       ]
     },
     {
+      "id": "marketing",
+      "title": "市场营销",
+      "countLabel": "1 项作品",
+      "loopSteps": ["洞察", "创作", "分发", "优化"],
+      "products": [
+        {
+          "id": "shidaimen-geo",
+          "name": "时代之门 GEO",
+          "summary": "生成式引擎优化（GEO）平台。让品牌在 AI 答案中被看见、被推荐——洞察需求、创作内容、多平台分发、监测回流，构建 AI 时代的营销闭环。",
+          "status": "available",
+          "tags": [
+            { "label": "洞察", "stage": "plan" },
+            { "label": "创作", "stage": "execute" },
+            { "label": "分发", "stage": "review" },
+            { "label": "优化", "stage": "optimize" }
+          ],
+          "openUrl": "https://www.aitime.cloud/"
+        }
+      ]
+    },
+    {
       "id": "more",
       "title": "更多场景",
       "countLabel": "规划中",
