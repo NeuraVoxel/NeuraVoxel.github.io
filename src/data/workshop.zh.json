@@ -94,6 +94,27 @@
       ]
     },
     {
+      "id": "career",
+      "title": "职场求职",
+      "countLabel": "1 项作品",
+      "loopSteps": ["发现", "准备", "投递", "复盘"],
+      "products": [
+        {
+          "id": "ai-moyu-job",
+          "name": "AI摸鱼求职",
+          "summary": "AI 职场求职助手。悄悄匹配岗位、打磨简历与面试准备，每次投递与复盘都让下一轮求职更精准。",
+          "status": "available",
+          "tags": [
+            { "label": "发现", "stage": "input" },
+            { "label": "准备", "stage": "practice" },
+            { "label": "投递", "stage": "execute" },
+            { "label": "复盘", "stage": "review" }
+          ],
+          "openUrl": "https://work.light120.com/"
+        }
+      ]
+    },
+    {
       "id": "more",
       "title": "更多场景",
       "countLabel": "规划中",
