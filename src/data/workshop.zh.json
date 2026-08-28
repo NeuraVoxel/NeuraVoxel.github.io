@@ -75,7 +75,7 @@
     {
       "id": "office",
       "title": "日常办公",
-      "countLabel": "1 项作品",
+      "countLabel": "2 项作品",
       "loopSteps": ["规划", "执行", "复盘", "优化"],
       "products": [
         {
@@ -90,6 +90,18 @@
             { "label": "优化", "stage": "optimize" }
           ],
           "openUrl": "http://106.14.175.17:3100/"
+        },
+        {
+          "id": "token-calculator",
+          "name": "Token 计价器",
+          "summary": "多模型 Token 计价与成本对比工具。选模型、估用量、算费用，支撑办公场景的成本复盘。",
+          "status": "available",
+          "tags": [
+            { "label": "规划", "stage": "plan" },
+            { "label": "复盘", "stage": "review" },
+            { "label": "优化", "stage": "optimize" }
+          ],
+          "openUrl": "https://www.neuravoxel.cn/token-calculator/"
         }
       ]
     },
