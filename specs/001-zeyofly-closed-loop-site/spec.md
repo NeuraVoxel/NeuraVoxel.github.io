@@ -39,7 +39,7 @@
 
 **Why this priority**: 乐乐工坊是面向 B 类受众的能力入口，承接首页场景叙事后的具体行动。
 
-**Independent Test**: 从首页进入工坊，按场景筛选找到 NeuraVoxel DMP 或 English-Agent，可见状态、环节标签与打开/文档按钮。
+**Independent Test**: 从首页进入工坊，按场景筛选找到 NeuraVoxel DMP 或 English Agent，可见状态、环节标签与打开/文档按钮。
 
 **Acceptance Scenarios**:
 
@@ -47,7 +47,7 @@
 2. **Given** 访客在工坊页，**When** 使用场景 Tab 筛选，**Then** 可按全部/自动驾驶/教育学习/日常办公/更多场景过滤产品列表。
 3. **Given** 访客浏览自动驾驶场景，**When** 查看产品卡片，**Then** 可见 DMP、标注桥、训练桥、仿真桥四件作品，各含名称、状态、描述、环节标签与操作按钮。
 4. **Given** 访客点击 NeuraVoxel 产品的「查看文档」，**When** 链接可用，**Then** 跳转至对应模块或文档页。
-5. **Given** 访客点击 English-Agent 或 Task-Agent 的「打开」，**When** 链接可用，**Then** 在新标签页打开产品外链。
+5. **Given** 访客点击 English Agent 或 Task Agent 的「打开」，**When** 链接可用，**Then** 在新标签页打开产品外链。
 
 ---
 
@@ -106,7 +106,7 @@
 - 访客禁用动画时，闭环 Hero 环节点亮动画应停止，静态环图仍可读。
 - 工坊或文章筛选 Tab 在无匹配内容时，对应区块隐藏但不破坏布局。
 - 合作表单必填项未填时，浏览器原生校验阻止提交。
-- 外链产品（English-Agent、Task-Agent）在新标签打开，并带 rel="noopener"。
+- 外链产品（English Agent、Task Agent）在新标签打开，并带 rel="noopener"。
 - 英文路径 `/en/...` 在 Phase 1 可返回占位或链回中文，框架预留不阻塞 MVP。
 
 ## Requirements *(mandatory)*
@@ -150,7 +150,7 @@
 
 - Phase 1 不包含用户登录、鉴权、站内真实任务操作。
 - 合作表单后端接入、飞飞助手真实 Agent 能力留待 Phase 2。
-- 产品品牌拆分（English-Agent、Task-Agent 独立品牌页）留待 Phase 3。
+- 产品品牌拆分（English Agent、Task Agent 独立品牌页）留待 Phase 3。
 - 英文内容框架预留，Phase 1 以中文为主。
 - 微信公众号二维码使用设计稿占位样式，正式二维码图片后续替换。
 - 隐私政策与服务条款链接在 Phase 1 可为占位（`#`）。

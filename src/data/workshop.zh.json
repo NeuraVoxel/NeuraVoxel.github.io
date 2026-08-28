@@ -59,7 +59,7 @@
       "products": [
         {
           "id": "english-agent",
-          "name": "English-Agent",
+          "name": "English Agent",
           "summary": "AI 英语对话与练习助手。每次对话都是学习闭环的一环——输入、练习、反馈、再输入。",
           "status": "available",
           "tags": [
@@ -80,7 +80,7 @@
       "products": [
         {
           "id": "task-agent",
-          "name": "Task-Agent",
+          "name": "Task Agent",
           "summary": "智能任务规划与执行助手。拆解、跟踪、推进工作项，每次复盘都让下一轮规划更精准。",
           "status": "available",
           "tags": [

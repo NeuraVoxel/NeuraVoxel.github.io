@@ -9,7 +9,7 @@
 | 工坊 | 乐乐工坊 |
 | 助手 | 飞飞助手（右下角卡通小鸟智能体） |
 | 域名 | zeyofly.com（主站）、zeyo.info（短链） |
-| 产品 | NeuraVoxel（自动驾驶）、English-Agent、Task-Agent |
+| 产品 | NeuraVoxel（自动驾驶）、English Agent、Task Agent |
 
 ## 预览
 

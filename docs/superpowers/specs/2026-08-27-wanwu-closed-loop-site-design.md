@@ -38,8 +38,8 @@
     │
     └── 产品（按场景归类，现阶段统一展示）
             ├── 自动驾驶：NeuraVoxel 系列（DMP、标注桥、训练桥、仿真桥…）
-            ├── 教育学习：English-Agent
-            ├── 日常办公：Task-Agent
+            ├── 教育学习：English Agent
+            ├── 日常办公：Task Agent
             └── 未来：制造、医疗…
 ```
 
@@ -65,7 +65,7 @@
 ### 1.5 非目标（本期）
 
 - 用户登录、鉴权、站内真实任务操作
-- 产品品牌拆分（English-Agent、Task-Agent 独立品牌页留待 Phase 3）
+- 产品品牌拆分（English Agent、Task Agent 独立品牌页留待 Phase 3）
 - 完整英文内容（框架预留，内容可先中文）
 - 合作表单后端接入（设计稿阶段为 mailto 预览）
 
@@ -123,10 +123,10 @@
   └── 仿真桥                        [仿真 · 验证]
 
 教育学习（一级场景）
-  └── English-Agent                 [输入 → 练习 → 反馈 → 迭代]
+  └── English Agent                 [输入 → 练习 → 反馈 → 迭代]
 
 日常办公（一级场景）
-  └── Task-Agent                    [规划 → 执行 → 复盘 → 优化]
+  └── Task Agent                    [规划 → 执行 → 复盘 → 优化]
 
 更多场景（一级场景，规划中）
   └── （制造、医疗等，待扩展）
@@ -208,7 +208,7 @@
 
 ### 5.3 单产品页
 
-Phase 1 可省略：English-Agent、Task-Agent 等轻量产品卡片 + 外链即可。复杂产品（如 DMP）后续可加独立页。
+Phase 1 可省略：English Agent、Task Agent 等轻量产品卡片 + 外链即可。复杂产品（如 DMP）后续可加独立页。
 
 ---
 
@@ -230,9 +230,9 @@ Phase 1 可省略：English-Agent、Task-Agent 等轻量产品卡片 + 外链即
 |--------|----------|------|
 | P0 | 什么是万物闭环？为什么闭环思维是 AI 时代的产品方法论 | 闭环思维 |
 | P0 | 自动驾驶数据闭环：从采集到回流的完整链路 | 场景实践 |
-| P1 | 用 Agent 攻克闭环环节：English-Agent 的设计思考 | Agent × 闭环 |
+| P1 | 用 Agent 攻克闭环环节：English Agent 的设计思考 | Agent × 闭环 |
 | P1 | 小工具战略：为什么我们不做大平台 | 闭环思维 |
-| P2 | Task-Agent：日常办公也是一种闭环 | 场景实践 |
+| P2 | Task Agent：日常办公也是一种闭环 | 场景实践 |
 
 ---
 
@@ -259,8 +259,8 @@ Phase 1 可省略：English-Agent、Task-Agent 等轻量产品卡片 + 外链即
 ### 7.3 合作方向示例
 
 - 自动驾驶数据闭环 · NeuraVoxel 场景共建
-- 教育学习 · English-Agent 定制与接入
-- 日常办公 · Task-Agent 工作流协作
+- 教育学习 · English Agent 定制与接入
+- 日常办公 · Task Agent 工作流协作
 - Agent 智能体 · 闭环环节技术对接
 
 ### 7.4 表单提交
@@ -277,7 +277,7 @@ Phase 1 可省略：English-Agent、Task-Agent 等轻量产品卡片 + 外链即
 | 栏目 | 内容 |
 |------|------|
 | 品牌栏 | Logo、tagline「万物闭环 · 快快乐乐生产制造」、**唯一公众号二维码** |
-| 产品 | NeuraVoxel、English-Agent、Task-Agent |
+| 产品 | NeuraVoxel、English Agent、Task Agent |
 | 工坊 | 乐乐工坊、各场景锚点 |
 | 了解更多 | 万物闭环、闭环思维、关于智樾云飞 |
 | 联系我们 | **合作咨询**、contact@zeyofly.com、zeyofly.com、zeyo.info |
@@ -350,7 +350,7 @@ Phase 1 可省略：English-Agent、Task-Agent 等轻量产品卡片 + 外链即
 
 ### Phase 3 — 品牌演进（远期）
 
-- 产品品牌拆分（English-Agent、Task-Agent 独立品牌页）
+- 产品品牌拆分（English Agent、Task Agent 独立品牌页）
 - 闭环动画交互增强
 - 英文内容完整化
 
