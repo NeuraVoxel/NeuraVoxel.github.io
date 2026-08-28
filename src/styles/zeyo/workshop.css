@@ -17,38 +17,12 @@
   margin-inline: auto;
 }
 
-.workshop-intro__lead {
-  max-width: var(--ww-measure);
-  margin-bottom: clamp(2rem, 4vw, 3rem);
-}
-
-.workshop-intro__title {
-  font-family: var(--ww-font-display);
-  font-size: clamp(1.375rem, 2.5vw, 1.75rem);
-  font-weight: 600;
-  margin: 0 0 1rem;
-  letter-spacing: 0.02em;
-}
-
-.workshop-intro__text {
-  margin: 0 0 1rem;
-  color: var(--ww-mist);
-  font-size: 0.9375rem;
-  line-height: 1.75;
-}
-
-.workshop-intro__text strong {
-  color: var(--ww-paper);
-  font-weight: 600;
-}
-
 .workshop-intro__grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1px;
   background: var(--ww-rule);
   border: 1px solid var(--ww-rule);
-  margin-bottom: clamp(2rem, 4vw, 2.5rem);
 }
 
 .workshop-intro__card {
@@ -76,17 +50,6 @@
   color: var(--ww-mist);
   font-size: 0.875rem;
   line-height: 1.65;
-}
-
-.workshop-intro__quote {
-  font-family: var(--ww-font-display);
-  font-size: clamp(1rem, 2vw, 1.125rem);
-  line-height: 1.7;
-  color: var(--ww-paper);
-  margin: 0;
-  padding-left: 1rem;
-  border-left: 2px solid var(--ww-signal-dim);
-  max-width: 36rem;
 }
 
 .workshop-catalog__head {
