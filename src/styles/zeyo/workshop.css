@@ -52,6 +52,10 @@
   line-height: 1.65;
 }
 
+.workshop-catalog {
+  scroll-margin-top: calc(var(--ww-nav-h) + 0.75rem);
+}
+
 .workshop-catalog__head {
   margin-bottom: 1.5rem;
 }

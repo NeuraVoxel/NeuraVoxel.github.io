@@ -119,17 +119,56 @@ const scenes = workshopData.scenes as WorkshopScene[];
   (function () {
     const tabs = document.querySelectorAll(".filter-tab");
     const scenes = document.querySelectorAll(".tools-scene[data-scene]");
+    const catalog = document.querySelector(".workshop-catalog");
+    const validFilters = new Set(
+      Array.from(tabs).map((tab) => tab.dataset.filter).filter(Boolean),
+    );
+
+    function filterFromHash() {
+      const hash = (location.hash || "").replace(/^#/, "");
+      return validFilters.has(hash) ? hash : "driving";
+    }
+
+    function applyFilter(filter, { syncHash = false, scroll = false } = {}) {
+      if (!validFilters.has(filter)) filter = "driving";
+
+      tabs.forEach((tab) => {
+        tab.setAttribute(
+          "aria-selected",
+          tab.dataset.filter === filter ? "true" : "false",
+        );
+      });
+      scenes.forEach((scene) => {
+        scene.hidden = filter !== "all" && scene.dataset.scene !== filter;
+      });
+
+      if (syncHash) {
+        const nextHash = `#${filter}`;
+        if (location.hash !== nextHash) {
+          history.replaceState(null, "", nextHash);
+        }
+      }
+
+      if (scroll && catalog) {
+        catalog.scrollIntoView({ behavior: "auto", block: "start" });
+      }
+    }
 
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
-        const filter = tab.dataset.filter;
-        tabs.forEach((t) =>
-          t.setAttribute("aria-selected", t === tab ? "true" : "false"),
-        );
-        scenes.forEach((scene) => {
-          scene.hidden = filter !== "all" && scene.dataset.scene !== filter;
-        });
+        applyFilter(tab.dataset.filter, { syncHash: true });
       });
     });
+
+    window.addEventListener("hashchange", () => {
+      applyFilter(filterFromHash(), { scroll: true });
+    });
+
+    const initial = filterFromHash();
+    const fromDeepLink = Boolean(
+      (location.hash || "").replace(/^#/, "") &&
+        validFilters.has((location.hash || "").replace(/^#/, "")),
+    );
+    applyFilter(initial, { scroll: fromDeepLink });
   })();
 </script>
