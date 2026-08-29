@@ -67,9 +67,9 @@ const scenes = workshopData.scenes as WorkshopScene[];
     </header>
     <div class="filter-tabs" role="tablist" aria-label="场景筛选">
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="all">全部</button>
-      <button class="filter-tab" role="tab" aria-selected="true" data-filter="driving">自动驾驶</button>
+      <button class="filter-tab" role="tab" aria-selected="true" data-filter="office">AI办公</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="driving">自动驾驶</button>
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="learning">教育学习</button>
-      <button class="filter-tab" role="tab" aria-selected="false" data-filter="office">日常办公</button>
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="career">职场求职</button>
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="marketing">市场营销</button>
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="more">更多场景</button>
@@ -81,7 +81,7 @@ const scenes = workshopData.scenes as WorkshopScene[];
           class="tools-scene"
           id={scene.id}
           data-scene={scene.id}
-          hidden={scene.id !== "driving"}
+          hidden={scene.id !== "office"}
         >
           <header class="tools-scene__head">
             <h2 class="tools-scene__title">{scene.title}</h2>
@@ -126,11 +126,11 @@ const scenes = workshopData.scenes as WorkshopScene[];
 
     function filterFromHash() {
       const hash = (location.hash || "").replace(/^#/, "");
-      return validFilters.has(hash) ? hash : "driving";
+      return validFilters.has(hash) ? hash : "office";
     }
 
     function applyFilter(filter, { syncHash = false, scroll = false } = {}) {
-      if (!validFilters.has(filter)) filter = "driving";
+      if (!validFilters.has(filter)) filter = "office";
 
       tabs.forEach((tab) => {
         tab.setAttribute(

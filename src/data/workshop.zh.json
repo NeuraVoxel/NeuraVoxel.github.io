@@ -1,10 +1,75 @@
 {
   "scenes": [
     {
+      "id": "office",
+      "title": "AI办公",
+      "countLabel": "2 项作品",
+      "loopSteps": [
+        "规划",
+        "执行",
+        "复盘",
+        "优化"
+      ],
+      "products": [
+        {
+          "id": "task-agent",
+          "name": "Task Agent",
+          "summary": "智能任务规划与执行助手。拆解、跟踪、推进工作项，每次复盘都让下一轮规划更精准。",
+          "status": "available",
+          "tags": [
+            {
+              "label": "规划",
+              "stage": "plan"
+            },
+            {
+              "label": "执行",
+              "stage": "execute"
+            },
+            {
+              "label": "复盘",
+              "stage": "review"
+            },
+            {
+              "label": "优化",
+              "stage": "optimize"
+            }
+          ],
+          "openUrl": "http://106.14.175.17:3100/"
+        },
+        {
+          "id": "token-calculator",
+          "name": "Token 计价器",
+          "summary": "多模型 Token 计价与成本对比工具。选模型、估用量、算费用，支撑办公场景的成本复盘。",
+          "status": "available",
+          "tags": [
+            {
+              "label": "规划",
+              "stage": "plan"
+            },
+            {
+              "label": "复盘",
+              "stage": "review"
+            },
+            {
+              "label": "优化",
+              "stage": "optimize"
+            }
+          ],
+          "openUrl": "https://www.neuravoxel.cn/token-calculator/"
+        }
+      ]
+    },
+    {
       "id": "driving",
       "title": "自动驾驶",
       "countLabel": "NeuraVoxel · 4 项作品",
-      "loopSteps": ["采集", "标注", "训练", "仿真", "回流"],
+      "loopSteps": [
+        "采集",
+        "标注",
+        "训练",
+        "仿真",
+        "回流"
+      ],
       "products": [
         {
           "id": "dmp",
@@ -12,9 +77,18 @@
           "summary": "数据集组织、版本管理、权限与分发中枢。驱动标注、训练、仿真等模块的数据回流。",
           "status": "available",
           "tags": [
-            { "label": "组织", "stage": "return" },
-            { "label": "分发", "stage": "return" },
-            { "label": "回流", "stage": "return" }
+            {
+              "label": "组织",
+              "stage": "return"
+            },
+            {
+              "label": "分发",
+              "stage": "return"
+            },
+            {
+              "label": "回流",
+              "stage": "return"
+            }
           ],
           "openUrl": "/modules/dmp/",
           "docUrl": "/docs/concepts/dmp-hub/"
@@ -24,7 +98,12 @@
           "name": "标注桥",
           "summary": "标注任务下发与结果回流。与 DMP 按清单对齐，保证版本一致。",
           "status": "available",
-          "tags": [{ "label": "标注", "stage": "process" }],
+          "tags": [
+            {
+              "label": "标注",
+              "stage": "process"
+            }
+          ],
           "openUrl": "/modules/annotation-bridge/",
           "docUrl": "/docs/integrations/annotation/"
         },
@@ -33,7 +112,12 @@
           "name": "训练桥",
           "summary": "版本化数据集拉取与训练产物登记。算法平台与 DMP 之间的数据契约。",
           "status": "available",
-          "tags": [{ "label": "训练", "stage": "train" }],
+          "tags": [
+            {
+              "label": "训练",
+              "stage": "train"
+            }
+          ],
           "openUrl": "/modules/training-bridge/",
           "docUrl": "/docs/integrations/training/"
         },
@@ -43,8 +127,14 @@
           "summary": "场景包分发与仿真评估回流。难例数据写回 DMP，启动下一轮迭代。",
           "status": "preview",
           "tags": [
-            { "label": "仿真", "stage": "simulate" },
-            { "label": "验证", "stage": "simulate" }
+            {
+              "label": "仿真",
+              "stage": "simulate"
+            },
+            {
+              "label": "验证",
+              "stage": "simulate"
+            }
           ],
           "openUrl": "/modules/simulation-bridge/",
           "docUrl": "/docs/integrations/simulation/"
@@ -55,7 +145,12 @@
       "id": "learning",
       "title": "教育学习",
       "countLabel": "1 项作品",
-      "loopSteps": ["输入", "练习", "反馈", "迭代"],
+      "loopSteps": [
+        "输入",
+        "练习",
+        "反馈",
+        "迭代"
+      ],
       "products": [
         {
           "id": "english-agent",
@@ -63,45 +158,24 @@
           "summary": "AI 英语对话与练习助手。每次对话都是学习闭环的一环——输入、练习、反馈、再输入。",
           "status": "available",
           "tags": [
-            { "label": "输入", "stage": "input" },
-            { "label": "练习", "stage": "practice" },
-            { "label": "反馈", "stage": "feedback" },
-            { "label": "迭代", "stage": "iterate" }
+            {
+              "label": "输入",
+              "stage": "input"
+            },
+            {
+              "label": "练习",
+              "stage": "practice"
+            },
+            {
+              "label": "反馈",
+              "stage": "feedback"
+            },
+            {
+              "label": "迭代",
+              "stage": "iterate"
+            }
           ],
           "openUrl": "http://106.14.175.17:3000/"
-        }
-      ]
-    },
-    {
-      "id": "office",
-      "title": "日常办公",
-      "countLabel": "2 项作品",
-      "loopSteps": ["规划", "执行", "复盘", "优化"],
-      "products": [
-        {
-          "id": "task-agent",
-          "name": "Task Agent",
-          "summary": "智能任务规划与执行助手。拆解、跟踪、推进工作项，每次复盘都让下一轮规划更精准。",
-          "status": "available",
-          "tags": [
-            { "label": "规划", "stage": "plan" },
-            { "label": "执行", "stage": "execute" },
-            { "label": "复盘", "stage": "review" },
-            { "label": "优化", "stage": "optimize" }
-          ],
-          "openUrl": "http://106.14.175.17:3100/"
-        },
-        {
-          "id": "token-calculator",
-          "name": "Token 计价器",
-          "summary": "多模型 Token 计价与成本对比工具。选模型、估用量、算费用，支撑办公场景的成本复盘。",
-          "status": "available",
-          "tags": [
-            { "label": "规划", "stage": "plan" },
-            { "label": "复盘", "stage": "review" },
-            { "label": "优化", "stage": "optimize" }
-          ],
-          "openUrl": "https://www.neuravoxel.cn/token-calculator/"
         }
       ]
     },
@@ -109,7 +183,12 @@
       "id": "career",
       "title": "职场求职",
       "countLabel": "1 项作品",
-      "loopSteps": ["发现", "准备", "投递", "复盘"],
+      "loopSteps": [
+        "发现",
+        "准备",
+        "投递",
+        "复盘"
+      ],
       "products": [
         {
           "id": "ai-moyu-job",
@@ -117,10 +196,22 @@
           "summary": "AI 职场求职助手。悄悄匹配岗位、打磨简历与面试准备，每次投递与复盘都让下一轮求职更精准。",
           "status": "available",
           "tags": [
-            { "label": "发现", "stage": "input" },
-            { "label": "准备", "stage": "practice" },
-            { "label": "投递", "stage": "execute" },
-            { "label": "复盘", "stage": "review" }
+            {
+              "label": "发现",
+              "stage": "input"
+            },
+            {
+              "label": "准备",
+              "stage": "practice"
+            },
+            {
+              "label": "投递",
+              "stage": "execute"
+            },
+            {
+              "label": "复盘",
+              "stage": "review"
+            }
           ],
           "openUrl": "https://work.light120.com/"
         }
@@ -130,7 +221,12 @@
       "id": "marketing",
       "title": "市场营销",
       "countLabel": "1 项作品",
-      "loopSteps": ["洞察", "创作", "分发", "优化"],
+      "loopSteps": [
+        "洞察",
+        "创作",
+        "分发",
+        "优化"
+      ],
       "products": [
         {
           "id": "shidaimen-geo",
@@ -138,10 +234,22 @@
           "summary": "生成式引擎优化（GEO）平台。让品牌在 AI 答案中被看见、被推荐——洞察需求、创作内容、多平台分发、监测回流，构建 AI 时代的营销闭环。",
           "status": "available",
           "tags": [
-            { "label": "洞察", "stage": "plan" },
-            { "label": "创作", "stage": "execute" },
-            { "label": "分发", "stage": "review" },
-            { "label": "优化", "stage": "optimize" }
+            {
+              "label": "洞察",
+              "stage": "plan"
+            },
+            {
+              "label": "创作",
+              "stage": "execute"
+            },
+            {
+              "label": "分发",
+              "stage": "review"
+            },
+            {
+              "label": "优化",
+              "stage": "optimize"
+            }
           ],
           "openUrl": "https://www.aitime.cloud/"
         }
