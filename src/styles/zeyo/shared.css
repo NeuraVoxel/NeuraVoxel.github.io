@@ -37,6 +37,35 @@
   --ww-measure: 40rem;
   --ww-wide: 72rem;
   --ww-nav-h: 4rem;
+
+  --ww-header-bg: rgba(8, 12, 18, 0.85);
+  --ww-signal-hover: #5ed4cc;
+  --ww-shadow: rgba(0, 0, 0, 0.45);
+  --ww-assistant-bird-bg: #0c1820;
+}
+
+html {
+  color-scheme: dark;
+}
+
+html[data-theme="light"] {
+  color-scheme: light;
+
+  --ww-void: #f2f5f8;
+  --ww-surface: #ffffff;
+  --ww-elevated: #e8eef4;
+  --ww-rule: #c8d2dc;
+  --ww-paper: #121820;
+  --ww-mist: #4a5a6a;
+  --ww-dim: #6a7a8a;
+
+  --ww-signal: #1a8a82;
+  --ww-signal-dim: #147068;
+  --ww-signal-glow: rgba(26, 138, 130, 0.14);
+  --ww-header-bg: rgba(242, 245, 248, 0.88);
+  --ww-signal-hover: #147068;
+  --ww-shadow: rgba(18, 24, 32, 0.12);
+  --ww-assistant-bird-bg: #dce8e6;
 }
 
 *,
@@ -80,7 +109,7 @@ a {
 }
 
 a:hover {
-  color: #5ed4cc;
+  color: var(--ww-signal-hover);
 }
 
 a:focus-visible,
@@ -116,7 +145,7 @@ button:focus-visible {
   justify-content: space-between;
   height: var(--ww-nav-h);
   padding: 0 var(--ww-page-x);
-  background: rgba(8, 12, 18, 0.85);
+  background: var(--ww-header-bg);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--ww-rule);
 }
@@ -283,7 +312,7 @@ button:focus-visible {
 }
 
 .btn--primary:hover {
-  background: #5ed4cc;
+  background: var(--ww-signal-hover);
   color: var(--ww-void);
 }
 
@@ -704,7 +733,7 @@ button:focus-visible {
   background: var(--ww-surface);
   border: 1px solid var(--ww-rule);
   border-radius: 16px;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
+  box-shadow: 0 12px 40px var(--ww-shadow);
   display: flex;
   flex-direction: column;
   max-height: min(28rem, calc(100vh - 6rem));
@@ -752,7 +781,7 @@ button:focus-visible {
 
 .assistant__avatar,
 .assistant__bird-wrap {
-  background-color: #0c1820;
+  background-color: var(--ww-assistant-bird-bg);
   background-image: url("./feifei-bird.svg");
   background-repeat: no-repeat;
   background-position: center;
@@ -899,7 +928,7 @@ button:focus-visible {
 }
 
 .assistant__send:hover {
-  background: #5ed4cc;
+  background: var(--ww-signal-hover);
 }
 
 .assistant__launcher {
@@ -912,7 +941,7 @@ button:focus-visible {
   border-radius: 999px;
   color: var(--ww-paper);
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 24px var(--ww-shadow);
   transition:
     border-color var(--ww-dur) var(--ww-ease),
     transform var(--ww-dur) var(--ww-ease),
@@ -940,7 +969,7 @@ button:focus-visible {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background-color: #0c1820;
+  background-color: var(--ww-assistant-bird-bg);
   background-image: url("./feifei-bird.svg");
   background-repeat: no-repeat;
   background-position: center;

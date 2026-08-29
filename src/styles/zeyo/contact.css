@@ -129,7 +129,7 @@
 }
 
 .contact-card__list a:hover {
-  color: #5ed4cc;
+  color: var(--ww-signal-hover);
 }
 
 .contact-wechat {
