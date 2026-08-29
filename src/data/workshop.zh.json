@@ -235,7 +235,7 @@
     {
       "id": "career",
       "title": "职场求职",
-      "countLabel": "1 项作品",
+      "countLabel": "2 项作品",
       "loopSteps": [
         "发现",
         "准备",
@@ -267,6 +267,39 @@
             }
           ],
           "openUrl": "https://work.light120.com/"
+        },
+        {
+          "id": "reactive-resume",
+          "name": "AI Resume",
+          "summary": "上传简历 → LLM解析 → 选择模版 → 生成简历 → LLM专业优化 → 导出简历。",
+          "status": "available",
+          "tags": [
+            {
+              "label": "上传简历",
+              "stage": "input"
+            },
+            {
+              "label": "LLM解析",
+              "stage": "process"
+            },
+            {
+              "label": "选择模版",
+              "stage": "plan"
+            },
+            {
+              "label": "生成简历",
+              "stage": "execute"
+            },
+            {
+              "label": "LLM专业优化",
+              "stage": "optimize"
+            },
+            {
+              "label": "导出简历",
+              "stage": "return"
+            }
+          ],
+          "openUrl": "https://rxresu.me/"
         }
       ]
     },
