@@ -216,6 +216,44 @@ button:focus-visible {
   color: var(--ww-paper);
 }
 
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ww-mist);
+  cursor: pointer;
+  transition: color var(--ww-dur) var(--ww-ease);
+}
+
+.theme-toggle:hover {
+  color: var(--ww-signal);
+}
+
+html[data-theme="light"] .theme-toggle__icon--moon {
+  display: none;
+}
+
+html[data-theme="light"] .theme-toggle__icon--sun {
+  display: block;
+}
+
+html[data-theme="dark"] .theme-toggle__icon--sun,
+html:not([data-theme]) .theme-toggle__icon--sun {
+  display: none;
+}
+
+html[data-theme="dark"] .theme-toggle__icon--moon,
+html:not([data-theme]) .theme-toggle__icon--moon {
+  display: block;
+}
+
 /* —— Shared layout —— */
 
 .ww-label {
