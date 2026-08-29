@@ -1,7 +1,7 @@
 # 白天 / 晚上主题切换设计
 
 **日期：** 2026-08-29  
-**状态：** 已批准  
+**状态：** 已实现  
 **范围：** 主站 `ZeyoLayout`（首页、工坊、文章、合作咨询）  
 **方案：** CSS 变量 + `html[data-theme]`
 
@@ -83,17 +83,19 @@
 | `--ww-rule` | `#243040` | `#c8d2dc` |
 | `--ww-paper` | `#dce4ec` | `#121820` |
 | `--ww-mist` | `#8898a8` | `#4a5a6a` |
-| `--ww-dim` | `#5a6a7a` | `#6a7a8a` |
-| `--ww-signal` | `#40b8b0` | `#1a8a82` |
-| `--ww-signal-dim` | `#2a7870` | `#147068` |
-| `--ww-signal-glow` | `rgba(64, 184, 176, 0.22)` | `rgba(26, 138, 130, 0.14)` |
+| `--ww-dim` | `#5a6a7a` | `#5a6a7a` |
+| `--ww-signal` | `#40b8b0` | `#147068` |
+| `--ww-signal-dim` | `#2a7870` | `#0f5f58` |
+| `--ww-signal-glow` | `rgba(64, 184, 176, 0.22)` | `rgba(20, 112, 104, 0.14)` |
 
 新增（替换硬编码）：
 
 | Token | 深色 | 浅色 |
 |-------|------|------|
 | `--ww-header-bg` | `rgba(8, 12, 18, 0.85)` | `rgba(242, 245, 248, 0.88)` |
-| `--ww-signal-hover` | `#5ed4cc` | `#147068` |
+| `--ww-signal-hover` | `#5ed4cc` | `#0f5f58` |
+
+> **实现备注：** 浅色 `--ww-signal` / `--ww-signal-dim` / `--ww-signal-hover` / `--ww-signal-glow` 与 `--ww-dim` 相对原稿加深，以满足 WCAG AA 对比度（文字与控件在 `#f2f5f8` / `#ffffff` 底上可读）。
 
 场景色（`--ww-perceive` 等）与 `--ww-ok` / `--ww-warn` / `--ww-planned` 两套主题共用，不单独改。
 
