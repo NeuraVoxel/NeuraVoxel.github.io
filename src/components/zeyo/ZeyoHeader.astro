@@ -37,7 +37,6 @@ function isActive(href: string): boolean {
     <button
       type="button"
       class="theme-toggle"
-      id="theme-toggle"
       aria-label="切换到白天模式"
       data-theme-toggle
     >
@@ -76,11 +75,14 @@ function isActive(href: string): boolean {
 </header>
 
 <script>
+  function getTheme(): "light" | "dark" {
+    return document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+  }
+
   function syncThemeToggle(btn: HTMLButtonElement) {
-    const theme = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
     btn.setAttribute(
       "aria-label",
-      theme === "dark" ? "切换到白天模式" : "切换到晚上模式",
+      getTheme() === "dark" ? "切换到白天模式" : "切换到晚上模式",
     );
   }
 
@@ -97,10 +99,7 @@ function isActive(href: string): boolean {
   if (btn) {
     syncThemeToggle(btn);
     btn.addEventListener("click", () => {
-      const current =
-        document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
-      const next = current === "dark" ? "light" : "dark";
-      setTheme(next);
+      setTheme(getTheme() === "dark" ? "light" : "dark");
       syncThemeToggle(btn);
     });
   }

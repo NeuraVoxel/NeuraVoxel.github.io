@@ -236,21 +236,15 @@ button:focus-visible {
   color: var(--ww-signal);
 }
 
+.theme-toggle__icon--sun {
+  display: none;
+}
+
 html[data-theme="light"] .theme-toggle__icon--moon {
   display: none;
 }
 
 html[data-theme="light"] .theme-toggle__icon--sun {
-  display: block;
-}
-
-html[data-theme="dark"] .theme-toggle__icon--sun,
-html:not([data-theme]) .theme-toggle__icon--sun {
-  display: none;
-}
-
-html[data-theme="dark"] .theme-toggle__icon--moon,
-html:not([data-theme]) .theme-toggle__icon--moon {
   display: block;
 }
 
