@@ -159,17 +159,40 @@
     {
       "id": "digital-twin",
       "title": "数字孪生",
-      "countLabel": "规划中",
+      "countLabel": "1 项作品",
       "loopSteps": [
-        "建模",
-        "仿真",
-        "监测",
-        "优化"
+        "采集",
+        "重建",
+        "精修",
+        "交付"
       ],
-      "products": [],
-      "empty": true,
-      "emptyTitle": "数字孪生即将开放",
-      "emptyDesc": "虚实映射、仿真验证与运行监测回流，形成可迭代的孪生闭环。NeuraVoxel 正在逐个攻克环节。"
+      "products": [
+        {
+          "id": "3dgs-workflow",
+          "name": "3DGS工作流",
+          "summary": "一条流水线，四个站点：采集、重建、精修与交付串成闭环。",
+          "status": "available",
+          "tags": [
+            {
+              "label": "采集",
+              "stage": "perceive"
+            },
+            {
+              "label": "重建",
+              "stage": "process"
+            },
+            {
+              "label": "精修",
+              "stage": "execute"
+            },
+            {
+              "label": "交付",
+              "stage": "return"
+            }
+          ],
+          "openUrl": "https://3dgsflow.com/"
+        }
+      ]
     },
     {
       "id": "learning",
