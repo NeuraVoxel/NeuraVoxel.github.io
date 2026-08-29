@@ -142,6 +142,36 @@
       ]
     },
     {
+      "id": "embodied",
+      "title": "具身智能",
+      "countLabel": "规划中",
+      "loopSteps": [
+        "感知",
+        "决策",
+        "执行",
+        "回流"
+      ],
+      "products": [],
+      "empty": true,
+      "emptyTitle": "具身智能即将开放",
+      "emptyDesc": "演示数据与真机反馈经同一数据契约组织，仿真与实机闭环缩短迭代周期。NeuraVoxel 正在识别环上断点。"
+    },
+    {
+      "id": "digital-twin",
+      "title": "数字孪生",
+      "countLabel": "规划中",
+      "loopSteps": [
+        "建模",
+        "仿真",
+        "监测",
+        "优化"
+      ],
+      "products": [],
+      "empty": true,
+      "emptyTitle": "数字孪生即将开放",
+      "emptyDesc": "虚实映射、仿真验证与运行监测回流，形成可迭代的孪生闭环。NeuraVoxel 正在逐个攻克环节。"
+    },
+    {
       "id": "learning",
       "title": "教育学习",
       "countLabel": "1 项作品",
