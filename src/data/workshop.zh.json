@@ -3,7 +3,7 @@
     {
       "id": "office",
       "title": "AI办公",
-      "countLabel": "2 项作品",
+      "countLabel": "3 项作品",
       "loopSteps": [
         "规划",
         "执行",
@@ -56,6 +56,39 @@
             }
           ],
           "openUrl": "https://www.neuravoxel.cn/token-calculator/"
+        },
+        {
+          "id": "dsh-turn-cost",
+          "name": "DSH Turn Cost",
+          "summary": "DeepSeek Harness 插件，在每轮对话完成后展示预估人民币费用，支撑 AI 办公成本复盘。",
+          "status": "available",
+          "tags": [
+            {
+              "label": "inbox",
+              "stage": "input"
+            },
+            {
+              "label": "turn/step",
+              "stage": "plan"
+            },
+            {
+              "label": "LLM",
+              "stage": "execute"
+            },
+            {
+              "label": "工具",
+              "stage": "process"
+            },
+            {
+              "label": "session log",
+              "stage": "review"
+            },
+            {
+              "label": "Cost",
+              "stage": "optimize"
+            }
+          ],
+          "openUrl": "https://github.com/NeuraVoxel/dsh-plugin-turn-cost"
         }
       ]
     },
