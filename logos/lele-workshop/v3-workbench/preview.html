@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>乐乐工坊 Logo v3 · 案上成器</title>
+    <style>
+      :root { --bg:#f3ebe3; --ink:#2c2416; --card:#fff8f0; --dark:#1a1612; }
+      * { box-sizing: border-box; }
+      body {
+        margin: 0; padding: 2rem clamp(1rem,4vw,3rem) 4rem;
+        font-family: "PingFang SC","Hiragino Sans GB","Noto Sans SC",sans-serif;
+        background: radial-gradient(ellipse at 20% 0%,#f0dcc8 0%,transparent 50%), var(--bg);
+        color: var(--ink);
+      }
+      h1 { font-size: 1.75rem; font-weight: 650; margin: 0 0 .35rem; }
+      .lead { margin: 0 0 2rem; opacity: .75; max-width: 40rem; }
+      h2 { font-size: 1.05rem; margin: 2.25rem 0 .85rem; }
+      .row { display: grid; grid-template-columns: repeat(auto-fill,minmax(200px,1fr)); gap: 1rem; }
+      .row.wide { grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); }
+      .card {
+        background: var(--card); border-radius: 12px; padding: 1.25rem;
+        display: flex; flex-direction: column; align-items: center; gap: .75rem;
+        border: 1px solid rgba(44,36,22,.08);
+      }
+      .card.dark { background: var(--dark); color: #fff8f0; }
+      .icon { width: 96px; height: 96px; }
+      .hz { width: 100%; max-width: 300px; }
+      .vt { width: 100px; }
+      .wm { width: 100%; max-width: 220px; }
+      .label { font-size: .8rem; opacity: .7; }
+      .swatches { display: flex; flex-wrap: wrap; gap: .75rem; }
+      .swatch { display: flex; align-items: center; gap: .5rem; font-size: .85rem; }
+      .swatch i { width: 28px; height: 28px; border-radius: 6px; border: 1px solid rgba(0,0,0,.08); }
+    </style>
+  </head>
+  <body>
+    <h1>乐乐工坊 · v3 案上成器</h1>
+    <p class="lead">厚案面 + 台上成品 + 蜜金完成点。v1/v2 已保留不覆盖。</p>
+    <h2>色板</h2>
+    <div class="swatches">
+      <div class="swatch"><i style="background:#8B5E3C"></i>案面</div>
+      <div class="swatch"><i style="background:#6B4530"></i>台沿</div>
+      <div class="swatch"><i style="background:#C45C26"></i>成器</div>
+      <div class="swatch"><i style="background:#E8A838"></i>完成点</div>
+    </div>
+    <h2>图标</h2>
+    <div class="row">
+      <div class="card"><img class="icon" src="icon/full-color.svg" alt=""/><span class="label">full-color</span></div>
+      <div class="card"><img class="icon" src="icon/mono-dark.svg" alt=""/><span class="label">mono-dark</span></div>
+      <div class="card dark"><img class="icon" src="icon/mono-light.svg" alt=""/><span class="label">mono-light</span></div>
+    </div>
+    <h2>横排</h2>
+    <div class="row wide">
+      <div class="card"><img class="hz" src="horizontal/full-color.svg" alt=""/><span class="label">horizontal</span></div>
+      <div class="card"><img class="hz" src="horizontal/mono-dark.svg" alt=""/><span class="label">mono-dark</span></div>
+      <div class="card dark"><img class="hz" src="horizontal/mono-light.svg" alt=""/><span class="label">mono-light</span></div>
+    </div>
+    <h2>竖排</h2>
+    <div class="row">
+      <div class="card"><img class="vt" src="vertical/full-color.svg" alt=""/><span class="label">vertical</span></div>
+      <div class="card"><img class="vt" src="vertical/mono-dark.svg" alt=""/><span class="label">mono-dark</span></div>
+      <div class="card dark"><img class="vt" src="vertical/mono-light.svg" alt=""/><span class="label">mono-light</span></div>
+    </div>
+    <h2>字标</h2>
+    <div class="row wide">
+      <div class="card"><img class="wm" src="wordmark/full-color.svg" alt=""/><span class="label">wordmark</span></div>
+      <div class="card"><img class="wm" src="wordmark/mono-dark.svg" alt=""/><span class="label">mono-dark</span></div>
+      <div class="card dark"><img class="wm" src="wordmark/mono-light.svg" alt=""/><span class="label">mono-light</span></div>
+    </div>
+  </body>
+</html>

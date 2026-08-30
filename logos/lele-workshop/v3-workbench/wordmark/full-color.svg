@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" role="img" aria-labelledby="title desc">
+  <title id="title">乐乐工坊</title>
+  <desc id="desc">字标全彩</desc>
+  <defs><style>
+      .cn { font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif; font-size: 40px; font-weight: 600; fill: #8B5E3C; }
+      .spark { fill: #E8A838; }
+    </style></defs>
+  <circle class="spark" cx="14" cy="32" r="5"/>
+  <text class="cn" x="28" y="44">乐乐工坊</text>
+</svg>
