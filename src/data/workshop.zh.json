@@ -169,7 +169,7 @@
       "products": [
         {
           "id": "3dgs-workflow",
-          "name": "3DGS工作流",
+          "name": "3DGS Agent",
           "summary": "一条流水线，四个站点：采集、重建、精修与交付串成闭环。",
           "status": "available",
           "tags": [
