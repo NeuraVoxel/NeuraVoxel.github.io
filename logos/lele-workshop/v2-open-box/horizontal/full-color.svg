@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" role="img" aria-labelledby="title desc">
+  <title id="title">乐乐工坊</title>
+  <desc id="desc">开盒一瞬横排组合</desc>
+  <defs><style>
+      .body { fill: #C45C26; }
+      .lid { fill: #8B5E3C; }
+      .cavity { fill: #6B4530; }
+      .spark { fill: #E8A838; }
+      .cn {
+        font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+        font-size: 36px;
+        font-weight: 600;
+        fill: #8B5E3C;
+      }
+      .en {
+        font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        fill: #C45C26;
+      }
+</style></defs>
+  <g transform="translate(48 50)">
+    <!-- box body -->
+    <rect class="body" x="-24" y="-2" width="48" height="30" rx="5.5"/>
+    <!-- cavity / open mouth -->
+    <path class="cavity" d="M-18 0 H18 L14 8 H-14 Z"/>
+    <!-- lid hinged left, lifted -->
+    <g transform="rotate(-26 -20 0)">
+      <rect class="lid" x="-22" y="-16" width="48" height="12" rx="4"/>
+      <!-- lid top bevel -->
+      <path class="body" d="M-20 -16 L-16 -22 H26 L22 -16 Z" opacity="0.92"/>
+    </g>
+    <!-- surprise spark in the gap -->
+    <circle class="spark" cx="10" cy="-4" r="4.8"/>
+  </g>
+  <text class="cn" x="108" y="52">乐乐工坊</text>
+  <text class="en" x="110" y="74">Lele Workshop</text>
+</svg>
