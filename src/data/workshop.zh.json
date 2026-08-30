@@ -270,7 +270,7 @@
         },
         {
           "id": "reactive-resume",
-          "name": "AI Resume",
+          "name": "Resume Agent",
           "summary": "上传简历 → LLM解析 → 选择模版 → 生成简历 → LLM专业优化 → 导出简历。",
           "status": "available",
           "tags": [
