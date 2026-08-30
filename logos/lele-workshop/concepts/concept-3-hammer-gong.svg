@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="概念3：锤×工">
+  <defs>
+    <style>
+      .head { fill: #C45C26; }
+      .handle { fill: #8B5E3C; }
+      .gong { fill: none; stroke: #E8A838; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+      .dot { fill: #E8A838; }
+    </style>
+  </defs>
+  <!-- mallet on left, upright soft tilt -->
+  <g transform="translate(34 50) rotate(-8)">
+    <rect class="head" x="-16" y="-32" width="32" height="13" rx="3.2"/>
+    <rect class="handle" x="-4.5" y="-20" width="9" height="44" rx="3.2"/>
+  </g>
+  <!-- geometric 工 on right -->
+  <g transform="translate(64 50)">
+    <path class="gong" d="M-12 -18 H12 M0 -18 V18 M-12 18 H12"/>
+    <circle class="dot" cx="0" cy="0" r="3"/>
+  </g>
+</svg>

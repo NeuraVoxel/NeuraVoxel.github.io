@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="概念2b：单锤下乐弧">
+  <defs>
+    <style>
+      .head { fill: #C45C26; }
+      .handle { fill: #8B5E3C; }
+      .smile { fill: none; stroke: #E8A838; stroke-width: 3.2; stroke-linecap: round; }
+      .dot { fill: #E8A838; }
+    </style>
+  </defs>
+  <g transform="translate(48 44)">
+    <rect class="head" x="-18" y="-30" width="36" height="14" rx="3.5"/>
+    <rect class="handle" x="-5" y="-17" width="10" height="40" rx="3.5"/>
+    <circle class="dot" cx="0" cy="8" r="3.5"/>
+  </g>
+  <path class="smile" d="M30 72 Q48 84 66 72"/>
+</svg>
