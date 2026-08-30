@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 96" role="img" aria-labelledby="title desc">
+  <title id="title">乐乐工坊</title>
+  <desc id="desc">横排组合单色深版</desc>
+  <defs>
+    <style>
+      .m { fill: #2C2416; }
+      .smile { fill: none; stroke: #2C2416; stroke-width: 3; stroke-linecap: round; }
+      .cn {
+        font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+        font-size: 36px;
+        font-weight: 600;
+        fill: #2C2416;
+      }
+      .en {
+        font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Helvetica Neue", sans-serif;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        fill: #2C2416;
+        opacity: 0.72;
+      }
+    </style>
+  </defs>
+  <g transform="translate(48 48)">
+    <g transform="rotate(-40)">
+      <rect class="m" x="-15" y="-30" width="30" height="13" rx="3.2"/>
+      <rect class="m" x="-4.2" y="-18" width="8.4" height="42" rx="3.2"/>
+    </g>
+    <g transform="rotate(40)">
+      <rect class="m" x="-15" y="-30" width="30" height="13" rx="3.2"/>
+      <rect class="m" x="-4.2" y="-18" width="8.4" height="42" rx="3.2"/>
+    </g>
+    <path class="smile" d="M-12 11 Q0 20 12 11"/>
+    <circle class="m" cx="0" cy="0" r="4.2"/>
+  </g>
+  <text class="cn" x="108" y="52">乐乐工坊</text>
+  <text class="en" x="110" y="74">Lele Workshop</text>
+</svg>

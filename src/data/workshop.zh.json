@@ -245,7 +245,7 @@
       "products": [
         {
           "id": "ai-moyu-job",
-          "name": "AI摸鱼求职",
+          "name": "Job Agent",
           "summary": "AI 职场求职助手。悄悄匹配岗位、打磨简历与面试准备，每次投递与复盘都让下一轮求职更精准。",
           "status": "available",
           "tags": [

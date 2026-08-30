@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>乐乐工坊 Logo 预览</title>
+    <style>
+      :root {
+        --bg: #f3ebe3;
+        --ink: #2c2416;
+        --card: #fff8f0;
+        --dark: #1a1612;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 2rem clamp(1rem, 4vw, 3rem) 4rem;
+        font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", sans-serif;
+        background:
+          radial-gradient(ellipse at 20% 0%, #f0dcc8 0%, transparent 50%),
+          radial-gradient(ellipse at 90% 20%, #e8c9a8 0%, transparent 45%),
+          var(--bg);
+        color: var(--ink);
+      }
+      h1 {
+        font-size: 1.75rem;
+        font-weight: 650;
+        margin: 0 0 0.35rem;
+      }
+      .lead {
+        margin: 0 0 2rem;
+        opacity: 0.75;
+        max-width: 40rem;
+      }
+      h2 {
+        font-size: 1.05rem;
+        margin: 2.25rem 0 0.85rem;
+        font-weight: 600;
+      }
+      .row {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+      }
+      .row.wide {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      }
+      .card {
+        background: var(--card);
+        border-radius: 12px;
+        padding: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+        border: 1px solid rgba(44, 36, 22, 0.08);
+      }
+      .card.dark {
+        background: var(--dark);
+        color: #fff8f0;
+      }
+      .card img,
+      .card object {
+        max-width: 100%;
+        height: auto;
+      }
+      .card .icon {
+        width: 96px;
+        height: 96px;
+      }
+      .card .hz {
+        width: 100%;
+        max-width: 300px;
+      }
+      .card .vt {
+        width: 100px;
+      }
+      .card .wm {
+        width: 100%;
+        max-width: 220px;
+      }
+      .label {
+        font-size: 0.8rem;
+        opacity: 0.7;
+      }
+      .swatches {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 0.5rem;
+      }
+      .swatch {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.85rem;
+      }
+      .swatch i {
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        display: block;
+        border: 1px solid rgba(0, 0, 0, 0.08);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>乐乐工坊 · 双乐锤印</h1>
+    <p class="lead">独立工坊标志预览 — 短视频 / 自媒体。色板与母品牌青绿闭环弱关联。</p>
+
+    <h2>色板</h2>
+    <div class="swatches">
+      <div class="swatch"><i style="background:#C45C26"></i>#C45C26 陶赭</div>
+      <div class="swatch"><i style="background:#8B5E3C"></i>#8B5E3C 暖木</div>
+      <div class="swatch"><i style="background:#E8A838"></i>#E8A838 蜜金</div>
+      <div class="swatch"><i style="background:#2C2416"></i>#2C2416 深</div>
+      <div class="swatch"><i style="background:#FFF8F0; border-color:#ccc"></i>#FFF8F0 浅</div>
+    </div>
+
+    <h2>图标（头像 / 水印）</h2>
+    <div class="row">
+      <div class="card">
+        <img class="icon" src="icon/full-color.svg" alt="全彩图标" />
+        <span class="label">full-color</span>
+      </div>
+      <div class="card">
+        <img class="icon" src="icon/mono-dark.svg" alt="深色图标" />
+        <span class="label">mono-dark</span>
+      </div>
+      <div class="card dark">
+        <img class="icon" src="icon/mono-light.svg" alt="浅色图标" />
+        <span class="label">mono-light</span>
+      </div>
+    </div>
+
+    <h2>横排（片头 / 片尾）</h2>
+    <div class="row wide">
+      <div class="card">
+        <img class="hz" src="horizontal/full-color.svg" alt="横排全彩" />
+        <span class="label">horizontal / full-color</span>
+      </div>
+      <div class="card">
+        <img class="hz" src="horizontal/mono-dark.svg" alt="横排深色" />
+        <span class="label">horizontal / mono-dark</span>
+      </div>
+      <div class="card dark">
+        <img class="hz" src="horizontal/mono-light.svg" alt="横排浅色" />
+        <span class="label">horizontal / mono-light</span>
+      </div>
+    </div>
+
+    <h2>竖排（封面 / 故事）</h2>
+    <div class="row">
+      <div class="card">
+        <img class="vt" src="vertical/full-color.svg" alt="竖排全彩" />
+        <span class="label">vertical / full-color</span>
+      </div>
+      <div class="card">
+        <img class="vt" src="vertical/mono-dark.svg" alt="竖排深色" />
+        <span class="label">vertical / mono-dark</span>
+      </div>
+      <div class="card dark">
+        <img class="vt" src="vertical/mono-light.svg" alt="竖排浅色" />
+        <span class="label">vertical / mono-light</span>
+      </div>
+    </div>
+
+    <h2>字标</h2>
+    <div class="row wide">
+      <div class="card">
+        <img class="wm" src="wordmark/full-color.svg" alt="字标全彩" />
+        <span class="label">wordmark / full-color</span>
+      </div>
+      <div class="card">
+        <img class="wm" src="wordmark/mono-dark.svg" alt="字标深色" />
+        <span class="label">wordmark / mono-dark</span>
+      </div>
+      <div class="card dark">
+        <img class="wm" src="wordmark/mono-light.svg" alt="字标浅色" />
+        <span class="label">wordmark / mono-light</span>
+      </div>
+    </div>
+  </body>
+</html>

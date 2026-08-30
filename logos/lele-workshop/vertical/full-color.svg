@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 200" role="img" aria-labelledby="title desc">
+  <title id="title">乐乐工坊</title>
+  <desc id="desc">双乐锤印竖排组合</desc>
+  <defs>
+    <style>
+      .head { fill: #C45C26; }
+      .handle { fill: #8B5E3C; }
+      .smile { fill: none; stroke: #E8A838; stroke-width: 3; stroke-linecap: round; }
+      .dot { fill: #E8A838; }
+      .cn {
+        font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Microsoft YaHei", sans-serif;
+        font-size: 28px;
+        font-weight: 600;
+        fill: #8B5E3C;
+        text-anchor: middle;
+      }
+      .en {
+        font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans SC", "Helvetica Neue", sans-serif;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        fill: #C45C26;
+        text-anchor: middle;
+      }
+    </style>
+  </defs>
+  <g transform="translate(80 72)">
+    <g transform="rotate(-40)">
+      <rect class="head" x="-15" y="-30" width="30" height="13" rx="3.2"/>
+      <rect class="handle" x="-4.2" y="-18" width="8.4" height="42" rx="3.2"/>
+    </g>
+    <g transform="rotate(40)">
+      <rect class="head" x="-15" y="-30" width="30" height="13" rx="3.2"/>
+      <rect class="handle" x="-4.2" y="-18" width="8.4" height="42" rx="3.2"/>
+    </g>
+    <path class="smile" d="M-12 11 Q0 20 12 11"/>
+    <circle class="dot" cx="0" cy="0" r="4.2"/>
+  </g>
+  <text class="cn" x="80" y="158">乐乐工坊</text>
+  <text class="en" x="80" y="180">Lele Workshop</text>
+</svg>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-labelledby="title desc">
+  <title id="title">????</title>
+  <desc id="desc">????????????????</desc>
+  <defs>
+    <style>
+      .m { fill: #2C2416; }
+      .smile { fill: none; stroke: #2C2416; stroke-width: 3; stroke-linecap: round; }
+    </style>
+  </defs>
+  <g transform="translate(48 48)">
+    <g transform="rotate(-40)">
+      <rect class="m" x="-15" y="-30" width="30" height="13" rx="3.2"/>
+      <rect class="m" x="-4.2" y="-18" width="8.4" height="42" rx="3.2"/>
+    </g>
+    <g transform="rotate(40)">
+      <rect class="m" x="-15" y="-30" width="30" height="13" rx="3.2"/>
+      <rect class="m" x="-4.2" y="-18" width="8.4" height="42" rx="3.2"/>
+    </g>
+    <path class="smile" d="M-12 11 Q0 20 12 11"/>
+    <circle class="m" cx="0" cy="0" r="4.2"/>
+  </g>
+</svg>
