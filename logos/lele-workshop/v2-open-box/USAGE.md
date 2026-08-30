@@ -35,3 +35,14 @@
 - 勿拉伸、改色、加阴影光晕  
 
 本地预览：打开 `preview.html`。
+
+## PNG 导出（透明底）
+
+目录：`png/`（与 SVG 同结构）
+
+| 版式 | 宽度 |
+|------|------|
+| icon | 1024px |
+| horizontal | 2048px |
+| vertical | 1280px |
+| wordmark | 1600px |
