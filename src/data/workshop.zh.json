@@ -3,7 +3,7 @@
     {
       "id": "office",
       "title": "AI办公",
-      "countLabel": "3 项作品",
+      "countLabel": "4 项作品",
       "loopSteps": [
         "规划",
         "执行",
@@ -89,6 +89,31 @@
             }
           ],
           "openUrl": "https://github.com/NeuraVoxel/dsh-plugin-turn-cost"
+        },
+        {
+          "id": "task-skill",
+          "name": "Task Skill",
+          "summary": "一组 Cursor Agent Skill：把仓库根目录的 TODO.md 变成「认领 → 开发 → 完成 → 合并」工作流。账本只在 primary（主工作区）上改；并行开发用 git worktree。",
+          "status": "available",
+          "tags": [
+            {
+              "label": "认领",
+              "stage": "plan"
+            },
+            {
+              "label": "开发",
+              "stage": "execute"
+            },
+            {
+              "label": "完成",
+              "stage": "review"
+            },
+            {
+              "label": "合并",
+              "stage": "optimize"
+            }
+          ],
+          "openUrl": "https://github.com/NeuraVoxel/task-skill"
         }
       ]
     },
