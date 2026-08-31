@@ -339,7 +339,7 @@
     {
       "id": "marketing",
       "title": "市场营销",
-      "countLabel": "1 项作品",
+      "countLabel": "2 项作品",
       "loopSteps": [
         "洞察",
         "创作",
@@ -371,6 +371,31 @@
             }
           ],
           "openUrl": "https://www.aitime.cloud/"
+        },
+        {
+          "id": "geoflow",
+          "name": "GeoFlow",
+          "summary": "让全球知识成为 AI 引用的可信答案。",
+          "status": "available",
+          "tags": [
+            {
+              "label": "接入企业知识",
+              "stage": "plan"
+            },
+            {
+              "label": "编排 GEO 任务",
+              "stage": "execute"
+            },
+            {
+              "label": "连接发布通道",
+              "stage": "review"
+            },
+            {
+              "label": "观测 AI 可见性",
+              "stage": "optimize"
+            }
+          ],
+          "openUrl": "https://www.geoflow.me/"
         }
       ]
     },
