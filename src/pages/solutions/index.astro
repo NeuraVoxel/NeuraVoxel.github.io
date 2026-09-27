@@ -25,9 +25,51 @@ const statusLabels: Record<string, string> = {
     <p class="ww-label">Solutions</p>
     <h1 class="page-head__title">方案</h1>
     <p class="page-head__desc">
-      一套方法，落到各行各业。方案 = 体系 → 行业：先把不确定性收敛成体系，再把体系落进具体的业务链路。
+      一套方法，落到各行各业——但落到每个行业，都必须<strong>具体问题具体分析</strong>。矛盾的普遍性使方法可以复用，矛盾的特殊性决定落地不能照搬。方案 = 体系 → 行业：先把不确定性收敛成体系，再按每个行业的具体矛盾，落进它的业务链路。
     </p>
   </header>
+
+  <section class="ww-section" aria-labelledby="solutions-stance">
+    <div class="ww-section__inner">
+      <header class="ww-section__head">
+        <p class="ww-label">Methodological Stance</p>
+        <h2 class="ww-section__title" id="solutions-stance">方法论立场</h2>
+        <p class="ww-section__desc">
+          共性与个性的关系，决定了一套方法该如何落地。
+        </p>
+      </header>
+
+      <div class="stance-grid">
+        <article class="stance-card">
+          <p class="stance-card__label">共性 · 普遍性</p>
+          <h3 class="stance-card__title">方法可以复用</h3>
+          <p class="stance-card__body">
+            所有行业的 AI 落地，都面对同一个根本矛盾：概率性的模型与确定性的交付。四道防线与闭环结构因此是通用的——数据治理、工作流编排、AI 护栏、人机审核，不因行业而改变。
+          </p>
+        </article>
+        <article class="stance-card">
+          <p class="stance-card__label">个性 · 特殊性</p>
+          <h3 class="stance-card__title">落地必须具体分析</h3>
+          <p class="stance-card__body">
+            但每个行业的具体矛盾不同：自动驾驶的矛盾在长尾场景与责任归属，金融的矛盾在合规与可审计，医疗的矛盾在证据与容错边界。不研究这些特殊性，把体系原样套下去，就是本本主义。
+          </p>
+        </article>
+        <article class="stance-card">
+          <p class="stance-card__label">共性 → 个性</p>
+          <h3 class="stance-card__title">在具体分析中复用</h3>
+          <p class="stance-card__body">
+            体系提供的是问题清单与工程组件，不是现成答案。进入一个行业，先分析它的具体矛盾，再决定每一道防线如何配置、阈值定在哪里、责任如何划分——这才是"一套方法，落到各行各业"的正确方式。
+          </p>
+        </article>
+      </div>
+
+      <blockquote class="stance-quote">
+        马克思主义的最本质的东西，马克思主义的活的灵魂，就在于具体地分析具体的情况。
+      </blockquote>
+    </div>
+  </section>
+
+  <hr class="ww-rule" />
 
   <section class="ww-section" aria-labelledby="solutions-systems">
     <div class="ww-section__inner">
@@ -35,7 +77,7 @@ const statusLabels: Record<string, string> = {
         <p class="ww-label">Solution Systems</p>
         <h2 class="ww-section__title" id="solutions-systems">方案体系</h2>
         <p class="ww-section__desc">
-          每个体系是一套可复制的工程底座，下面挂着它在各个行业的具体落地方案。
+          每个体系是一套可复用的工程底座；但进入不同行业，必须按该行业的具体矛盾重新具体化——不做本本主义式的照搬。
         </p>
       </header>
 

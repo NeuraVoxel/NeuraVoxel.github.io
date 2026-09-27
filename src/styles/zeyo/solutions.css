@@ -49,6 +49,55 @@
   color: var(--ww-mist);
 }
 
+/* 方法论立场 */
+
+.stance-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+  gap: 1rem;
+}
+
+.stance-card {
+  padding: 1.5rem;
+  background: var(--ww-surface);
+  border: 1px solid var(--ww-rule);
+  border-radius: 2px;
+}
+
+.stance-card__label {
+  font-family: var(--ww-font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ww-signal);
+  margin: 0 0 0.5rem;
+}
+
+.stance-card__title {
+  font-family: var(--ww-font-display);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  color: var(--ww-paper);
+  margin: 0 0 0.625rem;
+}
+
+.stance-card__body {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--ww-mist);
+  margin: 0;
+}
+
+.stance-quote {
+  margin: 2rem 0 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--ww-signal-dim);
+  font-family: var(--ww-font-display);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--ww-paper);
+}
+
 /* 体系卡片 */
 
 .solution-grid {
