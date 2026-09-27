@@ -1,0 +1,297 @@
+---
+/**
+ * 工程化收敛体系示意图（原生 SVG 重绘版）
+ * 结构：概率性大模型 → 工程化收敛（四道防线漏斗）→ 确定性商业交付
+ * 风格：与站点 zeyo 主题一致的仪表/CAD 面板风格，颜色走 --ww-* 设计令牌
+ */
+
+// 确定性伪随机（构建期生成，渲染稳定）
+const seeded = (start: number) => () =>
+  (start = (start * 9301 + 49297) % 233280) / 233280;
+const rand = seeded(42);
+
+// 左侧发散散点：从面板左缘收敛至一点
+const scatter = Array.from({ length: 40 }, () => ({
+  x: 40 + rand() * 180,
+  y: 180 + rand() * 360,
+  r: 1.2 + rand() * 1.8,
+  o: 0.15 + rand() * 0.55,
+  warn: rand() > 0.9,
+}));
+
+const streams = Array.from({ length: 12 }, (_, i) => {
+  const y0 = 190 + (i * 340) / 11 + (rand() - 0.5) * 24;
+  return { d: `M36 ${y0.toFixed(1)} C 150 ${y0.toFixed(1)}, 200 ${(360 + (y0 - 360) * 0.25).toFixed(1)}, 284 360`, o: 0.12 + rand() * 0.3 };
+});
+
+const defenses = ["数据治理", "工作流编排", "AI 护栏", "人机审核"];
+const traits = ["可靠性", "可控性", "可审计", "可扩展"];
+const outcomes = [
+  { zh: "稳定输出", en: "STABLE" },
+  { zh: "可控风险", en: "CONTROLLED" },
+  { zh: "可验证结果", en: "VERIFIABLE" },
+  { zh: "可重复交付", en: "REPEATABLE" },
+];
+---
+
+<svg
+  class="cvd"
+  viewBox="0 0 1200 620"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="工程化收敛体系：概率性大模型经数据治理、工作流编排、AI 护栏、人机审核四道防线收敛，形成稳定、可控、可验证、可重复的确定性商业交付；交付反馈回流，构成可信闭环"
+>
+  <defs>
+    <marker id="cvd-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" class="cvd-arrow-fill"></path>
+    </marker>
+    <marker id="cvd-arrow-mist" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 1.5 L8 5 L0 8.5 Z" class="cvd-arrow-fill--mist"></path>
+    </marker>
+  </defs>
+
+  <!-- ═══ 面板 01：概率性大模型 ═══ -->
+  <g class="cvd-panel">
+    <rect x="16" y="64" width="304" height="540"></rect>
+    <path class="cvd-corner" d="M16 84 V64 H36"></path>
+    <path class="cvd-corner" d="M300 604 H320 V584"></path>
+    <text class="cvd-idx" x="36" y="98">01 · PROBABILISTIC</text>
+    <text class="cvd-title" x="36" y="130">概率性大模型</text>
+
+    <g class="cvd-stream">
+      {streams.map((s) => <path d={s.d} opacity={s.o}></path>)}
+    </g>
+    <g>
+      {scatter.map((p) => (
+        <circle
+          cx={p.x.toFixed(1)}
+          cy={p.y.toFixed(1)}
+          r={p.r.toFixed(1)}
+          class={p.warn ? "cvd-dot cvd-dot--warn" : "cvd-dot"}
+          opacity={p.o.toFixed(2)}
+        ></circle>
+      ))}
+    </g>
+    <circle class="cvd-focus" cx="288" cy="360" r="4"></circle>
+
+    <g class="cvd-chip" transform="translate(212 176)">
+      <rect x="0" y="0" width="92" height="30"></rect>
+      <text x="46" y="20">概率分布</text>
+    </g>
+    <g class="cvd-chip" transform="translate(212 448)">
+      <rect x="0" y="0" width="92" height="30"></rect>
+      <text x="46" y="20">幻觉风险</text>
+    </g>
+    <g class="cvd-chip" transform="translate(212 520)">
+      <rect x="0" y="0" width="92" height="30"></rect>
+      <text x="46" y="20">输出波动</text>
+    </g>
+  </g>
+
+  <path class="cvd-rail" d="M320 360 H348" marker-end="url(#cvd-arrow)"></path>
+
+  <!-- ═══ 面板 02：工程化收敛体系 ═══ -->
+  <g class="cvd-panel">
+    <rect x="352" y="64" width="496" height="540"></rect>
+    <path class="cvd-corner" d="M352 84 V64 H372"></path>
+    <path class="cvd-corner" d="M828 604 H848 V584"></path>
+    <text class="cvd-idx" x="372" y="98">02 · CONVERGENCE</text>
+    <text class="cvd-title" x="372" y="130">工程化收敛体系</text>
+
+    <!-- 收敛漏斗：四道防线 -->
+    <g class="cvd-funnel">
+      <polygon points="420,170 780,170 685,392 515,392"></polygon>
+      <line x1="445" y1="225.5" x2="755" y2="225.5"></line>
+      <line x1="470" y1="281" x2="730" y2="281"></line>
+      <line x1="495" y1="336.5" x2="705" y2="336.5"></line>
+      {defenses.map((d, i) => (
+        <text class="cvd-funnel__label" x="600" y={204 + i * 55.5}>{`${i + 1} ${d}`}</text>
+      ))}
+      <text class="cvd-funnel__en" x="600" y="160">FOUR LINES OF DEFENSE</text>
+    </g>
+
+    <!-- 收敛输出 -->
+    <path class="cvd-rail" d="M600 392 V470 H868" marker-end="url(#cvd-arrow)"></path>
+    <text class="cvd-note" x="616" y="462">收敛输出</text>
+
+    <!-- 反馈回流（闭环） -->
+    <path
+      class="cvd-feedback"
+      d="M880 572 H820 V158"
+      marker-end="url(#cvd-arrow-mist)"></path>
+    <text class="cvd-note cvd-note--mist" x="808" y="146" text-anchor="end">反馈回流</text>
+
+    <!-- 四特性 -->
+    <g>
+      {traits.map((t, i) => (
+        <g class="cvd-chip" transform={`translate(${384 + i * 118} 508)`}>
+          <rect x="0" y="0" width="106" height="32"></rect>
+          <text x="53" y="21">{t}</text>
+        </g>
+      ))}
+    </g>
+  </g>
+
+  <path class="cvd-rail" d="M848 360 H872" marker-end="url(#cvd-arrow)"></path>
+
+  <!-- ═══ 面板 03：确定性商业交付 ═══ -->
+  <g class="cvd-panel">
+    <rect x="880" y="64" width="304" height="540"></rect>
+    <path class="cvd-corner" d="M880 84 V64 H900"></path>
+    <path class="cvd-corner" d="M1164 604 H1184 V584"></path>
+    <text class="cvd-idx" x="900" y="98">03 · DETERMINISTIC</text>
+    <text class="cvd-title" x="900" y="130">确定性商业交付</text>
+
+    <g>
+      {outcomes.map((o, i) => (
+        <g transform={`translate(900 ${172 + i * 64})`}>
+          <rect class="cvd-tick" x="0" y="6" width="12" height="12"></rect>
+          <text class="cvd-outcome" x="26" y="17">{o.zh}</text>
+          <text class="cvd-outcome__en" x="26" y="34">{o.en}</text>
+        </g>
+      ))}
+    </g>
+
+    <line class="cvd-divider" x1="900" y1="452" x2="1164" y2="452"></line>
+    <text class="cvd-idx" x="900" y="486">业务结果</text>
+    <text class="cvd-result" x="900" y="518">AI 负责规模化生成</text>
+    <text class="cvd-result" x="900" y="544">人类负责关键判断与责任闭环</text>
+  </g>
+</svg>
+
+<style>
+  .cvd {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* 面板 */
+  .cvd-panel rect {
+    fill: var(--ww-surface);
+    stroke: var(--ww-rule);
+    stroke-width: 1;
+  }
+  .cvd-corner {
+    stroke: var(--ww-signal-dim);
+    stroke-width: 2;
+  }
+  .cvd-idx {
+    font-family: var(--ww-font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    fill: var(--ww-signal);
+  }
+  .cvd-title {
+    font-family: var(--ww-font-display);
+    font-size: 23px;
+    font-weight: 600;
+    fill: var(--ww-paper);
+  }
+
+  /* 左：概率散点 */
+  .cvd-stream path {
+    stroke: var(--ww-signal-dim);
+    stroke-width: 1;
+  }
+  .cvd-dot {
+    fill: var(--ww-signal);
+  }
+  .cvd-dot--warn {
+    fill: var(--ww-warn);
+  }
+  .cvd-focus {
+    fill: var(--ww-paper);
+  }
+
+  /* 标签芯片 */
+  .cvd-chip rect {
+    fill: var(--ww-elevated);
+    stroke: var(--ww-rule);
+  }
+  .cvd-chip text {
+    font-family: var(--ww-font-body);
+    font-size: 14px;
+    fill: var(--ww-mist);
+    text-anchor: middle;
+  }
+
+  /* 连接轨道 */
+  .cvd-rail {
+    stroke: var(--ww-signal);
+    stroke-width: 1.5;
+  }
+  .cvd-arrow-fill {
+    fill: var(--ww-signal);
+  }
+  .cvd-arrow-fill--mist {
+    fill: var(--ww-dim);
+  }
+  .cvd-note {
+    font-family: var(--ww-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    fill: var(--ww-signal);
+  }
+  .cvd-note--mist {
+    fill: var(--ww-dim);
+  }
+
+  /* 中：漏斗 */
+  .cvd-funnel polygon {
+    fill: var(--ww-signal-glow);
+    stroke: var(--ww-signal-dim);
+    stroke-width: 1.5;
+  }
+  .cvd-funnel line {
+    stroke: var(--ww-signal-dim);
+    stroke-dasharray: 3 4;
+  }
+  .cvd-funnel__label {
+    font-family: var(--ww-font-body);
+    font-size: 15px;
+    font-weight: 600;
+    fill: var(--ww-paper);
+    text-anchor: middle;
+  }
+  .cvd-funnel__en {
+    font-family: var(--ww-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    fill: var(--ww-dim);
+    text-anchor: middle;
+  }
+  .cvd-feedback {
+    stroke: var(--ww-dim);
+    stroke-width: 1;
+    stroke-dasharray: 5 5;
+  }
+
+  /* 右：确定性结果 */
+  .cvd-tick {
+    fill: none;
+    stroke: var(--ww-signal);
+    stroke-width: 1.5;
+  }
+  .cvd-outcome {
+    font-family: var(--ww-font-body);
+    font-size: 17px;
+    font-weight: 600;
+    fill: var(--ww-paper);
+  }
+  .cvd-outcome__en {
+    font-family: var(--ww-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    fill: var(--ww-dim);
+  }
+  .cvd-divider {
+    stroke: var(--ww-rule);
+  }
+  .cvd-result {
+    font-family: var(--ww-font-body);
+    font-size: 14px;
+    fill: var(--ww-mist);
+  }
+</style>

@@ -1,8 +1,7 @@
 ---
-import { Image } from "astro:assets";
 import ZeyoLayout from "../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../components/zeyo/CooperationStrip.astro";
-import convergenceImage from "../assets/engineering-convergence.jpeg";
+import ConvergenceDiagram from "../components/ConvergenceDiagram.astro";
 import "../styles/zeyo/home.css";
 ---
 
@@ -250,23 +249,8 @@ import "../styles/zeyo/home.css";
       </header>
 
       <div class="convergence">
-        <div class="convergence__chain" aria-hidden="true">
-          <span class="convergence__node">概率性大模型</span>
-          <span class="convergence__arrow">→</span>
-          <span class="convergence__node convergence__node--key">工程化收敛</span>
-          <span class="convergence__arrow">→</span>
-          <span class="convergence__node">确定性商业交付</span>
-        </div>
-
         <figure class="convergence__figure">
-          <Image
-            src={convergenceImage}
-            alt="工程化收敛体系：从概率性大模型，经数据治理、工作流编排、AI 护栏、人机审核，收敛为确定性商业交付"
-            widths={[720, 1080, 1600]}
-            sizes="(max-width: 900px) 100vw, 1080px"
-            loading="lazy"
-            decoding="async"
-          />
+          <ConvergenceDiagram />
           <figcaption class="convergence__caption">
             四道防线：数据治理 · 工作流编排 · AI 护栏 · 人机审核 —— AI
             负责规模化生成，人类负责关键判断与责任闭环。
