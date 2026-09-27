@@ -3,6 +3,9 @@ title: 自动驾驶端到端数据闭环工程化收敛方案
 summary: 面向自动驾驶研发的数据闭环工程化方案：以数据治理、工作流编排、AI 护栏、人机审核四道防线，把采集—挖掘—标注—训练—仿真—回流的长链路收敛为可重复、可审计的确定性交付。
 kind: industry
 parent: engineering-convergence
+systems:
+  - engineering-convergence
+  - task-routing-governance
 status: available
 order: 1
 industry: 自动驾驶

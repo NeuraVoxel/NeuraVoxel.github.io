@@ -182,13 +182,28 @@ export async function getSolutionBySlug(
 
 export async function getSolutionIndustries(
   locale: Locale,
-  parentSlug: string,
+  systemSlug: string,
 ): Promise<SolutionNode[]> {
   const solutions = await getSolutionsForLocale(locale);
   return solutions
     .filter(
-      (entry) => entry.data.kind === "industry" && entry.data.parent === parentSlug,
+      (entry) =>
+        entry.data.kind === "industry" &&
+        (entry.data.parent === systemSlug ||
+          (entry.data.systems ?? []).includes(systemSlug)),
     )
+    .map((entry) => {
+      const slug = stripLocale(entry.id, locale);
+      return { slug, href: solutionHref(slug), entry };
+    });
+}
+
+export async function getAllSolutionIndustries(
+  locale: Locale,
+): Promise<SolutionNode[]> {
+  const solutions = await getSolutionsForLocale(locale);
+  return solutions
+    .filter((entry) => entry.data.kind === "industry")
     .map((entry) => {
       const slug = stripLocale(entry.id, locale);
       return { slug, href: solutionHref(slug), entry };

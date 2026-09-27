@@ -66,6 +66,8 @@ const solutions = defineCollection({
     summary: z.string(),
     kind: z.enum(["system", "industry"]),
     parent: z.string().optional(),
+    systems: z.array(z.string()).optional(),
+    diagram: z.enum(["convergence", "task-routing"]).optional(),
     status: z.enum(["available", "preview", "planned"]).optional().default("available"),
     order: z.number().optional(),
     industry: z.string().optional(),

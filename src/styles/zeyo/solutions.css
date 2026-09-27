@@ -5,7 +5,13 @@
 }
 
 .solutions-page .ww-section__head {
+  max-width: none;
   margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
+/* 标题与说明与示意图同宽，不再收窄 */
+.solutions-page .page-head__desc {
+  max-width: none;
 }
 
 /* —— 双引擎公式：概率性大模型 × 确定性规则系统 → 融合收敛 → 确定性交付 —— */
@@ -257,30 +263,6 @@
   color: var(--ww-signal);
 }
 
-.solution-card__industries-label {
-  font-family: var(--ww-font-mono);
-  font-size: 0.625rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ww-dim);
-  margin: 0 0 0.5rem;
-}
-
-/* 行业 chip 可直达行业方案 */
-.solution-card__industries .stage-tag {
-  display: inline-block;
-  transition:
-    color var(--ww-dur) var(--ww-ease),
-    border-color var(--ww-dur) var(--ww-ease),
-    background var(--ww-dur) var(--ww-ease);
-}
-
-.solution-card__industries .stage-tag:hover {
-  color: var(--ww-void);
-  background: var(--ww-signal);
-  border-color: var(--ww-signal);
-}
-
 .solution-card__cta {
   font-family: var(--ww-font-mono);
   font-size: 0.75rem;
@@ -368,7 +350,7 @@
 /* 方案正文 */
 
 .solution-body {
-  max-width: var(--ww-measure);
+  max-width: none;
 }
 
 .solution-body h2 {

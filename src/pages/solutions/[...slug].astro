@@ -3,8 +3,16 @@ import { getCollection, render } from "astro:content";
 import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
 import ConvergenceDiagram from "../../components/ConvergenceDiagram.astro";
+import TaskRoutingDiagram from "../../components/TaskRoutingDiagram.astro";
 import { getSolutionBySlug, getSolutionIndustries, stripLocale } from "../../lib/content";
 import "../../styles/zeyo/solutions.css";
+
+const diagramCaptions = {
+  convergence:
+    "四道防线：数据治理 · 工作流编排 · AI 护栏 · 人机审核 —— AI 负责规模化生成，人类负责关键判断与责任闭环。",
+  "task-routing":
+    "任务先分流，再交给对应的体系：概率性任务走工程化收敛体系（生成 + 收敛），确定性任务走规则直接求解；分流、分派与汇合由本体系统一负责。",
+} as const;
 
 export async function getStaticPaths() {
   const entries = await getCollection("solutions", ({ id, data }) => {
@@ -38,6 +46,16 @@ const statusLabels: Record<string, string> = {
 };
 
 const isSystem = entry.data.kind === "system";
+
+const Diagram =
+  entry.data.diagram === "task-routing"
+    ? TaskRoutingDiagram
+    : entry.data.diagram === "convergence"
+      ? ConvergenceDiagram
+      : null;
+const diagramCaption = entry.data.diagram
+  ? diagramCaptions[entry.data.diagram]
+  : undefined;
 ---
 
 <ZeyoLayout
@@ -80,13 +98,10 @@ const isSystem = entry.data.kind === "system";
     </div>
 
     {
-      isSystem && (
+      Diagram && (
         <figure class="solutions-diagram" style="margin-top: 2rem;">
-          <ConvergenceDiagram />
-          <figcaption>
-            四道防线：数据治理 · 工作流编排 · AI 护栏 · 人机审核 —— AI
-            负责规模化生成，人类负责关键判断与责任闭环。
-          </figcaption>
+          <Diagram />
+          <figcaption>{diagramCaption}</figcaption>
         </figure>
       )
     }

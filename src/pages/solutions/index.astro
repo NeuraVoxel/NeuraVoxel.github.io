@@ -1,13 +1,22 @@
 ---
 import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
-import ConvergenceDiagram from "../../components/ConvergenceDiagram.astro";
 import TaskRoutingDiagram from "../../components/TaskRoutingDiagram.astro";
-import { getSolutionTree } from "../../lib/content";
+import { getAllSolutionIndustries, getSolutionTree } from "../../lib/content";
 import "../../styles/zeyo/solutions.css";
 
 const locale = "zh";
 const systems = await getSolutionTree(locale);
+const industries = await getAllSolutionIndustries(locale);
+
+const systemTitles = new Map(
+  systems.map((system) => [system.slug, system.entry.data.title]),
+);
+
+function systemsOf(entry: (typeof industries)[number]["entry"]): string[] {
+  const list = entry.data.systems ?? (entry.data.parent ? [entry.data.parent] : []);
+  return list.map((slug) => systemTitles.get(slug) ?? slug);
+}
 
 const statusLabels: Record<string, string> = {
   available: "已开放",
@@ -129,20 +138,6 @@ const statusLabels: Record<string, string> = {
                   <a href={system.href}>{system.entry.data.title}</a>
                 </h3>
                 <p class="solution-card__summary">{system.entry.data.summary}</p>
-                {
-                  system.industries.length > 0 && (
-                    <div class="solution-card__industries">
-                      <p class="solution-card__industries-label">行业方案</p>
-                      <div class="stage-tags">
-                        {system.industries.map((child) => (
-                          <a class="stage-tag stage-tag--return" href={child.href}>
-                            {child.entry.data.industry ?? child.entry.data.title}
-                          </a>
-                        ))}
-                      </div>
-                    </div>
-                  )
-                }
                 <a class="solution-card__cta" href={system.href}>查看体系 →</a>
               </article>
             ))
@@ -157,28 +152,50 @@ const statusLabels: Record<string, string> = {
       </div>
     </section>
 
-    <section class="ww-section" aria-labelledby="solutions-convergence">
+    <section class="ww-section" aria-labelledby="solutions-industries">
       <div class="ww-section__inner">
         <header class="ww-section__head">
-          <p class="ww-label">Base · 共同底座</p>
-          <h2 class="ww-section__title" id="solutions-convergence">工程化收敛体系</h2>
+          <p class="ww-label">Where · 行业落地</p>
+          <h2 class="ww-section__title" id="solutions-industries">行业方案</h2>
           <p class="ww-section__desc">
-            上面每一个体系，都建立在这同一套底座之上：概率性大模型 → 工程化收敛 → 确定性商业交付。
+            行业方案不是"选一套体系套上去"，而多是<strong>复合型</strong>的——同一个行业里，既有确定性任务也有概率性任务，还要治理两者的分流。因此行业方案独立成篇，按行业自己的具体矛盾组合体系与路径。
           </p>
         </header>
 
-        <figure class="solutions-diagram">
-          <ConvergenceDiagram />
-          <figcaption>
-            四道防线：数据治理 · 工作流编排 · AI 护栏 · 人机审核 —— AI 负责规模化生成，人类负责关键判断与责任闭环。
-          </figcaption>
-        </figure>
+        <div class="industry-grid">
+          {
+            industries.map((industry) => {
+              const involved = systemsOf(industry.entry);
+              return (
+                <a class="industry-card" href={industry.href}>
+                  <div class="solution-card__meta">
+                    <span class="solution-kind">行业</span>
+                    {industry.entry.data.industry && (
+                      <span class="cat-badge">{industry.entry.data.industry}</span>
+                    )}
+                    {involved.length > 1 && (
+                      <span class="status-badge status-badge--preview">复合型</span>
+                    )}
+                  </div>
+                  <h3 class="industry-card__title">{industry.entry.data.title}</h3>
+                  <p class="industry-card__summary">{industry.entry.data.summary}</p>
+                  {involved.length > 0 && (
+                    <div class="stage-tags">
+                      {involved.map((name) => (
+                        <span class="stage-tag stage-tag--return">{name}</span>
+                      ))}
+                    </div>
+                  )}
+                  <span class="industry-card__cta">查看方案 →</span>
+                </a>
+              );
+            })
+          }
+        </div>
 
-        <p class="solutions-diagram__more">
-          <a class="btn btn--ghost" href="/articles/engineering-convergence-system/">
-            阅读方法论原文 →
-          </a>
-        </p>
+        {industries.length === 0 && (
+          <p class="industry-empty">行业方案正在编写中，敬请期待。</p>
+        )}
       </div>
     </section>
   </div>

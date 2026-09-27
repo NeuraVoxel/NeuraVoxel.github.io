@@ -5,12 +5,9 @@ kind: system
 status: available
 order: 2
 industry: 通用方法论
+diagram: task-routing
 relatedArticle: probabilistic-llm-deterministic-rules
 ---
-
-![任务分流：确定性任务与概率性任务，两条路径共同构建确定性交付系统](../../../assets/probabilistic-llm-deterministic-rules.png)
-
-*图：概率性大模型（归纳 ・ 生成 ・ 不确定性）与确定性规则系统（演绎 ・ 约束 ・ 可确定）两个引擎，经工程化融合与收敛，共同产出确定性交付。本体系负责的，是它们之间的**分派与治理**：哪类任务交给哪个引擎，两条路径如何汇合。*
 
 ## 方案定位
 

@@ -5,6 +5,7 @@ kind: system
 status: available
 order: 1
 industry: 通用方法论
+diagram: convergence
 relatedArticle: engineering-convergence-system
 ---
 
