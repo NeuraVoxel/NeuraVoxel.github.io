@@ -59,4 +59,19 @@ const articles = defineCollection({
   }),
 });
 
-export const collections = { modules, docs, articles };
+const solutions = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    kind: z.enum(["system", "industry"]),
+    parent: z.string().optional(),
+    status: z.enum(["available", "preview", "planned"]).optional().default("available"),
+    order: z.number().optional(),
+    industry: z.string().optional(),
+    relatedArticle: z.string().optional(),
+    draft: z.boolean().optional().default(false),
+  }),
+});
+
+export const collections = { modules, docs, articles, solutions };

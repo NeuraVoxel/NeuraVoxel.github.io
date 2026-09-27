@@ -4,6 +4,7 @@ import type { Locale } from "./locale";
 export type ModuleEntry = CollectionEntry<"modules">;
 export type DocEntry = CollectionEntry<"docs">;
 export type ArticleEntry = CollectionEntry<"articles">;
+export type SolutionEntry = CollectionEntry<"solutions">;
 
 const SECTION_ORDER = [
   "getting-started",
@@ -140,3 +141,90 @@ export function articleSlug(entry: ArticleEntry, locale: Locale): string {
 }
 
 export { localeId, stripLocale };
+
+/* —— Solutions（方案：体系 → 行业）—— */
+
+export type SolutionNode = {
+  slug: string;
+  href: string;
+  entry: SolutionEntry;
+};
+
+export type SolutionTree = SolutionNode & {
+  industries: SolutionNode[];
+};
+
+function solutionHref(slug: string): string {
+  return `/solutions/${slug}/`;
+}
+
+export async function getSolutionsForLocale(
+  locale: Locale,
+): Promise<SolutionEntry[]> {
+  const all = await getCollection("solutions", ({ id, data }) => {
+    return id.startsWith(`${locale}/`) && !data.draft;
+  });
+
+  return all.sort(
+    (a, b) =>
+      (a.data.order ?? 999) - (b.data.order ?? 999) ||
+      a.data.title.localeCompare(b.data.title, locale),
+  );
+}
+
+export async function getSolutionBySlug(
+  locale: Locale,
+  slug: string,
+): Promise<SolutionEntry | undefined> {
+  const solutions = await getSolutionsForLocale(locale);
+  return solutions.find((entry) => stripLocale(entry.id, locale) === slug);
+}
+
+export async function getSolutionIndustries(
+  locale: Locale,
+  parentSlug: string,
+): Promise<SolutionNode[]> {
+  const solutions = await getSolutionsForLocale(locale);
+  return solutions
+    .filter(
+      (entry) => entry.data.kind === "industry" && entry.data.parent === parentSlug,
+    )
+    .map((entry) => {
+      const slug = stripLocale(entry.id, locale);
+      return { slug, href: solutionHref(slug), entry };
+    });
+}
+
+export async function getSolutionTree(
+  locale: Locale,
+): Promise<SolutionTree[]> {
+  const solutions = await getSolutionsForLocale(locale);
+
+  return solutions
+    .filter((entry) => entry.data.kind === "system")
+    .map((entry) => {
+      const slug = stripLocale(entry.id, locale);
+      return {
+        slug,
+        href: solutionHref(slug),
+        entry,
+        industries: solutions
+          .filter(
+            (child) =>
+              child.data.kind === "industry" && child.data.parent === slug,
+          )
+          .map((child) => {
+            const childSlug = stripLocale(child.id, locale);
+            return {
+              slug: childSlug,
+              href: solutionHref(childSlug),
+              entry: child,
+            };
+          }),
+      };
+    });
+}
+
+export function solutionSlug(entry: SolutionEntry, locale: Locale): string {
+  return stripLocale(entry.id, locale);
+}

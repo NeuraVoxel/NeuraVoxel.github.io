@@ -328,8 +328,10 @@
   color: var(--ww-dim);
 }
 
-.convergence__link {
-  display: inline-block;
+.convergence__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   margin-top: 1.5rem;
 }
 

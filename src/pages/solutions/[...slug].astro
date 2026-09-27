@@ -1,0 +1,157 @@
+---
+import { getCollection, render } from "astro:content";
+import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
+import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
+import ConvergenceDiagram from "../../components/ConvergenceDiagram.astro";
+import { getSolutionBySlug, getSolutionIndustries, stripLocale } from "../../lib/content";
+import "../../styles/zeyo/solutions.css";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("solutions", ({ id, data }) => {
+    return id.startsWith("zh/") && !data.draft;
+  });
+
+  return entries.map((entry) => ({
+    params: { slug: stripLocale(entry.id, "zh") },
+  }));
+}
+
+const locale = "zh";
+const slug = Astro.params.slug!;
+const entry = await getSolutionBySlug(locale, slug);
+
+if (!entry) {
+  return Astro.redirect("/404");
+}
+
+const { Content } = await render(entry);
+
+const parent = entry.data.parent
+  ? await getSolutionBySlug(locale, entry.data.parent)
+  : undefined;
+const industries = await getSolutionIndustries(locale, slug);
+
+const statusLabels: Record<string, string> = {
+  available: "已开放",
+  preview: "预览",
+  planned: "规划中",
+};
+
+const isSystem = entry.data.kind === "system";
+---
+
+<ZeyoLayout
+  currentPath={`/solutions/${slug}/`}
+  title={`${entry.data.title} — 方案 — NeuraVoxel`}
+  description={entry.data.summary}
+  pageClass="solutions-page"
+>
+  <header class="page-head">
+    <p class="ww-label">{isSystem ? "Solution System" : "Industry Solution"}</p>
+    <h1 class="page-head__title">{entry.data.title}</h1>
+    <p class="page-head__desc">{entry.data.summary}</p>
+  </header>
+
+  <div class="solutions-layout">
+    <nav class="solution-crumbs" aria-label="面包屑">
+      <a href="/solutions/">方案</a>
+      <span aria-hidden="true">/</span>
+      {
+        parent ? (
+          <>
+            <a href={`/solutions/${entry.data.parent}/`}>{parent.data.title}</a>
+            <span aria-hidden="true">/</span>
+          </>
+        ) : null
+      }
+      <span aria-current="page">{entry.data.title}</span>
+    </nav>
+
+    <div class="solution-meta">
+      <span class="solution-kind">{isSystem ? "体系" : "行业"}</span>
+      {
+        entry.data.status && (
+          <span class={`status-badge status-badge--${entry.data.status}`}>
+            {statusLabels[entry.data.status] ?? entry.data.status}
+          </span>
+        )
+      }
+      {entry.data.industry && <span class="cat-badge">{entry.data.industry}</span>}
+    </div>
+
+    {
+      isSystem && (
+        <figure class="solutions-diagram" style="margin-top: 2rem;">
+          <ConvergenceDiagram />
+          <figcaption>
+            四道防线：数据治理 · 工作流编排 · AI 护栏 · 人机审核 —— AI
+            负责规模化生成，人类负责关键判断与责任闭环。
+          </figcaption>
+        </figure>
+      )
+    }
+
+    <div class="solution-body">
+      <Content />
+    </div>
+
+    {
+      isSystem && (
+        <section aria-labelledby="solution-industries" style="margin-top: 3rem;">
+          <header class="ww-section__head">
+            <p class="ww-label">Industries</p>
+            <h2 class="ww-section__title" id="solution-industries">行业方案</h2>
+            <p class="ww-section__desc">
+              同一套收敛体系，落到具体行业的业务链路。
+            </p>
+          </header>
+
+          {industries.length > 0 ? (
+            <div class="industry-grid">
+              {industries.map((child) => (
+                <a class="industry-card" href={child.href}>
+                  <div class="solution-card__meta">
+                    <span class="solution-kind">行业</span>
+                    {child.entry.data.industry && (
+                      <span class="cat-badge">{child.entry.data.industry}</span>
+                    )}
+                  </div>
+                  <h3 class="industry-card__title">{child.entry.data.title}</h3>
+                  <p class="industry-card__summary">{child.entry.data.summary}</p>
+                  <span class="industry-card__cta">查看方案 →</span>
+                </a>
+              ))}
+            </div>
+          ) : (
+            <p class="industry-empty">行业方案正在编写中，敬请期待。</p>
+          )}
+        </section>
+      )
+    }
+
+    <div class="solution-related">
+      <span class="solution-related__label">相关阅读</span>
+      {
+        entry.data.relatedArticle && (
+          <a class="btn btn--ghost btn--sm" href={`/articles/${entry.data.relatedArticle}/`}>
+            方法论原文 →
+          </a>
+        )
+      }
+      {
+        parent ? (
+          <a class="btn btn--ghost btn--sm" href={`/solutions/${entry.data.parent}/`}>
+            ← 返回{parent.data.title}
+          </a>
+        ) : (
+          <a class="btn btn--ghost btn--sm" href="/solutions/">← 返回方案总览</a>
+        )
+      }
+    </div>
+  </div>
+
+  <CooperationStrip
+    id="solution-cooperation"
+    desc="把这套方案落到你的链路 — 从一个环节开始，一起把环做完整"
+  />
+</ZeyoLayout>

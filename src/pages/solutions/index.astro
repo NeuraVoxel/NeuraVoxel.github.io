@@ -1,0 +1,113 @@
+---
+import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
+import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
+import ConvergenceDiagram from "../../components/ConvergenceDiagram.astro";
+import { getSolutionTree } from "../../lib/content";
+import "../../styles/zeyo/solutions.css";
+
+const locale = "zh";
+const systems = await getSolutionTree(locale);
+
+const statusLabels: Record<string, string> = {
+  available: "已开放",
+  preview: "预览",
+  planned: "规划中",
+};
+---
+
+<ZeyoLayout
+  currentPath="/solutions/"
+  title="方案 — NeuraVoxel"
+  description="NeuraVoxel 行业方案：以工程化收敛体系为底座，把概率性的大模型输出收敛为确定性的商业交付。"
+  pageClass="solutions-page"
+>
+  <header class="page-head">
+    <p class="ww-label">Solutions</p>
+    <h1 class="page-head__title">方案</h1>
+    <p class="page-head__desc">
+      一套方法，落到各行各业。方案 = 体系 → 行业：先把不确定性收敛成体系，再把体系落进具体的业务链路。
+    </p>
+  </header>
+
+  <section class="ww-section" aria-labelledby="solutions-systems">
+    <div class="ww-section__inner">
+      <header class="ww-section__head">
+        <p class="ww-label">Solution Systems</p>
+        <h2 class="ww-section__title" id="solutions-systems">方案体系</h2>
+        <p class="ww-section__desc">
+          每个体系是一套可复制的工程底座，下面挂着它在各个行业的具体落地方案。
+        </p>
+      </header>
+
+      <div class="solution-grid">
+        {
+          systems.map((system) => (
+            <a class="solution-card" href={system.href}>
+              <div class="solution-card__meta">
+                <span class="solution-kind">体系</span>
+                {system.entry.data.status && (
+                  <span class={`status-badge status-badge--${system.entry.data.status}`}>
+                    {statusLabels[system.entry.data.status] ?? system.entry.data.status}
+                  </span>
+                )}
+                {system.entry.data.industry && (
+                  <span class="cat-badge">{system.entry.data.industry}</span>
+                )}
+              </div>
+              <h3 class="solution-card__title">{system.entry.data.title}</h3>
+              <p class="solution-card__summary">{system.entry.data.summary}</p>
+              {
+                system.industries.length > 0 && (
+                  <div class="stage-tags">
+                    {system.industries.map((child) => (
+                      <span class="stage-tag stage-tag--return">
+                        {child.entry.data.industry ?? child.entry.data.title}
+                      </span>
+                    ))}
+                  </div>
+                )
+              }
+              <span class="solution-card__cta">
+                {system.industries.length > 0
+                  ? `${system.industries.length} 个行业方案 →`
+                  : "查看体系 →"}
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <hr class="ww-rule" />
+
+  <section class="ww-section" aria-labelledby="solutions-convergence">
+    <div class="ww-section__inner">
+      <header class="ww-section__head">
+        <p class="ww-label">Engineering Convergence</p>
+        <h2 class="ww-section__title" id="solutions-convergence">工程化收敛体系</h2>
+        <p class="ww-section__desc">
+          概率性大模型 → 工程化收敛 → 确定性商业交付。所有行业方案共同的底座。
+        </p>
+      </header>
+
+      <figure class="solutions-diagram">
+        <ConvergenceDiagram />
+        <figcaption>
+          四道防线：数据治理 · 工作流编排 · AI 护栏 · 人机审核 —— AI 负责规模化生成，人类负责关键判断与责任闭环。
+        </figcaption>
+      </figure>
+
+      <p style="margin-top: 1.5rem;">
+        <a class="btn btn--ghost" href="/articles/engineering-convergence-system/">
+          阅读方法论原文 →
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <CooperationStrip
+    id="solutions-cooperation"
+    desc="把你的行业链路，收敛成可交付的方案 — 从一个环节开始"
+  />
+</ZeyoLayout>
