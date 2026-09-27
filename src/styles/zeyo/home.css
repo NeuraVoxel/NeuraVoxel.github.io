@@ -307,6 +307,10 @@
 
 /* —— Convergence —— */
 
+#convergence .ww-section__head {
+  margin-bottom: 1.25rem;
+}
+
 .convergence__figure {
   margin: 0;
   overflow-x: auto;
