@@ -12,6 +12,31 @@
       ],
       "products": [
         {
+          "id": "dialectic-skills",
+          "name": "Dialectic Skills",
+          "summary": "AI 时代，不仅要搭建个人知识体系，还要搭建个人思想体系。一套认知操作系统——把辩证思维工程化为四层 Skill，让 AI 帮你思考，而不只是知道。",
+          "status": "available",
+          "tags": [
+            {
+              "label": "L1 立场",
+              "stage": "plan"
+            },
+            {
+              "label": "L2 方法论",
+              "stage": "plan"
+            },
+            {
+              "label": "L3 执行",
+              "stage": "execute"
+            },
+            {
+              "label": "L4 反思",
+              "stage": "review"
+            }
+          ],
+          "openUrl": "https://github.com/NeuraVoxel/dialectic-skills"
+        },
+        {
           "id": "task-agent",
           "name": "Task Agent",
           "summary": "智能任务规划与执行助手。拆解、跟踪、推进工作项，每次复盘都让下一轮规划更精准。",
@@ -114,31 +139,6 @@
             }
           ],
           "openUrl": "https://github.com/NeuraVoxel/task-skill"
-        },
-        {
-          "id": "dialectic-skills",
-          "name": "Dialectic Skills",
-          "summary": "AI 时代，不仅要搭建个人知识体系，还要搭建个人思想体系。一套认知操作系统——把辩证思维工程化为四层 Skill，让 AI 帮你思考，而不只是知道。",
-          "status": "available",
-          "tags": [
-            {
-              "label": "L1 立场",
-              "stage": "plan"
-            },
-            {
-              "label": "L2 方法论",
-              "stage": "plan"
-            },
-            {
-              "label": "L3 执行",
-              "stage": "execute"
-            },
-            {
-              "label": "L4 反思",
-              "stage": "review"
-            }
-          ],
-          "openUrl": "https://github.com/NeuraVoxel/dialectic-skills"
         }
       ]
     },
