@@ -30,38 +30,53 @@ import "../styles/zeyo/home.css";
 
       <figure
         class="living-loop"
-        aria-label="闭环示意图：感知、处理、训练、验证、回流五个环节构成闭环"
+        aria-label="收敛闭环示意图：概率生成、规则校验、人机审核、确定交付、反馈回流五个环节构成闭环，大模型与规则系统双引擎驱动"
       >
         <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle class="loop-ring" cx="200" cy="200" r="150"></circle>
           <circle class="loop-ring loop-ring--active" cx="200" cy="200" r="150"></circle>
-          <text class="loop-center__text" x="200" y="196">闭环</text>
-          <text class="loop-center__text" x="200" y="214" style="font-size: 11px; fill: #5a6a7a">
-            Agent 攻克中
+          <text
+            class="loop-center__text"
+            x="200"
+            y="194"
+            style="font-size: 21px; fill: var(--ww-paper); font-weight: 600"
+          >收敛闭环</text>
+          <text
+            class="loop-center__text"
+            x="200"
+            y="214"
+            style="font-size: 11px; fill: var(--ww-dim)"
+          >
+            大模型 × 规则系统
           </text>
           <g class="loop-node" data-stage="perceive" data-index="0" transform="translate(200, 50)">
             <circle class="loop-node__dot" r="8"></circle>
-            <text class="loop-node__label" y="24">感知</text>
+            <text class="loop-node__label" y="24">概率生成</text>
           </g>
           <g class="loop-node" data-stage="process" data-index="1" transform="translate(342, 146)">
             <circle class="loop-node__dot" r="8"></circle>
-            <text class="loop-node__label" y="24">处理</text>
+            <text class="loop-node__label" y="24">规则校验</text>
           </g>
           <g class="loop-node" data-stage="train" data-index="2" transform="translate(295, 310)">
             <circle class="loop-node__dot" r="8"></circle>
-            <text class="loop-node__label" y="24">训练</text>
+            <text class="loop-node__label" y="24">人机审核</text>
           </g>
           <g class="loop-node" data-stage="simulate" data-index="3" transform="translate(105, 310)">
             <circle class="loop-node__dot" r="8"></circle>
-            <text class="loop-node__label" y="24">验证</text>
+            <text class="loop-node__label" y="24">确定交付</text>
           </g>
           <g class="loop-node" data-stage="return" data-index="4" transform="translate(58, 146)">
             <circle class="loop-node__dot" r="8"></circle>
-            <text class="loop-node__label" y="24">回流</text>
+            <text class="loop-node__label" y="24">反馈回流</text>
           </g>
           <circle
             class="loop-pulse"
             r="5"
+            style="offset-path: path('M 200 50 A 150 150 0 1 1 199.9 50')"
+          ></circle>
+          <circle
+            class="loop-pulse loop-pulse--rules"
+            r="4"
             style="offset-path: path('M 200 50 A 150 150 0 1 1 199.9 50')"
           ></circle>
         </svg>

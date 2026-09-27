@@ -124,6 +124,13 @@
   animation: loop-orbit 12s linear infinite;
 }
 
+/* 第二颗脉冲：规则引擎（金色），与概率引擎对向而行 */
+.loop-pulse--rules {
+  fill: var(--ww-warn);
+  filter: drop-shadow(0 0 6px rgba(196, 161, 90, 0.3));
+  animation-delay: -6s;
+}
+
 @keyframes loop-orbit {
   from {
     offset-distance: 0%;
