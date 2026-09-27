@@ -1,7 +1,7 @@
 ---
 /**
  * 工程化收敛体系示意图（原生 SVG 重绘版）
- * 结构：概率性大模型 → 工程化收敛（四道防线漏斗）→ 确定性商业交付
+ * 结构：概率性大模型 → 工程化收敛（四道防线漏斗）→ 确定性交付
  * 风格：与站点 zeyo 主题一致的仪表/CAD 面板风格，颜色走 --ww-* 设计令牌
  */
 
@@ -40,7 +40,7 @@ const outcomes = [
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   role="img"
-  aria-label="工程化收敛体系：概率性大模型经数据治理、工作流编排、AI 护栏、人机审核四道防线收敛，形成稳定、可控、可验证、可重复的确定性商业交付；交付反馈回流，构成可信闭环"
+  aria-label="工程化收敛体系：概率性大模型经数据治理、工作流编排、AI 护栏、人机审核四道防线收敛，形成稳定、可控、可验证、可重复的确定性交付；交付反馈回流，构成可信闭环"
 >
   <defs>
     <marker id="cvd-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
@@ -135,13 +135,13 @@ const outcomes = [
 
   <path class="cvd-rail" d="M848 360 H872" marker-end="url(#cvd-arrow)"></path>
 
-  <!-- ═══ 面板 03：确定性商业交付 ═══ -->
+  <!-- ═══ 面板 03：确定性交付 ═══ -->
   <g class="cvd-panel">
     <rect x="880" y="64" width="304" height="540"></rect>
     <path class="cvd-corner" d="M880 84 V64 H900"></path>
     <path class="cvd-corner" d="M1164 604 H1184 V584"></path>
     <text class="cvd-idx" x="900" y="98">03 · DETERMINISTIC</text>
-    <text class="cvd-title" x="900" y="130">确定性商业交付</text>
+    <text class="cvd-title" x="900" y="130">确定性交付</text>
 
     <g>
       {outcomes.map((o, i) => (
