@@ -93,18 +93,6 @@ const statusLabels: Record<string, string> = {
           </p>
         </div>
 
-        <figure class="solutions-diagram solutions-diagram--routing">
-          <TaskRoutingDiagram />
-          <figcaption>
-            任务先分流，方法才分明：确定性任务走规则直接求解，概率性任务走生成加收敛，两条路径汇入同一个确定性交付系统。
-          </figcaption>
-        </figure>
-
-        <p class="solutions-diagram__more">
-          <a class="btn btn--ghost" href="/articles/probabilistic-llm-deterministic-rules/">
-            阅读任务分流方法论 →
-          </a>
-        </p>
       </div>
     </section>
 
@@ -117,6 +105,13 @@ const statusLabels: Record<string, string> = {
             每个体系是一套可复用的工程底座，下面挂着它在各个行业的具体落地方案。
           </p>
         </header>
+
+        <figure class="solutions-diagram solutions-diagram--routing">
+          <TaskRoutingDiagram />
+          <figcaption>
+            任务先分流，再交给对应的体系：概率性任务走<strong>工程化收敛体系</strong>（生成 + 收敛），确定性任务走规则直接求解；分流、分派与汇合由<strong>任务分流共同治理体系</strong>统一负责。
+          </figcaption>
+        </figure>
 
         <div class="solution-grid">
           {
@@ -153,6 +148,12 @@ const statusLabels: Record<string, string> = {
             ))
           }
         </div>
+
+        <p class="solutions-diagram__more">
+          <a class="btn btn--ghost" href="/articles/probabilistic-llm-deterministic-rules/">
+            阅读任务分流方法论 →
+          </a>
+        </p>
       </div>
     </section>
 

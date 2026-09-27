@@ -14,7 +14,7 @@ const outcomes = ["稳定输出", "可控风险", "可解释", "可重复"];
 
 <svg
   class="trd"
-  viewBox="0 0 1200 560"
+  viewBox="0 84 1200 460"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   role="img"
@@ -53,6 +53,7 @@ const outcomes = ["稳定输出", "可控风险", "可解释", "可重复"];
   <g class="trd-panel trd-panel--det">
     <rect x="380" y="100" width="520" height="140"></rect>
     <text class="trd-lane__title trd-lane__title--det" x="400" y="136">确定性任务</text>
+    <text class="trd-lane__system trd-lane__system--det" x="884" y="136">任务分流共同治理体系 · 规则直接求解</text>
     <text class="trd-lane__sub" x="400" y="158">条件可枚举 ・ 口径明确 ・ 需可复现</text>
     <g>
       {
@@ -71,6 +72,7 @@ const outcomes = ["稳定输出", "可控风险", "可解释", "可重复"];
   <g class="trd-panel trd-panel--prob">
     <rect x="380" y="360" width="520" height="140"></rect>
     <text class="trd-lane__title trd-lane__title--prob" x="400" y="396">概率性任务</text>
+    <text class="trd-lane__system trd-lane__system--prob" x="884" y="396">工程化收敛体系 · 生成加收敛</text>
     <text class="trd-lane__sub" x="400" y="418">开放输入 ・ 模糊意图 ・ 长尾场景</text>
     <g>
       {
@@ -200,6 +202,20 @@ const outcomes = ["稳定输出", "可控风险", "可解释", "可重复"];
     font-size: 11px;
     letter-spacing: 0.04em;
     fill: var(--ww-dim);
+  }
+
+  /* 路径 ↔ 体系 的映射标签 */
+  .trd-lane__system {
+    font-family: var(--ww-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.02em;
+    text-anchor: end;
+  }
+  .trd-lane__system--det {
+    fill: var(--ww-signal);
+  }
+  .trd-lane__system--prob {
+    fill: var(--ww-warn);
   }
   .trd-lane__out {
     font-family: var(--ww-font-mono);
