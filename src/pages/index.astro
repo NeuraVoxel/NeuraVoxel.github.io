@@ -1,7 +1,6 @@
 ---
 import ZeyoLayout from "../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../components/zeyo/CooperationStrip.astro";
-import ConvergenceDiagram from "../components/ConvergenceDiagram.astro";
 import "../styles/zeyo/home.css";
 ---
 
@@ -78,33 +77,6 @@ import "../styles/zeyo/home.css";
           ></circle>
         </svg>
       </figure>
-    </div>
-  </section>
-
-  <section class="formula-band" aria-label="双引擎收敛公式">
-    <div class="formula-band__inner">
-      <p class="ww-label formula-band__label">Probabilistic × Deterministic</p>
-      <div class="formula-band__row">
-        <div class="formula-band__cell formula-band__cell--prob">
-          <p class="formula-band__key">概率性大模型</p>
-          <p class="formula-band__trait">归纳 ・ 生成 ・ 不确定性</p>
-        </div>
-        <span class="formula-band__op" aria-hidden="true">×</span>
-        <div class="formula-band__cell formula-band__cell--rule">
-          <p class="formula-band__key">确定性规则系统</p>
-          <p class="formula-band__trait">演绎 ・ 约束 ・ 可确定</p>
-        </div>
-        <span class="formula-band__op formula-band__op--arrow" aria-hidden="true">→</span>
-        <div class="formula-band__cell">
-          <p class="formula-band__key">工程化融合与收敛</p>
-          <p class="formula-band__trait">数据治理 · 工作流编排 · AI 护栏 · 人机审核</p>
-        </div>
-        <span class="formula-band__op formula-band__op--arrow" aria-hidden="true">→</span>
-        <div class="formula-band__cell formula-band__cell--out">
-          <p class="formula-band__key">确定性商业交付</p>
-          <p class="formula-band__trait">稳定输出 · 可控风险 · 可验证 · 可重复</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -268,38 +240,6 @@ import "../styles/zeyo/home.css";
           </p>
           <span class="scene-card__meta">即将开放 →</span>
         </a>
-      </div>
-    </div>
-  </section>
-
-  <hr class="ww-rule" />
-
-  <section class="ww-section" id="convergence" aria-labelledby="convergence-title">
-    <div class="ww-section__inner">
-      <header class="ww-section__head">
-        <p class="ww-label">Engineering Convergence</p>
-        <h2 class="ww-section__title" id="convergence-title">工程化收敛体系</h2>
-        <p class="ww-section__desc">
-          大模型是概率性的，商业交付必须是确定性的。以数据治理、工作流编排、AI
-          护栏、人机审核四道防线，把不确定的生成收敛为可交付的结果。
-        </p>
-      </header>
-
-      <div class="convergence">
-        <figure class="convergence__figure">
-          <ConvergenceDiagram />
-          <figcaption class="convergence__caption">
-            四道防线：数据治理 · 工作流编排 · AI 护栏 · 人机审核 —— AI
-            负责规模化生成，人类负责关键判断与责任闭环。
-          </figcaption>
-        </figure>
-
-        <div class="convergence__actions">
-          <a class="btn btn--ghost" href="/solutions/">查看方案 →</a>
-          <a class="btn btn--ghost" href="/articles/engineering-convergence-system/">
-            阅读全文 →
-          </a>
-        </div>
       </div>
     </div>
   </section>

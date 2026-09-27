@@ -1,0 +1,252 @@
+---
+/**
+ * 任务分流示意图（原生 SVG）
+ * 任务入口 → 任务分流（边界能否写清？）
+ *   ├ 确定性任务 → 规则引擎求解（演绎 · 约束 · 可确定）
+ *   └ 概率性任务 → 大模型生成 + 工程化收敛（归纳 · 生成 · 不确定性）
+ * 两条路径汇入同一个确定性交付系统，反馈回流驱动规则边界外扩
+ */
+
+const deterministicSteps = ["约束建模", "演绎求解", "校验清单"];
+const probabilisticSteps = ["生成候选", "四道防线收敛", "人机审核"];
+const outcomes = ["稳定输出", "可控风险", "可解释", "可重复"];
+---
+
+<svg
+  class="trd"
+  viewBox="0 0 1200 560"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  aria-label="任务分流示意图：任务入口进入分流器，按边界能否写清分为确定性任务（走规则引擎演绎求解）与概率性任务（走大模型生成加工程化收敛），两条路径汇入同一个确定性交付系统，反馈回流驱动规则边界外扩"
+>
+  <defs>
+    <marker id="trd-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L10 5 L0 10 Z" class="trd-arrow-fill"></path>
+    </marker>
+    <marker id="trd-arrow-mist" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 1.5 L8 5 L0 8.5 Z" class="trd-arrow-fill--mist"></path>
+    </marker>
+  </defs>
+
+  <!-- ═══ 任务入口 ═══ -->
+  <g class="trd-panel">
+    <rect x="16" y="240" width="176" height="120"></rect>
+    <path class="trd-corner" d="M16 260 V240 H36"></path>
+    <text class="trd-title" x="36" y="292">任务入口</text>
+    <text class="trd-sub" x="36" y="316">业务任务统一进入</text>
+  </g>
+
+  <path class="trd-rail" d="M192 300 H204" marker-end="url(#trd-arrow)"></path>
+
+  <!-- ═══ 分流器 ═══ -->
+  <g class="trd-split">
+    <polygon points="270,238 336,300 270,362 204,300"></polygon>
+    <text class="trd-split__title" x="270" y="296">任务分流</text>
+    <text class="trd-split__sub" x="270" y="314">边界能否写清？</text>
+  </g>
+
+  <path class="trd-rail trd-rail--det" d="M270 236 V170 H376" marker-end="url(#trd-arrow)"></path>
+  <path class="trd-rail trd-rail--prob" d="M270 364 V430 H376" marker-end="url(#trd-arrow)"></path>
+
+  <!-- ═══ 路径一：确定性任务 ═══ -->
+  <g class="trd-panel trd-panel--det">
+    <rect x="380" y="100" width="520" height="140"></rect>
+    <text class="trd-lane__title trd-lane__title--det" x="400" y="136">确定性任务</text>
+    <text class="trd-lane__sub" x="400" y="158">条件可枚举 ・ 口径明确 ・ 需可复现</text>
+    <g>
+      {
+        deterministicSteps.map((step, i) => (
+          <g class="trd-step trd-step--det" transform={`translate(${400 + i * 130} 182)`}>
+            <rect x="0" y="0" width="114" height="34"></rect>
+            <text x="57" y="22">{step}</text>
+          </g>
+        ))
+      }
+    </g>
+    <text class="trd-lane__out" x="884" y="222">直接求解 →</text>
+  </g>
+
+  <!-- ═══ 路径二：概率性任务 ═══ -->
+  <g class="trd-panel trd-panel--prob">
+    <rect x="380" y="360" width="520" height="140"></rect>
+    <text class="trd-lane__title trd-lane__title--prob" x="400" y="396">概率性任务</text>
+    <text class="trd-lane__sub" x="400" y="418">开放输入 ・ 模糊意图 ・ 长尾场景</text>
+    <g>
+      {
+        probabilisticSteps.map((step, i) => (
+          <g class="trd-step trd-step--prob" transform={`translate(${400 + i * 130} 442)`}>
+            <rect x="0" y="0" width="114" height="34"></rect>
+            <text x="57" y="22">{step}</text>
+          </g>
+        ))
+      }
+    </g>
+    <text class="trd-lane__out" x="884" y="482">收敛后交付 →</text>
+  </g>
+
+  <!-- ═══ 汇合：确定性交付系统 ═══ -->
+  <path class="trd-rail trd-rail--det" d="M900 170 H930 V300 H946" marker-end="url(#trd-arrow)"></path>
+  <path class="trd-rail trd-rail--prob" d="M900 430 H930 V300"></path>
+
+  <g class="trd-panel trd-panel--out">
+    <rect x="950" y="200" width="234" height="200"></rect>
+    <path class="trd-corner" d="M1164 380 H1184 V360"></path>
+    <text class="trd-title" x="970" y="240">确定性交付系统</text>
+    <text class="trd-sub" x="970" y="262">DETERMINISTIC DELIVERY</text>
+    <g>
+      {
+        outcomes.map((o, i) => (
+          <g class="trd-outcome" transform={`translate(${970 + (i % 2) * 112} ${286 + Math.floor(i / 2) * 42})`}>
+            <rect x="0" y="0" width="100" height="30"></rect>
+            <text x="50" y="20">{o}</text>
+          </g>
+        ))
+      }
+    </g>
+  </g>
+
+  <!-- ═══ 反馈回流 ═══ -->
+  <path
+    class="trd-feedback"
+    d="M1067 400 V512 H270 V368"
+    marker-end="url(#trd-arrow-mist)"></path>
+  <text class="trd-feedback__label" x="668" y="500">反馈回流：规则边界外扩 ・ 概率任务固化为确定任务</text>
+</svg>
+
+<style>
+  .trd {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* 面板 */
+  .trd-panel rect {
+    fill: var(--ww-surface);
+    stroke: var(--ww-rule);
+    stroke-width: 1;
+  }
+  .trd-corner {
+    stroke: var(--ww-signal-dim);
+    stroke-width: 2;
+  }
+  .trd-title {
+    font-family: var(--ww-font-display);
+    font-size: 20px;
+    font-weight: 600;
+    fill: var(--ww-paper);
+  }
+  .trd-sub {
+    font-family: var(--ww-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    fill: var(--ww-dim);
+  }
+
+  /* 分流器 */
+  .trd-split polygon {
+    fill: var(--ww-signal-glow);
+    stroke: var(--ww-signal);
+    stroke-width: 1.5;
+  }
+  .trd-split__title {
+    font-family: var(--ww-font-display);
+    font-size: 17px;
+    font-weight: 600;
+    fill: var(--ww-paper);
+    text-anchor: middle;
+  }
+  .trd-split__sub {
+    font-family: var(--ww-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    fill: var(--ww-signal);
+    text-anchor: middle;
+  }
+
+  /* 轨道 */
+  .trd-rail {
+    stroke: var(--ww-signal);
+    stroke-width: 1.5;
+  }
+  .trd-rail--det {
+    stroke: var(--ww-signal);
+  }
+  .trd-rail--prob {
+    stroke: var(--ww-warn);
+  }
+  .trd-arrow-fill {
+    fill: var(--ww-signal);
+  }
+  .trd-arrow-fill--mist {
+    fill: var(--ww-dim);
+  }
+
+  /* 两条路径 */
+  .trd-lane__title {
+    font-family: var(--ww-font-display);
+    font-size: 19px;
+    font-weight: 600;
+  }
+  .trd-lane__title--det {
+    fill: var(--ww-signal);
+  }
+  .trd-lane__title--prob {
+    fill: var(--ww-warn);
+  }
+  .trd-lane__sub {
+    font-family: var(--ww-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    fill: var(--ww-dim);
+  }
+  .trd-lane__out {
+    font-family: var(--ww-font-mono);
+    font-size: 11px;
+    fill: var(--ww-mist);
+    text-anchor: end;
+  }
+
+  .trd-step rect {
+    fill: var(--ww-elevated);
+    stroke: var(--ww-rule);
+  }
+  .trd-step text {
+    font-family: var(--ww-font-body);
+    font-size: 13px;
+    fill: var(--ww-mist);
+    text-anchor: middle;
+  }
+  .trd-step--det rect {
+    stroke: var(--ww-signal-dim);
+  }
+  .trd-step--prob rect {
+    stroke: rgba(196, 161, 90, 0.5);
+  }
+
+  /* 交付系统 */
+  .trd-outcome rect {
+    fill: var(--ww-elevated);
+    stroke: var(--ww-signal-dim);
+  }
+  .trd-outcome text {
+    font-family: var(--ww-font-body);
+    font-size: 12px;
+    fill: var(--ww-paper);
+    text-anchor: middle;
+  }
+
+  /* 反馈回流 */
+  .trd-feedback {
+    stroke: var(--ww-dim);
+    stroke-width: 1;
+    stroke-dasharray: 5 5;
+  }
+  .trd-feedback__label {
+    font-family: var(--ww-font-mono);
+    font-size: 11px;
+    fill: var(--ww-dim);
+    text-anchor: middle;
+  }
+</style>

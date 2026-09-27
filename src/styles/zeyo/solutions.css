@@ -1,3 +1,118 @@
+/* —— 页面节奏：三段连成一气，不靠分割线硬切 —— */
+
+.solutions-page .ww-section {
+  padding-block: clamp(1.75rem, 4vw, 3rem);
+}
+
+.solutions-page .ww-section__head {
+  margin-bottom: clamp(1.25rem, 3vw, 2rem);
+}
+
+/* —— 双引擎公式：概率性大模型 × 确定性规则系统 → 融合收敛 → 确定性交付 —— */
+
+.formula-band {
+  margin-top: 2rem;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid var(--ww-rule);
+  border-radius: 2px;
+  background: var(--ww-surface);
+}
+
+.formula-band__label {
+  margin-bottom: 0;
+}
+
+.formula-band__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  gap: clamp(0.75rem, 2.5vw, 1.75rem);
+  margin-top: 1.25rem;
+}
+
+.formula-band__cell {
+  flex: 1 1 12rem;
+  min-width: 0;
+  padding-left: clamp(0.75rem, 1.5vw, 1.125rem);
+  border-left: 1px solid var(--ww-rule);
+}
+
+.formula-band__key {
+  font-family: var(--ww-font-display);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--ww-paper);
+  margin: 0 0 0.375rem;
+}
+
+.formula-band__trait {
+  font-family: var(--ww-font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  line-height: 1.75;
+  color: var(--ww-mist);
+  margin: 0;
+}
+
+.formula-band__cell--prob {
+  border-left-color: var(--ww-signal-dim);
+}
+
+.formula-band__cell--prob .formula-band__key {
+  color: var(--ww-signal);
+}
+
+/* 重点：工程化融合与收敛 —— 我们提供的手段 */
+.formula-band__cell--focus {
+  padding: 0.625rem 0.875rem;
+  border-left-color: var(--ww-signal);
+  border-left-width: 2px;
+  background: var(--ww-signal-glow);
+  border-radius: 2px;
+}
+
+.formula-band__cell--focus .formula-band__key {
+  color: var(--ww-signal);
+}
+
+.formula-band__cell--focus .formula-band__trait {
+  color: var(--ww-mist);
+}
+
+.formula-band__cell--out {
+  border-left-color: var(--ww-signal-dim);
+}
+
+.formula-band__op {
+  flex: 0 0 auto;
+  align-self: center;
+  font-family: var(--ww-font-mono);
+  font-size: 1.125rem;
+  color: var(--ww-signal);
+}
+
+.formula-band__op--arrow {
+  color: var(--ww-dim);
+}
+
+.formula-band__note {
+  margin: 1rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--ww-mist);
+}
+
+@media (max-width: 900px) {
+  .formula-band__row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .formula-band__op {
+    display: none;
+  }
+}
+
 /* —— 方案模块（Solutions）—— */
 
 .solutions-layout {
@@ -88,16 +203,6 @@
   margin: 0;
 }
 
-.stance-quote {
-  margin: 2rem 0 0;
-  padding-left: 1rem;
-  border-left: 2px solid var(--ww-signal-dim);
-  font-family: var(--ww-font-display);
-  font-size: 1.0625rem;
-  line-height: 1.8;
-  color: var(--ww-paper);
-}
-
 /* 体系卡片 */
 
 .solution-grid {
@@ -142,6 +247,38 @@
   flex-wrap: wrap;
   align-items: center;
   gap: 0.5rem;
+}
+
+.solution-card__title a {
+  color: inherit;
+}
+
+.solution-card__title a:hover {
+  color: var(--ww-signal);
+}
+
+.solution-card__industries-label {
+  font-family: var(--ww-font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ww-dim);
+  margin: 0 0 0.5rem;
+}
+
+/* 行业 chip 可直达行业方案 */
+.solution-card__industries .stage-tag {
+  display: inline-block;
+  transition:
+    color var(--ww-dur) var(--ww-ease),
+    border-color var(--ww-dur) var(--ww-ease),
+    background var(--ww-dur) var(--ww-ease);
+}
+
+.solution-card__industries .stage-tag:hover {
+  color: var(--ww-void);
+  background: var(--ww-signal);
+  border-color: var(--ww-signal);
 }
 
 .solution-card__cta {
@@ -212,6 +349,10 @@
   overflow-x: auto;
 }
 
+.solutions-diagram--routing {
+  margin-top: 2rem;
+}
+
 .solutions-diagram svg {
   min-width: 56rem;
   height: auto;
@@ -266,6 +407,14 @@
   margin-bottom: 0.375rem;
 }
 
+.solution-body img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+  border: 1px solid var(--ww-rule);
+}
+
 .solution-body strong {
   color: var(--ww-paper);
 }
@@ -310,7 +459,9 @@
   margin: 2.5rem 0;
 }
 
-/* 相关阅读 */
+.solutions-diagram__more {
+  margin: 1.5rem 0 0;
+}
 
 .solution-related {
   margin-top: 2.5rem;

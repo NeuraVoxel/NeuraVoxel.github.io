@@ -2,6 +2,7 @@
 import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
 import ConvergenceDiagram from "../../components/ConvergenceDiagram.astro";
+import TaskRoutingDiagram from "../../components/TaskRoutingDiagram.astro";
 import { getSolutionTree } from "../../lib/content";
 import "../../styles/zeyo/solutions.css";
 
@@ -25,128 +26,161 @@ const statusLabels: Record<string, string> = {
     <p class="ww-label">Solutions</p>
     <h1 class="page-head__title">方案</h1>
     <p class="page-head__desc">
-      一套方法，落到各行各业——但落到每个行业，都必须<strong>具体问题具体分析</strong>。矛盾的普遍性使方法可以复用，矛盾的特殊性决定落地不能照搬。方案 = 体系 → 行业：先把不确定性收敛成体系，再按每个行业的具体矛盾，落进它的业务链路。
+      一套方法，落到各行各业——但落到每个行业，都必须<strong>具体问题具体分析</strong>。矛盾的普遍性使方法可以复用，矛盾的特殊性决定落地不能照搬。
     </p>
   </header>
 
-  <section class="ww-section" aria-labelledby="solutions-stance">
-    <div class="ww-section__inner">
-      <header class="ww-section__head">
-        <p class="ww-label">Methodological Stance</p>
-        <h2 class="ww-section__title" id="solutions-stance">方法论立场</h2>
-        <p class="ww-section__desc">
-          共性与个性的关系，决定了一套方法该如何落地。
-        </p>
-      </header>
+  <div class="solutions-flow">
+    <section class="ww-section" aria-labelledby="solutions-stance">
+      <div class="ww-section__inner">
+        <header class="ww-section__head">
+          <p class="ww-label">Why · 立场</p>
+          <h2 class="ww-section__title" id="solutions-stance">共性可复用，个性须具体分析</h2>
+          <p class="ww-section__desc">
+            所有行业面对同一个根本矛盾：概率性的模型与确定性的交付。矛盾是共同的，解法却必须具体。
+          </p>
+        </header>
 
-      <div class="stance-grid">
-        <article class="stance-card">
-          <p class="stance-card__label">共性 · 普遍性</p>
-          <h3 class="stance-card__title">方法可以复用</h3>
-          <p class="stance-card__body">
-            所有行业的 AI 落地，都面对同一个根本矛盾：概率性的模型与确定性的交付。四道防线与闭环结构因此是通用的——数据治理、工作流编排、AI 护栏、人机审核，不因行业而改变。
+        <div class="stance-grid">
+          <article class="stance-card">
+            <p class="stance-card__label">共性 · 普遍性</p>
+            <h3 class="stance-card__title">方法可以复用</h3>
+            <p class="stance-card__body">
+              四道防线与闭环结构是通用的——数据治理、工作流编排、AI 护栏、人机审核，不因行业而改变。
+            </p>
+          </article>
+          <article class="stance-card">
+            <p class="stance-card__label">个性 · 特殊性</p>
+            <h3 class="stance-card__title">落地必须具体分析</h3>
+            <p class="stance-card__body">
+              自动驾驶的矛盾在长尾场景与责任归属，金融在合规与可审计，医疗在证据与容错边界。照搬体系，就是本本主义。
+            </p>
+          </article>
+          <article class="stance-card">
+            <p class="stance-card__label">共性 → 个性</p>
+            <h3 class="stance-card__title">在具体分析中复用</h3>
+            <p class="stance-card__body">
+              体系给的是问题清单与工程组件，不是现成答案。先分析行业的具体矛盾，再定防线配置、阈值与责任划分。
+            </p>
+          </article>
+        </div>
+
+        <div class="formula-band">
+          <p class="ww-label formula-band__label">How · 概率 × 规则 = 确定性</p>
+          <div class="formula-band__row">
+            <div class="formula-band__cell formula-band__cell--prob">
+              <p class="formula-band__key">概率性大模型</p>
+              <p class="formula-band__trait">归纳 ・ 生成 ・ 不确定性</p>
+            </div>
+            <span class="formula-band__op" aria-hidden="true">×</span>
+            <div class="formula-band__cell">
+              <p class="formula-band__key">确定性规则系统</p>
+              <p class="formula-band__trait">演绎 ・ 约束 ・ 可确定</p>
+            </div>
+            <span class="formula-band__op formula-band__op--arrow" aria-hidden="true">→</span>
+            <div class="formula-band__cell formula-band__cell--focus">
+              <p class="formula-band__key">工程化融合与收敛</p>
+              <p class="formula-band__trait">数据治理 · 工作流编排 · AI 护栏 · 人机审核</p>
+            </div>
+            <span class="formula-band__op formula-band__op--arrow" aria-hidden="true">→</span>
+            <div class="formula-band__cell formula-band__cell--out">
+              <p class="formula-band__key">确定性商业交付</p>
+              <p class="formula-band__trait">稳定输出 · 可控风险 · 可验证 · 可重复</p>
+            </div>
+          </div>
+          <p class="formula-band__note">
+            确定性不来自任何一方，而来自这个分工结构：大模型负责规模化生成，规则系统负责演绎与校验，人类负责关键判断与责任闭环。
           </p>
-        </article>
-        <article class="stance-card">
-          <p class="stance-card__label">个性 · 特殊性</p>
-          <h3 class="stance-card__title">落地必须具体分析</h3>
-          <p class="stance-card__body">
-            但每个行业的具体矛盾不同：自动驾驶的矛盾在长尾场景与责任归属，金融的矛盾在合规与可审计，医疗的矛盾在证据与容错边界。不研究这些特殊性，把体系原样套下去，就是本本主义。
-          </p>
-        </article>
-        <article class="stance-card">
-          <p class="stance-card__label">共性 → 个性</p>
-          <h3 class="stance-card__title">在具体分析中复用</h3>
-          <p class="stance-card__body">
-            体系提供的是问题清单与工程组件，不是现成答案。进入一个行业，先分析它的具体矛盾，再决定每一道防线如何配置、阈值定在哪里、责任如何划分——这才是"一套方法，落到各行各业"的正确方式。
-          </p>
-        </article>
+        </div>
+
+        <figure class="solutions-diagram solutions-diagram--routing">
+          <TaskRoutingDiagram />
+          <figcaption>
+            任务先分流，方法才分明：确定性任务走规则直接求解，概率性任务走生成加收敛，两条路径汇入同一个确定性交付系统。
+          </figcaption>
+        </figure>
+
+        <p class="solutions-diagram__more">
+          <a class="btn btn--ghost" href="/articles/probabilistic-llm-deterministic-rules/">
+            阅读任务分流方法论 →
+          </a>
+        </p>
       </div>
+    </section>
 
-      <blockquote class="stance-quote">
-        马克思主义的最本质的东西，马克思主义的活的灵魂，就在于具体地分析具体的情况。
-      </blockquote>
-    </div>
-  </section>
+    <section class="ww-section" aria-labelledby="solutions-systems">
+      <div class="ww-section__inner">
+        <header class="ww-section__head">
+          <p class="ww-label">What · 体系 → 行业</p>
+          <h2 class="ww-section__title" id="solutions-systems">方案体系</h2>
+          <p class="ww-section__desc">
+            每个体系是一套可复用的工程底座，下面挂着它在各个行业的具体落地方案。
+          </p>
+        </header>
 
-  <hr class="ww-rule" />
-
-  <section class="ww-section" aria-labelledby="solutions-systems">
-    <div class="ww-section__inner">
-      <header class="ww-section__head">
-        <p class="ww-label">Solution Systems</p>
-        <h2 class="ww-section__title" id="solutions-systems">方案体系</h2>
-        <p class="ww-section__desc">
-          每个体系是一套可复用的工程底座；但进入不同行业，必须按该行业的具体矛盾重新具体化——不做本本主义式的照搬。
-        </p>
-      </header>
-
-      <div class="solution-grid">
-        {
-          systems.map((system) => (
-            <a class="solution-card" href={system.href}>
-              <div class="solution-card__meta">
-                <span class="solution-kind">体系</span>
-                {system.entry.data.status && (
-                  <span class={`status-badge status-badge--${system.entry.data.status}`}>
-                    {statusLabels[system.entry.data.status] ?? system.entry.data.status}
-                  </span>
-                )}
-                {system.entry.data.industry && (
-                  <span class="cat-badge">{system.entry.data.industry}</span>
-                )}
-              </div>
-              <h3 class="solution-card__title">{system.entry.data.title}</h3>
-              <p class="solution-card__summary">{system.entry.data.summary}</p>
-              {
-                system.industries.length > 0 && (
-                  <div class="stage-tags">
-                    {system.industries.map((child) => (
-                      <span class="stage-tag stage-tag--return">
-                        {child.entry.data.industry ?? child.entry.data.title}
-                      </span>
-                    ))}
-                  </div>
-                )
-              }
-              <span class="solution-card__cta">
-                {system.industries.length > 0
-                  ? `${system.industries.length} 个行业方案 →`
-                  : "查看体系 →"}
-              </span>
-            </a>
-          ))
-        }
+        <div class="solution-grid">
+          {
+            systems.map((system) => (
+              <article class="solution-card">
+                <div class="solution-card__meta">
+                  <span class="solution-kind">体系</span>
+                  {system.entry.data.status && (
+                    <span class={`status-badge status-badge--${system.entry.data.status}`}>
+                      {statusLabels[system.entry.data.status] ?? system.entry.data.status}
+                    </span>
+                  )}
+                </div>
+                <h3 class="solution-card__title">
+                  <a href={system.href}>{system.entry.data.title}</a>
+                </h3>
+                <p class="solution-card__summary">{system.entry.data.summary}</p>
+                {
+                  system.industries.length > 0 && (
+                    <div class="solution-card__industries">
+                      <p class="solution-card__industries-label">行业方案</p>
+                      <div class="stage-tags">
+                        {system.industries.map((child) => (
+                          <a class="stage-tag stage-tag--return" href={child.href}>
+                            {child.entry.data.industry ?? child.entry.data.title}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )
+                }
+                <a class="solution-card__cta" href={system.href}>查看体系 →</a>
+              </article>
+            ))
+          }
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <hr class="ww-rule" />
+    <section class="ww-section" aria-labelledby="solutions-convergence">
+      <div class="ww-section__inner">
+        <header class="ww-section__head">
+          <p class="ww-label">Base · 共同底座</p>
+          <h2 class="ww-section__title" id="solutions-convergence">工程化收敛体系</h2>
+          <p class="ww-section__desc">
+            上面每一个体系，都建立在这同一套底座之上：概率性大模型 → 工程化收敛 → 确定性商业交付。
+          </p>
+        </header>
 
-  <section class="ww-section" aria-labelledby="solutions-convergence">
-    <div class="ww-section__inner">
-      <header class="ww-section__head">
-        <p class="ww-label">Engineering Convergence</p>
-        <h2 class="ww-section__title" id="solutions-convergence">工程化收敛体系</h2>
-        <p class="ww-section__desc">
-          概率性大模型 → 工程化收敛 → 确定性交付。所有行业方案共同的底座。
+        <figure class="solutions-diagram">
+          <ConvergenceDiagram />
+          <figcaption>
+            四道防线：数据治理 · 工作流编排 · AI 护栏 · 人机审核 —— AI 负责规模化生成，人类负责关键判断与责任闭环。
+          </figcaption>
+        </figure>
+
+        <p class="solutions-diagram__more">
+          <a class="btn btn--ghost" href="/articles/engineering-convergence-system/">
+            阅读方法论原文 →
+          </a>
         </p>
-      </header>
-
-      <figure class="solutions-diagram">
-        <ConvergenceDiagram />
-        <figcaption>
-          四道防线：数据治理 · 工作流编排 · AI 护栏 · 人机审核 —— AI 负责规模化生成，人类负责关键判断与责任闭环。
-        </figcaption>
-      </figure>
-
-      <p style="margin-top: 1.5rem;">
-        <a class="btn btn--ghost" href="/articles/engineering-convergence-system/">
-          阅读方法论原文 →
-        </a>
-      </p>
-    </div>
-  </section>
+      </div>
+    </section>
+  </div>
 
   <CooperationStrip
     id="solutions-cooperation"
