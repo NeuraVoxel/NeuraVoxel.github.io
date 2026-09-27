@@ -19,22 +19,6 @@ import "../styles/zeyo/home.css";
         <p class="hero__subtitle">
           从闭环视角，分析问题、设计产品、驱动迭代
         </p>
-        <div class="hero__formula">
-          <p class="hero__formula-line hero__formula-line--prob">
-            <span class="hero__formula-key">概率性大模型</span>
-            <span class="hero__formula-sep">｜</span>
-            <span class="hero__formula-trait">归纳 ・ 生成 ・ 不确定性</span>
-          </p>
-          <p class="hero__formula-op">× 对立统一 · 双引擎融合</p>
-          <p class="hero__formula-line hero__formula-line--rule">
-            <span class="hero__formula-key">确定性规则系统</span>
-            <span class="hero__formula-sep">｜</span>
-            <span class="hero__formula-trait">演绎 ・ 约束 ・ 可确定</span>
-          </p>
-          <p class="hero__formula-out">
-            工程化融合与收敛 → 确定性交付
-          </p>
-        </div>
         <p class="hero__support">
           人类负责关键判断与责任闭环，NeuraVoxel 以 Agent
           智能体一点点攻克闭环中的每个环节——从小工具做起，连接每一个断点。
@@ -97,7 +81,32 @@ import "../styles/zeyo/home.css";
     </div>
   </section>
 
-  <hr class="ww-rule" />
+  <section class="formula-band" aria-label="双引擎收敛公式">
+    <div class="formula-band__inner">
+      <p class="ww-label formula-band__label">Probabilistic × Deterministic</p>
+      <div class="formula-band__row">
+        <div class="formula-band__cell formula-band__cell--prob">
+          <p class="formula-band__key">概率性大模型</p>
+          <p class="formula-band__trait">归纳 ・ 生成 ・ 不确定性</p>
+        </div>
+        <span class="formula-band__op" aria-hidden="true">×</span>
+        <div class="formula-band__cell formula-band__cell--rule">
+          <p class="formula-band__key">确定性规则系统</p>
+          <p class="formula-band__trait">演绎 ・ 约束 ・ 可确定</p>
+        </div>
+        <span class="formula-band__op formula-band__op--arrow" aria-hidden="true">→</span>
+        <div class="formula-band__cell">
+          <p class="formula-band__key">工程化融合与收敛</p>
+          <p class="formula-band__trait">数据治理 · 工作流编排 · AI 护栏 · 人机审核</p>
+        </div>
+        <span class="formula-band__op formula-band__op--arrow" aria-hidden="true">→</span>
+        <div class="formula-band__cell formula-band__cell--out">
+          <p class="formula-band__key">确定性商业交付</p>
+          <p class="formula-band__trait">稳定输出 · 可控风险 · 可验证 · 可重复</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="ww-section" id="thinking" aria-labelledby="thinking-title">
     <div class="ww-section__inner">
