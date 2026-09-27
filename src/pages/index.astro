@@ -30,25 +30,21 @@ import "../styles/zeyo/home.css";
 
       <figure
         class="living-loop"
-        aria-label="收敛闭环示意图：概率生成、规则校验、人机审核、确定交付、反馈回流五个环节构成闭环，大模型与规则系统双引擎驱动"
+        aria-label="双引擎收敛闭环示意图：概率性大模型与确定性规则系统两圆交叠，交集为工程化收敛区；外环由概率生成、规则校验、人机审核、确定交付、反馈回流五个环节首尾相接构成闭环"
       >
         <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
           <circle class="loop-ring" cx="200" cy="200" r="150"></circle>
           <circle class="loop-ring loop-ring--active" cx="200" cy="200" r="150"></circle>
-          <text
-            class="loop-center__text"
-            x="200"
-            y="194"
-            style="font-size: 21px; fill: var(--ww-paper); font-weight: 600"
-          >收敛闭环</text>
-          <text
-            class="loop-center__text"
-            x="200"
-            y="214"
-            style="font-size: 11px; fill: var(--ww-dim)"
-          >
-            大模型 × 规则系统
-          </text>
+
+          <!-- 双引擎：大模型（概率）× 规则系统（确定），交叠处即融合收敛区 -->
+          <circle class="engine-circle engine-circle--prob" cx="168" cy="200" r="70"></circle>
+          <circle class="engine-circle engine-circle--rule" cx="232" cy="200" r="70"></circle>
+          <text class="engine-label engine-label--prob" x="130" y="204">大模型</text>
+          <text class="engine-label engine-label--rule" x="270" y="204">规则系统</text>
+
+          <text class="loop-center__text loop-center__text--main" x="200" y="190">收敛闭环</text>
+          <text class="loop-center__text loop-center__text--sub" x="200" y="211">双引擎融合</text>
+
           <g class="loop-node" data-stage="perceive" data-index="0" transform="translate(200, 50)">
             <circle class="loop-node__dot" r="8"></circle>
             <text class="loop-node__label" y="24">概率生成</text>

@@ -187,11 +187,55 @@
   stroke: var(--ww-return);
 }
 
+/* 双引擎：概率性大模型 × 确定性规则系统，交叠处为融合收敛区 */
+.engine-circle {
+  fill-opacity: 0.16;
+  stroke-width: 1.25;
+}
+
+.engine-circle--prob {
+  fill: var(--ww-signal);
+  stroke: var(--ww-signal);
+  stroke-opacity: 0.45;
+}
+
+.engine-circle--rule {
+  fill: var(--ww-warn);
+  stroke: var(--ww-warn);
+  stroke-opacity: 0.45;
+}
+
+.engine-label {
+  font-family: var(--ww-font-mono);
+  font-size: 11px;
+  text-anchor: middle;
+}
+
+.engine-label--prob {
+  fill: var(--ww-signal);
+}
+
+.engine-label--rule {
+  fill: var(--ww-warn);
+}
+
 .loop-center__text {
   font-family: var(--ww-font-display);
   font-size: 14px;
   fill: var(--ww-mist);
   text-anchor: middle;
+}
+
+.loop-center__text--main {
+  font-size: 16px;
+  font-weight: 600;
+  fill: var(--ww-paper);
+}
+
+.loop-center__text--sub {
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  fill: var(--ww-dim);
 }
 
 /* —— Thinking —— */
