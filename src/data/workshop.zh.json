@@ -3,7 +3,7 @@
     {
       "id": "office",
       "title": "AI办公",
-      "countLabel": "5 项作品",
+      "countLabel": "6 项作品",
       "loopSteps": [
         "规划",
         "执行",
@@ -139,6 +139,22 @@
             }
           ],
           "openUrl": "https://github.com/NeuraVoxel/task-skill"
+        },
+        {
+          "id": "probwave-harness",
+          "name": "ProbWave Harness",
+          "summary": "ProbWave 的 Agent 执行底座：让概率性输出在受约束的通道里运行并接受校验。形态与入口待发布，先占位。",
+          "status": "planned",
+          "tags": [
+            {
+              "label": "约束执行",
+              "stage": "execute"
+            },
+            {
+              "label": "校验回流",
+              "stage": "review"
+            }
+          ]
         }
       ]
     },

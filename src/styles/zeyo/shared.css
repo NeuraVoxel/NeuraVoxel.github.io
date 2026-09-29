@@ -648,7 +648,8 @@ html[data-theme="light"] .theme-toggle__icon--sun {
 
 .site-footer__cols {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  /* 首列（产品）更宽，容纳 ProbWave Harness 等长名称不折行 */
+  grid-template-columns: 1.6fr 1fr 1fr 1fr 1.1fr;
   gap: clamp(1.5rem, 3vw, 2.5rem);
 }
 
@@ -677,6 +678,10 @@ html[data-theme="light"] .theme-toggle__icon--sun {
 
 .site-footer__links a:hover {
   color: var(--ww-signal);
+}
+
+.site-footer__link--nowrap {
+  white-space: nowrap;
 }
 
 .site-footer__bar {
