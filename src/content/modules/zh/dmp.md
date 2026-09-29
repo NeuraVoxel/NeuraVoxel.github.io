@@ -27,7 +27,7 @@ links:
 
 ## 概述
 
-DMP（Data Management Platform）是 NeuraVoxel 产业数据闭环的**数据中枢**。环上的标注、训练/微调、仿真等能力通过 DMP 获取版本化数据集、回写元数据，而非各自维护孤立的数据副本。
+DMP（Data Management Platform）是 ProbWave 产业数据闭环的**数据中枢**。环上的标注、训练/微调、仿真等能力通过 DMP 获取版本化数据集、回写元数据，而非各自维护孤立的数据副本。
 
 ## 核心能力
 

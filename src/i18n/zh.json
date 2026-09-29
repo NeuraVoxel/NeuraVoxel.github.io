@@ -1,6 +1,6 @@
 {
   "meta": {
-    "siteTitle": "NeuraVoxel — 自动化数据引擎",
+    "siteTitle": "ProbWave — 自动化数据引擎",
     "siteDescription": "以自动化数据引擎驱动产业数据闭环。DMP 数据中枢连接标注、训练/微调与仿真对接。"
   },
   "nav": {
@@ -52,7 +52,7 @@
   },
   "modules": {
     "pageTitle": "模块与工具",
-    "pageDescription": "NeuraVoxel 在线工具与产品模块目录。",
+    "pageDescription": "ProbWave 在线工具与产品模块目录。",
     "catalogEyebrow": "Product catalog",
     "heroLead": "在线工具与产品模块一览。选择条目即可直接访问或查看说明。",
     "toolsLabel": "Tools",
@@ -100,11 +100,11 @@
     "tagline": "自动化数据引擎 · 产业数据闭环",
     "about": "关于",
     "contact": "联系",
-    "copyright": "© 2026 NeuraVoxel · neuravoxel.cn"
+    "copyright": "© 2026 ProbWave · neuravoxel.cn"
   },
   "about": {
-    "title": "关于 NeuraVoxel",
-    "body": "NeuraVoxel 以自动化数据引擎为核心，帮助产业客户构建可追溯的数据闭环。本站点为产品门户与文档入口；真实控制台与任务操作请通过各模块外链访问。"
+    "title": "关于 ProbWave",
+    "body": "ProbWave 以自动化数据引擎为核心，帮助产业客户构建可追溯的数据闭环。本站点为产品门户与文档入口；真实控制台与任务操作请通过各模块外链访问。"
   },
   "errors": {
     "notFoundTitle": "页面未找到",

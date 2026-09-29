@@ -1,6 +1,6 @@
 ---
 title: 版本发布与 Changelog
-description: NeuraVoxel 门户与 DMP v1 首批发布
+description: ProbWave 门户与 DMP v1 首批发布
 section: releases
 order: 1
 ---

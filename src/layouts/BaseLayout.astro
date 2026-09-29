@@ -17,7 +17,7 @@ interface Props {
 const { locale, currentPath, title, description, variant = "default" } =
   Astro.props;
 const t = useTranslations(locale);
-const pageTitle = title ? `${title} · NeuraVoxel` : t("meta.siteTitle");
+const pageTitle = title ? `${title} · ProbWave` : t("meta.siteTitle");
 const pageDescription = description ?? t("meta.siteDescription");
 const bodyClass = variant === "docs" ? "theme-docs" : variant === "modules" ? "theme-modules" : undefined;
 ---

@@ -145,7 +145,7 @@
     {
       "id": "driving",
       "title": "自动驾驶",
-      "countLabel": "NeuraVoxel · 4 项作品",
+      "countLabel": "ProbWave · 4 项作品",
       "loopSteps": [
         "采集",
         "标注",
@@ -237,7 +237,7 @@
       "products": [],
       "empty": true,
       "emptyTitle": "具身智能即将开放",
-      "emptyDesc": "演示数据与真机反馈经同一数据契约组织，仿真与实机闭环缩短迭代周期。NeuraVoxel 正在识别环上断点。"
+      "emptyDesc": "演示数据与真机反馈经同一数据契约组织，仿真与实机闭环缩短迭代周期。ProbWave 正在识别环上断点。"
     },
     {
       "id": "digital-twin",
@@ -457,7 +457,7 @@
       "products": [],
       "empty": true,
       "emptyTitle": "更多场景即将开放",
-      "emptyDesc": "制造、医疗……每个新场景都是一个新的环。NeuraVoxel 正在逐个识别断点、逐个攻克。"
+      "emptyDesc": "制造、医疗……每个新场景都是一个新的环。ProbWave 正在逐个识别断点、逐个攻克。"
     }
   ]
 }

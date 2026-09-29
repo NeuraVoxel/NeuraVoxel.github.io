@@ -1,5 +1,5 @@
 /**
- * NeuraVoxel 站点 — 共享 tokens 与组件
+ * ProbWave 站点 — 共享 tokens 与组件
  * 视觉延续 wanwu-closed-loop：墨色底 · 青绿信号 · 衬线标题
  */
 
@@ -159,10 +159,13 @@ button:focus-visible {
 }
 
 .site-logo__mark {
-  width: 2rem;
-  height: 2rem;
+  width: 2.5rem;
   flex-shrink: 0;
   display: block;
+  aspect-ratio: 540 / 554;
+  background-color: currentColor;
+  -webkit-mask: url("/logo-probwave.svg") center / contain no-repeat;
+  mask: url("/logo-probwave.svg") center / contain no-repeat;
 }
 
 .site-logo__word {
@@ -597,9 +600,12 @@ html[data-theme="light"] .theme-toggle__icon--sun {
 
 .site-footer__logo-mark {
   width: 2rem;
-  height: 2rem;
   flex-shrink: 0;
   display: block;
+  aspect-ratio: 540 / 554;
+  background-color: currentColor;
+  -webkit-mask: url("/logo-probwave.svg") center / contain no-repeat;
+  mask: url("/logo-probwave.svg") center / contain no-repeat;
 }
 
 .site-footer__logo-word {
@@ -706,6 +712,12 @@ html[data-theme="light"] .theme-toggle__icon--sun {
 
 .site-footer__bar a:hover {
   color: var(--ww-mist);
+}
+
+.site-footer__company {
+  font-size: 0.75rem;
+  letter-spacing: 0.02em;
+  color: var(--ww-dim);
 }
 
 .site-footer__philosophy {

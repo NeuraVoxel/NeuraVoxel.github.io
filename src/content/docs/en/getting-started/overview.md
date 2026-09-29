@@ -5,7 +5,7 @@ section: getting-started
 order: 1
 ---
 
-NeuraVoxel centers on an **automated data engine** that powers traceable industrial data loops.
+ProbWave centers on an **automated data engine** that powers traceable industrial data loops.
 
 ## What this site offers
 

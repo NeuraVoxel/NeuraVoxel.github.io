@@ -1,6 +1,6 @@
 {
   "meta": {
-    "siteTitle": "NeuraVoxel — Automated Data Engine",
+    "siteTitle": "ProbWave — Automated Data Engine",
     "siteDescription": "Industrial data loop powered by an automated data engine. DMP hub connects annotation, training, and simulation bridges."
   },
   "nav": {
@@ -52,7 +52,7 @@
   },
   "modules": {
     "pageTitle": "Modules & tools",
-    "pageDescription": "NeuraVoxel catalog of live tools and product modules.",
+    "pageDescription": "ProbWave catalog of live tools and product modules.",
     "catalogEyebrow": "Product catalog",
     "heroLead": "Browse live tools and product modules. Select an entry to open or read more.",
     "toolsLabel": "Tools",
@@ -100,11 +100,11 @@
     "tagline": "Automated data engine · industrial data loop",
     "about": "About",
     "contact": "Contact",
-    "copyright": "© 2026 NeuraVoxel · neuravoxel.cn"
+    "copyright": "© 2026 ProbWave · neuravoxel.cn"
   },
   "about": {
-    "title": "About NeuraVoxel",
-    "body": "NeuraVoxel builds traceable industrial data loops around an automated data engine. This site is the product portal and documentation entry; use module links for live consoles and operations."
+    "title": "About ProbWave",
+    "body": "ProbWave builds traceable industrial data loops around an automated data engine. This site is the product portal and documentation entry; use module links for live consoles and operations."
   },
   "errors": {
     "notFoundTitle": "Page not found",

@@ -24,6 +24,6 @@ links:
 
 ## Overview
 
-DMP is the **data hub** of the NeuraVoxel industrial data loop. Ring capabilities pull versioned datasets and write metadata back through DMP instead of maintaining isolated copies.
+DMP is the **data hub** of the ProbWave industrial data loop. Ring capabilities pull versioned datasets and write metadata back through DMP instead of maintaining isolated copies.
 
 See [DMP interactions](/en/docs/dmp/interactions) for channel details.

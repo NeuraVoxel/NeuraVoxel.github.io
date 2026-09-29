@@ -1,11 +1,11 @@
 ---
-title: 快速了解 NeuraVoxel
+title: 快速了解 ProbWave
 description: 门户、闭环与模块/文档入口导读
 section: getting-started
 order: 1
 ---
 
-NeuraVoxel 以**自动化数据引擎**为核心，帮助产业客户构建可追溯的数据闭环。
+ProbWave 以**自动化数据引擎**为核心，帮助产业客户构建可追溯的数据闭环。
 
 ## 本站点提供什么
 
