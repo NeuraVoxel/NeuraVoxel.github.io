@@ -1,5 +1,5 @@
 export type ArticleCategory = "thinking" | "practice" | "agent";
-export type ArticleSeries = "ai-select";
+export type ArticleSeries = "ai-select" | "ai-augmentation";
 
 export interface ArticleMeta {
   slug: string;
@@ -19,4 +19,5 @@ export const categoryLabels: Record<ArticleCategory, string> = {
 
 export const seriesLabels: Record<ArticleSeries, string> = {
   "ai-select": "AI选",
+  "ai-augmentation": "AI增强",
 };
