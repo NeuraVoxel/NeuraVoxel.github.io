@@ -125,7 +125,12 @@ const listArticles = articles.filter((a) => a !== featured);
       tab.addEventListener("click", () => apply(tab));
     });
 
-    const initial = document.querySelector('.filter-tab[aria-selected="true"]');
+    const requested = new URLSearchParams(location.search).get("series");
+    const requestedTab = requested
+      ? document.querySelector(`.filter-tab[data-filter="${CSS.escape(requested)}"]`)
+      : null;
+    const initial =
+      requestedTab ?? document.querySelector('.filter-tab[aria-selected="true"]');
     if (initial) apply(initial);
   })();
 </script>
