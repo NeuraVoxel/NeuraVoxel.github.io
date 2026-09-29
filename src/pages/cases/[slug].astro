@@ -1,0 +1,89 @@
+---
+import { getCollection, render } from "astro:content";
+import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
+import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
+import { getCaseBySlug, stripLocale } from "../../lib/content";
+import { formatArticleDate } from "../../lib/articles";
+import "../../styles/zeyo/cases.css";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("cases", ({ id, data }) => {
+    return id.startsWith("zh/") && !data.draft;
+  });
+
+  return entries.map((entry) => ({
+    params: { slug: stripLocale(entry.id, "zh") },
+  }));
+}
+
+const locale = "zh";
+const slug = Astro.params.slug!;
+const entry = await getCaseBySlug(locale, slug);
+
+if (!entry) {
+  return Astro.redirect("/404");
+}
+
+const { Content } = await render(entry);
+const date = formatArticleDate(entry.data.date);
+---
+
+<ZeyoLayout
+  currentPath="/cases/"
+  title={`${entry.data.title} — 客户案例 — NeuraVoxel`}
+  description={entry.data.summary}
+  pageClass="cases-page"
+>
+  <header class="page-head">
+    <p class="ww-label">Customer Case</p>
+    <h1 class="page-head__title">{entry.data.title}</h1>
+    <p class="page-head__desc">{entry.data.summary}</p>
+  </header>
+
+  <div class="cases-layout">
+    <nav class="case-crumbs" aria-label="面包屑">
+      <a href="/cases/">客户案例</a>
+      <span aria-hidden="true">/</span>
+      <span aria-current="page">{entry.data.title}</span>
+    </nav>
+
+    <div class="case-meta">
+      {entry.data.client && <span class="case-meta__item">{entry.data.client}</span>}
+      {entry.data.industry && <span class="cat-badge">{entry.data.industry}</span>}
+      <time class="case-card__date" datetime={date}>{date}</time>
+    </div>
+
+    {
+      entry.data.metrics && entry.data.metrics.length > 0 && (
+        <ul class="case-metrics">
+          {entry.data.metrics.map((metric) => (
+            <li class="case-metrics__item">
+              <p class="case-metrics__value">{metric.value}</p>
+              <p class="case-metrics__label">{metric.label}</p>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+
+    <div class="case-body">
+      <Content />
+    </div>
+
+    <div class="case-foot">
+      <a class="btn btn--ghost" href="/cases/">← 返回案例列表</a>
+      {
+        entry.data.solution && (
+          <a class="btn btn--ghost" href={`/solutions/${entry.data.solution}/`}>
+            相关方案 →
+          </a>
+        )
+      }
+    </div>
+  </div>
+
+  <CooperationStrip
+    id="case-cooperation"
+    desc="类似的矛盾，也可以这样收敛 — 从一个环节开始聊"
+  />
+</ZeyoLayout>

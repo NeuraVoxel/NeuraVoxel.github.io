@@ -77,4 +77,22 @@ const solutions = defineCollection({
   }),
 });
 
-export const collections = { modules, docs, articles, solutions };
+const cases = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    client: z.string().optional(),
+    industry: z.string().optional(),
+    date: z.coerce.date(),
+    metrics: z
+      .array(z.object({ label: z.string(), value: z.string() }))
+      .optional(),
+    solution: z.string().optional(),
+    featured: z.boolean().optional().default(false),
+    order: z.number().optional(),
+    draft: z.boolean().optional().default(false),
+  }),
+});
+
+export const collections = { modules, docs, articles, solutions, cases };

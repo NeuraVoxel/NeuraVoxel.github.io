@@ -1,0 +1,63 @@
+---
+import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
+import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
+import { getCasesForLocale, caseSlug } from "../../lib/content";
+import { formatArticleDate } from "../../lib/articles";
+import "../../styles/zeyo/cases.css";
+
+const locale = "zh";
+const cases = await getCasesForLocale(locale);
+---
+
+<ZeyoLayout
+  currentPath="/cases/"
+  title="客户案例 — NeuraVoxel"
+  description="NeuraVoxel 客户案例：把概率性的大模型输出，收敛成客户业务里可交付、可验证的结果。"
+  pageClass="cases-page"
+>
+  <header class="page-head">
+    <p class="ww-label">Customer Cases</p>
+    <h1 class="page-head__title">客户案例</h1>
+    <p class="page-head__desc">
+      不讲概念，只讲落地：客户的具体矛盾是什么，我们收敛了哪一段链路，最终交付了什么结果。
+    </p>
+  </header>
+
+  <div class="cases-layout">
+    {
+      cases.length === 0 ? (
+        <div class="case-empty">
+          <p class="case-empty__title">案例整理中</p>
+          <p class="case-empty__desc">
+            我们正在与首批客户确认可公开的信息边界。案例上线前，会先拿到客户的披露许可——未经许可，不写客户名、不写数字。
+            想先聊你的链路，可直接联系合作咨询。
+          </p>
+        </div>
+      ) : (
+        <div class="case-grid">
+          {cases.map((entry) => (
+            <a class="case-card" href={`/cases/${caseSlug(entry, locale)}/`}>
+              <div class="case-card__meta">
+                {entry.data.client && <span class="cat-badge">{entry.data.client}</span>}
+                {entry.data.industry && (
+                  <span class="cat-badge cat-badge--series">{entry.data.industry}</span>
+                )}
+              </div>
+              <time class="case-card__date" datetime={formatArticleDate(entry.data.date)}>
+                {formatArticleDate(entry.data.date)}
+              </time>
+              <h2 class="case-card__title">{entry.data.title}</h2>
+              <p class="case-card__summary">{entry.data.summary}</p>
+              <span class="case-card__cta">查看案例 →</span>
+            </a>
+          ))}
+        </div>
+      )
+    }
+  </div>
+
+  <CooperationStrip
+    id="cases-cooperation"
+    desc="从一个环节开始，把你的链路收敛成下一个案例"
+  />
+</ZeyoLayout>

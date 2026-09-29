@@ -5,6 +5,7 @@ export type ModuleEntry = CollectionEntry<"modules">;
 export type DocEntry = CollectionEntry<"docs">;
 export type ArticleEntry = CollectionEntry<"articles">;
 export type SolutionEntry = CollectionEntry<"solutions">;
+export type CaseEntry = CollectionEntry<"cases">;
 
 const SECTION_ORDER = [
   "getting-started",
@@ -241,5 +242,33 @@ export async function getSolutionTree(
 }
 
 export function solutionSlug(entry: SolutionEntry, locale: Locale): string {
+  return stripLocale(entry.id, locale);
+}
+
+/* —— Cases（客户案例）—— */
+
+export async function getCasesForLocale(
+  locale: Locale,
+): Promise<CaseEntry[]> {
+  const all = await getCollection("cases", ({ id, data }) => {
+    return id.startsWith(`${locale}/`) && !data.draft;
+  });
+
+  return all.sort(
+    (a, b) =>
+      (a.data.order ?? 999) - (b.data.order ?? 999) ||
+      b.data.date.getTime() - a.data.date.getTime(),
+  );
+}
+
+export async function getCaseBySlug(
+  locale: Locale,
+  slug: string,
+): Promise<CaseEntry | undefined> {
+  const cases = await getCasesForLocale(locale);
+  return cases.find((entry) => stripLocale(entry.id, locale) === slug);
+}
+
+export function caseSlug(entry: CaseEntry, locale: Locale): string {
   return stripLocale(entry.id, locale);
 }

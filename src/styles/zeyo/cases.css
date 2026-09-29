@@ -1,0 +1,240 @@
+/* —— 客户案例（Cases）—— */
+
+.cases-layout {
+  max-width: var(--ww-wide);
+  margin-inline: auto;
+  padding-inline: var(--ww-page-x);
+  padding-bottom: 3rem;
+}
+
+.case-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 1rem;
+}
+
+.case-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  padding: 1.5rem;
+  background: var(--ww-surface);
+  border: 1px solid var(--ww-rule);
+  border-radius: 2px;
+  text-decoration: none;
+  transition: border-color var(--ww-dur) var(--ww-ease);
+}
+
+.case-card:hover {
+  border-color: var(--ww-signal-dim);
+}
+
+.case-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.case-card__date {
+  font-family: var(--ww-font-mono);
+  font-size: 0.75rem;
+  color: var(--ww-dim);
+}
+
+.case-card__title {
+  font-family: var(--ww-font-display);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  color: var(--ww-paper);
+  margin: 0;
+}
+
+.case-card__summary {
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  color: var(--ww-mist);
+  margin: 0;
+}
+
+.case-card__cta {
+  font-family: var(--ww-font-mono);
+  font-size: 0.75rem;
+  color: var(--ww-signal);
+  margin-top: auto;
+}
+
+.case-empty {
+  padding: 2rem 1.5rem;
+  border: 1px dashed var(--ww-rule);
+  border-radius: 2px;
+}
+
+.case-empty__title {
+  font-family: var(--ww-font-display);
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--ww-paper);
+  margin: 0 0 0.625rem;
+}
+
+.case-empty__desc {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--ww-dim);
+  margin: 0;
+}
+
+/* 详情页 */
+
+.case-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--ww-font-mono);
+  font-size: 0.75rem;
+  color: var(--ww-dim);
+}
+
+.case-crumbs a {
+  color: var(--ww-signal);
+}
+
+.case-crumbs a:hover {
+  color: var(--ww-signal-hover);
+}
+
+.case-crumbs span[aria-current] {
+  color: var(--ww-mist);
+}
+
+.case-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.case-meta__item {
+  font-family: var(--ww-font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--ww-rule);
+  border-radius: 2px;
+  color: var(--ww-mist);
+}
+
+.case-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1rem;
+  margin: 2rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.case-metrics__item {
+  padding: 1.125rem;
+  background: var(--ww-surface);
+  border: 1px solid var(--ww-rule);
+  border-radius: 2px;
+}
+
+.case-metrics__value {
+  font-family: var(--ww-font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--ww-signal);
+  margin: 0 0 0.375rem;
+}
+
+.case-metrics__label {
+  font-size: 0.8125rem;
+  color: var(--ww-dim);
+  margin: 0;
+}
+
+.case-body {
+  max-width: none;
+  margin-top: 2.5rem;
+}
+
+.case-body h2 {
+  font-family: var(--ww-font-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--ww-paper);
+  margin: 2.5rem 0 1rem;
+}
+
+.case-body h3 {
+  font-family: var(--ww-font-display);
+  font-size: 1.1875rem;
+  font-weight: 600;
+  color: var(--ww-paper);
+  margin: 1.75rem 0 0.75rem;
+}
+
+.case-body p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--ww-mist);
+  margin: 0 0 1.125rem;
+}
+
+.case-body ul,
+.case-body ol {
+  margin: 0 0 1.125rem;
+  padding-left: 1.25rem;
+  color: var(--ww-mist);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+
+.case-body li {
+  margin-bottom: 0.375rem;
+}
+
+.case-body img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+  border: 1px solid var(--ww-rule);
+}
+
+.case-body strong {
+  color: var(--ww-paper);
+}
+
+.case-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.9375rem;
+}
+
+.case-body th,
+.case-body td {
+  border: 1px solid var(--ww-rule);
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  color: var(--ww-mist);
+  line-height: 1.6;
+}
+
+.case-body th {
+  color: var(--ww-paper);
+  background: var(--ww-elevated);
+}
+
+.case-foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 3rem;
+}
