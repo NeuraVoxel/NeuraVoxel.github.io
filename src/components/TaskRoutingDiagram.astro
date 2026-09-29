@@ -1,9 +1,10 @@
 ---
 /**
- * 任务分流示意图（原生 SVG）
- * 任务入口 → 任务分流（边界能否写清？）
- *   ├ 确定性任务 → 规则引擎求解（演绎 · 约束 · 可确定）
- *   └ 概率性任务 → 大模型生成 + 工程化收敛（归纳 · 生成 · 不确定性）
+ * 决策分流示意图（原生 SVG）
+ * 任务入口 → 决策分流（jev 结构化判断：边界能否写清？输出带校准置信度的定型决策）
+ *   ├ 高置信·确定性任务 → 规则引擎求解（演绎 · 约束 · 可确定）
+ *   ├ 高置信·概率性任务 → 大模型生成 + 工程化收敛（归纳 · 生成 · 不确定性）
+ *   └ 低置信 / 边界不清 → 转人工（人机判断·回流）
  * 两条路径汇入同一个确定性交付系统，反馈回流驱动规则边界外扩
  */
 
@@ -18,7 +19,7 @@ const outcomes = ["稳定输出", "可控风险", "可解释", "可重复"];
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
   role="img"
-  aria-label="任务分流示意图：任务入口进入分流器，按边界能否写清分为确定性任务（走规则引擎演绎求解）与概率性任务（走大模型生成加工程化收敛），两条路径汇入同一个确定性交付系统，反馈回流驱动规则边界外扩"
+  aria-label="决策分流示意图：任务入口进入决策分流器，由 jev 做结构化判断，按边界能否写清、并带校准置信度，分为确定性任务（走规则引擎演绎求解）与概率性任务（走大模型生成加工程化收敛），低置信或边界不清转人工；两条路径汇入同一个确定性交付系统，反馈回流驱动规则边界外扩"
 >
   <defs>
     <marker id="trd-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
@@ -39,11 +40,12 @@ const outcomes = ["稳定输出", "可控风险", "可解释", "可重复"];
 
   <path class="trd-rail" d="M192 300 H204" marker-end="url(#trd-arrow)"></path>
 
-  <!-- ═══ 分流器 ═══ -->
+  <!-- ═══ 决策分流器（jev 结构化判断）═══ -->
   <g class="trd-split">
     <polygon points="270,238 336,300 270,362 204,300"></polygon>
-    <text class="trd-split__title" x="270" y="296">任务分流</text>
-    <text class="trd-split__sub" x="270" y="314">边界能否写清？</text>
+    <text class="trd-split__title" x="270" y="294">决策分流</text>
+    <text class="trd-split__sub" x="270" y="313">jev · 边界能否写清</text>
+    <text class="trd-split__sub2" x="270" y="328">带校准置信度</text>
   </g>
 
   <path class="trd-rail trd-rail--det" d="M270 236 V170 H376" marker-end="url(#trd-arrow)"></path>
@@ -108,12 +110,30 @@ const outcomes = ["稳定输出", "可控风险", "可解释", "可重复"];
     </g>
   </g>
 
+  <!-- ═══ 低置信 → 转人工（jev 校准置信度门）═══ -->
+  <path
+    class="trd-escalate"
+    d="M244 337 L104 470"
+    marker-end="url(#trd-arrow-mist)"></path>
+  <text class="trd-escalate__label" x="120" y="404">低置信 → 转人工</text>
+
+  <g class="trd-panel trd-panel--human">
+    <rect x="16" y="470" width="176" height="58"></rect>
+    <path class="trd-corner" d="M16 490 V470 H36"></path>
+    <text class="trd-title" x="36" y="500">转人工</text>
+    <text class="trd-sub" x="36" y="520">低置信 · 人机判断 · 回流</text>
+  </g>
+  <path
+    class="trd-feedback"
+    d="M104 528 V512 H270"
+    marker-end="url(#trd-arrow-mist)"></path>
+
   <!-- ═══ 反馈回流 ═══ -->
   <path
     class="trd-feedback"
     d="M1067 400 V512 H270 V368"
     marker-end="url(#trd-arrow-mist)"></path>
-  <text class="trd-feedback__label" x="668" y="500">反馈回流：规则边界外扩 ・ 概率任务固化为确定任务</text>
+  <text class="trd-feedback__label" x="600" y="500">反馈回流：低置信转人工 ・ 规则边界外扩 ・ 概率任务固化为确定任务</text>
 </svg>
 
 <style>
@@ -165,6 +185,30 @@ const outcomes = ["稳定输出", "可控风险", "可解释", "可重复"];
     letter-spacing: 0.04em;
     fill: var(--ww-signal);
     text-anchor: middle;
+  }
+  .trd-split__sub2 {
+    font-family: var(--ww-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.04em;
+    fill: var(--ww-dim);
+    text-anchor: middle;
+  }
+
+  /* 低置信 → 转人工（校准置信度门）*/
+  .trd-escalate {
+    stroke: var(--ww-dim);
+    stroke-width: 1.5;
+    stroke-dasharray: 5 4;
+  }
+  .trd-escalate__label {
+    font-family: var(--ww-font-mono);
+    font-size: 11px;
+    fill: var(--ww-dim);
+    text-anchor: start;
+  }
+  .trd-panel--human rect {
+    stroke: var(--ww-dim);
+    stroke-dasharray: 4 3;
   }
 
   /* 轨道 */
