@@ -1,6 +1,7 @@
 ---
 import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
+import HarnessDiagram from "../../components/zeyo/HarnessDiagram.astro";
 import TaskRoutingDiagram from "../../components/TaskRoutingDiagram.astro";
 import { getAllSolutionIndustries, getSolutionTree } from "../../lib/content";
 import "../../styles/zeyo/solutions.css";
@@ -102,6 +103,22 @@ const statusLabels: Record<string, string> = {
           </p>
         </div>
 
+      </div>
+    </section>
+
+    <section class="ww-section" id="harness" aria-labelledby="solutions-harness">
+      <div class="ww-section__inner">
+        <header class="ww-section__head">
+          <p class="ww-label">Harness · 技术底座</p>
+          <h2 class="ww-section__title" id="solutions-harness">统一驾驭大模型</h2>
+          <p class="ww-section__desc">
+            大模型提供概率性的理解与生成，驾驭层把它制度化：规划怎么写、约束怎么建模、工具怎么调用、知识怎么注入、护栏怎么设边界、流水线怎么编排、链路怎么观测。底座之上，才是各个场景的智能体。
+          </p>
+        </header>
+
+        <div class="solutions-diagram solutions-diagram--harness">
+          <HarnessDiagram />
+        </div>
       </div>
     </section>
 

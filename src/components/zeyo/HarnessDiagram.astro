@@ -1,0 +1,279 @@
+---
+/**
+ * ProbWave Harness 技术底座架构图
+ * 结构：基座大模型 LLM → Harness 驾驭层（规划 / 约束建模 / 工具调用 / 知识注入 / 护栏 / 编排 / 可观测）
+ *      → 场景化落地 Agent
+ * 图为位图（27:15 宽幅），小字号标签在小屏不可读：≥48rem 显示原图并可点击放大，小屏降级为分层文字清单。
+ */
+import { Image } from "astro:assets";
+import harnessArch from "../../assets/harness-architecture.png";
+
+const alt =
+  "ProbWave Harness 架构图：中心为基座大模型 LLM，外环是 Harness 驾驭层七项能力——Skill Planning 技能规划、" +
+  "SDD 业务约束建模、Harness 标准化执行容器、Tool Use 工具调用、RAG-BMAD 知识库注入、Guardrail 护栏检测、" +
+  "Pipeline 流水线编排与 Observability 链条可观测；最外层向下落到研发、法务合同、客服工单、销售、" +
+  "财务报销、供应链、HR、运维等场景 Agent，右侧对比传统面向对象开发范式与 LLM 时代的 SDD 范式。";
+
+const layers: { label: string; detail: string; items: string[] }[] = [
+  {
+    label: "基座",
+    detail: "提供通用理解与生成能力",
+    items: ["大模型 LLM"],
+  },
+  {
+    label: "驾驭层",
+    detail: "ProbWave Harness —— 统一驾驭 · 安全可控 · 持续进化",
+    items: [
+      "Skill Planning 技能规划",
+      "SDD 业务约束建模",
+      "Tool Use 工具调用",
+      "RAG-BMAD 知识库注入",
+      "Guardrail 护栏检测",
+      "Pipeline 流水线编排",
+      "Observability 链条可观测",
+    ],
+  },
+  {
+    label: "落地",
+    detail: "场景化 Agent，各司一环",
+    items: ["研发", "法务合同", "客服工单", "销售", "财务报销", "供应链", "HR", "运维"],
+  },
+];
+---
+
+<div class="hd" data-harness>
+  <figure class="hd__figure">
+    <button
+      type="button"
+      class="hd__frame"
+      data-harness-open
+      aria-label="放大查看 ProbWave Harness 架构全图"
+    >
+      <Image
+        class="hd__img"
+        src={harnessArch}
+        alt={alt}
+        sizes="(max-width: 72rem) 100vw, 72rem"
+        widths={[480, 800, 1200, 1600]}
+        loading="lazy"
+        decoding="async"
+      />
+      <span class="hd__zoom" aria-hidden="true">⤢ 放大</span>
+    </button>
+
+    <figcaption class="hd__caption">
+      大模型是基座，Harness 是驾驭层，场景 Agent 是落地形态。<strong>同一套驾驭层，接不同的业务约束，长出不同的智能体</strong>
+      ——这是双引擎站得住的工程前提：概率由模型产出，确定由驾驭层收敛。
+    </figcaption>
+  </figure>
+
+  <ol class="hd__layers">
+    {
+      layers.map((layer) => (
+        <li class="hd__layer">
+          <p class="hd__layer-label">{layer.label}</p>
+          <p class="hd__layer-detail">{layer.detail}</p>
+          <ul class="hd__layer-items">
+            {layer.items.map((item) => (
+              <li>{item}</li>
+            ))}
+          </ul>
+        </li>
+      ))
+    }
+  </ol>
+
+  <dialog class="hd__dialog" data-harness-dialog aria-label="ProbWave Harness 架构全图">
+    <button type="button" class="hd__dialog-close" data-harness-close aria-label="关闭">×</button>
+    <Image
+      class="hd__dialog-img"
+      src={harnessArch}
+      alt={alt}
+      sizes="100vw"
+      widths={[1200, 1800, 2400]}
+      loading="lazy"
+      decoding="async"
+    />
+  </dialog>
+</div>
+
+<style>
+  /* —— 大图视图 —— */
+  .hd__figure {
+    margin: 0;
+  }
+
+  .hd__frame {
+    display: none;
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--ww-rule);
+    border-radius: var(--ww-radius, 4px);
+    background: var(--ww-surface);
+    cursor: zoom-in;
+    overflow: hidden;
+  }
+
+  .hd__img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .hd__zoom {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--ww-signal-dim);
+    border-radius: 999px;
+    background: rgba(8, 12, 18, 0.72);
+    color: var(--ww-signal);
+    font-family: var(--ww-font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    pointer-events: none;
+    transition: color var(--ww-dur) var(--ww-ease);
+  }
+
+  .hd__frame:hover .hd__zoom,
+  .hd__frame:focus-visible .hd__zoom {
+    color: var(--ww-signal-hover);
+  }
+
+  .hd__caption {
+    margin-top: 0.75rem;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--ww-dim);
+  }
+
+  .hd__caption strong {
+    color: var(--ww-mist);
+    font-weight: 600;
+  }
+
+  /* —— 小屏降级：分层文字清单 —— */
+  .hd__layers {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .hd__layer {
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--ww-rule);
+    border-left: 2px solid var(--ww-signal-dim);
+    border-radius: var(--ww-radius, 4px);
+    background: var(--ww-surface);
+  }
+
+  .hd__layer:last-child {
+    border-left-color: var(--ww-return);
+  }
+
+  .hd__layer-label {
+    margin: 0;
+    font-family: var(--ww-font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ww-signal);
+  }
+
+  .hd__layer-detail {
+    margin: 0.35rem 0 0.75rem;
+    font-size: 0.8125rem;
+    color: var(--ww-dim);
+  }
+
+  .hd__layer-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .hd__layer-items li {
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--ww-rule);
+    border-radius: 999px;
+    font-size: 0.8125rem;
+    color: var(--ww-mist);
+  }
+
+  /* —— 放大弹层 —— */
+  .hd__dialog {
+    width: min(96vw, 90rem);
+    max-width: none;
+    max-height: 96vh;
+    padding: 0;
+    border: 1px solid var(--ww-rule);
+    border-radius: var(--ww-radius, 4px);
+    background: var(--ww-void);
+    color: var(--ww-paper);
+    overflow: auto;
+  }
+
+  .hd__dialog::backdrop {
+    background: rgba(4, 7, 10, 0.82);
+  }
+
+  .hd__dialog-close {
+    position: sticky;
+    top: 0.75rem;
+    float: right;
+    margin: 0.75rem 0.75rem 0 0;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--ww-rule);
+    border-radius: 999px;
+    background: rgba(8, 12, 18, 0.8);
+    color: var(--ww-paper);
+    font-size: 1.25rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .hd__dialog-close:hover {
+    color: var(--ww-signal);
+  }
+
+  .hd__dialog-img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  @media (min-width: 48rem) {
+    .hd__frame {
+      display: block;
+    }
+
+    .hd__layers {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-harness]").forEach((root) => {
+    const frame = root.querySelector<HTMLButtonElement>("[data-harness-open]");
+    const dialog = root.querySelector<HTMLDialogElement>("[data-harness-dialog]");
+    const closeBtn = root.querySelector<HTMLButtonElement>("[data-harness-close]");
+    if (!frame || !dialog) return;
+
+    frame.addEventListener("click", () => dialog.showModal());
+    closeBtn?.addEventListener("click", () => dialog.close());
+    // 点击图片以外的遮罩区域关闭
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+</script>

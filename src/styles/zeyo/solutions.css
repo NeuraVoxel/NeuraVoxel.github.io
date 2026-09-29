@@ -230,6 +230,11 @@
   margin: 0 0 2.5rem;
 }
 
+.solutions-diagram--harness {
+  margin: 0 0 2.5rem;
+  overflow-x: visible;
+}
+
 .solutions-diagram svg {
   min-width: 56rem;
   height: auto;
