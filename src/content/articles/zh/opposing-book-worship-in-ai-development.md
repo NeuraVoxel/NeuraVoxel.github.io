@@ -2,6 +2,7 @@
 title: 反对 AI 开发中的本本主义
 description: 90% 的生成式 AI 实验走不出试点，不是技术不行，而是指导 AI 开发的方法论不行。本文逐条清算用传统软件工程"本本"管理 AI 项目的七条罪状，并给出调查的五项技术与纠偏的两条路径。
 category: thinking
+series: ai-select
 date: 2026-09-27
 ---
 

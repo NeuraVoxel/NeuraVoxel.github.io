@@ -2,6 +2,7 @@
 title: 关于当前 AI 时代程序员主要矛盾的分析
 description: 大语言模型的概率性生成与软件工程的确定性交付，构成了 AI 时代程序员的根本矛盾。本文用矛盾分析的方法拆解这一冲突的普遍性、特殊性、转化条件与解决路径。
 category: thinking
+series: ai-select
 date: 2026-09-27
 ---
 

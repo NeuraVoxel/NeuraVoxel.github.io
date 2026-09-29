@@ -1,6 +1,11 @@
-import { categoryLabels, type ArticleCategory } from "../data/articles.types";
+import {
+  categoryLabels,
+  seriesLabels,
+  type ArticleCategory,
+  type ArticleSeries,
+} from "../data/articles.types";
 
-export { categoryLabels, type ArticleCategory };
+export { categoryLabels, seriesLabels, type ArticleCategory, type ArticleSeries };
 
 export function formatArticleDate(date: Date): string {
   return date.toISOString().slice(0, 10);

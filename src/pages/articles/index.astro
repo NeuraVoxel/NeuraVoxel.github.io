@@ -2,7 +2,7 @@
 import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
 import { getArticlesForLocale, articleSlug } from "../../lib/content";
-import { categoryLabels, formatArticleDate } from "../../lib/articles";
+import { categoryLabels, seriesLabels, formatArticleDate } from "../../lib/articles";
 import "../../styles/zeyo/articles.css";
 
 const locale = "zh";
@@ -26,7 +26,8 @@ const listArticles = articles.filter((a) => a !== featured);
 
   <div class="articles-layout">
     <div class="filter-tabs" role="tablist" aria-label="文章分类">
-      <button class="filter-tab" role="tab" aria-selected="true" data-filter="all">全部</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="all">全部</button>
+      <button class="filter-tab" role="tab" aria-selected="true" data-filter="ai-select">《AI选》</button>
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="thinking">闭环思维</button>
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="practice">场景实践</button>
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="agent">Agent × 闭环</button>
@@ -38,6 +39,7 @@ const listArticles = articles.filter((a) => a !== featured);
           class="article-featured"
           href={`/articles/${articleSlug(featured, locale)}/`}
           data-category={featured.data.category}
+          data-series={featured.data.series}
         >
           <div class="article-featured__visual" aria-hidden="true">
             <div class="article-featured__ring"></div>
@@ -45,6 +47,9 @@ const listArticles = articles.filter((a) => a !== featured);
           <div class="article-featured__content">
             <div class="article-featured__meta">
               <span class="cat-badge">{categoryLabels[featured.data.category]}</span>
+              {featured.data.series && (
+                <span class="cat-badge cat-badge--series">{seriesLabels[featured.data.series]}</span>
+              )}
             </div>
             <h2 class="article-featured__title">{featured.data.title}</h2>
             <p class="article-featured__excerpt">{featured.data.description}</p>
@@ -64,6 +69,7 @@ const listArticles = articles.filter((a) => a !== featured);
             class="article-row"
             href={`/articles/${articleSlug(article, locale)}/`}
             data-category={article.data.category}
+            data-series={article.data.series}
           >
             <time class="article-row__date" datetime={formatArticleDate(article.data.date)}>
               {formatArticleDate(article.data.date)}
@@ -71,6 +77,9 @@ const listArticles = articles.filter((a) => a !== featured);
             <div class="article-row__body">
               <div class="article-row__cat">
                 <span class="cat-badge">{categoryLabels[article.data.category]}</span>
+                {article.data.series && (
+                  <span class="cat-badge cat-badge--series">{seriesLabels[article.data.series]}</span>
+                )}
               </div>
               <h3 class="article-row__title">{article.data.title}</h3>
               <p class="article-row__excerpt">{article.data.description}</p>
@@ -94,20 +103,28 @@ const listArticles = articles.filter((a) => a !== featured);
     const featured = document.querySelector(".article-featured");
     const rows = document.querySelectorAll(".article-row");
 
-    tabs.forEach((tab) => {
-      tab.addEventListener("click", () => {
-        const filter = tab.dataset.filter;
-        tabs.forEach((t) =>
-          t.setAttribute("aria-selected", t === tab ? "true" : "false"),
-        );
+    function apply(tab) {
+      const filter = tab.dataset.filter;
+      tabs.forEach((t) =>
+        t.setAttribute("aria-selected", t === tab ? "true" : "false"),
+      );
 
-        const match = (el) => filter === "all" || el.dataset.category === filter;
+      const match = (el) =>
+        filter === "all" ||
+        el.dataset.category === filter ||
+        el.dataset.series === filter;
 
-        if (featured) featured.hidden = !match(featured);
-        rows.forEach((row) => {
-          row.hidden = !match(row);
-        });
+      if (featured) featured.hidden = !match(featured);
+      rows.forEach((row) => {
+        row.hidden = !match(row);
       });
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => apply(tab));
     });
+
+    const initial = document.querySelector('.filter-tab[aria-selected="true"]');
+    if (initial) apply(initial);
   })();
 </script>

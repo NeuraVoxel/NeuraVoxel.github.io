@@ -53,6 +53,7 @@ const articles = defineCollection({
     title: z.string(),
     description: z.string(),
     category: z.enum(["thinking", "practice", "agent"]),
+    series: z.enum(["ai-select"]).optional(),
     date: z.coerce.date(),
     featured: z.boolean().optional().default(false),
     draft: z.boolean().optional().default(false),
