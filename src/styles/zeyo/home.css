@@ -242,12 +242,44 @@
 
 /* —— Thinking —— */
 
-.ww-section--tight {
-  padding-block: clamp(1.5rem, 4vw, 2.5rem);
+/* —— 双引擎一行引导：公式留给 /solutions，首页只做轻量跳转 —— */
+
+.engine-cta {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  margin-top: 1.5rem;
+  padding: 0.875rem 1.25rem;
+  border: 1px solid var(--ww-rule);
+  border-radius: 2px;
+  background: var(--ww-surface);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--ww-dur) var(--ww-ease);
 }
 
-.formula-band--flush {
-  margin-top: 0;
+.engine-cta:hover {
+  border-color: var(--ww-signal-dim);
+  color: inherit;
+}
+
+.engine-cta__formula {
+  font-family: var(--ww-font-mono);
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  color: var(--ww-signal);
+  white-space: nowrap;
+}
+
+.engine-cta__desc {
+  flex: 1;
+  font-size: 0.875rem;
+  color: var(--ww-mist);
+}
+
+.engine-cta__arrow {
+  font-family: var(--ww-font-mono);
+  color: var(--ww-signal);
 }
 
 .thinking-grid {
@@ -624,6 +656,12 @@
   .thought-grid,
   .thought-cols {
     grid-template-columns: 1fr;
+  }
+
+  .engine-cta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 
   .subscribe__layout {
