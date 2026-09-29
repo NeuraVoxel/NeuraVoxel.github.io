@@ -2,6 +2,7 @@
 title: AI 时代：认知强制抬升与生产关系的重组
 description: 跳出"替代 vs 不替代"的二元对立，回到"生产力决定生产关系"的基本原理——AI 不是抢走某个岗位，而是强制抬升了整个社会的认知基线，迫使所有人重新组织自己的生产关系。
 category: thinking
+series: ai-select
 date: 2026-09-27
 ---
 

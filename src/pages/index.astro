@@ -1,10 +1,20 @@
 ---
 import ZeyoLayout from "../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../components/zeyo/CooperationStrip.astro";
+import { getArticlesForLocale, articleSlug } from "../lib/content";
+import { seriesLabels, formatArticleDate } from "../lib/articles";
 import "../styles/zeyo/home.css";
+
+const locale = "zh";
+const articles = await getArticlesForLocale(locale);
+const latestArticles = articles.slice(0, 3);
 ---
 
-<ZeyoLayout currentPath="/">
+<ZeyoLayout
+  currentPath="/"
+  title="NeuraVoxel · 万物闭环 — 驾驭概率，交付确定"
+  description="以闭环思维为核心，用「概率性大模型 × 确定性规则系统」双引擎，把 AI 的不确定性收敛为可验证、可复现的确定性交付。AI 出候选，人做确认。"
+>
   <section class="hero" id="top" aria-labelledby="hero-title">
     <div class="hero__bg" aria-hidden="true">
       <div class="hero__grid"></div>
@@ -13,14 +23,12 @@ import "../styles/zeyo/home.css";
 
     <div class="hero__layout">
       <div class="hero__copy">
-        <p class="ww-label">NeuraVoxel · Closed-Loop × Dual Engine</p>
+        <p class="ww-label">NeuraVoxel · 万物闭环 × 双引擎</p>
         <h1 class="hero__title" id="hero-title">万物闭环</h1>
-        <p class="hero__subtitle">
-          从闭环视角，分析问题、设计产品、驱动迭代
-        </p>
+        <p class="hero__subtitle">驾驭概率，交付确定</p>
         <p class="hero__support">
-          人类负责关键判断与责任闭环，NeuraVoxel 以 Agent
-          智能体一点点攻克闭环中的每个环节——从小工具做起，连接每一个断点。
+          AI 出候选，人做确认。以「概率性大模型 ×
+          确定性规则系统」双引擎，把不确定性收敛为可验证、可复现的确定性交付。
         </p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="/contact/">合作咨询</a>
@@ -86,7 +94,7 @@ import "../styles/zeyo/home.css";
         <p class="ww-label">How We Think</p>
         <h2 class="ww-section__title" id="thinking-title">闭环思维是什么</h2>
         <p class="ww-section__desc">
-          不是做单点工具，而是识别环上的断点，逐个连接、逐个闭环。
+          不是做单点工具，而是识别环上的断点，逐个连接、逐个闭环；驾驭概率性工具，交付确定性结果。
         </p>
       </header>
       <div class="thinking-grid">
@@ -121,7 +129,20 @@ import "../styles/zeyo/home.css";
             可以生成，交付必须确定——校验、审核、回流，把不确定性收敛为可交付的结果。
           </p>
         </article>
+        <article class="thinking-card">
+          <p class="thinking-card__arc">杠杆 → 增强</p>
+          <h3 class="thinking-card__title">AI 增强</h3>
+          <p class="thinking-card__body">
+            AI 是杠杆，撬动的是人的主动性：效率增强、能力增强、认知增强三层递进。替代是假命题，增强才是真方向。
+          </p>
+        </article>
       </div>
+
+      <a class="engine-cta" href="/solutions/">
+        <span class="engine-cta__formula">概率 × 规则 = 确定性</span>
+        <span class="engine-cta__desc">双引擎如何把 AI 的不确定性收敛为可交付的结果</span>
+        <span class="engine-cta__arrow" aria-hidden="true">→</span>
+      </a>
     </div>
   </section>
 
@@ -145,10 +166,11 @@ import "../styles/zeyo/home.css";
             <span>优化</span>
           </div>
           <h3 class="scene-card__title">AI办公</h3>
-          <p class="scene-card__desc">
-            规划→执行→复盘→优化的办公闭环。Task Agent 与 Task Skill 推进任务协作，Token 计价器与 DSH Turn Cost 让 AI 成本可控。
-          </p>
-          <span class="scene-card__meta">4 项作品 →</span>
+            <p class="scene-card__desc">
+              规划→执行→复盘→优化的办公闭环。Task Agent 与 Task Skill 推进任务协作，Token 计价器与 DSH Turn Cost 让 AI 成本可控。
+            </p>
+            <p class="scene-card__gap">断点：任务做完即散，复盘没有回流到下一次规划</p>
+            <span class="scene-card__meta">4 项作品 →</span>
         </a>
 
         <a class="scene-card" href="/workshop/#driving">
@@ -160,10 +182,11 @@ import "../styles/zeyo/home.css";
             <span>回流</span>
           </div>
           <h3 class="scene-card__title">自动驾驶</h3>
-          <p class="scene-card__desc">
-            NeuraVoxel 系列：数据从采集到训练到仿真到回流，全链路闭环。多源对齐，版本可追溯。
-          </p>
-          <span class="scene-card__meta">4 项作品 →</span>
+            <p class="scene-card__desc">
+              NeuraVoxel 系列：数据从采集到训练到仿真到回流，全链路闭环。多源对齐，版本可追溯。
+            </p>
+            <p class="scene-card__gap">断点：仿真发现的长尾缺少回流通道，难以回到训练</p>
+            <span class="scene-card__meta">4 项作品 →</span>
         </a>
 
         <a class="scene-card scene-card--muted" href="/workshop/#embodied">
@@ -174,10 +197,11 @@ import "../styles/zeyo/home.css";
             <span>回流</span>
           </div>
           <h3 class="scene-card__title">具身智能</h3>
-          <p class="scene-card__desc">
-            感知→决策→执行→回流的具身闭环。演示与真机数据对齐，缩短迭代。
-          </p>
-          <span class="scene-card__meta">即将开放 →</span>
+            <p class="scene-card__desc">
+              感知→决策→执行→回流的具身闭环。演示与真机数据对齐，缩短迭代。
+            </p>
+            <p class="scene-card__gap">断点：演示数据与真机数据不对齐，回流失真</p>
+            <span class="scene-card__meta">即将开放 →</span>
         </a>
 
         <a class="scene-card" href="/workshop/#digital-twin">
@@ -188,10 +212,11 @@ import "../styles/zeyo/home.css";
             <span>交付</span>
           </div>
           <h3 class="scene-card__title">数字孪生</h3>
-          <p class="scene-card__desc">
-            采集→重建→精修→交付的孪生闭环。3DGS Agent 一条流水线，四个站点串成环。
-          </p>
-          <span class="scene-card__meta">1 项作品 →</span>
+            <p class="scene-card__desc">
+              采集→重建→精修→交付的孪生闭环。3DGS Agent 一条流水线，四个站点串成环。
+            </p>
+            <p class="scene-card__gap">断点：重建到精修靠人工，交付口径不统一</p>
+            <span class="scene-card__meta">1 项作品 →</span>
         </a>
 
         <a class="scene-card" href="/workshop/#learning">
@@ -202,10 +227,11 @@ import "../styles/zeyo/home.css";
             <span>迭代</span>
           </div>
           <h3 class="scene-card__title">教育学习</h3>
-          <p class="scene-card__desc">
-            输入→练习→反馈→再输入的学习闭环。English Agent 让每次对话都成为环上的一环。
-          </p>
-          <span class="scene-card__meta">1 项作品 →</span>
+            <p class="scene-card__desc">
+              输入→练习→反馈→再输入的学习闭环。English Agent 让每次对话都成为环上的一环。
+            </p>
+            <p class="scene-card__gap">断点：练习得不到即时反馈，反馈不转化为下一次输入</p>
+            <span class="scene-card__meta">1 项作品 →</span>
         </a>
 
         <a class="scene-card" href="/workshop/#career">
@@ -216,10 +242,11 @@ import "../styles/zeyo/home.css";
             <span>复盘</span>
           </div>
           <h3 class="scene-card__title">职场求职</h3>
-          <p class="scene-card__desc">
-            发现→准备→投递→复盘的求职闭环。AI摸鱼求职匹配岗位，Resume Agent 从上传到导出打磨简历。
-          </p>
-          <span class="scene-card__meta">2 项作品 →</span>
+            <p class="scene-card__desc">
+              发现→准备→投递→复盘的求职闭环。AI摸鱼求职匹配岗位，Resume Agent 从上传到导出打磨简历。
+            </p>
+            <p class="scene-card__gap">断点：投递之后没有沉淀，复盘缺数据</p>
+            <span class="scene-card__meta">2 项作品 →</span>
         </a>
 
         <a class="scene-card" href="/workshop/#marketing">
@@ -230,10 +257,11 @@ import "../styles/zeyo/home.css";
             <span>优化</span>
           </div>
           <h3 class="scene-card__title">市场营销</h3>
-          <p class="scene-card__desc">
-            洞察→创作→分发→优化的营销闭环。时代之门 GEO 与 GeoFlow，让品牌知识成为 AI 答案中的可信引用。
-          </p>
-          <span class="scene-card__meta">2 项作品 →</span>
+            <p class="scene-card__desc">
+              洞察→创作→分发→优化的营销闭环。时代之门 GEO 与 GeoFlow，让品牌知识成为 AI 答案中的可信引用。
+            </p>
+            <p class="scene-card__gap">断点：AI 答案中的引用不可见、不可测，优化断在分发之后</p>
+            <span class="scene-card__meta">2 项作品 →</span>
         </a>
 
         <a class="scene-card scene-card--muted" href="/workshop/#more">
@@ -243,10 +271,58 @@ import "../styles/zeyo/home.css";
             <span>……</span>
           </div>
           <h3 class="scene-card__title">更多场景</h3>
-          <p class="scene-card__desc">
-            每个新场景都是一个新的环。制造、医疗等领域正在规划中，敬请期待。
-          </p>
-          <span class="scene-card__meta">即将开放 →</span>
+            <p class="scene-card__desc">
+              每个新场景都是一个新的环。制造、医疗等领域正在规划中，敬请期待。
+            </p>
+            <p class="scene-card__gap">断点：环尚未识别，等待第一个断点被找到</p>
+            <span class="scene-card__meta">即将开放 →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <hr class="ww-rule" />
+
+  <section class="ww-section" id="thoughts" aria-labelledby="thoughts-title">
+    <div class="ww-section__inner">
+      <header class="ww-section__head">
+        <p class="ww-label">Writing</p>
+        <h2 class="ww-section__title" id="thoughts-title">思想阵地</h2>
+        <p class="ww-section__desc">
+          讲台上的闭环：方法论、矛盾分析与行动纲领，都在《AI选》与《AI增强》两个栏目里。
+        </p>
+      </header>
+
+      <div class="thought-grid">
+        {
+          latestArticles.map((article) => (
+            <a class="thought-card" href={`/articles/${articleSlug(article, locale)}/`}>
+              <div class="thought-card__meta">
+                {article.data.series && (
+                  <span class="cat-badge cat-badge--series">{seriesLabels[article.data.series]}</span>
+                )}
+                <time datetime={formatArticleDate(article.data.date)}>
+                  {formatArticleDate(article.data.date)}
+                </time>
+              </div>
+              <h3 class="thought-card__title">{article.data.title}</h3>
+              <p class="thought-card__excerpt">{article.data.description}</p>
+              <span class="thought-card__cta">阅读全文 →</span>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="thought-cols">
+        <a class="thought-col" href="/articles/?series=ai-select">
+          <span class="thought-col__badge">《AI选》</span>
+          <span class="thought-col__desc">AI 时代的方法论与矛盾分析</span>
+          <span class="thought-col__arrow" aria-hidden="true">→</span>
+        </a>
+        <a class="thought-col" href="/articles/?series=ai-augmentation">
+          <span class="thought-col__badge">《AI增强》</span>
+          <span class="thought-col__desc">AI 是杠杆，人是支点</span>
+          <span class="thought-col__arrow" aria-hidden="true">→</span>
         </a>
       </div>
     </div>
@@ -256,7 +332,7 @@ import "../styles/zeyo/home.css";
     <div class="manifesto__inner">
       <p class="ww-label">Our Stance</p>
       <blockquote class="manifesto__quote" id="manifesto-quote">
-        每个场景、每个应用，都需要从小做起。我们不做大而全的平台，而是做好每一个小工具，连接环上的每一个断点。终极闭环很远，但每攻克一个环节，环就更完整一分。
+        概率性是起点，确定性是终点，工程化收敛是唯一的路。AI 出候选，人做确认——驾驭概率性工具，坚守确定性交付的底线。
       </blockquote>
     </div>
   </section>
