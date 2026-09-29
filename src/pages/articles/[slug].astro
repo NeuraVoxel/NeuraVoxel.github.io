@@ -146,6 +146,22 @@ const { Content } = await render(article);
     color: var(--ww-paper);
   }
 
+  /* 金句：左信号色竖线 + 抬升字号，用于突出核心论断 */
+  .article-detail__body :global(blockquote) {
+    margin: 1.75rem 0;
+    padding: 1.125rem 1.25rem;
+    border-left: 3px solid var(--ww-signal);
+    background: var(--ww-surface);
+    border-radius: 0 8px 8px 0;
+  }
+
+  .article-detail__body :global(blockquote p) {
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: var(--ww-paper);
+  }
+
   /* 信息图：与正文栏严格同宽，保持左右边界对齐 */
   .article-detail__body :global(p:has(> img)) {
     margin-bottom: 0.75rem;
