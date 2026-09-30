@@ -1,7 +1,6 @@
 ---
 import ZeyoLayout from "../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../components/zeyo/CooperationStrip.astro";
-import ScarcityLadder from "../components/ScarcityLadder.astro";
 import { getArticlesForLocale, articleSlug } from "../lib/content";
 import { seriesLabels, formatArticleDate } from "../lib/articles";
 import "../styles/zeyo/home.css";
@@ -231,7 +230,17 @@ const latestArticles = articles.slice(0, 3);
           <strong>AI 消灭下层的稀缺，放大上层的稀缺。</strong>
         </p>
       </header>
-      <ScarcityLadder highlight="闭环" />
+      <figure class="scarcity-figure">
+        <img
+          src="/AI%20确定性闭环重构体系.jpeg"
+          alt="AI 确定性闭环重构体系：从人类信号出发，经数据层（汇聚与预处理）、闭环层（LLM 概率环 × HUMAN 反馈环的 DevOps 双环）、责任信任层（规则制度与伦理合规），最终交付给人类——可信、可靠、可解释"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>
+          从概率到责任：信号 → 数据 → 闭环 → 治理 → 交付——AI 消灭下层的稀缺，放大上层的稀缺。
+        </figcaption>
+      </figure>
     </div>
   </section>
 

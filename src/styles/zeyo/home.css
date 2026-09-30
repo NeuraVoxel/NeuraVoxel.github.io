@@ -91,6 +91,28 @@
   max-width: 52rem;
 }
 
+/* —— 稀缺模块配图 —— */
+
+.scarcity-figure {
+  margin: 0;
+}
+
+.scarcity-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--ww-rule);
+  border-radius: 12px;
+}
+
+.scarcity-figure figcaption {
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: var(--ww-dim);
+  text-align: center;
+}
+
 /* —— Living Loop —— */
 
 .living-loop {
