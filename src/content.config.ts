@@ -91,7 +91,7 @@ const solutions = defineCollection({
   schema: z.object({
     title: z.string(),
     summary: z.string(),
-    kind: z.enum(["system", "industry"]),
+    kind: z.enum(["system", "industry", "playbook"]),
     parent: z.string().optional(),
     systems: z.array(z.string()).optional(),
     diagram: z.enum(["convergence", "task-routing"]).optional(),

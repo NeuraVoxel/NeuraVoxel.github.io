@@ -181,7 +181,7 @@ export async function getSolutionBySlug(
   return solutions.find((entry) => stripLocale(entry.id, locale) === slug);
 }
 
-export async function getSolutionIndustries(
+export async function getSolutionLandings(
   locale: Locale,
   systemSlug: string,
 ): Promise<SolutionNode[]> {
@@ -189,7 +189,7 @@ export async function getSolutionIndustries(
   return solutions
     .filter(
       (entry) =>
-        entry.data.kind === "industry" &&
+        entry.data.kind !== "system" &&
         (entry.data.parent === systemSlug ||
           (entry.data.systems ?? []).includes(systemSlug)),
     )
@@ -199,12 +199,12 @@ export async function getSolutionIndustries(
     });
 }
 
-export async function getAllSolutionIndustries(
+export async function getAllSolutionLandings(
   locale: Locale,
 ): Promise<SolutionNode[]> {
   const solutions = await getSolutionsForLocale(locale);
   return solutions
-    .filter((entry) => entry.data.kind === "industry")
+    .filter((entry) => entry.data.kind !== "system")
     .map((entry) => {
       const slug = stripLocale(entry.id, locale);
       return { slug, href: solutionHref(slug), entry };

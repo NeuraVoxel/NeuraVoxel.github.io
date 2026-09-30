@@ -3,18 +3,19 @@ import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
 import HarnessDiagram from "../../components/zeyo/HarnessDiagram.astro";
 import TaskRoutingDiagram from "../../components/TaskRoutingDiagram.astro";
-import { getAllSolutionIndustries, getSolutionTree } from "../../lib/content";
+import { getAllSolutionLandings, getSolutionTree } from "../../lib/content";
+import { solutionKindLabels } from "../../data/solutions.types";
 import "../../styles/zeyo/solutions.css";
 
 const locale = "zh";
 const systems = await getSolutionTree(locale);
-const industries = await getAllSolutionIndustries(locale);
+const landings = await getAllSolutionLandings(locale);
 
 const systemTitles = new Map(
   systems.map((system) => [system.slug, system.entry.data.title]),
 );
 
-function systemsOf(entry: (typeof industries)[number]["entry"]): string[] {
+function systemsOf(entry: (typeof landings)[number]["entry"]): string[] {
   const list = entry.data.systems ?? (entry.data.parent ? [entry.data.parent] : []);
   return list.map((slug) => systemTitles.get(slug) ?? slug);
 }
@@ -29,7 +30,7 @@ const statusLabels: Record<string, string> = {
 <ZeyoLayout
   currentPath="/solutions/"
   title="方案 — NeuraVoxel"
-  description="NeuraVoxel 行业方案：以工程化收敛体系为底座，把概率性的大模型输出收敛为确定性的商业交付。"
+  description="NeuraVoxel 落地方案：以工程化收敛体系为底座，把概率性的大模型输出收敛为确定性的商业交付。"
   pageClass="solutions-page"
 >
   <header class="page-head">
@@ -173,29 +174,31 @@ const statusLabels: Record<string, string> = {
       <div class="ww-section__inner">
         <header class="ww-section__head">
           <p class="ww-label">Where · 行业落地</p>
-          <h2 class="ww-section__title" id="solutions-industries">行业方案</h2>
+          <h2 class="ww-section__title" id="solutions-industries">落地方案</h2>
           <p class="ww-section__desc">
-            行业方案不是"选一套体系套上去"，而多是<strong>复合型</strong>的——同一个行业里，既有确定性任务也有概率性任务，还要治理两者的分流。因此行业方案独立成篇，按行业自己的具体矛盾组合体系与路径。
+            落地方案不是"选一套体系套上去"，而多是<strong>复合型</strong>的——同一个行业里，既有确定性任务也有概率性任务，还要治理两者的分流。因此落地方案独立成篇，按行业自己的具体矛盾组合体系与路径。
           </p>
         </header>
 
         <div class="industry-grid">
           {
-            industries.map((industry) => {
-              const involved = systemsOf(industry.entry);
+            landings.map((landing) => {
+              const involved = systemsOf(landing.entry);
               return (
-                <a class="industry-card" href={industry.href}>
+                <a class="industry-card" href={landing.href}>
                   <div class="solution-card__meta">
-                    <span class="solution-kind">行业</span>
-                    {industry.entry.data.industry && (
-                      <span class="cat-badge">{industry.entry.data.industry}</span>
+                    <span class="solution-kind">
+                      {solutionKindLabels[landing.entry.data.kind]}
+                    </span>
+                    {landing.entry.data.industry && (
+                      <span class="cat-badge">{landing.entry.data.industry}</span>
                     )}
                     {involved.length > 1 && (
                       <span class="status-badge status-badge--preview">复合型</span>
                     )}
                   </div>
-                  <h3 class="industry-card__title">{industry.entry.data.title}</h3>
-                  <p class="industry-card__summary">{industry.entry.data.summary}</p>
+                  <h3 class="industry-card__title">{landing.entry.data.title}</h3>
+                  <p class="industry-card__summary">{landing.entry.data.summary}</p>
                   {involved.length > 0 && (
                     <div class="stage-tags">
                       {involved.map((name) => (
@@ -210,8 +213,8 @@ const statusLabels: Record<string, string> = {
           }
         </div>
 
-        {industries.length === 0 && (
-          <p class="industry-empty">行业方案正在编写中，敬请期待。</p>
+        {landings.length === 0 && (
+          <p class="industry-empty">落地方案正在编写中，敬请期待。</p>
         )}
       </div>
     </section>

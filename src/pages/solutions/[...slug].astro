@@ -4,7 +4,8 @@ import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
 import ConvergenceDiagram from "../../components/ConvergenceDiagram.astro";
 import TaskRoutingDiagram from "../../components/TaskRoutingDiagram.astro";
-import { getSolutionBySlug, getSolutionIndustries, stripLocale } from "../../lib/content";
+import { getSolutionBySlug, getSolutionLandings, stripLocale } from "../../lib/content";
+import { solutionKindLabels } from "../../data/solutions.types";
 import "../../styles/zeyo/solutions.css";
 
 const diagramCaptions = {
@@ -37,7 +38,7 @@ const { Content } = await render(entry);
 const parent = entry.data.parent
   ? await getSolutionBySlug(locale, entry.data.parent)
   : undefined;
-const industries = await getSolutionIndustries(locale, slug);
+const landings = await getSolutionLandings(locale, slug);
 
 const statusLabels: Record<string, string> = {
   available: "已开放",
@@ -115,18 +116,20 @@ const diagramCaption = entry.data.diagram
         <section aria-labelledby="solution-industries" style="margin-top: 3rem;">
           <header class="ww-section__head">
             <p class="ww-label">Industries</p>
-            <h2 class="ww-section__title" id="solution-industries">行业方案</h2>
+            <h2 class="ww-section__title" id="solution-industries">落地方案</h2>
             <p class="ww-section__desc">
               同一套收敛体系，落到具体行业的业务链路。
             </p>
           </header>
 
-          {industries.length > 0 ? (
+          {landings.length > 0 ? (
             <div class="industry-grid">
-              {industries.map((child) => (
+              {landings.map((child) => (
                 <a class="industry-card" href={child.href}>
                   <div class="solution-card__meta">
-                    <span class="solution-kind">行业</span>
+                    <span class="solution-kind">
+                      {solutionKindLabels[child.entry.data.kind]}
+                    </span>
                     {child.entry.data.industry && (
                       <span class="cat-badge">{child.entry.data.industry}</span>
                     )}
@@ -138,7 +141,7 @@ const diagramCaption = entry.data.diagram
               ))}
             </div>
           ) : (
-            <p class="industry-empty">行业方案正在编写中，敬请期待。</p>
+            <p class="industry-empty">落地方案正在编写中，敬请期待。</p>
           )}
         </section>
       )
