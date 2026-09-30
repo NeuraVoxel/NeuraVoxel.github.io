@@ -317,6 +317,97 @@
   fill: var(--ww-dim);
 }
 
+/* —— 双飞轮配色：业务飞轮 = 信号青，智能飞轮 = 告警金 —— */
+.loop-disc {
+  stroke: none;
+}
+.loop-disc--biz {
+  fill: var(--ww-signal);
+  opacity: 0.05;
+}
+.loop-disc--intel {
+  fill: var(--ww-warn);
+  opacity: 0.05;
+}
+
+.loop-ring--biz {
+  stroke: rgba(78, 196, 212, 0.4);
+}
+.loop-ring--intel {
+  stroke: rgba(196, 161, 90, 0.4);
+}
+.loop-ring--active {
+  filter: drop-shadow(0 0 3px var(--ww-signal-glow));
+}
+.loop-ring--biz.loop-ring--active {
+  stroke: var(--ww-signal);
+  stroke-dasharray: 8 12;
+}
+.loop-ring--intel.loop-ring--active {
+  stroke: var(--ww-warn);
+  stroke-dasharray: 8 12;
+  filter: drop-shadow(0 0 3px rgba(196, 161, 90, 0.4));
+}
+
+/* 节点药丸按所属飞轮染色描边（点亮态仍由 loop-node--lit 接管）*/
+.loop-node--biz .loop-pill {
+  stroke: var(--ww-signal-dim);
+}
+.loop-node--intel .loop-pill {
+  stroke: rgba(196, 161, 90, 0.55);
+}
+
+/* 中心副标题：飞轮名用专属色 */
+.loop-center__text--biz {
+  fill: var(--ww-signal);
+}
+.loop-center__text--intel {
+  fill: var(--ww-warn);
+}
+
+/* 层间连接：上行汇入业务（青），下行汇入智能（金）*/
+.hero-link--up {
+  stroke: var(--ww-signal-dim);
+}
+.hero-link--down {
+  stroke: var(--ww-warn);
+  opacity: 0.6;
+}
+
+/* 双飞轮交互弧：双向，金 → 青 / 青 → 金 */
+.hero-link--intel {
+  stroke: var(--ww-warn);
+  stroke-dasharray: 4 5;
+  opacity: 0.85;
+}
+.hero-link--biz {
+  stroke: var(--ww-signal);
+  stroke-dasharray: 4 5;
+  opacity: 0.85;
+}
+
+/* 侧标随飞轮着色 */
+.hero-note--biz {
+  fill: var(--ww-signal);
+}
+.hero-note--intel {
+  fill: var(--ww-warn);
+}
+
+/* 图例 */
+.loop-legend__dot {
+  fill: var(--ww-signal);
+}
+.loop-legend__dot--intel {
+  fill: var(--ww-warn);
+}
+.loop-legend__text {
+  font-family: var(--ww-font-mono);
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+  fill: var(--ww-mist);
+}
+
 /* —— Thinking —— */
 
 /* —— 双引擎一行引导：公式留给 /solutions，首页只做轻量跳转 —— */
