@@ -39,50 +39,122 @@ const latestArticles = articles.slice(0, 3);
 
       <figure
         class="living-loop"
-        aria-label="双引擎收敛闭环示意图：概率性大模型与确定性规则系统两圆交叠，交集为工程化收敛区；外环由概率生成、规则校验、人机审核、确定交付、反馈回流五个环节首尾相接构成闭环"
+        aria-label="AI 确定性闭环重构体系，整体构成一个闭环：底层不确定性兜底方法论（校验、过滤、兜底、追溯）向上支撑客服、财务、研发、合同、运营五个部门小闭环，小闭环向上汇入顶层大责任闭环（部门输出 → 协同校验 → 责任签字 → 对外交付 → 反馈归因），再经归因回流回到小闭环，并经经验沉淀流回底座"
       >
         <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle class="loop-ring" cx="200" cy="200" r="150"></circle>
-          <circle class="loop-ring loop-ring--active" cx="200" cy="200" r="150"></circle>
+          <defs>
+            <marker
+              id="hero-arrow"
+              viewBox="0 0 10 10"
+              refX="8"
+              refY="5"
+              markerWidth="6"
+              markerHeight="6"
+              orient="auto"
+            >
+              <path d="M0 0 L10 5 L0 10 Z" class="hero-arrow-fill"></path>
+            </marker>
+          </defs>
 
-          <!-- 双引擎：大模型（概率）× 规则系统（确定），交叠处即融合收敛区 -->
-          <circle class="engine-circle engine-circle--prob" cx="168" cy="200" r="70"></circle>
-          <circle class="engine-circle engine-circle--rule" cx="232" cy="200" r="70"></circle>
-          <text class="engine-label engine-label--prob" x="130" y="204">大模型</text>
-          <text class="engine-label engine-label--rule" x="270" y="204">规则系统</text>
+          <!-- 顶层：大责任闭环 · 对外交付 -->
+          <ellipse class="loop-ring" cx="200" cy="96" rx="150" ry="54"></ellipse>
+          <ellipse class="loop-ring loop-ring--active" cx="200" cy="96" rx="150" ry="54"></ellipse>
 
-          <text class="loop-center__text loop-center__text--main" x="200" y="190">收敛闭环</text>
-          <text class="loop-center__text loop-center__text--sub" x="200" y="211">双引擎融合</text>
+          <text class="loop-center__text loop-center__text--main" x="200" y="94">确定性闭环</text>
+          <text class="loop-center__text loop-center__text--sub" x="200" y="114">从概率到责任</text>
 
-          <g class="loop-node" data-stage="perceive" data-index="0" transform="translate(200, 50)">
-            <circle class="loop-node__dot" r="8"></circle>
-            <text class="loop-node__label" y="24">概率生成</text>
+          <g class="loop-node" data-stage="perceive" data-index="0" transform="translate(200, 42)">
+            <rect class="loop-pill" x="-30" y="-9" width="60" height="18" rx="9"></rect>
+            <text class="loop-pill__label" y="3.5">部门输出</text>
           </g>
-          <g class="loop-node" data-stage="process" data-index="1" transform="translate(342, 146)">
-            <circle class="loop-node__dot" r="8"></circle>
-            <text class="loop-node__label" y="24">规则校验</text>
+          <g class="loop-node" data-stage="process" data-index="1" transform="translate(341, 78)">
+            <rect class="loop-pill" x="-30" y="-9" width="60" height="18" rx="9"></rect>
+            <text class="loop-pill__label" y="3.5">协同校验</text>
           </g>
-          <g class="loop-node" data-stage="train" data-index="2" transform="translate(295, 310)">
-            <circle class="loop-node__dot" r="8"></circle>
-            <text class="loop-node__label" y="24">人机审核</text>
+          <g class="loop-node" data-stage="train" data-index="2" transform="translate(315, 131)">
+            <rect class="loop-pill" x="-30" y="-9" width="60" height="18" rx="9"></rect>
+            <text class="loop-pill__label" y="3.5">责任签字</text>
           </g>
-          <g class="loop-node" data-stage="simulate" data-index="3" transform="translate(105, 310)">
-            <circle class="loop-node__dot" r="8"></circle>
-            <text class="loop-node__label" y="24">确定交付</text>
+          <g class="loop-node" data-stage="simulate" data-index="3" transform="translate(85, 131)">
+            <rect class="loop-pill" x="-30" y="-9" width="60" height="18" rx="9"></rect>
+            <text class="loop-pill__label" y="3.5">对外交付</text>
           </g>
-          <g class="loop-node" data-stage="return" data-index="4" transform="translate(58, 146)">
-            <circle class="loop-node__dot" r="8"></circle>
-            <text class="loop-node__label" y="24">反馈回流</text>
+          <g class="loop-node" data-stage="return" data-index="4" transform="translate(59, 78)">
+            <rect class="loop-pill" x="-30" y="-9" width="60" height="18" rx="9"></rect>
+            <text class="loop-pill__label" y="3.5">反馈归因</text>
           </g>
+
+          <text class="hero-note" x="356" y="99">责任锚定</text>
+
+          <!-- 中层：部门级小闭环 -->
+          {
+            [
+              { x: 60, label: "客服" },
+              { x: 130, label: "财务" },
+              { x: 200, label: "研发" },
+              { x: 270, label: "合同" },
+              { x: 340, label: "运营" },
+            ].map(({ x, label }, i) => (
+              <>
+                {i > 0 && (
+                  <path
+                    class="hero-link"
+                    d={`M${x - 46} 252 H${x - 28}`}
+                    marker-end="url(#hero-arrow)"
+                  ></path>
+                )}
+                <g class="dept-ring" transform={`translate(${x}, 252)`}>
+                  <circle r="24"></circle>
+                  <circle class="dept-ring__spin" r="19" style={`--i: ${i}`}></circle>
+                  <text y="4">{label}</text>
+                </g>
+              </>
+            ))
+          }
+          <text class="hero-note hero-note--center" x="200" y="298">部门级小闭环 · AI 生成 → 校验 → 人工确认 → 反馈回流</text>
+
+          <!-- 闭环主干：底座 → 部门小闭环 → 大责任闭环 → 归因回流 → 小闭环 → 经验沉淀 → 底座 -->
+          <path class="hero-link" d="M130 318 V284" marker-end="url(#hero-arrow)"></path>
+          <path class="hero-link" d="M200 318 V284" marker-end="url(#hero-arrow)"></path>
+          <path class="hero-link" d="M270 318 V284" marker-end="url(#hero-arrow)"></path>
+          <path class="hero-link" d="M130 224 V150" marker-end="url(#hero-arrow)"></path>
+          <path class="hero-link" d="M200 224 V150" marker-end="url(#hero-arrow)"></path>
+          <path class="hero-link" d="M270 224 V150" marker-end="url(#hero-arrow)"></path>
+
+          <!-- 底层：不确定性兜底方法论 -->
+          <g class="hero-platform">
+            <rect x="40" y="322" width="320" height="44" rx="3"></rect>
+            <text class="hero-platform__title" x="200" y="341">不确定性兜底方法论</text>
+            <text class="hero-platform__chips" x="200" y="357">校验 · 过滤 · 兜底 · 追溯</text>
+          </g>
+
+          <!-- 闭环回路一：大责任闭环 → 归因回流 → 小闭环 -->
+          <path
+            class="hero-link hero-link--return"
+            d="M59 88 C 24 130, 28 190, 50 226"
+            marker-end="url(#hero-arrow)"
+          ></path>
+          <text class="hero-note hero-note--left" transform="rotate(-90 14 190)" x="14" y="190">
+            归因回流
+          </text>
+
+          <!-- 闭环回路二：小闭环 → 经验沉淀 → 底座 -->
+          <path
+            class="hero-link hero-link--return"
+            d="M340 278 C 372 300, 372 330, 362 344"
+            marker-end="url(#hero-arrow)"
+          ></path>
+          <text class="hero-note" transform="rotate(-90 386 312)" x="386" y="312">经验沉淀</text>
+
           <circle
             class="loop-pulse"
             r="5"
-            style="offset-path: path('M 200 50 A 150 150 0 1 1 199.9 50')"
+            style="offset-path: path('M 50 96 A 150 54 0 0 1 350 96 A 150 54 0 0 1 50 96')"
           ></circle>
           <circle
             class="loop-pulse loop-pulse--rules"
             r="4"
-            style="offset-path: path('M 200 50 A 150 150 0 1 1 199.9 50')"
+            style="offset-path: path('M 50 96 A 150 54 0 0 1 350 96 A 150 54 0 0 1 50 96')"
           ></circle>
         </svg>
       </figure>

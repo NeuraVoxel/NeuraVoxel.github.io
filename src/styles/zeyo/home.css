@@ -151,79 +151,129 @@
   transition: opacity var(--ww-dur) var(--ww-ease);
 }
 
-.loop-node__dot {
+.loop-pill {
   fill: var(--ww-elevated);
   stroke: var(--ww-rule);
-  stroke-width: 1.5;
+  stroke-width: 1;
 }
 
-.loop-node__label {
+.loop-pill__label {
   font-family: var(--ww-font-mono);
-  font-size: 11px;
+  font-size: 9.5px;
   fill: var(--ww-mist);
   text-anchor: middle;
 }
 
-.loop-node--lit .loop-node__dot {
-  fill: var(--ww-signal);
+.loop-node--lit .loop-pill {
+  fill: var(--ww-signal-glow);
   stroke: var(--ww-signal);
 }
 
-.loop-node--lit .loop-node__label {
+.loop-node--lit .loop-pill__label {
   fill: var(--ww-paper);
 }
 
-.loop-node--lit[data-stage="perceive"] .loop-node__dot {
-  fill: var(--ww-perceive);
+.loop-node--lit[data-stage="perceive"] .loop-pill {
   stroke: var(--ww-perceive);
 }
-.loop-node--lit[data-stage="process"] .loop-node__dot {
-  fill: var(--ww-process);
+.loop-node--lit[data-stage="process"] .loop-pill {
   stroke: var(--ww-process);
 }
-.loop-node--lit[data-stage="train"] .loop-node__dot {
-  fill: var(--ww-train);
+.loop-node--lit[data-stage="train"] .loop-pill {
   stroke: var(--ww-train);
 }
-.loop-node--lit[data-stage="simulate"] .loop-node__dot {
-  fill: var(--ww-simulate);
+.loop-node--lit[data-stage="simulate"] .loop-pill {
   stroke: var(--ww-simulate);
 }
-.loop-node--lit[data-stage="return"] .loop-node__dot {
-  fill: var(--ww-return);
+.loop-node--lit[data-stage="return"] .loop-pill {
   stroke: var(--ww-return);
 }
 
-/* 双引擎：概率性大模型 × 确定性规则系统，交叠处为融合收敛区 */
-.engine-circle {
-  fill-opacity: 0.16;
+/* 中层：部门级小闭环 */
+.dept-ring circle {
+  fill: var(--ww-surface);
+  stroke: var(--ww-signal-dim);
   stroke-width: 1.25;
 }
 
-.engine-circle--prob {
-  fill: var(--ww-signal);
-  stroke: var(--ww-signal);
-  stroke-opacity: 0.45;
-}
-
-.engine-circle--rule {
-  fill: var(--ww-warn);
-  stroke: var(--ww-warn);
-  stroke-opacity: 0.45;
-}
-
-.engine-label {
-  font-family: var(--ww-font-mono);
+.dept-ring text {
+  font-family: var(--ww-font-body);
   font-size: 11px;
+  fill: var(--ww-paper);
   text-anchor: middle;
 }
 
-.engine-label--prob {
-  fill: var(--ww-signal);
+/* 每个小闭环自转：虚线内环流动，逐个错开相位 */
+.dept-ring__spin {
+  fill: none;
+  stroke: var(--ww-signal);
+  stroke-width: 1;
+  stroke-dasharray: 4 8;
+  opacity: 0.75;
+  animation: dept-dash 3.2s linear infinite;
+  animation-delay: calc(var(--i) * -0.55s);
 }
 
-.engine-label--rule {
-  fill: var(--ww-warn);
+@keyframes dept-dash {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dept-ring__spin {
+    animation: none;
+  }
+}
+
+/* 底层：不确定性兜底方法论 */
+.hero-platform rect {
+  fill: var(--ww-elevated);
+  stroke: var(--ww-rule);
+  stroke-width: 1;
+}
+
+.hero-platform__title {
+  font-family: var(--ww-font-display);
+  font-size: 12.5px;
+  font-weight: 600;
+  fill: var(--ww-paper);
+  text-anchor: middle;
+}
+
+.hero-platform__chips {
+  font-family: var(--ww-font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  fill: var(--ww-signal);
+  text-anchor: middle;
+}
+
+/* 层间连接与标注 */
+.hero-link {
+  stroke: var(--ww-signal-dim);
+  stroke-width: 1.25;
+}
+
+.hero-link--return {
+  stroke: var(--ww-rule);
+  stroke-dasharray: 4 5;
+}
+
+.hero-arrow-fill {
+  fill: var(--ww-signal-dim);
+}
+
+.hero-note {
+  font-family: var(--ww-font-mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  fill: var(--ww-dim);
+}
+
+.hero-note--center {
+  fill: var(--ww-mist);
+  letter-spacing: 0.04em;
 }
 
 .loop-center__text {
