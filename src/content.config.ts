@@ -47,6 +47,29 @@ const docs = defineCollection({
   }),
 });
 
+/* —— 哲学层面（lens）：文章在哪个哲学分支上讨论 AI —— */
+const ARTICLE_LENSES = [
+  "ontology",
+  "epistemology",
+  "dialectics",
+  "historical-materialism",
+  "axiology",
+  "praxis",
+] as const;
+
+/* —— 体例原型（lensForm）：该篇仿写的哲学文本体例 —— */
+const ARTICLE_LENS_FORMS = [
+  "thesis",
+  "shijianlun",
+  "maodunlun",
+  "class-analysis",
+  "rectification",
+  "anti-dogma",
+  "strategy",
+  "program",
+  "framework",
+] as const;
+
 const articles = defineCollection({
   type: "content",
   schema: z.object({
@@ -57,6 +80,9 @@ const articles = defineCollection({
     date: z.coerce.date(),
     featured: z.boolean().optional().default(false),
     draft: z.boolean().optional().default(false),
+    lens: z.enum(ARTICLE_LENSES).optional(),
+    lensSecondary: z.array(z.enum(ARTICLE_LENSES)).optional(),
+    lensForm: z.enum(ARTICLE_LENS_FORMS).optional(),
   }),
 });
 

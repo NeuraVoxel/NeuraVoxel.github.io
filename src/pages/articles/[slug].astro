@@ -2,7 +2,7 @@
 import { getCollection, render } from "astro:content";
 import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
 import { getArticleBySlug } from "../../lib/content";
-import { categoryLabels, formatArticleDate } from "../../lib/articles";
+import { categoryLabels, lensLabels, lensFormLabels, formatArticleDate } from "../../lib/articles";
 import "../../styles/zeyo/articles.css";
 
 export async function getStaticPaths() {
@@ -34,6 +34,12 @@ const { Content } = await render(article);
     <header class="article-detail__head">
       <div class="article-detail__meta">
         <span class="cat-badge">{categoryLabels[article.data.category]}</span>
+        {article.data.lens && (
+          <span class="cat-badge cat-badge--lens">
+            {lensLabels[article.data.lens]}
+            {article.data.lensForm && ` · ${lensFormLabels[article.data.lensForm]}`}
+          </span>
+        )}
         <time datetime={formatArticleDate(article.data.date)}>
           {formatArticleDate(article.data.date)}
         </time>
@@ -63,12 +69,18 @@ const { Content } = await render(article);
 
   .article-detail__meta {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
     margin-bottom: 1rem;
     font-family: var(--ww-font-mono);
     font-size: 0.8125rem;
     color: var(--ww-dim);
+  }
+
+  /* 哲学层面徽标：与 series 徽标同色系，区别于分类徽标 */
+  .article-detail__meta :global(.cat-badge--lens) {
+    color: var(--ww-signal-dim);
   }
 
   .article-detail__title {

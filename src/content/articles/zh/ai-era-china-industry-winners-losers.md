@@ -4,6 +4,8 @@ description: 用 1925 年阶级分析的方法论重新审视 AI 浪潮——以
 category: thinking
 series: ai-select
 date: 2026-09-27
+lens: historical-materialism
+lensForm: class-analysis
 ---
 
 ![AI 时代中国各行业冲击图谱：谁是赢家，谁是输家](./AI时代中国各行业分析：谁是赢家，谁是输家.png)

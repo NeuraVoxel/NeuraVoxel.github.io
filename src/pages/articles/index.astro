@@ -2,7 +2,14 @@
 import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
 import { getArticlesForLocale, articleSlug } from "../../lib/content";
-import { categoryLabels, seriesLabels, formatArticleDate } from "../../lib/articles";
+import {
+  categoryLabels,
+  seriesLabels,
+  lensLabels,
+  lensDescriptions,
+  lensOrder,
+  formatArticleDate,
+} from "../../lib/articles";
 import "../../styles/zeyo/articles.css";
 
 const locale = "zh";
@@ -32,6 +39,15 @@ const listArticles = articles.filter((a) => a !== featured);
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="thinking">闭环思维</button>
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="practice">场景实践</button>
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="agent">Agent × 闭环</button>
+    </div>
+
+    <div class="view-toggle" role="group" aria-label="文章视图">
+      <button class="view-toggle__btn" type="button" data-view="time" aria-pressed="true">
+        按时间
+      </button>
+      <button class="view-toggle__btn" type="button" data-view="lens" aria-pressed="false">
+        按哲学层面
+      </button>
     </div>
 
     {
@@ -71,6 +87,7 @@ const listArticles = articles.filter((a) => a !== featured);
             href={`/articles/${articleSlug(article, locale)}/`}
             data-category={article.data.category}
             data-series={article.data.series}
+            data-lens={article.data.lens ?? "none"}
           >
             <time class="article-row__date" datetime={formatArticleDate(article.data.date)}>
               {formatArticleDate(article.data.date)}
@@ -90,6 +107,27 @@ const listArticles = articles.filter((a) => a !== featured);
         ))
       }
     </div>
+
+    <div class="article-groups" hidden>
+      {
+        [...lensOrder, "none" as const].map((lens) => (
+          <section class="article-group" data-lens={lens} hidden>
+            <header class="article-group__head">
+              <h2 class="article-group__title">
+                {lens === "none" ? "其他" : lensLabels[lens]}
+                <span class="article-group__count" aria-hidden="true"></span>
+              </h2>
+              <p class="article-group__desc">
+                {lens === "none"
+                  ? "尚未归入哲学层面的文章"
+                  : lensDescriptions[lens]}
+              </p>
+            </header>
+            <div class="article-group__list"></div>
+          </section>
+        ))
+      }
+    </div>
   </div>
 
   <CooperationStrip
@@ -101,36 +139,132 @@ const listArticles = articles.filter((a) => a !== featured);
 <script is:inline>
   (function () {
     const tabs = document.querySelectorAll(".filter-tab");
+    const viewBtns = document.querySelectorAll(".view-toggle__btn");
     const featured = document.querySelector(".article-featured");
-    const rows = document.querySelectorAll(".article-row");
+    const list = document.querySelector(".article-list");
+    const groups = document.querySelector(".article-groups");
+    const rows = Array.from(document.querySelectorAll(".article-row"));
 
-    function apply(tab) {
-      const filter = tab.dataset.filter;
-      tabs.forEach((t) =>
-        t.setAttribute("aria-selected", t === tab ? "true" : "false"),
-      );
+    /* 只有《AI选》做了哲学层面标注，分组视图强制限定在该专栏内 */
+    var LENS_SERIES = "ai-select";
 
-      const match = (el) =>
+    let filter = "all";
+    let view = "time";
+
+    function match(el) {
+      return (
         filter === "all" ||
         el.dataset.category === filter ||
-        el.dataset.series === filter;
+        el.dataset.series === filter
+      );
+    }
 
-      if (featured) featured.hidden = !match(featured);
+    /* 分组视图只是把同一批行节点重新挂载到对应层面下，不重复渲染 */
+    function place() {
+      if (view === "time" || !groups) {
+        rows.forEach((row) => list && list.appendChild(row));
+        return;
+      }
       rows.forEach((row) => {
-        row.hidden = !match(row);
+        const lens = row.dataset.lens || "none";
+        const slot = groups.querySelector(
+          '.article-group[data-lens="' + CSS.escape(lens) + '"] .article-group__list',
+        );
+        (slot || list).appendChild(row);
       });
     }
 
+    function render() {
+      rows.forEach((row) => {
+        row.hidden = !match(row);
+      });
+      if (featured) featured.hidden = !match(featured);
+
+      place();
+
+      if (list) list.hidden = view !== "time";
+      if (groups) groups.hidden = view !== "lens";
+
+      if (groups) {
+        groups.querySelectorAll(".article-group").forEach((group) => {
+          const visible = Array.from(
+            group.querySelectorAll(".article-row"),
+          ).filter((row) => !row.hidden);
+          group.hidden = visible.length === 0;
+          const count = group.querySelector(".article-group__count");
+          if (count) count.textContent = String(visible.length);
+        });
+      }
+    }
+
+    function setFilter(next) {
+      filter = next;
+      tabs.forEach((t) =>
+        t.setAttribute("aria-selected", t.dataset.filter === next ? "true" : "false"),
+      );
+      render();
+    }
+
+    function setView(next) {
+      view = next;
+      viewBtns.forEach((b) =>
+        b.setAttribute("aria-pressed", b.dataset.view === next ? "true" : "false"),
+      );
+      render();
+    }
+
     tabs.forEach((tab) => {
-      tab.addEventListener("click", () => apply(tab));
+      tab.addEventListener("click", () => {
+        /* 未做层面标注的专栏没有分组依据，切回去按时间看 */
+        if (view === "lens" && tab.dataset.filter !== LENS_SERIES) {
+          setView("time");
+        }
+        setFilter(tab.dataset.filter);
+      });
     });
 
-    const requested = new URLSearchParams(location.search).get("series");
+    viewBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.view === "lens") {
+          view = "lens";
+          viewBtns.forEach((b) =>
+            b.setAttribute("aria-pressed", b.dataset.view === "lens" ? "true" : "false"),
+          );
+          setFilter(LENS_SERIES);
+          return;
+        }
+        setView("time");
+      });
+    });
+
+    const params = new URLSearchParams(location.search);
+    const requested = params.get("series");
     const requestedTab = requested
-      ? document.querySelector(`.filter-tab[data-filter="${CSS.escape(requested)}"]`)
+      ? document.querySelector('.filter-tab[data-filter="' + CSS.escape(requested) + '"]')
       : null;
-    const initial =
+    const initialTab =
       requestedTab ?? document.querySelector('.filter-tab[aria-selected="true"]');
-    if (initial) apply(initial);
+    /* ?view=lens 只对《AI选》生效，其余专栏回退到时间视图 */
+    const lensView =
+      params.get("view") === "lens" &&
+      (!initialTab || initialTab.dataset.filter === LENS_SERIES);
+
+    if (lensView) {
+      view = "lens";
+      viewBtns.forEach((b) =>
+        b.setAttribute("aria-pressed", b.dataset.view === "lens" ? "true" : "false"),
+      );
+      filter = LENS_SERIES;
+      tabs.forEach((t) =>
+        t.setAttribute("aria-selected", t.dataset.filter === LENS_SERIES ? "true" : "false"),
+      );
+    } else if (initialTab) {
+      filter = initialTab.dataset.filter;
+      tabs.forEach((t) =>
+        t.setAttribute("aria-selected", t === initialTab ? "true" : "false"),
+      );
+    }
+
+    render();
   })();
 </script>

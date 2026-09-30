@@ -4,6 +4,9 @@ description: 任务先分流，方法才分明：确定性任务走规则求解�
 category: thinking
 series: ai-select
 date: 2026-09-27
+lens: ontology
+lensSecondary: [dialectics]
+lensForm: maodunlun
 ---
 
 ![概率性大模型 × 确定性规则系统：双引擎融合，将不确定性收敛为可复现的确定性交付](../../../assets/probabilistic-llm-deterministic-rules.png)

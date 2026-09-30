@@ -4,6 +4,9 @@ description: 跳出"替代 vs 不替代"的二元对立，回到"生产力决定
 category: thinking
 series: ai-select
 date: 2026-09-27
+lens: historical-materialism
+lensSecondary: [epistemology]
+lensForm: thesis
 ---
 
 ![AI 时代：认知强制抬升与生产关系的重组](./AI时代：认知强制抬升与生产关系的重组.png)

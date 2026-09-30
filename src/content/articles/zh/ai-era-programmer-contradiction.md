@@ -4,6 +4,8 @@ description: 大语言模型的概率性生成与软件工程的确定性交付�
 category: thinking
 series: ai-select
 date: 2026-09-27
+lens: dialectics
+lensForm: maodunlun
 ---
 
 ![AI 时代程序员的主要矛盾：LLM 概率生成与软件工程确定性交付之间的根本冲突](./AI时代程序员主要矛盾分析.png)

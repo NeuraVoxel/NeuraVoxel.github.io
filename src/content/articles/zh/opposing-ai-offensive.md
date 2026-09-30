@@ -4,6 +4,8 @@ description: 面对 AI 的冲击，存在两种方针：恐惧与逃避，驾驭
 category: thinking
 series: ai-select
 date: 2026-09-29
+lens: praxis
+lensForm: strategy
 ---
 
 ![应对AI进攻的方针、办法和前途](./应对AI进攻的方针、办法和前途.jpeg)

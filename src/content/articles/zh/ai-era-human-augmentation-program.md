@@ -4,6 +4,8 @@ description: AI是能力杠杆，增强是路径，幸福是目的。本纲领�
 category: thinking
 series: ai-select
 date: 2026-09-29
+lens: axiology
+lensForm: program
 ---
 
 ![AI时代人类增强行动纲领](./AI时代人类增强行动纲领.jpeg)

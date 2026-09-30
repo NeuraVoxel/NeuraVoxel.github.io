@@ -4,6 +4,8 @@ description: 概率性生产力和确定性生产关系的冲突，不是程序�
 category: thinking
 series: ai-select
 date: 2026-09-27
+lens: dialectics
+lensForm: maodunlun
 ---
 
 ![AI 时代的核心张力：概率性生产力与确定性生产关系的结构性冲突](./AI时代各行各业的主要矛盾分析.jpeg)

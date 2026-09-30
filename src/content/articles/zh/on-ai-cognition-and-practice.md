@@ -4,6 +4,8 @@ description: 只讲认知不讲实践是空谈，只讲实践不讲认知是盲�
 category: thinking
 series: ai-select
 date: 2026-09-27
+lens: epistemology
+lensForm: shijianlun
 ---
 
 ![论 AI 认知与实践：认知与实践的辩证运动](./论AI认知与实践.png)

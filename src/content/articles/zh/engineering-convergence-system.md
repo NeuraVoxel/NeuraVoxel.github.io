@@ -4,6 +4,8 @@ description: 大模型本质上是概率性的，但商业交付必须是确定�
 category: practice
 series: ai-select
 date: 2026-09-27
+lens: ontology
+lensForm: framework
 ---
 
 ![工程化收敛体系：把大模型的不确定性，转化为确定性交付](../../../assets/engineering-convergence.jpeg)

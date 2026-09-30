@@ -4,6 +4,8 @@ description: 90% 的生成式 AI 实验走不出试点，不是技术不行，�
 category: thinking
 series: ai-select
 date: 2026-09-27
+lens: epistemology
+lensForm: anti-dogma
 ---
 
 ![反对 AI 开发中的本本主义：七条罪状与调查的技术](./反对AI开发中的本本主义.png)

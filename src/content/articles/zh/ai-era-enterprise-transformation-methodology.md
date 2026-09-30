@@ -4,6 +4,8 @@ description: 把"纠正错误 AI 思想""反对 AI 开发中的本本主义""论
 category: thinking
 series: ai-select
 date: 2026-09-27
+lens: praxis
+lensForm: framework
 ---
 
 ![AI 时代企业转型方法论：认知—实践—组织三层框架](./AI时代企业转型方法论.png)

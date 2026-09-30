@@ -4,6 +4,8 @@ description: 企业内的种种错误 AI 思想，妨碍着智能化转型正确
 category: thinking
 series: ai-select
 date: 2026-09-27
+lens: praxis
+lensForm: rectification
 ---
 
 ![关于纠正企业内的错误AI思想：八种错误思想与纠正方法](./关于纠正企业内的错误AI思想.png)
