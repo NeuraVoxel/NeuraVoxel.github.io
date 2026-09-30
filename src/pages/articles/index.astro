@@ -3,7 +3,6 @@ import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
 import { getArticlesForLocale, articleSlug } from "../../lib/content";
 import {
-  categoryLabels,
   seriesLabels,
   lensLabels,
   lensDescriptions,
@@ -21,13 +20,13 @@ const listArticles = articles.filter((a) => a !== featured);
 <ZeyoLayout
   currentPath="/articles/"
   title="文章 — NeuraVoxel"
-  description="NeuraVoxel · 闭环思维 — 从闭环视角看世界。方法论、场景实践、Agent × 闭环"
+  description="NeuraVoxel · 闭环思维 — 从闭环视角看世界。《AI选》谈方法论与矛盾分析，《AI增强》谈 AI 是杠杆、人是支点。"
 >
   <header class="page-head">
     <p class="ww-label">Closed-Loop Thinking</p>
     <h1 class="page-head__title">闭环思维</h1>
     <p class="page-head__desc">
-      NeuraVoxel 思想阵地 — 从闭环视角看世界：方法论、场景实践、Agent 与闭环。
+      NeuraVoxel 思想阵地 — 从闭环视角看世界：《AI选》与《AI增强》两个专栏，方法论与增强实践。
     </p>
   </header>
 
@@ -59,12 +58,11 @@ const listArticles = articles.filter((a) => a !== featured);
             <div class="article-featured__ring"></div>
           </div>
           <div class="article-featured__content">
-            <div class="article-featured__meta">
-              <span class="cat-badge">{categoryLabels[featured.data.category]}</span>
-              {featured.data.series && (
+            {featured.data.series && (
+              <div class="article-featured__meta">
                 <span class="cat-badge cat-badge--series">{seriesLabels[featured.data.series]}</span>
-              )}
-            </div>
+              </div>
+            )}
             <h2 class="article-featured__title">{featured.data.title}</h2>
             <p class="article-featured__excerpt">{featured.data.description}</p>
             <time class="article-featured__date" datetime={formatArticleDate(featured.data.date)}>
@@ -90,12 +88,11 @@ const listArticles = articles.filter((a) => a !== featured);
               {formatArticleDate(article.data.date)}
             </time>
             <div class="article-row__body">
-              <div class="article-row__cat">
-                <span class="cat-badge">{categoryLabels[article.data.category]}</span>
-                {article.data.series && (
+              {article.data.series && (
+                <div class="article-row__cat">
                   <span class="cat-badge cat-badge--series">{seriesLabels[article.data.series]}</span>
-                )}
-              </div>
+                </div>
+              )}
               <h3 class="article-row__title">{article.data.title}</h3>
               <p class="article-row__excerpt">{article.data.description}</p>
             </div>

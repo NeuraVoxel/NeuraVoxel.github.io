@@ -3,7 +3,7 @@ import { getCollection, render } from "astro:content";
 import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
 import ScarcityLadder from "../../components/ScarcityLadder.astro";
 import { getArticleBySlug } from "../../lib/content";
-import { categoryLabels, lensLabels, lensFormLabels, formatArticleDate } from "../../lib/articles";
+import { lensLabels, lensFormLabels, formatArticleDate } from "../../lib/articles";
 import "../../styles/zeyo/articles.css";
 
 export async function getStaticPaths() {
@@ -34,7 +34,6 @@ const { Content } = await render(article);
   <article class="article-detail">
     <header class="article-detail__head">
       <div class="article-detail__meta">
-        <span class="cat-badge">{categoryLabels[article.data.category]}</span>
         {article.data.lens && (
           <span class="cat-badge cat-badge--lens">
             {lensLabels[article.data.lens]}
