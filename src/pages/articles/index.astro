@@ -42,10 +42,10 @@ const listArticles = articles.filter((a) => a !== featured);
     </div>
 
     <div class="view-toggle" role="group" aria-label="文章视图">
-      <button class="view-toggle__btn" type="button" data-view="time" aria-pressed="true">
+      <button class="view-toggle__btn" type="button" data-view="time" aria-pressed="false">
         按时间
       </button>
-      <button class="view-toggle__btn" type="button" data-view="lens" aria-pressed="false">
+      <button class="view-toggle__btn" type="button" data-view="lens" aria-pressed="true">
         按哲学层面
       </button>
     </div>
@@ -150,6 +150,8 @@ const listArticles = articles.filter((a) => a !== featured);
 
     let filter = "all";
     let view = "time";
+    /* 用户手动选过视图后，切专栏时不再回落到默认 */
+    let viewPicked = false;
 
     function match(el) {
       return (
@@ -215,16 +217,20 @@ const listArticles = articles.filter((a) => a !== featured);
 
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
-        /* 未做层面标注的专栏没有分组依据，切回去按时间看 */
-        if (view === "lens" && tab.dataset.filter !== LENS_SERIES) {
+        const next = tab.dataset.filter;
+        /* 《AI选》默认按哲学层面展示，其余专栏没有层面标注，按时间 */
+        if (next === LENS_SERIES) {
+          if (!viewPicked) setView("lens");
+        } else {
           setView("time");
         }
-        setFilter(tab.dataset.filter);
+        setFilter(next);
       });
     });
 
     viewBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
+        viewPicked = true;
         if (btn.dataset.view === "lens") {
           view = "lens";
           viewBtns.forEach((b) =>
@@ -244,26 +250,23 @@ const listArticles = articles.filter((a) => a !== featured);
       : null;
     const initialTab =
       requestedTab ?? document.querySelector('.filter-tab[aria-selected="true"]');
-    /* ?view=lens 只对《AI选》生效，其余专栏回退到时间视图 */
-    const lensView =
-      params.get("view") === "lens" &&
-      (!initialTab || initialTab.dataset.filter === LENS_SERIES);
-
-    if (lensView) {
-      view = "lens";
-      viewBtns.forEach((b) =>
-        b.setAttribute("aria-pressed", b.dataset.view === "lens" ? "true" : "false"),
-      );
-      filter = LENS_SERIES;
-      tabs.forEach((t) =>
-        t.setAttribute("aria-selected", t.dataset.filter === LENS_SERIES ? "true" : "false"),
-      );
-    } else if (initialTab) {
+    if (initialTab) {
       filter = initialTab.dataset.filter;
       tabs.forEach((t) =>
         t.setAttribute("aria-selected", t === initialTab ? "true" : "false"),
       );
     }
+
+    const viewParam = params.get("view");
+    /* 《AI选》默认按哲学层面展示；其余专栏回落到时间视图 */
+    const useLens =
+      viewParam === "lens" ||
+      (viewParam !== "time" && filter === LENS_SERIES);
+
+    view = useLens ? "lens" : "time";
+    viewBtns.forEach((b) =>
+      b.setAttribute("aria-pressed", b.dataset.view === view ? "true" : "false"),
+    );
 
     render();
   })();
