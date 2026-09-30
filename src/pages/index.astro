@@ -38,7 +38,7 @@ const latestArticles = articles.slice(0, 3);
 
       <figure
         class="living-loop"
-        aria-label="双飞轮无限环体系：上方的确定性业务闭环（业务飞轮）与下方的智能闭环（智能飞轮）尺寸对等，经两条在中央交叉的连接弧咬合成 DevOps 式无限环——智能驱动业务、业务反哺智能，循环往复无始无终；中央交叉点是五个小模块闭环（客服、财务、研发、合同、运营）构成的啮合核心，向上汇入业务飞轮、向下汇入智能飞轮"
+        aria-label="双飞轮无限环体系：上方的确定性业务闭环（业务飞轮）与下方的智能闭环（智能飞轮）尺寸对等，经两条在中央交叉的连接弧咬合成 DevOps 式无限环——智能驱动业务、业务反哺智能，循环往复无始无终；八个部门级小闭环（客服、财务、合同、运营、人力、采购、研发、销售）各自自洽自转，沿两条连接弧分布，共同啮合驱动业务飞轮与智能飞轮"
       >
         <svg viewBox="0 0 460 560" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
@@ -111,15 +111,25 @@ const latestArticles = articles.slice(0, 3);
           <ellipse class="loop-ring loop-ring--intel" cx="230" cy="442" rx="160" ry="58"></ellipse>
           <ellipse class="loop-ring loop-ring--intel loop-ring--active" cx="230" cy="442" rx="160" ry="58"></ellipse>
 
-          <!-- 啮合核心 → 上下飞轮的汇入流 -->
-          <path class="hero-link hero-link--up" d="M230 250 V174" marker-end="url(#hero-arrow-biz)"></path>
-          <path class="hero-link hero-link--down" d="M230 310 V382" marker-end="url(#hero-arrow-intel)"></path>
-
-          <!-- 中央：小模块闭环啮合核心（压在无限环交叉点上）-->
-          <ellipse class="loop-core__spin" cx="230" cy="280" rx="84" ry="42"></ellipse>
-          <ellipse class="loop-core" cx="230" cy="280" rx="74" ry="34"></ellipse>
-          <text class="loop-core__title" x="230" y="274">小模块闭环</text>
-          <text class="loop-core__list" x="230" y="291">客服·财务·研发·合同·运营</text>
+          <!-- 部门级自闭环：沿两条连接弧分布，各自自转，共同啮合双飞轮 -->
+          {
+            [
+              { x: 116, y: 206, label: "客服", tone: "biz" },
+              { x: 171, y: 252, label: "财务", tone: "intel" },
+              { x: 289, y: 308, label: "合同", tone: "biz" },
+              { x: 344, y: 354, label: "运营", tone: "intel" },
+              { x: 116, y: 354, label: "人力", tone: "intel" },
+              { x: 171, y: 308, label: "采购", tone: "biz" },
+              { x: 289, y: 252, label: "研发", tone: "intel" },
+              { x: 344, y: 206, label: "销售", tone: "biz" },
+            ].map(({ x, y, label, tone }, i) => (
+              <g class={`mod-ring mod-ring--${tone}`} transform={`translate(${x}, ${y})`}>
+                <circle class="mod-ring__disc" r="15"></circle>
+                <circle class="mod-ring__spin" r="11" style={`--i: ${i}`}></circle>
+                <text class="mod-ring__label" y="3.2">{label}</text>
+              </g>
+            ))
+          }
 
           <text class="loop-center__text loop-center__text--main" x="230" y="112">确定性业务闭环</text>
           <text class="loop-center__text loop-center__text--sub loop-center__text--biz" x="230" y="133">业务飞轮</text>
@@ -174,12 +184,14 @@ const latestArticles = articles.slice(0, 3);
             经验沉淀回流
           </text>
 
+          <text class="hero-note hero-note--modules" x="230" y="524">小模块自闭环 · 共同啮合 业务飞轮 × 智能飞轮</text>
+
           <!-- 图例 -->
           <g class="loop-legend">
-            <circle class="loop-legend__dot" cx="166" cy="536" r="4"></circle>
-            <text class="loop-legend__text" x="176" y="539">业务飞轮</text>
-            <circle class="loop-legend__dot loop-legend__dot--intel" cx="240" cy="536" r="4"></circle>
-            <text class="loop-legend__text" x="250" y="539">智能飞轮</text>
+            <circle class="loop-legend__dot" cx="166" cy="544" r="4"></circle>
+            <text class="loop-legend__text" x="176" y="547">业务飞轮</text>
+            <circle class="loop-legend__dot loop-legend__dot--intel" cx="240" cy="544" r="4"></circle>
+            <text class="loop-legend__text" x="250" y="547">智能飞轮</text>
           </g>
 
           <circle
