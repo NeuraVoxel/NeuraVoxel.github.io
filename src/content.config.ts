@@ -83,6 +83,7 @@ const articles = defineCollection({
     lens: z.enum(ARTICLE_LENSES).optional(),
     lensSecondary: z.array(z.enum(ARTICLE_LENSES)).optional(),
     lensForm: z.enum(ARTICLE_LENS_FORMS).optional(),
+    diagram: z.enum(["scarcity"]).optional(),
   }),
 });
 

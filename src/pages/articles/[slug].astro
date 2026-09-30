@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
+import ScarcityLadder from "../../components/ScarcityLadder.astro";
 import { getArticleBySlug } from "../../lib/content";
 import { categoryLabels, lensLabels, lensFormLabels, formatArticleDate } from "../../lib/articles";
 import "../../styles/zeyo/articles.css";
@@ -50,6 +51,17 @@ const { Content } = await render(article);
     <div class="article-detail__body">
       <Content />
     </div>
+
+    {
+      article.data.diagram === "scarcity" && (
+        <aside class="article-detail__figure" aria-labelledby="article-figure-title">
+          <p class="ww-label">延伸图示</p>
+          <h2 class="article-detail__figure-title" id="article-figure-title">稀缺性阶梯</h2>
+          <ScarcityLadder />
+        </aside>
+      )
+    }
+
     <footer class="article-detail__foot">
       <a class="btn btn--ghost" href="/articles/">← 返回文章列表</a>
     </footer>
@@ -193,6 +205,24 @@ const { Content } = await render(article);
     color: var(--ww-dim);
     text-align: center;
     margin-bottom: 2rem;
+  }
+
+  .article-detail__figure {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--ww-rule);
+  }
+
+  .article-detail__figure .ww-label {
+    margin: 0 0 0.5rem;
+  }
+
+  .article-detail__figure-title {
+    font-family: var(--ww-font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ww-paper);
+    margin: 0 0 1.25rem;
   }
 
   .article-detail__foot {

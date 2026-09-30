@@ -7,6 +7,7 @@ date: 2026-09-30
 lens: historical-materialism
 lensSecondary: [ontology]
 lensForm: thesis
+diagram: scarcity
 ---
 
 ![楚河汉界之上：AI 时代的人类护城河](./楚河汉界之上AI%20时代的人类护城河.jpeg)
