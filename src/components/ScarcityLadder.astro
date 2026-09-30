@@ -6,6 +6,13 @@
  * 大屏为 SVG 面板阶梯，小屏降级为纵向清单（与 HarnessDiagram 一致的降级策略）。
  */
 
+interface Props {
+  /* 需要高亮强调的层（传层的名称，如"闭环"） */
+  highlight?: string;
+}
+
+const { highlight } = Astro.props;
+
 const H = 104; // 单层高度
 const GAP = 16;
 const TOP = 118; // 最上层（制度）顶边
@@ -105,7 +112,10 @@ const viewH = TOP + 5 * H + 4 * GAP + 40;
 
       {
         rows.map((row) => (
-          <g class="sl-bar" style={`--lvl: ${row.n}`}>
+          <g
+            class:list={["sl-bar", { "sl-bar--key": row.word === highlight }]}
+            style={`--lvl: ${row.n}`}
+          >
             <rect class="sl-bar__box" x={row.x} y={row.y} width={row.w} height={H}></rect>
             <rect class="sl-bar__glow" x={row.x} y={row.y} width={row.w} height={H}></rect>
             <path class="sl-bar__corner" d={`M${row.x} ${row.y + 22} V${row.y} H${row.x + 22}`}></path>
@@ -120,6 +130,13 @@ const viewH = TOP + 5 * H + 4 * GAP + 40;
             <text class="sl-bar__word" x={row.x + 28} y={row.y + 64}>
               {row.word}
             </text>
+            {
+              row.word === highlight && (
+                <text class="sl-bar__tag" x={row.x + 92} y={row.y + 62}>
+                  核心 · 发动机
+                </text>
+              )
+            }
             <text class="sl-bar__def" x={row.x + 28} y={row.y + 88}>
               {row.def}
             </text>
@@ -145,7 +162,10 @@ const viewH = TOP + 5 * H + 4 * GAP + 40;
         .slice()
         .reverse()
         .map((row) => (
-          <li class="sl-item" style={`--lvl: ${row.n}`}>
+          <li
+            class:list={["sl-item", { "sl-item--key": row.word === highlight }]}
+            style={`--lvl: ${row.n}`}
+          >
             <span class="sl-item__idx">{String(row.n).padStart(2, "0")}</span>
             <div class="sl-item__body">
               <p class="sl-item__word">
@@ -225,6 +245,31 @@ const viewH = TOP + 5 * H + 4 * GAP + 40;
     font-weight: 600;
     fill: var(--ww-paper);
   }
+  /* 高亮层：闭环是其他四者的发动机 */
+  .sl-bar--key .sl-bar__box {
+    stroke: var(--ww-signal);
+    stroke-width: 1.5;
+  }
+  .sl-bar--key .sl-bar__glow {
+    opacity: calc(var(--lvl) * 0.08 + 0.14);
+  }
+  .sl-bar--key .sl-bar__corner {
+    opacity: 1;
+  }
+  .sl-bar--key .sl-bar__word,
+  .sl-bar--key .sl-bar__def {
+    fill: var(--ww-paper);
+  }
+  .sl-bar--key .sl-bar__word {
+    fill: var(--ww-signal);
+  }
+  .sl-bar__tag {
+    font-family: var(--ww-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    fill: var(--ww-signal);
+  }
+
   .sl-bar__def {
     font-family: var(--ww-font-body);
     font-size: 15px;
@@ -259,6 +304,19 @@ const viewH = TOP + 5 * H + 4 * GAP + 40;
     background: var(--ww-surface);
     border: 1px solid var(--ww-rule);
     border-left: 2px solid var(--ww-signal-dim);
+  }
+
+  .sl-item--key {
+    border-left-color: var(--ww-signal);
+    background: var(--ww-elevated);
+  }
+
+  .sl-item--key .sl-item__word {
+    color: var(--ww-signal);
+  }
+
+  .sl-item--key .sl-item__def {
+    color: var(--ww-paper);
   }
 
   .sl-item__idx {
