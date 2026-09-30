@@ -2,8 +2,10 @@
 title: AI增强人类：从"替代焦虑"到"能力杠杆"
 description: AI 真正的历史角色不是替代者，而是人类能力的杠杆。本文拆解增强的逻辑、三个层次（效率—能力—认知）、增强者的画像与组织的责任：替代是假命题，增强才是真方向。
 category: thinking
-series: ai-augmentation
+series: ai-select
 date: 2026-09-29
+lens: praxis
+lensForm: framework
 ---
 
 ![AI增强人类：从"替代焦虑"到"能力杠杆"](./AI增强人类：从"替代焦虑"到"能力杠杆".jpeg)
