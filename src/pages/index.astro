@@ -1,6 +1,7 @@
 ---
 import ZeyoLayout from "../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../components/zeyo/CooperationStrip.astro";
+import ScarcityLadder from "../components/ScarcityLadder.astro";
 import { getArticlesForLocale, articleSlug } from "../lib/content";
 import { seriesLabels, formatArticleDate } from "../lib/articles";
 import "../styles/zeyo/home.css";
@@ -143,6 +144,22 @@ const latestArticles = articles.slice(0, 3);
         <span class="engine-cta__desc">双引擎如何把 AI 的不确定性收敛为可交付的结果</span>
         <span class="engine-cta__arrow" aria-hidden="true">→</span>
       </a>
+    </div>
+  </section>
+
+  <hr class="ww-rule" />
+
+  <section class="ww-section" id="scarcity" aria-labelledby="scarcity-title">
+    <div class="ww-section__inner">
+      <header class="ww-section__head">
+        <p class="ww-label">What Is Scarce</p>
+        <h2 class="ww-section__title" id="scarcity-title">AI 时代，稀缺的是什么</h2>
+        <p class="ww-section__desc">
+          稀缺性正在上移：从拥有数据，到能否闭环，到能否被信任，到谁来担责，最后沉淀为制度。
+          <strong>AI 消灭下层的稀缺，放大上层的稀缺。</strong>
+        </p>
+      </header>
+      <ScarcityLadder />
     </div>
   </section>
 

@@ -3,6 +3,7 @@ import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
 import HarnessDiagram from "../../components/zeyo/HarnessDiagram.astro";
 import TaskRoutingDiagram from "../../components/TaskRoutingDiagram.astro";
+import ScarcityLadder from "../../components/ScarcityLadder.astro";
 import { getAllSolutionLandings, getSolutionTree } from "../../lib/content";
 import { solutionKindLabels } from "../../data/solutions.types";
 import "../../styles/zeyo/solutions.css";
@@ -167,6 +168,20 @@ const statusLabels: Record<string, string> = {
             阅读任务分流方法论 →
           </a>
         </p>
+      </div>
+    </section>
+
+    <section class="ww-section" aria-labelledby="solutions-scarcity">
+      <div class="ww-section__inner">
+        <header class="ww-section__head">
+          <p class="ww-label">Why · 稀缺性上移</p>
+          <h2 class="ww-section__title" id="solutions-scarcity">为什么闭环与信任最值钱</h2>
+          <p class="ww-section__desc">
+            AI 能力越普及，通用能力越快地变成基础设施；真正形成差异的，是往上走的那些东西——
+            <strong>独特数据、真实闭环、可核验的信任、可归责的责任、可执行的制度。</strong>
+          </p>
+        </header>
+        <ScarcityLadder />
       </div>
     </section>
 

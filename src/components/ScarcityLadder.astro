@@ -1,0 +1,313 @@
+---
+/**
+ * 稀缺性阶梯：AI 时代的稀缺要素自下而上迁移
+ * 数据 → 闭环 → 信任 → 责任 → 制度
+ * 层级关系，不是流程：每上一层，可复制性更低、壁垒更高、越难被模型压缩。
+ * 大屏为 SVG 面板阶梯，小屏降级为纵向清单（与 HarnessDiagram 一致的降级策略）。
+ */
+
+const H = 104; // 单层高度
+const GAP = 16;
+const TOP = 118; // 最上层（制度）顶边
+
+const levels = [
+  {
+    en: "DATA",
+    word: "数据",
+    def: "可采集、可治理、可版本化的现场资产",
+    why: "模型生成不了你的现场记录",
+    crit: "可采集",
+  },
+  {
+    en: "CLOSED-LOOP",
+    word: "闭环",
+    def: "反馈回到输入端，驱动下一轮",
+    why: "一次性生成不产生复利",
+    crit: "可重跑",
+  },
+  {
+    en: "TRUST",
+    word: "信任",
+    def: "结论可追溯、可核验、可复现",
+    why: "概率性输出天生不可信",
+    crit: "可追溯",
+  },
+  {
+    en: "ACCOUNTABILITY",
+    word: "责任",
+    def: "有唯一为后果签字的人",
+    why: "模型不能承担后果",
+    crit: "可归责",
+  },
+  {
+    en: "INSTITUTION",
+    word: "制度",
+    def: "定义什么算好，并把标准变成门禁",
+    why: "标准即权力，不可外包",
+    crit: "可执行",
+  },
+];
+
+/* 由下往上编号：数据 01 … 制度 05；渲染时制度在最上 */
+const rows = levels
+  .map((level, i) => ({ ...level, n: i + 1 }))
+  .reverse()
+  .map((level) => {
+    const w = 1080 - (level.n - 1) * 140;
+    const x = 600 - w / 2;
+    const y = TOP + (5 - level.n) * (H + GAP);
+    return { ...level, x, y, w };
+  });
+
+const viewH = TOP + 5 * H + 4 * GAP + 40;
+---
+
+<div class="sl">
+  <figure class="sl__figure">
+    <svg
+      class="sl__svg"
+      viewBox={`0 0 1200 ${viewH}`}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="稀缺性阶梯：自下而上依次为数据、闭环、信任、责任、制度，每上一层可复制性更低、壁垒更高、越难被 AI 压缩"
+    >
+      <defs>
+        <marker
+          id="sl-arrow"
+          viewBox="0 0 10 10"
+          refX="9"
+          refY="5"
+          markerWidth="7"
+          markerHeight="7"
+          orient="auto"
+        >
+          <path d="M0 0 L10 5 L0 10 Z" class="sl-arrow-fill"></path>
+        </marker>
+      </defs>
+
+      <!-- 纵轴：稀缺性上移 -->
+      <path class="sl-rail" d={`M24 ${viewH - 44} V${TOP - 8}`} marker-end="url(#sl-arrow)"></path>
+      <text class="sl-axis" transform={`rotate(-90 24 ${(viewH - 44 + TOP) / 2})`} x="24" y={(viewH - 44 + TOP) / 2}>
+        稀缺性 ↑ · 可复制性 ↓
+      </text>
+
+      <!-- 纵轴：被 AI 压缩的难度 -->
+      <path class="sl-rail sl-rail--mist" d={`M1176 ${viewH - 44} V${TOP - 8}`} marker-end="url(#sl-arrow)"></path>
+      <text
+        class="sl-axis sl-axis--mist"
+        transform={`rotate(-90 1176 ${(viewH - 44 + TOP) / 2})`}
+        x="1176"
+        y={(viewH - 44 + TOP) / 2}
+      >
+        被 AI 压缩的难度 ↑
+      </text>
+
+      {
+        rows.map((row) => (
+          <g class="sl-bar" style={`--lvl: ${row.n}`}>
+            <rect class="sl-bar__box" x={row.x} y={row.y} width={row.w} height={H}></rect>
+            <rect class="sl-bar__glow" x={row.x} y={row.y} width={row.w} height={H}></rect>
+            <path class="sl-bar__corner" d={`M${row.x} ${row.y + 22} V${row.y} H${row.x + 22}`}></path>
+            <path
+              class="sl-bar__corner"
+              d={`M${row.x + row.w - 22} ${row.y + H} H${row.x + row.w} V${row.y + H - 22}`}
+            ></path>
+
+            <text class="sl-bar__idx" x={row.x + 28} y={row.y + 30}>
+              {String(row.n).padStart(2, "0")} · {row.en}
+            </text>
+            <text class="sl-bar__word" x={row.x + 28} y={row.y + 64}>
+              {row.word}
+            </text>
+            <text class="sl-bar__def" x={row.x + 28} y={row.y + 88}>
+              {row.def}
+            </text>
+
+            <text class="sl-bar__why" x={row.x + row.w - 28} y={row.y + 88} text-anchor="end">
+              {row.why}
+            </text>
+            <text class="sl-bar__crit" x={row.x + row.w - 28} y={row.y + 60} text-anchor="end">
+              判据 · {row.crit}
+            </text>
+          </g>
+        ))
+      }
+    </svg>
+    <figcaption class="sl__caption">
+      AI 消灭下层的稀缺，放大上层的稀缺——越往上，越难被复制，也越难被模型压缩。
+    </figcaption>
+  </figure>
+
+  <ol class="sl__list">
+    {
+      rows
+        .slice()
+        .reverse()
+        .map((row) => (
+          <li class="sl-item" style={`--lvl: ${row.n}`}>
+            <span class="sl-item__idx">{String(row.n).padStart(2, "0")}</span>
+            <div class="sl-item__body">
+              <p class="sl-item__word">
+                {row.word}
+                <span class="sl-item__crit">判据 · {row.crit}</span>
+              </p>
+              <p class="sl-item__def">{row.def}</p>
+              <p class="sl-item__why">{row.why}</p>
+            </div>
+          </li>
+        ))
+    }
+  </ol>
+</div>
+
+<style>
+  .sl__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .sl__caption {
+    margin-top: 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--ww-dim);
+    text-align: center;
+  }
+
+  /* 纵轴 */
+  .sl-rail {
+    stroke: var(--ww-signal-dim);
+    stroke-width: 1.5;
+  }
+  .sl-rail--mist {
+    stroke: var(--ww-rule);
+  }
+  .sl-arrow-fill {
+    fill: var(--ww-signal-dim);
+  }
+  .sl-axis {
+    font-family: var(--ww-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    fill: var(--ww-signal);
+    text-anchor: middle;
+  }
+  .sl-axis--mist {
+    fill: var(--ww-dim);
+  }
+
+  /* 层级面板 */
+  .sl-bar__box {
+    fill: var(--ww-surface);
+    stroke: var(--ww-rule);
+    stroke-width: 1;
+  }
+  .sl-bar__glow {
+    fill: var(--ww-signal-glow);
+    opacity: calc(var(--lvl) * 0.08);
+  }
+  .sl-bar__corner {
+    stroke: var(--ww-signal-dim);
+    stroke-width: 2;
+    opacity: calc(0.3 + var(--lvl) * 0.14);
+  }
+  .sl-bar__idx {
+    font-family: var(--ww-font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    fill: var(--ww-signal);
+  }
+  .sl-bar__word {
+    font-family: var(--ww-font-display);
+    font-size: 26px;
+    font-weight: 600;
+    fill: var(--ww-paper);
+  }
+  .sl-bar__def {
+    font-family: var(--ww-font-body);
+    font-size: 15px;
+    fill: var(--ww-mist);
+  }
+  .sl-bar__why {
+    font-family: var(--ww-font-body);
+    font-size: 13px;
+    fill: var(--ww-dim);
+  }
+  .sl-bar__crit {
+    font-family: var(--ww-font-mono);
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    fill: var(--ww-signal);
+  }
+
+  /* 小屏降级：纵向清单 */
+  .sl__list {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0.75rem;
+  }
+
+  .sl-item {
+    display: grid;
+    grid-template-columns: 2.25rem 1fr;
+    gap: 0.75rem;
+    padding: 1rem 1.125rem;
+    background: var(--ww-surface);
+    border: 1px solid var(--ww-rule);
+    border-left: 2px solid var(--ww-signal-dim);
+  }
+
+  .sl-item__idx {
+    font-family: var(--ww-font-mono);
+    font-size: 0.75rem;
+    color: var(--ww-signal);
+    padding-top: 0.25rem;
+  }
+
+  .sl-item__word {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.625rem;
+    font-family: var(--ww-font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--ww-paper);
+    margin: 0 0 0.375rem;
+  }
+
+  .sl-item__crit {
+    font-family: var(--ww-font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.06em;
+    color: var(--ww-signal-dim);
+  }
+
+  .sl-item__def {
+    margin: 0 0 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--ww-mist);
+  }
+
+  .sl-item__why {
+    margin: 0;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    color: var(--ww-dim);
+  }
+
+  @media (max-width: 52rem) {
+    .sl__figure {
+      display: none;
+    }
+
+    .sl__list {
+      display: grid;
+    }
+  }
+</style>

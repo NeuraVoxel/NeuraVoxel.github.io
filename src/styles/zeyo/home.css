@@ -76,7 +76,7 @@
   margin: 0 0 1.75rem;
   color: var(--ww-mist);
   font-size: 1rem;
-  max-width: 26rem;
+  max-width: 32rem;
   line-height: 1.75;
 }
 
@@ -84,6 +84,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
+}
+
+/* 首页各 section 标题下的说明：比全站默认 40rem 放宽，减少不必要的换行 */
+.ww-section .ww-section__head {
+  max-width: 52rem;
 }
 
 /* —— Living Loop —— */
