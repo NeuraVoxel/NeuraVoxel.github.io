@@ -38,151 +38,169 @@ const latestArticles = articles.slice(0, 3);
 
       <figure
         class="living-loop"
-        aria-label="双飞轮闭环体系：顶层确定性业务闭环（业务飞轮）由部门输出→协同校验→责任签字→对外交付→反馈归因构成；中层五个小模块闭环（客服/财务/研发/合同/运营）共同驱动业务飞轮与智能飞轮；底层智能闭环（智能飞轮）由校验→过滤→兜底→追溯构成；业务飞轮与智能飞轮经左右两侧交互循环迭代相互啮合，小模块闭环向上汇入业务、向下汇入智能并回流"
+        aria-label="双飞轮无限环体系：上方的确定性业务闭环（业务飞轮）与下方的智能闭环（智能飞轮）尺寸对等，经两条在中央交叉的连接弧咬合成 DevOps 式无限环——智能驱动业务、业务反哺智能，循环往复无始无终；中央交叉点是五个小模块闭环（客服、财务、研发、合同、运营）构成的啮合核心，向上汇入业务飞轮、向下汇入智能飞轮"
       >
-        <svg viewBox="0 0 400 440" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg viewBox="0 0 460 560" fill="none" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <marker
-              id="hero-arrow"
+              id="hero-arrow-biz"
               viewBox="0 0 10 10"
-              refX="8"
+              refX="9"
               refY="5"
-              markerWidth="6"
-              markerHeight="6"
+              markerWidth="9"
+              markerHeight="9"
+              markerUnits="userSpaceOnUse"
               orient="auto"
             >
-              <path d="M0 0 L10 5 L0 10 Z" class="hero-arrow-fill"></path>
+              <path d="M0 0.5 L10 5 L0 9.5 Z" class="hero-arrow-fill hero-arrow-fill--biz"></path>
             </marker>
+            <marker
+              id="hero-arrow-intel"
+              viewBox="0 0 10 10"
+              refX="9"
+              refY="5"
+              markerWidth="9"
+              markerHeight="9"
+              markerUnits="userSpaceOnUse"
+              orient="auto"
+            >
+              <path d="M0 0.5 L10 5 L0 9.5 Z" class="hero-arrow-fill hero-arrow-fill--intel"></path>
+            </marker>
+
+            <linearGradient id="loop-grad-biz" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" style="stop-color: var(--ww-signal)"></stop>
+              <stop offset="0.5" style="stop-color: var(--ww-signal)"></stop>
+              <stop offset="1" style="stop-color: var(--ww-signal); stop-opacity: 0.35"></stop>
+            </linearGradient>
+            <linearGradient id="loop-grad-intel" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" style="stop-color: var(--ww-warn)"></stop>
+              <stop offset="0.5" style="stop-color: var(--ww-warn)"></stop>
+              <stop offset="1" style="stop-color: var(--ww-warn); stop-opacity: 0.35"></stop>
+            </linearGradient>
+            <radialGradient id="loop-disc-biz">
+              <stop offset="0" style="stop-color: var(--ww-signal); stop-opacity: 0.18"></stop>
+              <stop offset="1" style="stop-color: var(--ww-signal); stop-opacity: 0"></stop>
+            </radialGradient>
+            <radialGradient id="loop-disc-intel">
+              <stop offset="0" style="stop-color: var(--ww-warn); stop-opacity: 0.16"></stop>
+              <stop offset="1" style="stop-color: var(--ww-warn); stop-opacity: 0"></stop>
+            </radialGradient>
           </defs>
 
-          <!-- 顶层：确定性业务闭环 / 业务飞轮 -->
-          <ellipse class="loop-disc loop-disc--biz" cx="200" cy="96" rx="150" ry="52"></ellipse>
-          <ellipse class="loop-ring loop-ring--biz" cx="200" cy="96" rx="150" ry="52"></ellipse>
-          <ellipse class="loop-ring loop-ring--biz loop-ring--active" cx="200" cy="96" rx="150" ry="52"></ellipse>
-
-          <text class="loop-center__text loop-center__text--main" x="200" y="92">确定性业务闭环</text>
-          <text class="loop-center__text loop-center__text--sub loop-center__text--biz" x="200" y="110">业务飞轮</text>
-
-          <g class="loop-node loop-node--biz" data-stage="perceive" data-index="0" transform="translate(200, 44)">
-            <rect class="loop-pill" x="-30" y="-9" width="60" height="18" rx="9"></rect>
-            <text class="loop-pill__label" y="3.5">部门输出</text>
-          </g>
-          <g class="loop-node loop-node--biz" data-stage="process" data-index="1" transform="translate(341, 78)">
-            <rect class="loop-pill" x="-30" y="-9" width="60" height="18" rx="9"></rect>
-            <text class="loop-pill__label" y="3.5">协同校验</text>
-          </g>
-          <g class="loop-node loop-node--biz" data-stage="train" data-index="2" transform="translate(315, 131)">
-            <rect class="loop-pill" x="-30" y="-9" width="60" height="18" rx="9"></rect>
-            <text class="loop-pill__label" y="3.5">责任签字</text>
-          </g>
-          <g class="loop-node loop-node--biz" data-stage="simulate" data-index="3" transform="translate(85, 131)">
-            <rect class="loop-pill" x="-30" y="-9" width="60" height="18" rx="9"></rect>
-            <text class="loop-pill__label" y="3.5">对外交付</text>
-          </g>
-          <g class="loop-node loop-node--biz" data-stage="return" data-index="4" transform="translate(59, 78)">
-            <rect class="loop-pill" x="-30" y="-9" width="60" height="18" rx="9"></rect>
-            <text class="loop-pill__label" y="3.5">反馈归因</text>
-          </g>
-
-          <text class="hero-note hero-note--biz" x="356" y="99">责任锚定</text>
-
-          <!-- 中层：小模块闭环 · 共同驱动双飞轮 -->
-          {
-            [
-              { x: 60, label: "客服" },
-              { x: 130, label: "财务" },
-              { x: 200, label: "研发" },
-              { x: 270, label: "合同" },
-              { x: 340, label: "运营" },
-            ].map(({ x, label }, i) => (
-              <>
-                {i > 0 && (
-                  <path
-                    class="hero-link"
-                    d={`M${x - 46} 250 H${x - 28}`}
-                    marker-end="url(#hero-arrow)"
-                  ></path>
-                )}
-                <g class="dept-ring" transform={`translate(${x}, 250)`}>
-                  <circle r="24"></circle>
-                  <circle class="dept-ring__spin" r="19" style={`--i: ${i}`}></circle>
-                  <text y="4">{label}</text>
-                </g>
-              </>
-            ))
-          }
-          <text class="hero-note hero-note--center" x="200" y="296">小模块闭环 · 共同驱动 业务飞轮 × 智能飞轮</text>
-
-          <!-- 小模块闭环 ↔ 确定性业务闭环（向上汇入）-->
-          <path class="hero-link hero-link--up" d="M130 226 V150" marker-end="url(#hero-arrow)"></path>
-          <path class="hero-link hero-link--up" d="M200 226 V150" marker-end="url(#hero-arrow)"></path>
-          <path class="hero-link hero-link--up" d="M270 226 V150" marker-end="url(#hero-arrow)"></path>
-          <!-- 小模块闭环 ↔ 智能闭环（向下汇入）-->
-          <path class="hero-link hero-link--down" d="M130 274 V306" marker-end="url(#hero-arrow)"></path>
-          <path class="hero-link hero-link--down" d="M200 274 V306" marker-end="url(#hero-arrow)"></path>
-          <path class="hero-link hero-link--down" d="M270 274 V306" marker-end="url(#hero-arrow)"></path>
-
-          <!-- 底层：智能闭环 / 智能飞轮（小一号）-->
-          <ellipse class="loop-disc loop-disc--intel" cx="200" cy="350" rx="120" ry="42"></ellipse>
-          <ellipse class="loop-ring loop-ring--intel" cx="200" cy="350" rx="120" ry="42"></ellipse>
-          <ellipse class="loop-ring loop-ring--intel loop-ring--active" cx="200" cy="350" rx="120" ry="42"></ellipse>
-
-          <text class="loop-center__text loop-center__text--main" x="200" y="346">智能闭环</text>
-          <text class="loop-center__text loop-center__text--sub loop-center__text--intel" x="200" y="364">智能飞轮</text>
-
-          <g class="loop-node loop-node--intel" data-stage="perceive" data-index="5" transform="translate(200, 308)">
-            <rect class="loop-pill" x="-30" y="-9" width="60" height="18" rx="9"></rect>
-            <text class="loop-pill__label" y="3.5">校验</text>
-          </g>
-          <g class="loop-node loop-node--intel" data-stage="process" data-index="6" transform="translate(312, 344)">
-            <rect class="loop-pill" x="-30" y="-9" width="60" height="18" rx="9"></rect>
-            <text class="loop-pill__label" y="3.5">过滤</text>
-          </g>
-          <g class="loop-node loop-node--intel" data-stage="train" data-index="7" transform="translate(200, 392)">
-            <rect class="loop-pill" x="-30" y="-9" width="60" height="18" rx="9"></rect>
-            <text class="loop-pill__label" y="3.5">兜底</text>
-          </g>
-          <g class="loop-node loop-node--intel" data-stage="return" data-index="8" transform="translate(88, 344)">
-            <rect class="loop-pill" x="-30" y="-9" width="60" height="18" rx="9"></rect>
-            <text class="loop-pill__label" y="3.5">追溯</text>
-          </g>
-
-          <text class="hero-note hero-note--intel" x="356" y="353">AI 生成 → 兜底</text>
-
-          <!-- 双飞轮交互循环迭代：金→青（智能驱动业务）/ 青→金（业务反哺智能）-->
+          <!-- 无限环腰部：两条交叉弧（青 业务→智能 / 金 智能→业务），中央被啮合核心压住 -->
           <path
-            class="hero-link hero-link--intel"
-            d="M80 340 C 44 280, 44 180, 55 108"
-            marker-end="url(#hero-arrow)"
+            class="hero-link hero-link--infty hero-link--biz"
+            d="M 80 138 C 104 216, 160 252, 230 280 C 300 308, 356 344, 380 422"
+            marker-end="url(#hero-arrow-biz)"
           ></path>
-          <text class="hero-note hero-note--left" transform="rotate(-90 14 224)" x="14" y="224">
+          <path
+            class="hero-link hero-link--infty hero-link--intel"
+            d="M 80 422 C 104 344, 160 308, 230 280 C 300 252, 356 216, 380 138"
+            marker-end="url(#hero-arrow-intel)"
+          ></path>
+
+          <!-- 顶层：确定性业务闭环 / 业务飞轮 -->
+          <ellipse class="loop-halo loop-halo--biz" cx="230" cy="118" rx="160" ry="58"></ellipse>
+          <ellipse class="loop-disc loop-disc--biz" cx="230" cy="118" rx="160" ry="58"></ellipse>
+          <ellipse class="loop-ring loop-ring--biz" cx="230" cy="118" rx="160" ry="58"></ellipse>
+          <ellipse class="loop-ring loop-ring--biz loop-ring--active" cx="230" cy="118" rx="160" ry="58"></ellipse>
+
+          <!-- 底层：智能闭环 / 智能飞轮（与业务飞轮等大对等）-->
+          <ellipse class="loop-halo loop-halo--intel" cx="230" cy="442" rx="160" ry="58"></ellipse>
+          <ellipse class="loop-disc loop-disc--intel" cx="230" cy="442" rx="160" ry="58"></ellipse>
+          <ellipse class="loop-ring loop-ring--intel" cx="230" cy="442" rx="160" ry="58"></ellipse>
+          <ellipse class="loop-ring loop-ring--intel loop-ring--active" cx="230" cy="442" rx="160" ry="58"></ellipse>
+
+          <!-- 啮合核心 → 上下飞轮的汇入流 -->
+          <path class="hero-link hero-link--up" d="M230 250 V174" marker-end="url(#hero-arrow-biz)"></path>
+          <path class="hero-link hero-link--down" d="M230 310 V382" marker-end="url(#hero-arrow-intel)"></path>
+
+          <!-- 中央：小模块闭环啮合核心（压在无限环交叉点上）-->
+          <ellipse class="loop-core__spin" cx="230" cy="280" rx="84" ry="42"></ellipse>
+          <ellipse class="loop-core" cx="230" cy="280" rx="74" ry="34"></ellipse>
+          <text class="loop-core__title" x="230" y="274">小模块闭环</text>
+          <text class="loop-core__list" x="230" y="291">客服·财务·研发·合同·运营</text>
+
+          <text class="loop-center__text loop-center__text--main" x="230" y="112">确定性业务闭环</text>
+          <text class="loop-center__text loop-center__text--sub loop-center__text--biz" x="230" y="133">业务飞轮</text>
+
+          <g class="loop-node loop-node--biz" data-stage="perceive" data-index="0" transform="translate(230, 60)">
+            <rect class="loop-pill" x="-30" y="-10" width="60" height="20" rx="10"></rect>
+            <text class="loop-pill__label" y="3.8">部门输出</text>
+          </g>
+          <g class="loop-node loop-node--biz" data-stage="process" data-index="1" transform="translate(382, 100)">
+            <rect class="loop-pill" x="-30" y="-10" width="60" height="20" rx="10"></rect>
+            <text class="loop-pill__label" y="3.8">协同校验</text>
+          </g>
+          <g class="loop-node loop-node--biz" data-stage="train" data-index="2" transform="translate(324, 165)">
+            <rect class="loop-pill" x="-30" y="-10" width="60" height="20" rx="10"></rect>
+            <text class="loop-pill__label" y="3.8">责任签字</text>
+          </g>
+          <g class="loop-node loop-node--biz" data-stage="simulate" data-index="3" transform="translate(136, 165)">
+            <rect class="loop-pill" x="-30" y="-10" width="60" height="20" rx="10"></rect>
+            <text class="loop-pill__label" y="3.8">对外交付</text>
+          </g>
+          <g class="loop-node loop-node--biz" data-stage="return" data-index="4" transform="translate(78, 100)">
+            <rect class="loop-pill" x="-30" y="-10" width="60" height="20" rx="10"></rect>
+            <text class="loop-pill__label" y="3.8">反馈归因</text>
+          </g>
+
+          <text class="loop-center__text loop-center__text--main" x="230" y="436">智能闭环</text>
+          <text class="loop-center__text loop-center__text--sub loop-center__text--intel" x="230" y="457">智能飞轮</text>
+
+          <g class="loop-node loop-node--intel" data-stage="perceive" data-index="5" transform="translate(230, 384)">
+            <rect class="loop-pill" x="-26" y="-10" width="52" height="20" rx="10"></rect>
+            <text class="loop-pill__label" y="3.8">校验</text>
+          </g>
+          <g class="loop-node loop-node--intel" data-stage="process" data-index="6" transform="translate(390, 442)">
+            <rect class="loop-pill" x="-26" y="-10" width="52" height="20" rx="10"></rect>
+            <text class="loop-pill__label" y="3.8">过滤</text>
+          </g>
+          <g class="loop-node loop-node--intel" data-stage="train" data-index="7" transform="translate(230, 500)">
+            <rect class="loop-pill" x="-26" y="-10" width="52" height="20" rx="10"></rect>
+            <text class="loop-pill__label" y="3.8">兜底</text>
+          </g>
+          <g class="loop-node loop-node--intel" data-stage="return" data-index="8" transform="translate(70, 442)">
+            <rect class="loop-pill" x="-26" y="-10" width="52" height="20" rx="10"></rect>
+            <text class="loop-pill__label" y="3.8">追溯</text>
+          </g>
+
+          <text class="hero-note hero-note--biz" x="396" y="168">责任锚定</text>
+          <text class="hero-note hero-note--intel" x="396" y="392">生成 → 兜底</text>
+          <text class="hero-note hero-note--left" transform="rotate(-90 14 280)" x="14" y="280">
             交互循环迭代
           </text>
-
-          <path
-            class="hero-link hero-link--biz"
-            d="M345 108 C 376 180, 376 280, 320 340"
-            marker-end="url(#hero-arrow)"
-          ></path>
-          <text class="hero-note" transform="rotate(-90 386 224)" x="386" y="224">经验沉淀回流</text>
+          <text class="hero-note hero-note--right" transform="rotate(-90 446 280)" x="446" y="280">
+            经验沉淀回流
+          </text>
 
           <!-- 图例 -->
           <g class="loop-legend">
-            <circle class="loop-legend__dot" cx="150" cy="425" r="4"></circle>
-            <text class="loop-legend__text" x="160" y="428">业务飞轮</text>
-            <circle class="loop-legend__dot loop-legend__dot--intel" cx="214" cy="425" r="4"></circle>
-            <text class="loop-legend__text" x="224" y="428">智能飞轮</text>
+            <circle class="loop-legend__dot" cx="166" cy="536" r="4"></circle>
+            <text class="loop-legend__text" x="176" y="539">业务飞轮</text>
+            <circle class="loop-legend__dot loop-legend__dot--intel" cx="240" cy="536" r="4"></circle>
+            <text class="loop-legend__text" x="250" y="539">智能飞轮</text>
           </g>
 
           <circle
             class="loop-pulse"
             r="5"
-            style="offset-path: path('M 50 96 A 150 52 0 0 1 350 96 A 150 52 0 0 1 50 96')"
+            style="offset-path: path('M 70 118 A 160 58 0 0 1 390 118 A 160 58 0 0 1 70 118')"
           ></circle>
           <circle
             class="loop-pulse loop-pulse--rules"
-            r="4"
-            style="offset-path: path('M 80 350 A 120 42 0 0 1 320 350 A 120 42 0 0 1 80 350')"
+            r="5"
+            style="offset-path: path('M 70 442 A 160 58 0 0 1 390 442 A 160 58 0 0 1 70 442')"
+          ></circle>
+          <circle
+            class="loop-pulse loop-pulse--infty loop-pulse--biz"
+            r="3.5"
+            style="offset-path: path('M 80 138 C 104 216, 160 252, 230 280 C 300 308, 356 344, 380 422')"
+          ></circle>
+          <circle
+            class="loop-pulse loop-pulse--infty loop-pulse--rules"
+            r="3.5"
+            style="offset-path: path('M 80 422 C 104 344, 160 308, 230 280 C 300 252, 356 216, 380 138')"
           ></circle>
         </svg>
       </figure>

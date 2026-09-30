@@ -117,9 +117,9 @@
 
 .living-loop {
   width: 100%;
-  max-width: 460px;
+  max-width: 500px;
   margin-inline: auto;
-  aspect-ratio: 1;
+  aspect-ratio: 23 / 28;
 }
 
 .living-loop svg {
@@ -128,22 +128,52 @@
   overflow: visible;
 }
 
+/* 环外柔光：让飞轮有体量感 */
+.loop-halo {
+  fill: none;
+  stroke-width: 7;
+  opacity: 0.18;
+  filter: blur(8px);
+}
+
+.loop-halo--biz {
+  stroke: var(--ww-signal);
+}
+
+.loop-halo--intel {
+  stroke: var(--ww-warn);
+}
+
 .loop-ring {
   fill: none;
   stroke: var(--ww-rule);
-  stroke-width: 1.5;
+  stroke-width: 1.75;
 }
 
 .loop-ring--active {
-  stroke: var(--ww-signal-dim);
-  stroke-width: 2;
-  stroke-dasharray: 8 12;
+  stroke-width: 2.5;
+  stroke-dasharray: 10 14;
   animation: loop-dash 12s linear infinite;
+}
+
+.loop-ring--biz {
+  stroke: rgba(78, 196, 212, 0.4);
+}
+.loop-ring--intel {
+  stroke: rgba(196, 161, 90, 0.4);
+}
+.loop-ring--biz.loop-ring--active {
+  stroke: url(#loop-grad-biz);
+  filter: drop-shadow(0 0 5px var(--ww-signal-glow));
+}
+.loop-ring--intel.loop-ring--active {
+  stroke: url(#loop-grad-intel);
+  filter: drop-shadow(0 0 5px rgba(196, 161, 90, 0.45));
 }
 
 @keyframes loop-dash {
   to {
-    stroke-dashoffset: -200;
+    stroke-dashoffset: -240;
   }
 }
 
@@ -158,6 +188,17 @@
   fill: var(--ww-warn);
   filter: drop-shadow(0 0 6px rgba(196, 161, 90, 0.3));
   animation-delay: -6s;
+}
+
+/* 沿无限环腰部奔跑的能量点 */
+.loop-pulse--infty {
+  animation: loop-orbit 7s linear infinite;
+}
+.loop-pulse--infty.loop-pulse--biz {
+  animation-delay: -3.5s;
+}
+.loop-pulse--infty.loop-pulse--rules {
+  animation-delay: 0s;
 }
 
 @keyframes loop-orbit {
@@ -176,12 +217,12 @@
 .loop-pill {
   fill: var(--ww-elevated);
   stroke: var(--ww-rule);
-  stroke-width: 1;
+  stroke-width: 1.25;
 }
 
 .loop-pill__label {
   font-family: var(--ww-font-mono);
-  font-size: 9.5px;
+  font-size: 10px;
   fill: var(--ww-mist);
   text-anchor: middle;
 }
@@ -211,29 +252,38 @@
   stroke: var(--ww-return);
 }
 
-/* 中层：部门级小闭环 */
-.dept-ring circle {
+/* 中央：小模块闭环啮合核心（压住无限环的交叉点）*/
+.loop-core {
   fill: var(--ww-surface);
   stroke: var(--ww-signal-dim);
-  stroke-width: 1.25;
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.45));
 }
 
-.dept-ring text {
-  font-family: var(--ww-font-body);
-  font-size: 11px;
+.loop-core__title {
+  font-family: var(--ww-font-display);
+  font-size: 12.5px;
+  font-weight: 600;
   fill: var(--ww-paper);
   text-anchor: middle;
 }
 
-/* 每个小闭环自转：虚线内环流动，逐个错开相位 */
-.dept-ring__spin {
+.loop-core__list {
+  font-family: var(--ww-font-mono);
+  font-size: 7.5px;
+  letter-spacing: 0.02em;
+  fill: var(--ww-mist);
+  text-anchor: middle;
+}
+
+/* 啮合核心自转：虚线外环流动 */
+.loop-core__spin {
   fill: none;
   stroke: var(--ww-signal);
   stroke-width: 1;
   stroke-dasharray: 4 8;
-  opacity: 0.75;
+  opacity: 0.7;
   animation: dept-dash 3.2s linear infinite;
-  animation-delay: calc(var(--i) * -0.55s);
 }
 
 @keyframes dept-dash {
@@ -243,7 +293,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .dept-ring__spin {
+  .loop-core__spin {
     animation: none;
   }
 }
@@ -285,6 +335,12 @@
 .hero-arrow-fill {
   fill: var(--ww-signal-dim);
 }
+.hero-arrow-fill--biz {
+  fill: var(--ww-signal);
+}
+.hero-arrow-fill--intel {
+  fill: var(--ww-warn);
+}
 
 .hero-note {
   font-family: var(--ww-font-mono);
@@ -293,9 +349,12 @@
   fill: var(--ww-dim);
 }
 
-.hero-note--center {
-  fill: var(--ww-mist);
-  letter-spacing: 0.04em;
+.hero-note--left {
+  fill: var(--ww-warn);
+}
+
+.hero-note--right {
+  fill: var(--ww-signal);
 }
 
 .loop-center__text {
@@ -306,7 +365,7 @@
 }
 
 .loop-center__text--main {
-  font-size: 16px;
+  font-size: 17px;
   font-weight: 600;
   fill: var(--ww-paper);
 }
@@ -322,31 +381,10 @@
   stroke: none;
 }
 .loop-disc--biz {
-  fill: var(--ww-signal);
-  opacity: 0.05;
+  fill: url(#loop-disc-biz);
 }
 .loop-disc--intel {
-  fill: var(--ww-warn);
-  opacity: 0.05;
-}
-
-.loop-ring--biz {
-  stroke: rgba(78, 196, 212, 0.4);
-}
-.loop-ring--intel {
-  stroke: rgba(196, 161, 90, 0.4);
-}
-.loop-ring--active {
-  filter: drop-shadow(0 0 3px var(--ww-signal-glow));
-}
-.loop-ring--biz.loop-ring--active {
-  stroke: var(--ww-signal);
-  stroke-dasharray: 8 12;
-}
-.loop-ring--intel.loop-ring--active {
-  stroke: var(--ww-warn);
-  stroke-dasharray: 8 12;
-  filter: drop-shadow(0 0 3px rgba(196, 161, 90, 0.4));
+  fill: url(#loop-disc-intel);
 }
 
 /* 节点药丸按所属飞轮染色描边（点亮态仍由 loop-node--lit 接管）*/
@@ -374,16 +412,32 @@
   opacity: 0.6;
 }
 
-/* 双飞轮交互弧：双向，金 → 青 / 青 → 金 */
+/* 无限环腰部：两条交叉弧，金 → 青 / 青 → 金，虚线持续流动 */
+.hero-link--infty {
+  stroke-width: 2;
+  stroke-dasharray: 7 7;
+  opacity: 0.9;
+  animation: infty-dash 1.6s linear infinite;
+}
 .hero-link--intel {
   stroke: var(--ww-warn);
-  stroke-dasharray: 4 5;
-  opacity: 0.85;
+  filter: drop-shadow(0 0 4px rgba(196, 161, 90, 0.35));
 }
 .hero-link--biz {
   stroke: var(--ww-signal);
-  stroke-dasharray: 4 5;
-  opacity: 0.85;
+  filter: drop-shadow(0 0 4px var(--ww-signal-glow));
+}
+
+@keyframes infty-dash {
+  to {
+    stroke-dashoffset: -28;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-link--infty {
+    animation: none;
+  }
 }
 
 /* 侧标随飞轮着色 */
@@ -810,7 +864,7 @@
   }
 
   .living-loop {
-    max-width: 300px;
+    max-width: 330px;
   }
 
   .thinking-grid {
