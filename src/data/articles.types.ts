@@ -40,7 +40,7 @@ export const categoryLabels: Record<ArticleCategory, string> = {
 
 export const seriesLabels: Record<ArticleSeries, string> = {
   "ai-select": "AI选",
-  "ai-understanding": "认识AI",
+  "ai-understanding": "AI认识",
   "ai-augmentation": "AI增强",
 };
 

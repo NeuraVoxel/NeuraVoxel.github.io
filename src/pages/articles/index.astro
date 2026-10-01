@@ -18,7 +18,7 @@ const articles = await getArticlesForLocale(locale);
 const featured = articles.find((a) => a.data.featured) ?? articles[0];
 const listArticles = articles.filter((a) => a !== featured);
 
-/* 尚无文章的专栏（《认识AI》刚开栏），在筛选到它时给出占位说明 */
+/* 尚无文章的专栏（《AI认识》刚开栏），在筛选到它时给出占位说明 */
 const published = new Set(articles.map((a) => a.data.series).filter(Boolean));
 const emptySeries = (Object.keys(seriesLabels) as ArticleSeries[]).filter(
   (s) => !published.has(s),
@@ -28,13 +28,13 @@ const emptySeries = (Object.keys(seriesLabels) as ArticleSeries[]).filter(
 <ZeyoLayout
   currentPath="/articles/"
   title="文章 — NeuraVoxel"
-  description="NeuraVoxel · 闭环思维 — 从闭环视角看世界。《AI选》谈方法论与矛盾分析，《认识AI》谈把不确定性收敛为确定性，《AI增强》谈 AI 是杠杆、人是支点。"
+  description="NeuraVoxel · 闭环思维 — 从闭环视角看世界。《AI选》谈方法论与矛盾分析，《AI认识》谈把不确定性收敛为确定性，《AI增强》谈 AI 是杠杆、人是支点。"
 >
   <header class="page-head">
     <p class="ww-label">Closed-Loop Thinking</p>
     <h1 class="page-head__title">闭环思维</h1>
     <p class="page-head__desc">
-      NeuraVoxel 思想阵地 — 从闭环视角看世界：《AI选》讲方法论与矛盾分析，《认识AI》讲把不确定性收敛为确定性，《AI增强》讲 AI 是杠杆、人是支点。
+      NeuraVoxel 思想阵地 — 从闭环视角看世界：《AI选》讲方法论与矛盾分析，《AI认识》讲把不确定性收敛为确定性，《AI增强》讲 AI 是杠杆、人是支点。
     </p>
   </header>
 
@@ -42,7 +42,7 @@ const emptySeries = (Object.keys(seriesLabels) as ArticleSeries[]).filter(
     <div class="filter-tabs" role="tablist" aria-label="文章专栏">
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="all">全部</button>
       <button class="filter-tab" role="tab" aria-selected="true" data-filter="ai-select">《AI选》</button>
-      <button class="filter-tab" role="tab" aria-selected="false" data-filter="ai-understanding">《认识AI》</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="ai-understanding">《AI认识》</button>
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="ai-augmentation">《AI增强》</button>
     </div>
 
