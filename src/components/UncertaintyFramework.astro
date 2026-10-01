@@ -1,0 +1,449 @@
+---
+/**
+ * 不确定性转化能力框架图：按"测量 → 减少 → 约束 → 承受"四个动作组织
+ * 上承概率输出（不确定性输入），下接确定性交付，左侧回线是闭环校准。
+ * 大屏为 SVG 面板，小屏降级为纵向清单（与 ScarcityLadder 一致的降级策略）。
+ */
+
+const W = 1200;
+const COL_W = 258;
+const COL_GAP = 24;
+const COL_X0 = (W - (4 * COL_W + 3 * COL_GAP)) / 2;
+const COL_Y = 150;
+const COL_H = 336;
+const BAND_X = COL_X0;
+const BAND_W = 4 * COL_W + 3 * COL_GAP;
+const TOP_BAND_Y = 40;
+const TOP_BAND_H = 60;
+const OUT_BAND_Y = 530;
+const OUT_BAND_H = 60;
+const VIEW_H = 640;
+
+const RAIL_X = 24; // 左侧回流线
+
+const actions = [
+  {
+    en: "MEASURE",
+    word: "测量",
+    path: "认识论验证",
+    subjects: "概率论 · 统计学 · UQ",
+    question: "不确定性有多大？",
+    methods: ["置信区间估计", "敏感性与归因分析", "多模型一致性比对"],
+    output: "置信度 · 风险度量",
+  },
+  {
+    en: "REDUCE",
+    word: "减少",
+    path: "本体论约束",
+    subjects: "信息论",
+    question: "补哪些信息最有效？",
+    methods: ["RAG 检索增强", "引用溯源", "多模型交叉验证"],
+    output: "可追溯的证据",
+  },
+  {
+    en: "CONSTRAIN",
+    word: "约束",
+    path: "实践论闭环",
+    subjects: "控制论 · 系统论",
+    question: "变化时如何稳定达标？",
+    methods: ["结构化输出", "生成 → 验证 → 反馈", "工具调用外包推理"],
+    output: "稳定收敛的过程",
+  },
+  {
+    en: "ENDURE",
+    word: "承受",
+    path: "风险治理",
+    subjects: "运筹学 · 鲁棒优化 · 风险科学",
+    question: "最坏情况能否接受？",
+    methods: ["置信度阈值门禁", "降级与兜底", "人工复核仲裁"],
+    output: "最坏情况可控",
+  },
+];
+
+const cols = actions.map((a, i) => {
+  const x = COL_X0 + i * (COL_W + COL_GAP);
+  return { ...a, n: i + 1, x, cx: x + COL_W / 2 };
+});
+---
+
+<div class="uf">
+  <figure class="uf__figure">
+    <svg
+      class="uf__svg"
+      viewBox={`0 0 ${W} ${VIEW_H}`}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      role="img"
+      aria-label="不确定性转化能力框架图：按测量、减少、约束、承受四个动作组织，把大模型的概率输出转化为可验证、可追溯、可追责的确定性交付，并通过实践结果回流重新校准概率"
+    >
+      <defs>
+        <marker
+          id="uf-arrow"
+          viewBox="0 0 10 10"
+          refX="9"
+          refY="5"
+          markerWidth="7"
+          markerHeight="7"
+          orient="auto"
+        >
+          <path d="M0 0 L10 5 L0 10 Z" class="uf-arrow-fill"></path>
+        </marker>
+        <marker
+          id="uf-arrow-dim"
+          viewBox="0 0 10 10"
+          refX="9"
+          refY="5"
+          markerWidth="7"
+          markerHeight="7"
+          orient="auto"
+        >
+          <path d="M0 0 L10 5 L0 10 Z" class="uf-arrow-fill-dim"></path>
+        </marker>
+      </defs>
+
+      <!-- 输入：概率波 -->
+      <rect
+        class="uf-band uf-band--in"
+        x={BAND_X}
+        y={TOP_BAND_Y}
+        width={BAND_W}
+        height={TOP_BAND_H}
+      ></rect>
+      <text class="uf-band__label" x={W / 2} y={TOP_BAND_Y + 26} text-anchor="middle">
+        输入 · 大模型的概率输出
+      </text>
+      <text class="uf-band__text" x={W / 2} y={TOP_BAND_Y + 48} text-anchor="middle">
+        语义 / 知识 / 推理 / 对齐 / 输出 —— 五重不确定性
+      </text>
+
+      <!-- 输入 → 四个动作 -->
+      {
+        cols.map((col) => (
+          <path
+            class="uf-flow"
+            d={`M${col.cx} ${TOP_BAND_Y + TOP_BAND_H + 4} V${COL_Y - 8}`}
+            marker-end="url(#uf-arrow)"
+          ></path>
+        ))
+      }
+
+      <!-- 四个动作 -->
+      {
+        cols.map((col) => (
+          <g class="uf-col">
+            <rect class="uf-col__box" x={col.x} y={COL_Y} width={COL_W} height={COL_H}></rect>
+            <path class="uf-col__corner" d={`M${col.x} ${COL_Y + 22} V${COL_Y} H${col.x + 22}`}></path>
+            <path
+              class="uf-col__corner"
+              d={`M${col.x + COL_W - 22} ${COL_Y + COL_H} H${col.x + COL_W} V${COL_Y + COL_H - 22}`}
+            ></path>
+
+            <text class="uf-col__idx" x={col.x + 24} y={COL_Y + 34}>
+              {String(col.n).padStart(2, "0")} · {col.en}
+            </text>
+            <text class="uf-col__path" x={col.x + COL_W - 24} y={COL_Y + 34} text-anchor="end">
+              {col.path}
+            </text>
+            <text class="uf-col__word" x={col.x + 24} y={COL_Y + 78}>
+              {col.word}
+            </text>
+            <text class="uf-col__subjects" x={col.x + 24} y={COL_Y + 104}>
+              {col.subjects}
+            </text>
+
+            <path
+              class="uf-col__rule"
+              d={`M${col.x + 24} ${COL_Y + 120} H${col.x + COL_W - 24}`}
+            ></path>
+
+            <text class="uf-col__tag" x={col.x + 24} y={COL_Y + 146}>
+              关键问题
+            </text>
+            <text class="uf-col__question" x={col.x + 24} y={COL_Y + 172}>
+              {col.question}
+            </text>
+
+            <text class="uf-col__tag" x={col.x + 24} y={COL_Y + 204}>
+              方法
+            </text>
+            {
+              col.methods.map((m, i) => (
+                <text class="uf-col__method" x={col.x + 24} y={COL_Y + 230 + i * 24}>
+                  · {m}
+                </text>
+              ))
+            }
+
+            <path
+              class="uf-col__rule"
+              d={`M${col.x + 24} ${COL_Y + COL_H - 48} H${col.x + COL_W - 24}`}
+            ></path>
+            <text class="uf-col__tag" x={col.x + 24} y={COL_Y + COL_H - 26}>
+              产出
+            </text>
+            <text class="uf-col__output" x={col.x + 24} y={COL_Y + COL_H - 8}>
+              {col.output}
+            </text>
+          </g>
+        ))
+      }
+
+      <!-- 四个动作 → 输出 -->
+      {
+        cols.map((col) => (
+          <path
+            class="uf-flow"
+            d={`M${col.cx} ${COL_Y + COL_H + 4} V${OUT_BAND_Y - 8}`}
+            marker-end="url(#uf-arrow)"
+          ></path>
+        ))
+      }
+
+      <!-- 输出：确定性交付 -->
+      <rect
+        class="uf-band uf-band--out"
+        x={BAND_X}
+        y={OUT_BAND_Y}
+        width={BAND_W}
+        height={OUT_BAND_H}
+      ></rect>
+      <text class="uf-band__label" x={W / 2} y={OUT_BAND_Y + 26} text-anchor="middle">
+        输出 · 确定性交付
+      </text>
+      <text class="uf-band__text" x={W / 2} y={OUT_BAND_Y + 48} text-anchor="middle">
+        可验证 · 可追溯 · 可追责
+      </text>
+
+      <!-- 回流：实践结果重新校准概率 -->
+      <path
+        class="uf-return"
+        d={`M${BAND_X} ${OUT_BAND_Y + OUT_BAND_H / 2} H${RAIL_X} V${TOP_BAND_Y + TOP_BAND_H / 2} H${BAND_X - 6}`}
+        marker-end="url(#uf-arrow-dim)"
+      ></path>
+      <text
+        class="uf-return__label"
+        transform={`rotate(-90 ${RAIL_X - 10} ${(TOP_BAND_Y + OUT_BAND_Y) / 2})`}
+        x={RAIL_X - 10}
+        y={(TOP_BAND_Y + OUT_BAND_Y) / 2}
+      >
+        反馈回流 · 用实践结果重新校准概率、阈值与提示词
+      </text>
+    </svg>
+    <figcaption class="uf__caption">
+      四个动作不是四个阶段，而是并行的四种能力：能测量才谈得上验证，能减少才谈得上收敛，能约束才谈得上稳定，能承受才敢交付。
+    </figcaption>
+  </figure>
+
+  <ol class="uf__list">
+    {
+      cols.map((col) => (
+        <li class="uf-item">
+          <div class="uf-item__head">
+            <span class="uf-item__idx">{String(col.n).padStart(2, "0")}</span>
+            <span class="uf-item__word">{col.word}</span>
+            <span class="uf-item__path">{col.path}</span>
+          </div>
+          <p class="uf-item__subjects">{col.subjects}</p>
+          <p class="uf-item__q">关键问题：{col.question}</p>
+          <p class="uf-item__methods">方法：{col.methods.join(" / ")}</p>
+          <p class="uf-item__output">产出：{col.output}</p>
+        </li>
+      ))
+    }
+  </ol>
+</div>
+
+<style>
+  .uf__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .uf__caption {
+    margin-top: 1rem;
+    font-size: 0.8125rem;
+    line-height: 1.7;
+    color: var(--ww-dim);
+    text-align: center;
+  }
+
+  /* 连接线 */
+  .uf-flow {
+    stroke: var(--ww-signal-dim);
+    stroke-width: 1.5;
+  }
+  .uf-arrow-fill {
+    fill: var(--ww-signal-dim);
+  }
+  .uf-return {
+    stroke: var(--ww-rule);
+    stroke-width: 1.5;
+    stroke-dasharray: 5 5;
+  }
+  .uf-arrow-fill-dim {
+    fill: var(--ww-dim);
+  }
+  .uf-return__label {
+    font-family: var(--ww-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    fill: var(--ww-dim);
+    text-anchor: middle;
+  }
+
+  /* 输入 / 输出带 */
+  .uf-band {
+    fill: var(--ww-elevated);
+    stroke: var(--ww-rule);
+    stroke-width: 1;
+  }
+  .uf-band--out {
+    stroke: var(--ww-signal-dim);
+  }
+  .uf-band__label {
+    font-family: var(--ww-font-mono);
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    fill: var(--ww-signal);
+  }
+  .uf-band__text {
+    font-family: var(--ww-font-display);
+    font-size: 18px;
+    font-weight: 600;
+    fill: var(--ww-paper);
+  }
+
+  /* 动作面板 */
+  .uf-col__box {
+    fill: var(--ww-surface);
+    stroke: var(--ww-rule);
+    stroke-width: 1;
+  }
+  .uf-col__corner {
+    stroke: var(--ww-signal-dim);
+    stroke-width: 2;
+    opacity: 0.7;
+  }
+  .uf-col__rule {
+    stroke: var(--ww-rule);
+    stroke-width: 1;
+  }
+  .uf-col__idx {
+    font-family: var(--ww-font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    fill: var(--ww-signal);
+  }
+  .uf-col__path {
+    font-family: var(--ww-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    fill: var(--ww-signal-dim);
+  }
+  .uf-col__word {
+    font-family: var(--ww-font-display);
+    font-size: 28px;
+    font-weight: 600;
+    fill: var(--ww-paper);
+  }
+  .uf-col__subjects {
+    font-family: var(--ww-font-mono);
+    font-size: 12px;
+    letter-spacing: 0.04em;
+    fill: var(--ww-mist);
+  }
+  .uf-col__tag {
+    font-family: var(--ww-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    fill: var(--ww-dim);
+  }
+  .uf-col__question {
+    font-family: var(--ww-font-body);
+    font-size: 14px;
+    fill: var(--ww-paper);
+  }
+  .uf-col__method {
+    font-family: var(--ww-font-body);
+    font-size: 13px;
+    fill: var(--ww-mist);
+  }
+  .uf-col__output {
+    font-family: var(--ww-font-mono);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    fill: var(--ww-signal);
+  }
+
+  /* 小屏降级：纵向清单 */
+  .uf__list {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 0.75rem;
+  }
+
+  .uf-item {
+    padding: 1rem 1.125rem;
+    background: var(--ww-surface);
+    border: 1px solid var(--ww-rule);
+    border-left: 2px solid var(--ww-signal-dim);
+  }
+
+  .uf-item__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.625rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .uf-item__idx {
+    font-family: var(--ww-font-mono);
+    font-size: 0.75rem;
+    color: var(--ww-signal);
+  }
+
+  .uf-item__word {
+    font-family: var(--ww-font-display);
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--ww-paper);
+  }
+
+  .uf-item__path {
+    font-family: var(--ww-font-mono);
+    font-size: 0.6875rem;
+    letter-spacing: 0.08em;
+    color: var(--ww-signal-dim);
+  }
+
+  .uf-item__subjects,
+  .uf-item__q,
+  .uf-item__methods,
+  .uf-item__output {
+    margin: 0 0 0.25rem;
+    font-size: 0.875rem;
+    line-height: 1.6;
+    color: var(--ww-mist);
+  }
+
+  .uf-item__output {
+    margin-bottom: 0;
+    color: var(--ww-signal);
+    font-family: var(--ww-font-mono);
+    font-size: 0.8125rem;
+  }
+
+  @media (max-width: 52rem) {
+    .uf__figure {
+      display: none;
+    }
+
+    .uf__list {
+      display: grid;
+    }
+  }
+</style>
