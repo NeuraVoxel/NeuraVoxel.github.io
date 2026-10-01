@@ -2,7 +2,7 @@
   "scenes": [
     {
       "id": "office",
-      "title": "AI办公",
+      "title": "AI",
       "countLabel": "6 项作品",
       "loopSteps": [
         "规划",
@@ -12,29 +12,41 @@
       ],
       "products": [
         {
-          "id": "dialectic-skills",
-          "name": "Dialectic Skills",
-          "summary": "AI 时代，不仅要搭建个人知识体系，还要搭建个人思想体系。一套认知操作系统——把辩证思维工程化为四层 Skill，让 AI 帮你思考，而不只是知道。",
+          "id": "sysworld-skill",
+          "name": "SysWorld · 七层架构分析器",
+          "summary": "一个 Agent Skill，把任何问题、现象或决策按 L1–L7 七层架构逐层拆解，输出主战场 / 根因 / 表象、层间动力学与行动杠杆点——给诊断式判断，而不是罗列观点。",
           "status": "available",
           "tags": [
             {
-              "label": "L1 立场",
-              "stage": "plan"
+              "label": "L1 物理",
+              "stage": "input"
             },
             {
-              "label": "L2 方法论",
-              "stage": "plan"
+              "label": "L2 信息",
+              "stage": "process"
             },
             {
-              "label": "L3 执行",
+              "label": "L3 认知",
+              "stage": "perceive"
+            },
+            {
+              "label": "L4 行为",
               "stage": "execute"
             },
             {
-              "label": "L4 反思",
-              "stage": "review"
+              "label": "L5 经济",
+              "stage": "return"
+            },
+            {
+              "label": "L6 制度",
+              "stage": "plan"
+            },
+            {
+              "label": "L7 叙事",
+              "stage": "feedback"
             }
           ],
-          "openUrl": "https://github.com/NeuraVoxel/dialectic-skills"
+          "openUrl": "https://github.com/NeuraVoxel/sysworld-skill"
         },
         {
           "id": "task-agent",
