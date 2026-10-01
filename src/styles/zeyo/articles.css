@@ -174,6 +174,38 @@
   flex-direction: column;
 }
 
+/* 空专栏占位：尚无文章的专栏切到该 tab 时显示 */
+.article-empty {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--ww-rule);
+}
+
+.article-empty .ww-label {
+  margin: 0 0 0.5rem;
+}
+
+.article-empty__title {
+  font-family: var(--ww-font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--ww-paper);
+  margin: 0 0 0.5rem;
+}
+
+.article-empty__desc {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ww-mist);
+  margin: 0 0 0.5rem;
+}
+
+.article-empty__note {
+  font-family: var(--ww-font-mono);
+  font-size: 0.75rem;
+  color: var(--ww-dim);
+  margin: 0;
+}
+
 /* Article list */
 .article-list {
   display: flex;

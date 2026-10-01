@@ -4,10 +4,12 @@ import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
 import { getArticlesForLocale, articleSlug } from "../../lib/content";
 import {
   seriesLabels,
+  seriesDescriptions,
   lensLabels,
   lensDescriptions,
   lensOrder,
   formatArticleDate,
+  type ArticleSeries,
 } from "../../lib/articles";
 import "../../styles/zeyo/articles.css";
 
@@ -15,18 +17,24 @@ const locale = "zh";
 const articles = await getArticlesForLocale(locale);
 const featured = articles.find((a) => a.data.featured) ?? articles[0];
 const listArticles = articles.filter((a) => a !== featured);
+
+/* 尚无文章的专栏（《认识AI》刚开栏），在筛选到它时给出占位说明 */
+const published = new Set(articles.map((a) => a.data.series).filter(Boolean));
+const emptySeries = (Object.keys(seriesLabels) as ArticleSeries[]).filter(
+  (s) => !published.has(s),
+);
 ---
 
 <ZeyoLayout
   currentPath="/articles/"
   title="文章 — NeuraVoxel"
-  description="NeuraVoxel · 闭环思维 — 从闭环视角看世界。《AI选》谈方法论与矛盾分析，《AI增强》谈 AI 是杠杆、人是支点。"
+  description="NeuraVoxel · 闭环思维 — 从闭环视角看世界。《AI选》谈方法论与矛盾分析，《认识AI》谈把不确定性收敛为确定性，《AI增强》谈 AI 是杠杆、人是支点。"
 >
   <header class="page-head">
     <p class="ww-label">Closed-Loop Thinking</p>
     <h1 class="page-head__title">闭环思维</h1>
     <p class="page-head__desc">
-      NeuraVoxel 思想阵地 — 从闭环视角看世界：《AI选》与《AI增强》两个专栏，方法论与增强实践。
+      NeuraVoxel 思想阵地 — 从闭环视角看世界：《AI选》讲方法论与矛盾分析，《认识AI》讲把不确定性收敛为确定性，《AI增强》讲 AI 是杠杆、人是支点。
     </p>
   </header>
 
@@ -34,6 +42,7 @@ const listArticles = articles.filter((a) => a !== featured);
     <div class="filter-tabs" role="tablist" aria-label="文章专栏">
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="all">全部</button>
       <button class="filter-tab" role="tab" aria-selected="true" data-filter="ai-select">《AI选》</button>
+      <button class="filter-tab" role="tab" aria-selected="false" data-filter="ai-understanding">《认识AI》</button>
       <button class="filter-tab" role="tab" aria-selected="false" data-filter="ai-augmentation">《AI增强》</button>
     </div>
 
@@ -122,6 +131,17 @@ const listArticles = articles.filter((a) => a !== featured);
         ))
       }
     </div>
+
+    {
+      emptySeries.map((series) => (
+        <div class="article-empty" data-series={series} hidden>
+          <p class="ww-label">Series</p>
+          <h2 class="article-empty__title">《{seriesLabels[series]}》</h2>
+          <p class="article-empty__desc">{seriesDescriptions[series]}</p>
+          <p class="article-empty__note">专栏已开栏，首篇正在撰写中 — 可先阅读其他专栏。</p>
+        </div>
+      ))
+    }
   </div>
 
   <CooperationStrip
@@ -137,6 +157,7 @@ const listArticles = articles.filter((a) => a !== featured);
     const featured = document.querySelector(".article-featured");
     const list = document.querySelector(".article-list");
     const groups = document.querySelector(".article-groups");
+    const empties = Array.from(document.querySelectorAll(".article-empty"));
     const rows = Array.from(document.querySelectorAll(".article-row"));
 
     /* 只有《AI选》做了哲学层面标注，分组视图强制限定在该专栏内 */
@@ -171,15 +192,22 @@ const listArticles = articles.filter((a) => a !== featured);
     }
 
     function render() {
+      let visible = 0;
       rows.forEach((row) => {
         row.hidden = !match(row);
+        if (!row.hidden) visible += 1;
       });
       if (featured) featured.hidden = !match(featured);
 
+      /* 该专栏还没有文章时，用占位卡代替空列表 */
+      empties.forEach((el) => {
+        el.hidden = !(el.dataset.series === filter && visible === 0);
+      });
+
       place();
 
-      if (list) list.hidden = view !== "time";
-      if (groups) groups.hidden = view !== "lens";
+      if (list) list.hidden = view !== "time" || visible === 0;
+      if (groups) groups.hidden = view !== "lens" || visible === 0;
 
       if (groups) {
         groups.querySelectorAll(".article-group").forEach((group) => {

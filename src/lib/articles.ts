@@ -1,6 +1,7 @@
 import {
   categoryLabels,
   seriesLabels,
+  seriesDescriptions,
   lensLabels,
   lensDescriptions,
   lensFormLabels,
@@ -14,6 +15,7 @@ import {
 export {
   categoryLabels,
   seriesLabels,
+  seriesDescriptions,
   lensLabels,
   lensDescriptions,
   lensFormLabels,

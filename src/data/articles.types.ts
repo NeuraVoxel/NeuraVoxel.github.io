@@ -1,5 +1,5 @@
 export type ArticleCategory = "thinking" | "practice" | "agent";
-export type ArticleSeries = "ai-select" | "ai-augmentation";
+export type ArticleSeries = "ai-select" | "ai-understanding" | "ai-augmentation";
 
 /* 哲学层面：文章在哪个哲学分支上讨论 AI */
 export type ArticleLens =
@@ -40,7 +40,14 @@ export const categoryLabels: Record<ArticleCategory, string> = {
 
 export const seriesLabels: Record<ArticleSeries, string> = {
   "ai-select": "AI选",
+  "ai-understanding": "认识AI",
   "ai-augmentation": "AI增强",
+};
+
+export const seriesDescriptions: Record<ArticleSeries, string> = {
+  "ai-select": "AI 时代的方法论与矛盾分析",
+  "ai-understanding": "把 AI 的不确定性转换为确定性的方式方法",
+  "ai-augmentation": "AI 是杠杆，人是支点",
 };
 
 /* 阅读顺序：原理 → 认识 → 矛盾 → 历史 → 价值 → 行动 */
