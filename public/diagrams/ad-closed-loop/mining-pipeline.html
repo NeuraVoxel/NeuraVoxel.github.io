@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智驾数据闭环 · 挖掘五站流水线</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&family=Noto+Serif:ital@0;1&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper: #f5f5f5;
+      --color-ink: #2d3142;
+      --color-muted: #4f5d75;
+      --color-accent: #bf4520;
+      --font-sans: 'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+      --font-serif: 'Instrument Serif', 'Noto Serif', 'Noto Serif SC', serif;
+      --font-mono: 'Geist Mono', ui-monospace, monospace;
+    }
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      padding: 0.75rem;
+    }
+    .eyebrow, h1, .lede { display: none; }
+    .frame { max-width: 1320px; width: 100%; }
+    .diagram-container { width: 100%; overflow-x: auto; }
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      margin-bottom: 0.5rem;
+    }
+    .lede {
+      font-size: 0.95rem;
+      color: var(--color-muted);
+      margin-bottom: 1.5rem;
+      max-width: 42rem;
+    }
+    svg { width: 100%; display: block; }
+    @media print {
+      .diagram-container { overflow-x: visible; }
+      svg { min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Architecture · 小周谈智驾闭环</p>
+    <h1>挖掘五站流水线</h1>
+    <p class="lede">TB 级进、可检索场景出；规则粗筛 → 模型细筛 → 检索扩散。双出口：命中回补训练集，未命中下发定向采集。未审核不进训练集。</p>
+
+    <div class="diagram-container">
+      <svg viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-labelledby="ad-mine-5-title ad-mine-5-desc">
+        <title id="ad-mine-5-title">挖掘五站流水线</title>
+        <desc id="ad-mine-5-desc">五站流水线从分层抽帧到多模态检索，双引擎挖掘为焦点；检索后双出口分别回补训练集或下发定向采集，主数据始终在湖仓。</desc>
+        <defs>
+          <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+          <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#bf4520"/></marker>
+          <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker>
+        </defs>
+
+        <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+        <!-- Zones -->
+        <rect x="40" y="72" width="920" height="200" rx="8"
+              fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+        <rect x="420" y="76" width="104" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="472" y="88" fill="#5a6580" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">五站流水线</text>
+
+        <rect x="980" y="72" width="260" height="360" rx="8"
+              fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+        <rect x="1060" y="76" width="88" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="1104" y="88" fill="#5a6580" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">挖掘双出口</text>
+
+        <rect x="40" y="320" width="920" height="112" rx="8"
+              fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+        <rect x="428" y="324" width="88" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="472" y="336" fill="#5a6580" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">事实源</text>
+
+        <!-- Arrows: pipeline (stations 56/244/432/620/808, each w=144) -->
+        <line x1="200" y1="176" x2="240" y2="176" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+        <line x1="388" y1="176" x2="428" y2="176" stroke="#bf4520" stroke-width="1.4" marker-end="url(#arrow-accent)"/>
+        <line x1="576" y1="176" x2="616" y2="176" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+        <line x1="764" y1="176" x2="804" y2="176" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+        <!-- 检索(右缘952) → 双出口 fork -->
+        <path d="M 952,156 H 992"
+              fill="none" stroke="#bf4520" stroke-width="1.4" marker-end="url(#arrow-accent)"/>
+        <path d="M 952,196 H 968 Q 976,196 976,204 V 336 H 992"
+              fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+        <!-- 湖仓 → 双引擎（单一事实源） -->
+        <path d="M 504,352 V 220"
+              fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+
+        <!-- Arrow labels -->
+        <rect x="204" y="150" width="28" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="218" y="162" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">帧</text>
+
+        <rect x="388" y="150" width="40" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="408" y="162" fill="#bf4520" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">粗筛</text>
+
+        <rect x="580" y="150" width="40" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="600" y="162" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">细筛</text>
+
+        <rect x="768" y="150" width="40" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="788" y="162" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">向量</text>
+
+        <rect x="508" y="268" width="56" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="536" y="280" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">读写湖</text>
+
+        <!-- Stage 1 分层抽帧 -->
+        <rect x="56" y="140" width="144" height="72" rx="6" fill="#f5f5f5"/>
+        <rect x="56" y="140" width="144" height="72" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <rect x="64" y="148" width="24" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="76" y="157" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">01</text>
+        <text x="128" y="176" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">分层抽帧</text>
+        <text x="128" y="192" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">uniform · event</text>
+
+        <!-- Stage 2 统一标签 -->
+        <rect x="244" y="140" width="144" height="72" rx="6" fill="#f5f5f5"/>
+        <rect x="244" y="140" width="144" height="72" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <rect x="252" y="148" width="24" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="264" y="157" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">02</text>
+        <text x="316" y="176" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">统一标签</text>
+        <text x="316" y="192" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">4-state lexicon</text>
+
+        <!-- Stage 3 双引擎 · focal -->
+        <rect x="432" y="136" width="144" height="80" rx="6" fill="#f5f5f5"/>
+        <rect x="432" y="136" width="144" height="80" rx="6" fill="rgba(191,69,32,0.08)" stroke="#bf4520" stroke-width="1"/>
+        <rect x="440" y="144" width="24" height="12" rx="2" fill="transparent" stroke="rgba(191,69,32,0.50)" stroke-width="0.8"/>
+        <text x="452" y="153" fill="#bf4520" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">03</text>
+        <text x="504" y="176" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">双引擎挖掘</text>
+        <text x="504" y="194" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">rules + VLM</text>
+
+        <!-- Stage 4 向量化 -->
+        <rect x="620" y="140" width="144" height="72" rx="6" fill="#f5f5f5"/>
+        <rect x="620" y="140" width="144" height="72" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <rect x="628" y="148" width="24" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="640" y="157" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">04</text>
+        <text x="692" y="176" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">向量化</text>
+        <text x="692" y="192" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">CLIP · versioned</text>
+
+        <!-- Stage 5 多模态检索 -->
+        <rect x="808" y="140" width="144" height="72" rx="6" fill="#f5f5f5"/>
+        <rect x="808" y="140" width="144" height="72" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <rect x="816" y="148" width="24" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="828" y="157" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">05</text>
+        <text x="880" y="176" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">多模态检索</text>
+        <text x="880" y="192" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">filter + ANN</text>
+
+        <!-- Exit: 命中回补 · second coral (dual-exit hit) -->
+        <rect x="1000" y="112" width="220" height="72" rx="6" fill="#f5f5f5"/>
+        <rect x="1000" y="112" width="220" height="72" rx="6" fill="rgba(191,69,32,0.08)" stroke="#bf4520" stroke-width="1"/>
+        <rect x="1008" y="120" width="36" height="12" rx="2" fill="transparent" stroke="rgba(191,69,32,0.50)" stroke-width="0.8"/>
+        <text x="1026" y="129" fill="#bf4520" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">HIT</text>
+        <text x="1110" y="148" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">回补训练集</text>
+        <text x="1110" y="164" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">zero collect cost</text>
+
+        <!-- Exit: 定向采集 -->
+        <rect x="1000" y="300" width="220" height="72" rx="6" fill="#f5f5f5"/>
+        <rect x="1000" y="300" width="220" height="72" rx="6" fill="rgba(79,93,117,0.10)" stroke="#5a6580" stroke-width="1"/>
+        <rect x="1008" y="308" width="40" height="12" rx="2" fill="transparent" stroke="rgba(90,101,128,0.40)" stroke-width="0.8"/>
+        <text x="1028" y="317" fill="#5a6580" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">MISS</text>
+        <text x="1110" y="336" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">定向采集</text>
+        <text x="1110" y="352" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">task → fleet</text>
+
+        <!-- 湖仓 store -->
+        <rect x="380" y="352" width="248" height="56" rx="6" fill="#f5f5f5"/>
+        <rect x="380" y="352" width="248" height="56" rx="6" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+        <rect x="388" y="360" width="40" height="12" rx="2" fill="transparent" stroke="rgba(79,93,117,0.50)" stroke-width="0.8"/>
+        <text x="408" y="369" fill="#4f5d75" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">LAKE</text>
+        <text x="504" y="388" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">湖仓 · 控制面/数据面分离</text>
+
+        <!-- Quality redline callout -->
+        <text x="40" y="468" fill="#2d3142" font-size="14" font-style="italic"
+              font-family="'Instrument Serif', 'Noto Serif', 'Noto Serif SC', serif">未审核不进训练集 — candidate → active 须过审</text>
+
+        <!-- Funnel note -->
+        <text x="40" y="496" fill="#5a6580" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif">三级漏斗：规则粗筛 → 模型细筛 → 检索扩散</text>
+
+        <!-- Legend -->
+        <line x1="40" y1="540" x2="1240" y2="540" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+        <text x="40" y="560" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">LEGEND</text>
+
+        <rect x="40" y="576" width="14" height="10" rx="2" fill="rgba(191,69,32,0.08)" stroke="#bf4520" stroke-width="1"/>
+        <text x="60" y="585" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif">双引擎 / 命中</text>
+
+        <rect x="188" y="576" width="14" height="10" rx="2" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <text x="208" y="585" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif">流水线站</text>
+
+        <rect x="308" y="576" width="14" height="10" rx="2" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+        <text x="328" y="585" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif">湖仓</text>
+
+        <rect x="400" y="576" width="14" height="10" rx="2" fill="rgba(79,93,117,0.10)" stroke="#5a6580" stroke-width="1"/>
+        <text x="420" y="585" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif">未命中出口</text>
+
+        <line x1="536" y1="581" x2="564" y2="581" stroke="#bf4520" stroke-width="1.4" marker-end="url(#arrow-accent)"/>
+        <text x="572" y="585" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif">主路径 / 双出口</text>
+
+        <line x1="720" y1="581" x2="748" y2="581" stroke="#4f5d75" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+        <text x="756" y="585" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif">入湖 / 异步</text>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>

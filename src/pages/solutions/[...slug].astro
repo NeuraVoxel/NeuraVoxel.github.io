@@ -4,6 +4,7 @@ import ZeyoLayout from "../../layouts/ZeyoLayout.astro";
 import CooperationStrip from "../../components/zeyo/CooperationStrip.astro";
 import ConvergenceDiagram from "../../components/ConvergenceDiagram.astro";
 import TaskRoutingDiagram from "../../components/TaskRoutingDiagram.astro";
+import AdClosedLoopDiagrams from "../../components/AdClosedLoopDiagrams.astro";
 import { getSolutionBySlug, getSolutionLandings, stripLocale } from "../../lib/content";
 import { solutionKindLabels } from "../../data/solutions.types";
 import "../../styles/zeyo/solutions.css";
@@ -48,15 +49,17 @@ const statusLabels: Record<string, string> = {
 
 const isSystem = entry.data.kind === "system";
 
+const showAdClosedLoop = entry.data.diagram === "ad-closed-loop";
 const Diagram =
   entry.data.diagram === "task-routing"
     ? TaskRoutingDiagram
     : entry.data.diagram === "convergence"
       ? ConvergenceDiagram
       : null;
-const diagramCaption = entry.data.diagram
-  ? diagramCaptions[entry.data.diagram]
-  : undefined;
+const diagramCaption =
+  entry.data.diagram && entry.data.diagram in diagramCaptions
+    ? diagramCaptions[entry.data.diagram as keyof typeof diagramCaptions]
+    : undefined;
 ---
 
 <ZeyoLayout
@@ -106,6 +109,8 @@ const diagramCaption = entry.data.diagram
         </figure>
       )
     }
+
+    {showAdClosedLoop && <AdClosedLoopDiagrams />}
 
     <div class="solution-body">
       <Content />

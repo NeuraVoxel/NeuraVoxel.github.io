@@ -95,7 +95,7 @@ const solutions = defineCollection({
     kind: z.enum(["system", "industry", "playbook"]),
     parent: z.string().optional(),
     systems: z.array(z.string()).optional(),
-    diagram: z.enum(["convergence", "task-routing"]).optional(),
+    diagram: z.enum(["convergence", "task-routing", "ad-closed-loop"]).optional(),
     status: z.enum(["available", "preview", "planned"]).optional().default("available"),
     order: z.number().optional(),
     industry: z.string().optional(),

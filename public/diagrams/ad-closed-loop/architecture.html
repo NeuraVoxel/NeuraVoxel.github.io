@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>智驾数据闭环完整架构</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&family=Noto+Serif:ital@0;1&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:   #f5f5f5;
+      --color-ink:     #2d3142;
+      --color-muted:   #4f5d75;
+      --color-accent:  #bf4520;
+      --font-sans:     'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', system-ui, sans-serif;
+      --font-serif:    'Instrument Serif', 'Noto Serif', 'Noto Serif SC', serif;
+      --font-mono:     'Geist Mono', ui-monospace, monospace;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      padding: 0.75rem;
+    }
+
+    .eyebrow, h1, .lede { display: none; }
+    .frame { max-width: 1320px; width: 100%; }
+    .diagram-container { width: 100%; overflow-x: auto; }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      margin-bottom: 1.5rem;
+    }
+
+    svg { width: 100%; display: block; }
+    @media print {
+      .diagram-container { overflow-x: visible; }
+      svg { min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">Architecture · 小周谈智驾闭环</p>
+    <h1>智驾数据闭环完整架构</h1>
+
+    <div class="diagram-container">
+      <svg viewBox="0 0 1280 720" xmlns="http://www.w3.org/2000/svg" role="img"
+           aria-labelledby="ad-closed-loop-arch-title ad-closed-loop-arch-desc">
+        <title id="ad-closed-loop-arch-title">智驾数据闭环完整架构</title>
+        <desc id="ad-closed-loop-arch-desc">车端经应用层与统一门禁入湖，湖仓为单一事实源，服务层与挖掘流水线咬合，双出口回补训练集或定向采集，评测通过后 OTA 上车。</desc>
+        <defs>
+          <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+          <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#bf4520"/></marker>
+          <marker id="arrow-link" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#2e5aa8"/></marker>
+        </defs>
+
+        <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+        <!-- Zones (bg → zones → arrows → nodes) -->
+        <rect x="256" y="56" width="248" height="528" rx="8"
+              fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+        <rect x="328" y="60" width="104" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="380" y="72" fill="#5a6580" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">应用平台</text>
+
+        <rect x="528" y="56" width="720" height="528" rx="8"
+              fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+        <rect x="820" y="60" width="104" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="872" y="72" fill="#5a6580" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">数据中枢</text>
+
+        <!-- Arrows -->
+        <!-- 1 车端 → 应用：回传 -->
+        <line x1="208" y1="344" x2="276" y2="344" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+        <rect x="220" y="318" width="40" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="240" y="330" fill="#2e5aa8" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">回传</text>
+
+        <!-- 2 应用 → 入湖 -->
+        <path d="M 480,324 H 520 Q 528,324 528,316 V 144 Q 528,136 536,136 H 556"
+              fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+        <rect x="504" y="196" width="48" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="528" y="208" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">入湖</text>
+
+        <!-- 3 入湖 → 湖仓（主路径） -->
+        <line x1="664" y1="172" x2="664" y2="288" stroke="#bf4520" stroke-width="1.4" marker-end="url(#arrow-accent)"/>
+        <rect x="676" y="216" width="48" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="700" y="228" fill="#bf4520" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">写入</text>
+
+        <!-- 4 湖仓 → StarRocks -->
+        <line x1="768" y1="344" x2="816" y2="344" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+        <rect x="772" y="318" width="48" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="796" y="330" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">查询</text>
+
+        <!-- 5 湖仓 → 服务 -->
+        <line x1="664" y1="380" x2="664" y2="476" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+        <rect x="676" y="416" width="56" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="704" y="428" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">血缘</text>
+
+        <!-- 6 服务 → 应用 API（绕行 OTA 下方） -->
+        <path d="M 664,552 V 568 H 236 Q 228,568 228,560 V 456 H 372 Q 380,456 380,448 V 380"
+              fill="none" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+        <rect x="280" y="540" width="40" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="300" y="552" fill="#2e5aa8" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', sans-serif" text-anchor="middle">API</text>
+
+        <!-- 7 湖仓 → 挖掘（绕过 StarRocks 上方） -->
+        <path d="M 768,316 H 788 Q 796,316 796,308 V 248 Q 796,240 804,240 H 1134 Q 1142,240 1142,248 V 288"
+              fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+        <rect x="920" y="216" width="72" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="956" y="228" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">事实源</text>
+
+        <!-- 8 挖掘 → 湖仓 结果回写（下方虚线，入底边） -->
+        <path d="M 1048,360 H 1008 V 412 H 728 Q 720,412 720,404 V 384"
+              fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+        <rect x="848" y="388" width="48" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="872" y="400" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">回写</text>
+
+        <!-- 9 挖掘 → 应用：命中回补（焦点边） -->
+        <path d="M 1048,372 H 1000 V 460 H 500 Q 480,460 480,452 V 364"
+              fill="none" stroke="#bf4520" stroke-width="1.4" marker-end="url(#arrow-accent)"/>
+        <rect x="700" y="436" width="72" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="736" y="448" fill="#bf4520" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">命中回补</text>
+
+        <!-- 10 挖掘 → 车端：定向采集（焦点边，顶廊） -->
+        <path d="M 1142,292 V 44 Q 1142,36 1134,36 H 132 Q 124,36 124,44 V 304"
+              fill="none" stroke="#bf4520" stroke-width="1.4" marker-end="url(#arrow-accent)"/>
+        <rect x="580" y="20" width="72" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="616" y="32" fill="#bf4520" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">定向采集</text>
+
+        <!-- 11 应用 → OTA -->
+        <line x1="380" y1="380" x2="380" y2="476" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+        <rect x="392" y="416" width="56" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="420" y="428" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif"
+              text-anchor="middle">评测后</text>
+
+        <!-- 12 OTA → 车端 -->
+        <path d="M 280,516 H 140 Q 124,516 124,508 V 380"
+              fill="none" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+        <rect x="160" y="492" width="40" height="16" rx="2" fill="#f5f5f5"/>
+        <text x="180" y="504" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', sans-serif" text-anchor="middle">OTA</text>
+
+        <!-- Nodes -->
+        <!-- 车端 · input -->
+        <rect x="40" y="308" width="168" height="72" rx="6" fill="#f5f5f5"/>
+        <rect x="40" y="308" width="168" height="72" rx="6" fill="rgba(79,93,117,0.10)" stroke="#5a6580" stroke-width="1"/>
+        <rect x="48" y="316" width="32" height="12" rx="2" fill="transparent" stroke="rgba(90,101,128,0.40)" stroke-width="0.8"/>
+        <text x="64" y="325" fill="#5a6580" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">VEH</text>
+        <text x="124" y="344" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">车端</text>
+        <text x="124" y="360" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">trigger · shadow</text>
+
+        <!-- 应用层 · backend -->
+        <rect x="280" y="308" width="200" height="72" rx="6" fill="#f5f5f5"/>
+        <rect x="280" y="308" width="200" height="72" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <rect x="288" y="316" width="32" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="304" y="325" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">APP</text>
+        <text x="380" y="344" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">应用层</text>
+        <text x="380" y="360" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">9 platforms</text>
+
+        <!-- 入湖门禁 · security -->
+        <rect x="560" y="100" width="208" height="72" rx="6" fill="#f5f5f5"/>
+        <rect x="560" y="100" width="208" height="72" rx="6" fill="rgba(191,69,32,0.05)" stroke="rgba(191,69,32,0.50)" stroke-width="1" stroke-dasharray="4,4"/>
+        <rect x="568" y="108" width="36" height="12" rx="2" fill="transparent" stroke="rgba(191,69,32,0.40)" stroke-width="0.8"/>
+        <text x="586" y="117" fill="#bf4520" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">GATE</text>
+        <text x="664" y="136" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">入湖门禁</text>
+        <text x="664" y="152" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">CDC · Kafka · OSS</text>
+
+        <!-- 湖仓 · focal -->
+        <rect x="560" y="292" width="208" height="88" rx="6" fill="#f5f5f5"/>
+        <rect x="560" y="292" width="208" height="88" rx="6" fill="rgba(191,69,32,0.08)" stroke="#bf4520" stroke-width="1"/>
+        <rect x="568" y="300" width="36" height="12" rx="2" fill="transparent" stroke="rgba(191,69,32,0.50)" stroke-width="0.8"/>
+        <text x="586" y="309" fill="#bf4520" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">LAKE</text>
+        <text x="752" y="372" fill="rgba(191,69,32,0.10)" font-size="32" font-weight="600" font-family="'Geist Mono', monospace" text-anchor="end">01</text>
+        <text x="664" y="336" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">湖仓底座</text>
+        <text x="664" y="352" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">Paimon ODS→ADS</text>
+
+        <!-- 服务层 · backend -->
+        <rect x="560" y="480" width="208" height="72" rx="6" fill="#f5f5f5"/>
+        <rect x="560" y="480" width="208" height="72" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <rect x="568" y="488" width="32" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="584" y="497" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">SVC</text>
+        <text x="664" y="516" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">服务层</text>
+        <text x="664" y="532" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">meta · lineage · ACL</text>
+
+        <!-- StarRocks · store -->
+        <rect x="820" y="308" width="168" height="72" rx="6" fill="#f5f5f5"/>
+        <rect x="820" y="308" width="168" height="72" rx="6" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+        <rect x="828" y="316" width="44" height="12" rx="2" fill="transparent" stroke="rgba(79,93,117,0.50)" stroke-width="0.8"/>
+        <text x="850" y="325" fill="#4f5d75" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">QUERY</text>
+        <text x="904" y="344" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', sans-serif" text-anchor="middle">StarRocks</text>
+        <text x="904" y="360" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">dual-path · HNSW</text>
+
+        <!-- 挖掘 · backend -->
+        <rect x="1048" y="292" width="188" height="88" rx="6" fill="#f5f5f5"/>
+        <rect x="1048" y="292" width="188" height="88" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <rect x="1056" y="300" width="40" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.40)" stroke-width="0.8"/>
+        <text x="1076" y="309" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">MINE</text>
+        <text x="1142" y="336" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">挖掘流水线</text>
+        <text x="1142" y="352" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">5-stage · C/D plane</text>
+
+        <!-- OTA · optional -->
+        <rect x="280" y="480" width="200" height="72" rx="6" fill="#f5f5f5"/>
+        <rect x="280" y="480" width="200" height="72" rx="6" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.20)" stroke-width="1" stroke-dasharray="4,3"/>
+        <rect x="288" y="488" width="32" height="12" rx="2" fill="transparent" stroke="rgba(45,49,66,0.30)" stroke-width="0.8"/>
+        <text x="304" y="497" fill="#5a6580" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">OTA</text>
+        <text x="380" y="516" fill="#2d3142" font-size="12" font-weight="600"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif" text-anchor="middle">OTA 部署</text>
+        <text x="380" y="532" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">sim gate first</text>
+
+        <!-- Legend -->
+        <line x1="40" y1="620" x2="1240" y2="620" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+        <text x="40" y="640" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">LEGEND</text>
+
+        <rect x="40" y="656" width="14" height="10" rx="2" fill="rgba(191,69,32,0.08)" stroke="#bf4520" stroke-width="1"/>
+        <text x="60" y="665" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif">湖仓焦点</text>
+
+        <rect x="152" y="656" width="14" height="10" rx="2" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+        <text x="172" y="665" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif">平台 / 挖掘</text>
+
+        <rect x="276" y="656" width="14" height="10" rx="2" fill="rgba(45,49,66,0.05)" stroke="#4f5d75" stroke-width="1"/>
+        <text x="296" y="665" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', sans-serif">Store</text>
+
+        <rect x="368" y="656" width="14" height="10" rx="2" fill="rgba(79,93,117,0.10)" stroke="#5a6580" stroke-width="1"/>
+        <text x="388" y="665" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif">车端</text>
+
+        <rect x="456" y="656" width="14" height="10" rx="2" fill="rgba(191,69,32,0.05)" stroke="rgba(191,69,32,0.50)" stroke-width="1" stroke-dasharray="4,4"/>
+        <text x="476" y="665" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif">门禁</text>
+
+        <line x1="548" y1="661" x2="576" y2="661" stroke="#bf4520" stroke-width="1.4" marker-end="url(#arrow-accent)"/>
+        <text x="584" y="665" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif">主路径 / 双出口</text>
+
+        <line x1="720" y1="661" x2="748" y2="661" stroke="#2e5aa8" stroke-width="1.2" marker-end="url(#arrow-link)"/>
+        <text x="756" y="665" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', sans-serif">HTTP / API</text>
+
+        <line x1="864" y1="661" x2="892" y2="661" stroke="#4f5d75" stroke-width="1" stroke-dasharray="5,4" marker-end="url(#arrow)"/>
+        <text x="900" y="665" fill="#4f5d75" font-size="12" font-weight="500"
+              font-family="'Geist', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif">回写 / 异步</text>
+      </svg>
+    </div>
+  </div>
+</body>
+</html>
