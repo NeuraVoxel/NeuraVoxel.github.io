@@ -3,7 +3,7 @@
     {
       "id": "office",
       "title": "AI",
-      "countLabel": "6 项作品",
+      "countLabel": "7 项作品",
       "loopSteps": [
         "规划",
         "执行",
@@ -151,6 +151,31 @@
             }
           ],
           "openUrl": "https://github.com/NeuraVoxel/task-skill"
+        },
+        {
+          "id": "topo-diagram",
+          "name": "Topo Diagram",
+          "summary": "一个 Agent Skill：用 aitopo Canvas 引擎构建架构与流程图，支持 Group 折叠、跨边界连线与 SubNetwork 下钻；统计类图表回退到 SVG/HTML。",
+          "status": "available",
+          "tags": [
+            {
+              "label": "构图",
+              "stage": "plan"
+            },
+            {
+              "label": "布局",
+              "stage": "execute"
+            },
+            {
+              "label": "校验",
+              "stage": "review"
+            },
+            {
+              "label": "导出",
+              "stage": "optimize"
+            }
+          ],
+          "openUrl": "https://github.com/NeuraVoxel/aitopo"
         },
         {
           "id": "probwave-harness",
